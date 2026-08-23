@@ -34,77 +34,64 @@ A built-in **Voice Bridge** feature lets workers hand the device to a destinatio
 
 ---
 
-## Architecture Overview
+### Architecture Overview
 
 ```
-========================================================
-  PIPELINE A: Voice Query (Primary Flow)
-========================================================
-
-Worker speaks Hindi or Tamil (BHASHINI ASR supported languages)
+Worker speaks Hindi or Tamil
+(BHASHINI ASR -- Hindi & Tamil only, confirmed by BHASHINI team)
         |
         v
-BHASHINI ASR (Hindi / Tamil only -- confirmed by BHASHINI team)
+BHASHINI ASR --> BHASHINI NMT (--> English)
+        |                                           [Camera Button Pressed]
+        |                                                    |
+        |                                                    v
+        |                               Camera captures JPEG frame
+        |                               (Arducam CSI / USB webcam)
+        |                                                    |
+        |                               Image held in memory (120s TTL)
+        |                                                    |
+        v                                                    |
+English query text <-----------------------------------------+
+        |                                                    |
+        |         [Vision query? i.e. image pending?]        |
+        +-------------------YES------> Qwen3-VL-2B-Instruct-GGUF
+        |                              (HuggingFace GGUF via Ollama)
+        |                               <- Image (base64) + Context
+        |                               Reads photographed document
+        |                                        |
+        |                         +--------------+--------------+
+        |                         |                             |
+        |                  Answer found                  NOT_IN_CONTEXT
+        |                         |                       (fallback msg)
+        |                         v                             v
+        |                     Answer text <--------------------+
+        |
+        +---NO (standard voice query)--->
         |
         v
-BHASHINI NMT (--> English)
-        |
-        v
-+----------------------------------------------------------+
-|                    Decision Layer                         |
-|  1. Intent Recognizer (keyword + KB phrase matching)      |
-|  2. Entity Extractor  (scheme / state / language)         |
-|  3. Query Classifier  (routing decision)                  |
-|                |                                          |
-|       +--------+--------+                                 |
-|       |                 |                                 |
-|       v                 v                                 |
-|  Rules Engine      ChromaDB RAG Pipeline                  |
-|  (deterministic)   (multilingual-e5-small)                |
-|  PDS / PMJAY /     All 20 schemes                         |
-|  ESHRAM / BOCW     + LLM Fallback (Qwen2.5-VL:3B)         |
-+----------------------------------------------------------+
++---------------------------------------------------------------+
+|                       Decision Layer                           |
+|   1. Intent Recognizer   (keyword + KB phrase matching)        |
+|   2. Entity Extractor    (scheme code / state / language)      |
+|   3. Query Classifier    (routing decision)                    |
+|                  |                                             |
+|        +---------+---------+                                   |
+|        |                   |                                   |
+|        v                   v                                   |
+|   Rules Engine       ChromaDB RAG Pipeline                     |
+|   (deterministic)    (multilingual-e5-small)                   |
+|   PDS / PMJAY /      All 20 schemes                            |
+|   ESHRAM / BOCW      + Qwen3-VL-2B LLM Fallback               |
++---------------------------------------------------------------+
         |
         v
 BHASHINI NMT (--> Hindi or Tamil, worker's language)
         |
         v
 BHASHINI TTS --> LCD Display + Speaker
-
-
-========================================================
-  PIPELINE B: Camera Form-Reading (Vision Flow)
-========================================================
-
-Worker presses Camera button on touchscreen
-        |
-        v
-Camera captures JPEG frame (Arducam CSI / USB webcam)
-        |
-        v
-Image stored in memory with TTL timestamp (120s expiry)
-        |
-        v
-Worker holds trigger + asks question (Hindi or Tamil)
-        |
-        v
-BHASHINI ASR --> BHASHINI NMT (--> English query)
-        |
-        v
-Qwen2.5-VL:3B via Ollama  <-- Image (base64) + Context chunks
-(vision-language model reads the photographed document)
-        |
-        v
-[If model answers from document]         [If NOT_IN_CONTEXT sentinel]
-        |                                          |
-        v                                          v
-Answer text                              Constant fallback message
-        |
-        v
-BHASHINI NMT (--> worker's language) --> BHASHINI TTS --> Speaker
 ```
 
-**All AI inference is fully local** -- BHASHINI (ASR/NMT/TTS) runs at `localhost:11400`, and the optional LLM fallback (Qwen2.5-VL:3B via Ollama) runs at `localhost:11434`. **Zero data ever leaves the device.**
+**All AI inference is fully local** -- BHASHINI (ASR/NMT/TTS) runs at `localhost:11400`, and the vision/LLM model ([Qwen3-VL-2B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct-GGUF) via Ollama) runs at `localhost:11434`. **Zero data ever leaves the device.**
 
 ---
 
@@ -228,7 +215,7 @@ sudo apt install -y \
 | Service | Purpose | Default Endpoint |
 |---------|---------|-----------------|
 | **BHASHINI** (ASR + NMT + TTS) | Speech recognition, translation, synthesis | `localhost:11400` |
-| **Ollama** (Qwen2.5-VL:3B) | LLM fallback + camera form reading | `localhost:11434` |
+| **Ollama** (Qwen3-VL-2B-Instruct-GGUF) | LLM fallback + camera form reading | `localhost:11434` |
 
 **Install Ollama and pull the model:**
 
@@ -236,11 +223,11 @@ sudo apt install -y \
 # Install Ollama (Linux)
 curl -fsSL https://ollama.com/install.sh | sh
 
-# Pull the Qwen2.5 vision-language model (~2.5 GB)
-ollama pull qwen2.5vl:3b
+# Pull the Qwen3-VL-2B-Instruct-GGUF model from HuggingFace via Ollama
+ollama pull hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF
 ```
 
-> The Qwen model is used **only as a last-resort fallback** when both the Rules Engine and RAG pipeline find no matching answer, and for the camera-based government form-reading feature. It is never the primary answer path.
+> The Qwen3-VL-2B model is used **only as a last-resort fallback** when both the Rules Engine and RAG pipeline find no matching answer, and for the camera-based government form-reading feature. It is never the primary answer path.
 
 ---
 
@@ -459,7 +446,7 @@ NomadRight's core Decision Layer processes every voice query through a strict pi
 1. **Camera Capture** -- Worker presses the **Camera** button on the touchscreen; the board captures a JPEG frame (Arducam CSI on-device, USB webcam on dev board).
 2. **Image Held in Memory** -- The JPEG is stored with a 120-second TTL timestamp. If the worker walks away without asking, the stale photo is silently discarded.
 3. **Follow-Up Voice Query** -- Worker holds the trigger and asks a question about the photographed document (Hindi or Tamil via BHASHINI ASR).
-4. **Vision LLM (Qwen2.5-VL:3B)** -- The English query + the JPEG (base64-encoded) + relevant RAG context chunks are sent to Qwen2.5-VL:3B via Ollama. The model is instructed to answer **only from the document/context** or return `NOT_IN_CONTEXT` verbatim.
+4. **Vision LLM ([Qwen3-VL-2B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct-GGUF))** -- The English query + the JPEG (base64-encoded) + relevant RAG context chunks are sent to Qwen3-VL-2B via Ollama. The model is instructed to answer **only from the document/context** or return `NOT_IN_CONTEXT` verbatim.
 5. **Grounded Answer or Fallback** -- If the model answers, the text is NMT-translated to Hindi/Tamil and spoken aloud. If `NOT_IN_CONTEXT` is returned, the constant fallback message is used instead.
 6. **One Photo, One Question** -- After each answered query the image is cleared. A new Camera press is required for another form-reading query.
 
@@ -661,6 +648,6 @@ SOFTWARE.
 
 - **[Suno Sutra SW](https://github.com/currentai-org/suno-sutra-sw)** by Andrew Tergis / Current AI -- the open-source edge-AI hardware and software platform that NomadRight is built on top of.
 - **[BHASHINI](https://bhashini.gov.in/)** -- India's national AI-powered language platform, providing offline ASR, NMT, and TTS for Indic languages.
-- **[Qwen2.5-VL:3B](https://huggingface.co/Qwen/Qwen2.5-VL-3B)** by Alibaba / Qwen Team -- the vision-language model used for government form reading and last-resort text fallback (via Ollama).
+- **[Qwen3-VL-2B-Instruct-GGUF](https://huggingface.co/Qwen/Qwen3-VL-2B-Instruct-GGUF)** by Alibaba / Qwen Team -- the vision-language model (GGUF format, run via Ollama) used for government form reading and last-resort text fallback.
 - **[ChromaDB](https://www.trychroma.com/)** + **[intfloat/multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small)** -- the offline semantic search stack powering the RAG pipeline.
 - Government of India open data portals (`myscheme.gov.in`, `nha.gov.in`, `pmjay.gov.in`, `eshram.gov.in`, `nrega.nic.in`, `dfpd.gov.in`, `pib.gov.in`) -- all scheme data is sourced exclusively from official .gov.in domains.
