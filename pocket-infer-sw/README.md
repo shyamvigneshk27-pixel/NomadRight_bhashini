@@ -37,32 +37,71 @@ A built-in **Voice Bridge** feature lets workers hand the device to a destinatio
 ## Architecture Overview
 
 ```
-Worker speaks (native language)
+========================================================
+  PIPELINE A: Voice Query (Primary Flow)
+========================================================
+
+Worker speaks Hindi or Tamil (BHASHINI ASR supported languages)
         |
         v
-BHASHINI ASR  -->  BHASHINI NMT (--> English)
-                           |
-                           v
-               +------------------------------+
-               |       Decision Layer          |
-               |  1. Intent Recognizer         |
-               |  2. Entity Extractor          |
-               |  3. Query Classifier          |
-               |           |                   |
-               |    +------+------+            |
-               |    |             |            |
-               |    v             v            |
-               |  Rules Engine  ChromaDB RAG   |
-               | (deterministic) Pipeline      |
-               | PDS/PMJAY/     + LLM Fallback |
-               | ESHRAM/BOCW   (Qwen2.5-VL:3B) |
-               +------------------------------+
-                           |
-                           v
-               BHASHINI NMT (--> native lang)
-                           |
-                           v
-               BHASHINI TTS --> LCD Display + Speaker
+BHASHINI ASR (Hindi / Tamil only -- confirmed by BHASHINI team)
+        |
+        v
+BHASHINI NMT (--> English)
+        |
+        v
++----------------------------------------------------------+
+|                    Decision Layer                         |
+|  1. Intent Recognizer (keyword + KB phrase matching)      |
+|  2. Entity Extractor  (scheme / state / language)         |
+|  3. Query Classifier  (routing decision)                  |
+|                |                                          |
+|       +--------+--------+                                 |
+|       |                 |                                 |
+|       v                 v                                 |
+|  Rules Engine      ChromaDB RAG Pipeline                  |
+|  (deterministic)   (multilingual-e5-small)                |
+|  PDS / PMJAY /     All 20 schemes                         |
+|  ESHRAM / BOCW     + LLM Fallback (Qwen2.5-VL:3B)         |
++----------------------------------------------------------+
+        |
+        v
+BHASHINI NMT (--> Hindi or Tamil, worker's language)
+        |
+        v
+BHASHINI TTS --> LCD Display + Speaker
+
+
+========================================================
+  PIPELINE B: Camera Form-Reading (Vision Flow)
+========================================================
+
+Worker presses Camera button on touchscreen
+        |
+        v
+Camera captures JPEG frame (Arducam CSI / USB webcam)
+        |
+        v
+Image stored in memory with TTL timestamp (120s expiry)
+        |
+        v
+Worker holds trigger + asks question (Hindi or Tamil)
+        |
+        v
+BHASHINI ASR --> BHASHINI NMT (--> English query)
+        |
+        v
+Qwen2.5-VL:3B via Ollama  <-- Image (base64) + Context chunks
+(vision-language model reads the photographed document)
+        |
+        v
+[If model answers from document]         [If NOT_IN_CONTEXT sentinel]
+        |                                          |
+        v                                          v
+Answer text                              Constant fallback message
+        |
+        v
+BHASHINI NMT (--> worker's language) --> BHASHINI TTS --> Speaker
 ```
 
 **All AI inference is fully local** -- BHASHINI (ASR/NMT/TTS) runs at `localhost:11400`, and the optional LLM fallback (Qwen2.5-VL:3B via Ollama) runs at `localhost:11434`. **Zero data ever leaves the device.**
@@ -376,15 +415,17 @@ pocketinfer-service --app NomadRight --settings-file my_settings.json
 
 **Worker Input Languages (ASR -- what the worker speaks):**
 
-| Code | Language | Region |
-|------|----------|--------|
-| `hi` | Hindi | North India *(default)* |
-| `ta` | Tamil | Tamil Nadu |
-| `or` | Odia | Odisha |
-| `bho` | Bhojpuri | Bihar / Eastern UP |
-| `mai` | Maithili | Bihar / Jharkhand |
-| `sat` | Santali | Jharkhand / Odisha / West Bengal |
-| `hne` | Chhattisgarhi | Chhattisgarh |
+> **Important:** BHASHINI ASR has been confirmed by the BHASHINI team to support **only Hindi and Tamil** on this deployment. The other language codes listed in `constants.py` are framework placeholders for future model availability.
+
+| Code | Language | Region | ASR Status |
+|------|----------|--------|------------|
+| `hi` | Hindi | North India | **Supported** *(default)* |
+| `ta` | Tamil | Tamil Nadu | **Supported** |
+| `or` | Odia | Odisha | Pending BHASHINI model |
+| `bho` | Bhojpuri | Bihar / Eastern UP | Pending BHASHINI model |
+| `mai` | Maithili | Bihar / Jharkhand | Pending BHASHINI model |
+| `sat` | Santali | Jharkhand / Odisha / WB | Pending BHASHINI model |
+| `hne` | Chhattisgarhi | Chhattisgarh | Pending BHASHINI model |
 
 **Voice Bridge Languages (for destination-state officials):**
 
@@ -401,16 +442,26 @@ pocketinfer-service --app NomadRight --settings-file my_settings.json
 
 NomadRight's core Decision Layer processes every voice query through a strict pipeline -- **zero hallucination** is an explicit design requirement for legal welfare entitlements:
 
-1. **Speech Recognition** -- BHASHINI ASR transcribes the worker's spoken query in their native language.
-2. **NMT Translation (-> English)** -- BHASHINI NMT translates to English for the Decision Layer.
+### Voice Query Pipeline (Primary)
+
+1. **Speech Recognition** -- BHASHINI ASR transcribes the worker's spoken query. **Confirmed supported languages: Hindi (`hi`) and Tamil (`ta`) only** (confirmed by BHASHINI team; other language codes are placeholders pending future model availability).
+2. **NMT Translation (-> English)** -- BHASHINI NMT translates the native text to English for the Decision Layer.
 3. **Intent Recognition** -- A three-phase keyword + knowledge-base phrase-matching engine maps the query to one of 20 intent types (e.g. `PDS_PORTABILITY`, `BOCW_REGISTRATION`, `ESHRAM_WAGE_RIGHTS`, `WELFARE_OVERVIEW`).
-4. **Entity Extraction** -- Extracts named entities: scheme code (PDS/PMJAY/ESHRAM/BOCW/MGNREGS), Indian state name, language code.
-5. **Query Classification** -- Routes the query to one of three subsystems:
+4. **Entity Extraction** -- Extracts named entities: scheme code, Indian state name, language code.
+5. **Query Classification** -- Routes to one of three subsystems:
    - **Rules Engine** -- Deterministic, data-driven answers for 14 known intent types across PDS, PM-JAY, e-Shram, and BOCW. Facts are read live from the SQLite knowledge base -- no hardcoded strings.
-   - **RAG Pipeline** -- ChromaDB + `multilingual-e5-small` semantic similarity search with a calibrated minimum score threshold (0.83). Covers all 20 schemes -- the 15 extended schemes (APY, NSAP, PM-KISAN, PM SVANidhi, PM-SYM, PM Vishwakarma, PMAY-G, PMFBY, PMJDY, PMJJBY, PMMY, PMSBY, PMUY, PM Surya Ghar, Sukanya Samriddhi) are answered exclusively via the RAG pipeline.
-   - **LLM Fallback** -- Qwen2.5-VL:3B via Ollama, only when Rules + RAG both find nothing. Context-grounded with a strict `NOT_IN_CONTEXT` sentinel to prevent hallucination.
-6. **Vision Path** -- Camera button photos are processed by Qwen2.5-VL (multimodal) to answer worker questions about photographed government forms.
-7. **Response + TTS** -- The English answer is NMT-translated back to the worker's language, then synthesised via BHASHINI TTS and played on the speaker.
+   - **RAG Pipeline** -- ChromaDB + `multilingual-e5-small` semantic search (min score threshold 0.83). Covers all 20 schemes; the 15 extended schemes (APY, NSAP, PM-KISAN, PM SVANidhi, PM-SYM, PM Vishwakarma, PMAY-G, PMFBY, PMJDY, PMJJBY, PMMY, PMSBY, PMUY, PM Surya Ghar, Sukanya Samriddhi) are answered exclusively via RAG.
+   - **LLM Fallback** -- Qwen2.5-VL:3B via Ollama, only when Rules + RAG both find nothing. Grounded with retrieved context and a strict `NOT_IN_CONTEXT` sentinel to prevent hallucination.
+6. **Response + TTS** -- The English answer is NMT-translated back to Hindi or Tamil, then synthesised via BHASHINI TTS and played on the speaker.
+
+### Camera Form-Reading Pipeline (Vision)
+
+1. **Camera Capture** -- Worker presses the **Camera** button on the touchscreen; the board captures a JPEG frame (Arducam CSI on-device, USB webcam on dev board).
+2. **Image Held in Memory** -- The JPEG is stored with a 120-second TTL timestamp. If the worker walks away without asking, the stale photo is silently discarded.
+3. **Follow-Up Voice Query** -- Worker holds the trigger and asks a question about the photographed document (Hindi or Tamil via BHASHINI ASR).
+4. **Vision LLM (Qwen2.5-VL:3B)** -- The English query + the JPEG (base64-encoded) + relevant RAG context chunks are sent to Qwen2.5-VL:3B via Ollama. The model is instructed to answer **only from the document/context** or return `NOT_IN_CONTEXT` verbatim.
+5. **Grounded Answer or Fallback** -- If the model answers, the text is NMT-translated to Hindi/Tamil and spoken aloud. If `NOT_IN_CONTEXT` is returned, the constant fallback message is used instead.
+6. **One Photo, One Question** -- After each answered query the image is cleared. A new Camera press is required for another form-reading query.
 
 ---
 
