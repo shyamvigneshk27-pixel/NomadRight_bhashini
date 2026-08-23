@@ -4,13 +4,31 @@
 
 NomadRight is a 100% offline, voice-first, multilingual AI assistant for **interstate migrant workers in India**, running on edge hardware (NVIDIA Jetson Orin Nano). Workers press and hold a physical trigger button, ask a question in their own language (Hindi, Odia, Tamil, Bhojpuri, Maithili, Santali, Chhattisgarhi), and receive an authoritative spoken answer about their welfare entitlements -- all without any cloud connectivity.
 
-The system answers questions about five major welfare schemes:
+The system covers **20 Government of India welfare schemes** across food security, health, housing, insurance, employment, pensions, and financial inclusion:
 
-- **PDS / ONORC** -- One Nation One Ration Card (food security, ration portability)
-- **PM-JAY (Ayushman Bharat)** -- Cashless health insurance up to Rs.5 lakh/year
-- **e-Shram + OSH Code 2020** -- UAN registration, accident insurance, wage rights
-- **BOCW** -- Building & Other Construction Workers welfare benefits
-- **MGNREGS** -- Rural employment guarantee (via RAG pipeline)
+**Core Schemes (deterministic Rules Engine + RAG):**
+- **PDS / ONORC** -- One Nation One Ration Card (ration portability across all 36 States/UTs)
+- **PM-JAY (Ayushman Bharat)** -- Cashless health insurance up to Rs.5 lakh/family/year
+- **e-Shram + OSH Code 2020** -- UAN registration, accident insurance, worker wage rights
+- **BOCW** -- Building & Other Construction Workers welfare board benefits
+- **MGNREGS** -- 100-day rural employment guarantee
+
+**Extended Schemes (RAG pipeline):**
+- **APY** -- Atal Pension Yojana (guaranteed pension for unorganised workers)
+- **NSAP** -- National Social Assistance Programme (old age / widow / disability pensions)
+- **PM-KISAN** -- Rs.6,000/year income support for farmers
+- **PM Surya Ghar** -- Free rooftop solar electricity (300 units/month)
+- **PM SVANidhi** -- Micro-credit loans for street vendors
+- **PM-SYM** -- Pradhan Mantri Shram Yogi Maandhan (pension for unorganised workers)
+- **PM Vishwakarma** -- Skill & credit support for traditional artisans and craftspeople
+- **PMAY-G** -- Pradhan Mantri Awas Yojana Gramin (rural housing)
+- **PMFBY** -- Pradhan Mantri Fasal Bima Yojana (crop insurance)
+- **PMJDY** -- Jan-Dhan bank accounts with zero balance and Rs.2 lakh accident cover
+- **PMJJBY** -- Jeevan Jyoti Bima Yojana (Rs.2 lakh life insurance at Rs.436/year)
+- **PMMY (MUDRA)** -- Micro-enterprise loans up to Rs.20 lakh
+- **PMSBY** -- Suraksha Bima Yojana (Rs.2 lakh accident insurance at Rs.20/year)
+- **PMUY** -- Ujjwala Yojana (free LPG connections for BPL households)
+- **Sukanya Samriddhi** -- Girl child savings scheme with 8.2% interest
 
 A built-in **Voice Bridge** feature lets workers hand the device to a destination-state official so the last answer is read aloud in the official language (Tamil, Gujarati, Marathi, Kannada).
 
@@ -55,14 +73,31 @@ BHASHINI ASR  -->  BHASHINI NMT (--> English)
 
 ```
 pocket-infer-sw/
-|-- nomadright/                        # Knowledge base and data layer
-|   |-- pds.json                       # PDS / ONORC scheme data
-|   |-- pmjay.json                     # PM-JAY scheme data
-|   |-- eshram_osh.json                # e-Shram + OSH Code 2020 data
-|   |-- bocw.json                      # BOCW construction workers scheme data
-|   |-- mgnregs.json                   # MGNREGS scheme data
-|   |-- nomadright_kb.db               # Compiled SQLite knowledge base (pre-built)
-|   |-- chroma_db/                     # ChromaDB vector index (pre-built)
+|-- nomadright/                        # Knowledge base and data layer (20 schemes)
+|   |                                  # -- Core 5 schemes (Rules Engine + RAG) --
+|   |-- pds.json                       # PDS / ONORC (ration card portability)
+|   |-- pmjay.json                     # PM-JAY (Ayushman Bharat health cover)
+|   |-- eshram_osh.json                # e-Shram + OSH Code 2020 (worker rights)
+|   |-- bocw.json                      # BOCW (construction workers welfare)
+|   |-- mgnregs.json                   # MGNREGS (rural employment guarantee)
+|   |                                  # -- Extended 15 schemes (RAG pipeline) --
+|   |-- apy.json                       # Atal Pension Yojana
+|   |-- nsap.json                      # National Social Assistance Programme
+|   |-- pm_kisan.json                  # PM-KISAN (farmer income support)
+|   |-- pm_surya_ghar.json             # PM Surya Ghar (solar electricity)
+|   |-- pm_svanidhi.json               # PM SVANidhi (street vendor micro-credit)
+|   |-- pm_sym.json                    # PM-SYM (unorganised worker pension)
+|   |-- pm_vishwakarma.json            # PM Vishwakarma (artisan skill & credit)
+|   |-- pmay_g.json                    # PMAY-G (rural housing)
+|   |-- pmfby.json                     # PMFBY (crop insurance)
+|   |-- pmjdy.json                     # PMJDY (Jan-Dhan bank accounts)
+|   |-- pmjjby.json                    # PMJJBY (life insurance)
+|   |-- pmmy.json                      # PMMY / MUDRA (micro-enterprise loans)
+|   |-- pmsby.json                     # PMSBY (accident insurance)
+|   |-- pmuy.json                      # PMUY (Ujjwala LPG connections)
+|   |-- sukanya_samriddhi.json         # Sukanya Samriddhi Account (girl child savings)
+|   |-- nomadright_kb.db               # Compiled SQLite knowledge base (all 20 schemes)
+|   |-- chroma_db/                     # ChromaDB vector index (all 20 schemes)
 |   |-- build_sqlite_db.py             # Script to (re)build nomadright_kb.db from JSONs
 |   |-- validate.py                    # JSON schema audit / validation script
 |   |-- validation_report.md           # Last validation audit report
@@ -372,7 +407,7 @@ NomadRight's core Decision Layer processes every voice query through a strict pi
 4. **Entity Extraction** -- Extracts named entities: scheme code (PDS/PMJAY/ESHRAM/BOCW/MGNREGS), Indian state name, language code.
 5. **Query Classification** -- Routes the query to one of three subsystems:
    - **Rules Engine** -- Deterministic, data-driven answers for 14 known intent types across PDS, PM-JAY, e-Shram, and BOCW. Facts are read live from the SQLite knowledge base -- no hardcoded strings.
-   - **RAG Pipeline** -- ChromaDB + `multilingual-e5-small` semantic similarity search with a calibrated minimum score threshold (0.83) to reject off-topic/garbled queries. Covers all 5 schemes including MGNREGS.
+   - **RAG Pipeline** -- ChromaDB + `multilingual-e5-small` semantic similarity search with a calibrated minimum score threshold (0.83). Covers all 20 schemes -- the 15 extended schemes (APY, NSAP, PM-KISAN, PM SVANidhi, PM-SYM, PM Vishwakarma, PMAY-G, PMFBY, PMJDY, PMJJBY, PMMY, PMSBY, PMUY, PM Surya Ghar, Sukanya Samriddhi) are answered exclusively via the RAG pipeline.
    - **LLM Fallback** -- Qwen2.5-VL:3B via Ollama, only when Rules + RAG both find nothing. Context-grounded with a strict `NOT_IN_CONTEXT` sentinel to prevent hallucination.
 6. **Vision Path** -- Camera button photos are processed by Qwen2.5-VL (multimodal) to answer worker questions about photographed government forms.
 7. **Response + TTS** -- The English answer is NMT-translated back to the worker's language, then synthesised via BHASHINI TTS and played on the speaker.
