@@ -37,7 +37,6 @@ from pocketinfer.applications.nomad_right.workflow import WorkflowController
 from pocketinfer.applications.nomad_right.response import StructuredResponsePackage
 from pocketinfer.applications.nomad_right.bhashini_bridge import BhashiniBridge
 from pocketinfer.applications.nomad_right.intent import IntentType
-from pocketinfer.applications.nomad_right.scenario_cache import ScenarioCache
 
 logger = logging.getLogger(__name__)
 
@@ -280,12 +279,6 @@ class NomadRightApplication(BaseApplication):
         is swallowed: it only costs the warm-up, and the real error surfaces
         normally on the first actual turn.
         """
-        stage_start = time.time()
-        try:
-            if self.scenario_cache.warm():
-                self._log(f"Cache index  {time.time() - stage_start:.1f}s")
-        except Exception:
-            self.logger.debug("[NomadRight] scenario cache warm-up skipped", exc_info=True)
 
         stage_start = time.time()
         try:
@@ -312,19 +305,6 @@ class NomadRightApplication(BaseApplication):
         self.workflow = WorkflowController(config=self.app_config)
         self._log(f"Pipeline loaded  {time.time() - load_start:.1f}s")
 
-        # Exact-answer fast path for a curated set of questions (see
-        # scenario_cache.py). Borrows the SentenceTransformer the RAG
-        # retriever already holds rather than loading a second copy - on a
-        # 7.4GB device shared with Ollama and BHASHINI that matters. If the
-        # retriever never came up, the provider returns None and the cache
-        # quietly disables itself, leaving every query on the normal path.
-        def _shared_embedder():
-            retriever = getattr(self.workflow, "rag_retriever", None)
-            if retriever is None or not retriever.is_available():
-                return None
-            return getattr(retriever, "_embedder", None)
-
-        self.scenario_cache = ScenarioCache(_shared_embedder)
 
         self.board.subscribe_to_ui(self.ui_cb)
 
@@ -715,44 +695,21 @@ class NomadRightApplication(BaseApplication):
                         self.last_scheme_code = response_pkg.scheme_code
 
                 else:
-                    # ── 3a. Curated scenario cache ────────────────────────────
-                    # Matched on the worker's own ASR text (not the English
-                    # translation - see scenario_cache.py for why that
-                    # separates far better). A hit skips intent, entities,
-                    # rules, RAG and Qwen, which is where both the latency
-                    # spread and the answer-wording variance come from; a
-                    # miss returns None and the turn continues below exactly
-                    # as it always did. The answer is still translated and
-                    # spoken live, so this is a shortcut through routing, not
-                    # a pre-recorded clip.
-                    cache_start = time.time()
-                    cached_pkg = self.scenario_cache.lookup(
-                        native_query, context_scheme_code=self.last_scheme_code
-                    )
-                    if cached_pkg is not None:
-                        self.logger.info("[PIPELINE] VOICE_SCHEME (cached)")
-                        self._log(f"CACHE HIT {cached_pkg.scheme_code}  "
-                                  f"{time.time() - cache_start:.2f}s")
-                        self.board.mode_text("VOICE TRANSLATION")
-                        response_pkg = cached_pkg
-                        self.last_answer_en = response_pkg.voice_text
-                        self.last_scheme_code = response_pkg.scheme_code
+                    # ── 3. Voice bridge short-circuit ────────────────────
+                    # If the worker is asking to translate the last answer for a
+                    # destination-state official, skip the Decision Layer entirely.
+                    intent_res = self.workflow.intent_recognizer.recognize(query_en)
+                    if intent_res.intent_type == IntentType.TRANSLATION_REQUEST and self.last_answer_en:
+                        entities = self.workflow.entity_extractor.extract(query_en, intent_res)
+                        target_lang = entities.language_code or bridge_lang
+                        if target_lang not in constants.BRIDGE_LANGUAGES:
+                            target_lang = bridge_lang
+                        target_name = constants.BRIDGE_LANGUAGES.get(target_lang, target_lang)
 
-                    else:
-                        # ── 3b. Voice bridge short-circuit ────────────────────
-                        # If the worker is asking to translate the last answer for a
-                        # destination-state official, skip the Decision Layer entirely.
-                        intent_res = self.workflow.intent_recognizer.recognize(query_en)
-                        if intent_res.intent_type == IntentType.TRANSLATION_REQUEST and self.last_answer_en:
-                            entities = self.workflow.entity_extractor.extract(query_en, intent_res)
-                            target_lang = entities.language_code or bridge_lang
-                            if target_lang not in constants.BRIDGE_LANGUAGES:
-                                target_lang = bridge_lang
-                            target_name = constants.BRIDGE_LANGUAGES.get(target_lang, target_lang)
+                        self.board.statusbar(f"[TRANSLATING] for official ({target_name})")
+                        bridged_text = self.bridge.bridge_translate(self.last_answer_en, "EN", target_lang)
 
-                            self.board.statusbar(f"[TRANSLATING] for official ({target_name})")
-                            bridged_text = self.bridge.bridge_translate(self.last_answer_en, "EN", target_lang)
-
+<<<<<<< HEAD
                             self.board.update_screen(top="VOICE BRIDGE", bottom=bridged_text[:100],
                                                       status="[SPEAKING] Home=stop")
                             played_fully = self._play(self.bridge.speak(bridged_text, target_lang))
@@ -783,6 +740,43 @@ class NomadRightApplication(BaseApplication):
                         # EntityExtractor._CONTEXT_INHERITABLE_INTENTS).
                         if response_pkg.scheme_code:
                             self.last_scheme_code = response_pkg.scheme_code
+=======
+                        with self._screen_lock:
+                            self.board.top_text("VOICE BRIDGE")
+                            self.board.bottom_text(bridged_text[:100])
+                            self.board.statusbar("[SPEAKING] Home=stop")
+                        played_fully = self._play(self.bridge.speak(bridged_text, target_lang))
+                        if played_fully:
+                            with self._screen_lock:
+                                self.board.statusbar("[READY]")
+                                self.board.mode_text("HOME")
+                        # else: _on_home_pressed() already set the
+                        # "AUDIO STOPPED" screen - don't overwrite it here.
+                        continue
+
+                    # ── 4. Decision Layer: Intent -> Entity -> Rules/RAG -> Response ─
+                    self.logger.info("[PIPELINE] VOICE_SCHEME")
+                    self.logger.info(f"[ASR] lang={lang} text='{native_query}'")
+                    self.logger.info(f"[LANGUAGE] input={lang}")
+                    self.logger.info(f"[TRANSLATION] EN: '{query_en}'")
+                    self.board.mode_text("VOICE TRANSLATION")
+                    self.board.statusbar("[PROCESSING] Finding your answer")
+                    stage_start = time.time()
+                    response_pkg = self.workflow.process(
+                        query_en, context_scheme_code=self.last_scheme_code
+                    )
+                    self._log(
+                        f"DECIDE {response_pkg.scheme_code or 'no-match'}  "
+                        f"{time.time() - stage_start:.1f}s"
+                    )
+                    self.last_answer_en = response_pkg.voice_text
+                    # Only update on an actual scheme match this turn - keep the
+                    # previous scheme remembered across a genuinely unrelated/
+                    # unmatched follow-up rather than losing it (see
+                    # EntityExtractor._CONTEXT_INHERITABLE_INTENTS).
+                    if response_pkg.scheme_code:
+                        self.last_scheme_code = response_pkg.scheme_code
+>>>>>>> 03201c7ba8a5030b1857e889b72b4ea8aca8866e
 
                 # Home was pressed while the Qwen/RAG call above was in
                 # flight - it can't be safely aborted mid-request (see
