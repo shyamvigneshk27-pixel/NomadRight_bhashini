@@ -131,5 +131,41 @@ class TestDebounceWithinASingleTouch(unittest.TestCase):
         self.assertEqual(count["n"], 1)
 
 
+class TestUpdateScreen(unittest.TestCase):
+    """update_screen() replaced applications assembling a screen state out
+    of separate mode_text()/top_text()/bottom_text()/statusbar_text() calls
+    - see app.py's NomadRightApplication and boards/jetson.py's
+    PocketInferDevboardUI.update_screen() for why that mattered (the
+    "overlay" glitch)."""
+
+    def test_only_given_fields_change(self):
+        ui, _touch = _make_ui()
+        ui.top_text("old top")
+        ui.bottom_text("old bottom")
+        ui.statusbar_text("old status")
+        ui.mode_text("old mode")
+
+        ui.update_screen(status="[LISTENING]")
+
+        self.assertEqual(ui.statusbar.text, "[LISTENING]")
+        self.assertEqual(ui.toptext.text, "old top")
+        self.assertEqual(ui.bottomtext.text, "old bottom")
+        self.assertEqual(ui.modeval.text, "old mode")
+
+    def test_all_four_fields_together(self):
+        ui, _touch = _make_ui()
+        ui.update_screen(mode="HOME", top="hello", bottom="world", status="[READY]")
+        self.assertEqual(ui.modeval.text, "HOME")
+        self.assertEqual(ui.toptext.text, "hello")
+        self.assertEqual(ui.bottomtext.text, "world")
+        self.assertEqual(ui.statusbar.text, "[READY]")
+
+    def test_no_fields_is_a_safe_noop(self):
+        ui, _touch = _make_ui()
+        ui.top_text("unchanged")
+        ui.update_screen()
+        self.assertEqual(ui.toptext.text, "unchanged")
+
+
 if __name__ == "__main__":
     unittest.main()

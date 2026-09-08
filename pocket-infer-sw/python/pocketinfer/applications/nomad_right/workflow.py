@@ -197,8 +197,17 @@ class WorkflowController(IWorkflowController):
         # never free generation. response.py falls back to the raw top
         # chunk if this comes back empty (error or not-found sentinel).
         rag_llm_answer: Optional[str] = None
+        # rag_llm_declined tracks whether Qwen was actually reached and
+        # explicitly returned the not-found sentinel for these exact
+        # chunks, as opposed to erroring/timing out or never being asked -
+        # response.py's Priority 4 (raw top-chunk echo) needs that
+        # distinction: echoing the chunk as a last resort is reasonable
+        # when Qwen couldn't be reached, but not when Qwen was reached and
+        # explicitly said it doesn't answer the question (see Priority 4's
+        # own docstring for the reproduced case this guards against).
+        rag_llm_declined = False
         if constants.LLM_FALLBACK_ENABLED and rag_chunks:
-            rag_llm_answer = self.qwen_client.answer_text(
+            rag_llm_answer, rag_llm_declined = self.qwen_client.answer_text_with_decline(
                 transcribed_text, [c.text for c in rag_chunks]
             )
             self.logger.info(
@@ -248,6 +257,7 @@ class WorkflowController(IWorkflowController):
             entities=entities,
             llm_answer=llm_answer,
             rag_llm_answer=rag_llm_answer,
+            rag_llm_declined=rag_llm_declined,
         )
         self.logger.info(
             f"[{session_id}] RESPONSE → severity={response_pkg.severity.value}  "

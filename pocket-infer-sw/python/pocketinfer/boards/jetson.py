@@ -128,6 +128,17 @@ class PocketInferDevboardUI(PocketInferDevboard):
         self.UI.memory_text(text)
         return True
 
+    def update_screen(self, mode=None, top=None, bottom=None, status=None):
+        ''' Set any of mode/top/bottom/status text together as ONE RPC call
+        to the UI subprocess (HandheldUI.update_screen(), see its docstring
+        for why a single call is atomic there) instead of up to four
+        separate top_text()/bottom_text()/mode_text()/statusbar() calls -
+        the interleaving that produced the "overlay" glitch (a Home/Camera
+        press's own screen update landing in the middle of another one)
+        can't happen to a single call. '''
+        self.UI.update_screen(mode, top, bottom, status)
+        return True
+
     def log_line(self, text):
         self.UI.log_line(text)
         return True

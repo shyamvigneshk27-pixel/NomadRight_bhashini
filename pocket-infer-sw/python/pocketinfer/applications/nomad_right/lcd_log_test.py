@@ -55,6 +55,7 @@ class LoggingBoard:
     def bottom_text(self, t): pass
     def statusbar(self, t): pass
     def mode_text(self, t): pass
+    def update_screen(self, mode=None, top=None, bottom=None, status=None): pass
     def clear_screen(self): pass
     def button_led(self, v): pass
     def subscribe_to_ui(self, cb): pass

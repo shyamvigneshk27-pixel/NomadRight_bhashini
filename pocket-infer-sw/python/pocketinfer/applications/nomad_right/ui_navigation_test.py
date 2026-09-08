@@ -44,6 +44,7 @@ class MockBoard:
 
     def __init__(self):
         self.calls = []
+        self.screen_updates = []
         self.top = ""
         self.bottom = ""
         self.status = ""
@@ -71,6 +72,31 @@ class MockBoard:
     def mode_text(self, t):
         self.mode = t
         self.calls.append(("mode", t))
+
+    def update_screen(self, mode=None, top=None, bottom=None, status=None):
+        # Mirrors boards/jetson.py's PocketInferDevboardUI.update_screen():
+        # the real board sends this as a single RPC round trip instead of
+        # separate top_text()/bottom_text()/mode_text()/statusbar() calls,
+        # which is what makes it atomic (see HandheldUI.update_screen()'s
+        # docstring). Records into self.calls exactly like the individual
+        # setters used to (field, text) - so existing per-field assertions
+        # keep working unchanged - AND appends the whole group to
+        # self.screen_updates in one shot, so TestScreenAtomicity can assert
+        # on grouping directly instead of inferring it from gaps between
+        # separate calls.
+        if mode is not None:
+            self.mode = mode
+            self.calls.append(("mode", mode))
+        if top is not None:
+            self.top = top
+            self.calls.append(("top", top))
+        if bottom is not None:
+            self.bottom = bottom
+            self.calls.append(("bottom", bottom))
+        if status is not None:
+            self.status = status
+            self.calls.append(("status", status))
+        self.screen_updates.append({"mode": mode, "top": top, "bottom": bottom, "status": status})
 
     def clear_screen(self):
         pass
@@ -103,7 +129,6 @@ def _make_app():
     app._player_lock = threading.Lock()
     app._audio_stop_requested = threading.Event()
     app._home_requested = threading.Event()
-    app._screen_lock = threading.Lock()
     return app
 
 
@@ -510,66 +535,92 @@ class TestScreenTextSafety(unittest.TestCase):
 
 
 class TestScreenAtomicity(unittest.TestCase):
-    """A "screen update" is several separate board calls (mode_text,
-    top_text, bottom_text, statusbar) that together describe one
-    coherent state. _screen_lock must make each such group atomic across
-    threads, so a Home/Camera press from the UI callback thread can never
-    interleave with the main run() loop's own in-progress update and
-    leave a mismatched mix of old/new text on screen (the "overlay" bug
-    report) - verified here by forcing the interleaving that would occur
-    without the lock and confirming it can no longer happen with it."""
+    """A "screen update" (mode/top/bottom/status together, describing one
+    coherent state) used to be assembled out of several separate
+    mode_text()/top_text()/bottom_text()/statusbar() calls, serialized by a
+    private app.py lock (_screen_lock) - which only covered app.py's own two
+    call sites and did nothing for a concurrent caller elsewhere (e.g. the
+    framework's memory_text() stats thread, see service.py). It's been
+    replaced by board.update_screen(mode=..., top=..., bottom=..., status=...):
+    every field goes out as ONE call. On real hardware that's one RPC round
+    trip that HandheldUI.update_screen() applies as a single unit inside the
+    UI subprocess's own serial dispatch loop (multiprocess_launch(), see its
+    docstring) - nothing else can run partway through it, no matter who else
+    is calling into the UI subprocess. These tests verify (a) app.py's own
+    navigation/pipeline code never assembles a multi-field screen state out
+    of separate calls any more, and (b) update_screen() itself only ever
+    sets the fields it was actually given."""
 
-    def test_home_press_cannot_interleave_with_a_slow_screen_update(self):
+    def test_navigation_never_calls_individual_setters_directly(self):
+        """If any code path in app.py regressed to calling top_text()/
+        bottom_text()/mode_text()/statusbar() directly instead of going
+        through update_screen(), this fails loudly instead of silently
+        reintroducing the interleaving window those individual calls open
+        up. Drives the same full Camera/Home/voice-bridge navigation
+        surface _drive_every_screen_and_collect() does elsewhere in this
+        file."""
         app = _make_app()
 
-        release_main_thread = threading.Event()
-
-        class SlowBoard(MockBoard):
+        class NoDirectSetterBoard(MockBoard):
             def top_text(self, t):
-                # Simulates the main thread being mid-way through a
-                # multi-field screen update (e.g. run()'s LISTENING clear)
-                # when a Home press arrives on the other thread.
-                release_main_thread.wait(timeout=2.0)
-                super().top_text(t)
+                raise AssertionError("app.py called top_text() directly - should go through update_screen()")
 
-        app.board = SlowBoard()
+            def bottom_text(self, t):
+                raise AssertionError("app.py called bottom_text() directly - should go through update_screen()")
 
-        def main_thread_screen_update():
-            with app._screen_lock:
-                app.board.top_text("MAIN-A")
-                app.board.bottom_text("MAIN-B")
+            def mode_text(self, t):
+                raise AssertionError("app.py called mode_text() directly - should go through update_screen()")
 
-        def home_press():
-            release_main_thread.wait(timeout=0.05)  # let main grab the lock first
-            app.ui_cb("Home")  # must block on _screen_lock until main's update finishes
+            def statusbar(self, t):
+                raise AssertionError("app.py called statusbar() directly - should go through update_screen()")
 
-        t_main = threading.Thread(target=main_thread_screen_update)
-        t_home = threading.Thread(target=home_press)
-        t_main.start()
-        t_home.start()
-        time.sleep(0.1)
-        release_main_thread.set()
-        t_main.join(timeout=5.0)
-        t_home.join(timeout=5.0)
+        app.board = NoDirectSetterBoard()
+        app.ui_cb("Camera")
+        app.ui_cb("Home")
+        app.board._camera_raises = RuntimeError("no camera")
+        app.ui_cb("Camera")
+        app.board._camera_raises = None
+        app.board._camera_frame = None
+        app.ui_cb("Camera")
+        fake_player = unittest.mock.MagicMock()
+        fake_player.terminated = False
+        app._current_player = fake_player
+        app.ui_cb("Home")
 
-        self.assertFalse(t_main.is_alive())
-        self.assertFalse(t_home.is_alive())
-        # The critical assertion: MAIN-A and MAIN-B were never split apart
-        # by Home's text in between them - either Home's update landed
-        # fully before or fully after the main thread's pair, never mixed.
-        top_values = [t for f, t in app.board.calls if f == "top"]
-        bottom_values = [t for f, t in app.board.calls if f == "bottom"]
-        self.assertIn("MAIN-A", top_values)
-        self.assertIn("MAIN-B", bottom_values)
-        main_a_idx = app.board.calls.index(("top", "MAIN-A"))
-        main_b_idx = app.board.calls.index(("bottom", "MAIN-B"))
-        between = app.board.calls[main_a_idx + 1:main_b_idx]
-        self.assertEqual(
-            between, [],
-            f"Home's screen update landed BETWEEN the main thread's paired "
-            f"top/bottom calls, splitting one logical screen update across "
-            f"two - the exact interleaving bug this lock exists to prevent: {between}",
-        )
+        self.assertGreater(len(app.board.screen_updates), 0, "sanity: the drive above should have updated the screen")
+
+    def test_update_screen_only_touches_given_fields(self):
+        board = MockBoard()
+        board.top = "existing top"
+        board.bottom = "existing bottom"
+        board.status = "existing status"
+        board.mode = "existing mode"
+
+        board.update_screen(status="[LISTENING]")
+
+        self.assertEqual(board.status, "[LISTENING]")
+        self.assertEqual(board.top, "existing top", "update_screen() must not touch fields it wasn't given")
+        self.assertEqual(board.bottom, "existing bottom")
+        self.assertEqual(board.mode, "existing mode")
+        self.assertEqual(board.screen_updates[-1], {"mode": None, "top": None, "bottom": None, "status": "[LISTENING]"})
+
+    def test_jetson_update_screen_sends_exactly_one_rpc_call(self):
+        """boards/jetson.py's PocketInferDevboardUI.update_screen() must
+        forward to self.UI as a single RPC call, not several - that single
+        call is what the UI subprocess's serial dispatch loop treats as one
+        atomic unit (see HandheldUI.update_screen()'s docstring)."""
+        from pocketinfer.boards.jetson import PocketInferDevboardUI
+
+        board = PocketInferDevboardUI.__new__(PocketInferDevboardUI)
+        board.UI = unittest.mock.MagicMock()
+
+        board.update_screen(mode="HOME", top="hello", bottom="world", status="[READY]")
+
+        board.UI.update_screen.assert_called_once_with("HOME", "hello", "world", "[READY]")
+        board.UI.top_text.assert_not_called()
+        board.UI.bottom_text.assert_not_called()
+        board.UI.mode_text.assert_not_called()
+        board.UI.statusbar_text.assert_not_called()
 
 
 def _run_all():

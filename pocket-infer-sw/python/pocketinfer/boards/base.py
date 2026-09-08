@@ -361,6 +361,23 @@ class Board:
     def memory_text(self, text) -> bool:
         return True
 
+    def update_screen(self, mode=None, top=None, bottom=None, status=None) -> bool:
+        ''' Set any of mode/top/bottom/status text together, as a single
+        logical update - fields left None are untouched. Boards backed by a
+        separate UI process (see PocketInferDevboardUI.update_screen())
+        override this to make it one atomic RPC call; this base
+        implementation just calls the individual setters in sequence, which
+        is fine for boards with no cross-process UI to race against. '''
+        if mode is not None:
+            self.mode_text(mode)
+        if top is not None:
+            self.top_text(top)
+        if bottom is not None:
+            self.bottom_text(bottom)
+        if status is not None:
+            self.statusbar(status)
+        return True
+
     def log_line(self, text) -> bool:
         ''' Append one line to the on-screen pipeline log (see
         ui/handheld.py's log page). Boards with no display fall through to

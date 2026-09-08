@@ -80,6 +80,7 @@ class IResponseGenerator(ABC):
         entities: Optional[EntityMap] = None,
         llm_answer: Optional[str] = None,
         rag_llm_answer: Optional[str] = None,
+        rag_llm_declined: bool = False,
     ) -> StructuredResponsePackage:
         """Synthesizes voice, LCD screen, and QR output."""
         pass
@@ -188,6 +189,7 @@ class ResponseGenerator(IResponseGenerator):
         entities: Optional[EntityMap] = None,
         llm_answer: Optional[str] = None,
         rag_llm_answer: Optional[str] = None,
+        rag_llm_declined: bool = False,
     ) -> StructuredResponsePackage:
         """
         Synthesizes a StructuredResponsePackage from Decision Layer outputs.
@@ -198,8 +200,9 @@ class ResponseGenerator(IResponseGenerator):
             rule_result:     Optional RuleEvaluationResult from RulesEngine.
             kb_record:       Optional PortabilityRecord from SQLiteAccessLayer.
             rag_chunks:      Optional retrieved passages from RAGRetriever,
-                              best match first - used directly (Priority 2b)
-                              only if rag_llm_answer is empty.
+                              best match first - used directly (Priority 4)
+                              only if rag_llm_answer is empty AND
+                              rag_llm_declined is False.
             entities:        Optional EntityMap from EntityExtractor.
             llm_answer:      Optional grounded answer from qwen_client.py,
                               already sentinel-checked by the caller (workflow.py)
@@ -209,6 +212,12 @@ class ResponseGenerator(IResponseGenerator):
                               generated from exactly the rag_chunks above
                               (retrieve-then-GENERATE) - already sentinel-
                               checked by the caller.
+            rag_llm_declined: True iff qwen was actually reached and
+                              explicitly returned the not-found sentinel for
+                              rag_chunks (as opposed to erroring, timing out,
+                              or never being asked). Priority 4 treats a raw
+                              chunk echo as safe only when this is False -
+                              see Priority 4's own docstring below for why.
 
         Returns:
             StructuredResponsePackage for voice, LCD, and QR.
@@ -296,7 +305,20 @@ class ResponseGenerator(IResponseGenerator):
         # ── Priority 4: RAG retrieve-then-TEMPLATE (last resort - qwen and ─
         # the smarter fallback above both failed, but a chunk was at least
         # retrieved; degrade to echoing it verbatim rather than nothing) ──
-        if rag_chunks:
+        # Gated on `not rag_llm_declined`: a chunk crossing RAG_MIN_SCORE is
+        # not proof it's actually relevant (the threshold has a documented
+        # noisy overlap band - see constants.RAG_MIN_SCORE's comment), and
+        # rag_llm_answer being empty is ambiguous by itself - Qwen might
+        # have explicitly rejected these exact chunks, or might simply be
+        # unreachable. Echoing the chunk anyway is reasonable degraded
+        # behavior in the second case (Qwen down, template-only is still
+        # useful) but not the first (Qwen was asked and said no) -
+        # reproduced on-device: a garbled query matched PM_VISHWAKARMA
+        # chunks just above threshold, Qwen correctly declined every one of
+        # them, and this tier echoed the raw chunk as a confident answer
+        # anyway. rag_llm_declined (see workflow.py Step 6.5a) is what
+        # actually distinguishes the two cases.
+        if rag_chunks and not rag_llm_declined:
             best = rag_chunks[0]
             voice_txt = self._cap_words(self._fmt_voice(best.text))
             top_hdr = f"{best.scheme_code or scheme_label} INFO"

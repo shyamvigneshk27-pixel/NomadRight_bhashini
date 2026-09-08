@@ -142,18 +142,21 @@ class NomadRightApplication(BaseApplication):
         # of speaking out an answer the worker already tried to back out of.
         self._home_requested = threading.Event()
 
-        # A "screen update" (mode_text + top_text + bottom_text + statusbar
-        # together, describing one coherent state) is 2-4 separate RPC
-        # calls to the UI subprocess (see ui/handheld.py's RemoteUI -
-        # each individual call is lock-serialized there, but a *sequence*
-        # of them is not atomic). run() (main thread) and
-        # _on_camera_pressed()/_on_home_pressed() (UI callback thread, see
-        # jetson.py's _process_ui_events) can call these concurrently -
-        # without this lock, a Camera/Home press landing mid-transition can
-        # interleave with the main loop's own update, leaving one field
-        # from the old state and another from the new one on screen at
-        # once - the intermittent "overlay" glitch this was added to fix.
-        self._screen_lock = threading.Lock()
+        # A "screen update" (mode/top/bottom/status together, describing one
+        # coherent state) used to be 2-4 separate RPC calls to the UI
+        # subprocess, each individually lock-serialized but not atomic as a
+        # *sequence* - a Camera/Home press from the UI callback thread (see
+        # jetson.py's _process_ui_events) landing mid-sequence could
+        # interleave with run()'s own update and leave one field from the
+        # old state next to one from the new state on screen at once (the
+        # "overlay" glitch). board.update_screen() (boards/jetson.py) now
+        # sends every field in ONE RPC call instead, which
+        # multiprocess_launch()'s serial dispatch loop (ui/handheld.py)
+        # applies as a single unit - atomic by construction, so no lock is
+        # needed here any more. Note: this only covers the app's own screen
+        # updates; the framework's memory_text() stats thread (service.py)
+        # is a separate single-field RPC call that isn't part of any
+        # update_screen() sequence, so it can't tear one.
 
     # ── On-screen pipeline log ─────────────────────────────────────────────
 
@@ -424,11 +427,8 @@ class NomadRightApplication(BaseApplication):
         self._stop_audio()
         self._camera_busy.set()
         try:
-            with self._screen_lock:
-                self.board.mode_text("DOCUMENT SCANNER")
-                self.board.top_text("Capturing...")
-                self.board.bottom_text("Hold camera steady")
-                self.board.statusbar("[CAPTURING]")
+            self.board.update_screen(mode="DOCUMENT SCANNER", top="Capturing...",
+                                      bottom="Hold camera steady", status="[CAPTURING]")
             self._log("CAMERA pressed - capturing")
             capture_start = time.time()
             try:
@@ -436,19 +436,15 @@ class NomadRightApplication(BaseApplication):
             except Exception as exc:
                 self.logger.error(f"[NomadRight] Camera capture failed: {exc}")
                 self._log(f"CAMERA FAILED: {exc}"[:52])
-                with self._screen_lock:
-                    self.board.top_text("CAMERA ERROR")
-                    self.board.bottom_text("Capture failed. Camera=retry, Home=cancel")
-                    self.board.statusbar("[ERROR] Camera unavailable")
+                self.board.update_screen(top="CAMERA ERROR", bottom="Capture failed. Camera=retry, Home=cancel",
+                                          status="[ERROR] Camera unavailable")
                 self._mode = "HOME"
                 return
             if not image_jpg:
                 self.logger.warning("[NomadRight] Camera returned no frame.")
                 self._log("CAMERA returned no frame")
-                with self._screen_lock:
-                    self.board.top_text("CAMERA ERROR")
-                    self.board.bottom_text("No frame captured. Camera=retry, Home=cancel")
-                    self.board.statusbar("[ERROR] Camera unavailable")
+                self.board.update_screen(top="CAMERA ERROR", bottom="No frame captured. Camera=retry, Home=cancel",
+                                          status="[ERROR] Camera unavailable")
                 self._mode = "HOME"
                 return
 
@@ -472,10 +468,8 @@ class NomadRightApplication(BaseApplication):
             # occupying a character slot, which is the kind of thing that
             # can desync wrapping from what's actually drawn. Plain ASCII
             # only, matching every other screen in this app.
-            with self._screen_lock:
-                self.board.top_text("PHOTO CAPTURED")
-                self.board.bottom_text("Hold button to ask, or Home to cancel")
-                self.board.statusbar("[WAITING FOR QUERY] Ask about the photo")
+            self.board.update_screen(top="PHOTO CAPTURED", bottom="Hold button to ask, or Home to cancel",
+                                      status="[WAITING FOR QUERY] Ask about the photo")
         finally:
             # Cleared last, after pending_form_image and the "Photo
             # captured" screen text are both fully in place (or on any
@@ -507,16 +501,10 @@ class NomadRightApplication(BaseApplication):
         self._mode = "HOME"
         if stopped_audio:
             self.logger.info("[NomadRight] Home pressed - audio playback stopped.")
-            with self._screen_lock:
-                self.board.top_text("AUDIO STOPPED")
-                self.board.bottom_text(self.HOME_HINT)
-                self.board.statusbar("[READY]")
+            self.board.update_screen(top="AUDIO STOPPED", bottom=self.HOME_HINT, status="[READY]")
         elif had_pending_photo:
             self.logger.info("[NomadRight] Home pressed - Document Scanner cancelled.")
-            with self._screen_lock:
-                self.board.top_text("CANCELLED")
-                self.board.bottom_text(self.HOME_HINT)
-                self.board.statusbar("[READY]")
+            self.board.update_screen(top="CANCELLED", bottom=self.HOME_HINT, status="[READY]")
         else:
             self.logger.info("[NomadRight] Home pressed - already at Home.")
 
@@ -601,10 +589,7 @@ class NomadRightApplication(BaseApplication):
         cancel/back/stop-audio control for both modes.
         """
         self.board.clear_screen()
-        with self._screen_lock:
-            self.board.mode_text("HOME")
-            self.board.top_text("NomadRight")
-            self.board.bottom_text(self.HOME_HINT)
+        self.board.update_screen(mode="HOME", top="NomadRight", bottom=self.HOME_HINT)
         # The one line that answers "is it ready for me to press the
         # button?" without a terminal attached. Logged once here rather than
         # per loop iteration - every turn already ends with its own ANSWER
@@ -631,9 +616,7 @@ class NomadRightApplication(BaseApplication):
             else:
                 self._mode = "HOME"
                 lang_name = constants.SOURCE_LANGUAGES.get(lang, lang.upper())
-                with self._screen_lock:
-                    self.board.mode_text("HOME")
-                    self.board.statusbar(f"[READY] Lang:{lang_name}  Hold=ask")
+                self.board.update_screen(mode="HOME", status=f"[READY] Lang:{lang_name}  Hold=ask")
 
             self.board.wait_for_trigger_button_down()
 
@@ -652,10 +635,7 @@ class NomadRightApplication(BaseApplication):
 
             try:
                 self.board.button_led(True)
-                with self._screen_lock:
-                    self.board.statusbar("[LISTENING]")
-                    self.board.top_text("")
-                    self.board.bottom_text("")
+                self.board.update_screen(status="[LISTENING]", top="", bottom="")
                 # Logged before audio.start() rather than after, so the log
                 # confirms the press registered even if opening the capture
                 # device is what goes wrong.
@@ -684,9 +664,8 @@ class NomadRightApplication(BaseApplication):
                 if not native_query.strip():
                     self.logger.warning("[NomadRight] ASR returned empty text.")
                     self._log("ASR empty - ask again")
-                    self.board.statusbar("[ERROR]")
-                    self.board.top_text("Could not hear you")
-                    self.board.bottom_text("Please try again")
+                    self.board.update_screen(status="[ERROR]", top="Could not hear you",
+                                              bottom="Please try again")
                     time.sleep(1.5)
                     continue
 
@@ -774,15 +753,11 @@ class NomadRightApplication(BaseApplication):
                             self.board.statusbar(f"[TRANSLATING] for official ({target_name})")
                             bridged_text = self.bridge.bridge_translate(self.last_answer_en, "EN", target_lang)
 
-                            with self._screen_lock:
-                                self.board.top_text("VOICE BRIDGE")
-                                self.board.bottom_text(bridged_text[:100])
-                                self.board.statusbar("[SPEAKING] Home=stop")
+                            self.board.update_screen(top="VOICE BRIDGE", bottom=bridged_text[:100],
+                                                      status="[SPEAKING] Home=stop")
                             played_fully = self._play(self.bridge.speak(bridged_text, target_lang))
                             if played_fully:
-                                with self._screen_lock:
-                                    self.board.statusbar("[READY]")
-                                    self.board.mode_text("HOME")
+                                self.board.update_screen(status="[READY]", mode="HOME")
                             # else: _on_home_pressed() already set the
                             # "AUDIO STOPPED" screen - don't overwrite it here.
                             continue
@@ -792,8 +767,7 @@ class NomadRightApplication(BaseApplication):
                         self.logger.info(f"[ASR] lang={lang} text='{native_query}'")
                         self.logger.info(f"[LANGUAGE] input={lang}")
                         self.logger.info(f"[TRANSLATION] EN: '{query_en}'")
-                        self.board.mode_text("VOICE TRANSLATION")
-                        self.board.statusbar("[PROCESSING] Finding your answer")
+                        self.board.update_screen(mode="VOICE TRANSLATION", status="[PROCESSING] Finding your answer")
                         stage_start = time.time()
                         response_pkg = self.workflow.process(
                             query_en, context_scheme_code=self.last_scheme_code
@@ -835,9 +809,8 @@ class NomadRightApplication(BaseApplication):
                 # of the answer replacing the question the moment it arrives.
                 answer_line = f"{response_pkg.display_top_text}: {response_pkg.display_bottom_text}"
                 bottom_hint = f"{answer_line}  |  Say 'translate' for the officer"
-                with self._screen_lock:
-                    self.board.bottom_text(bottom_hint[:180])
-                    self.board.statusbar(f"[SPEAKING] {response_pkg.display_top_text} Home=stop")
+                self.board.update_screen(bottom=bottom_hint[:180],
+                                          status=f"[SPEAKING] {response_pkg.display_top_text} Home=stop")
                 self.logger.info("[TTS] Synthesizing and playing speaker output")
                 stage_start = time.time()
                 tts_wav = self.bridge.speak(answer_native, lang)
@@ -850,9 +823,7 @@ class NomadRightApplication(BaseApplication):
                 played_fully = self._play(tts_wav)
 
                 if played_fully:
-                    with self._screen_lock:
-                        self.board.statusbar("[READY] Hold=ask  Camera=scan  Home=menu")
-                        self.board.mode_text("HOME")
+                    self.board.update_screen(status="[READY] Hold=ask  Camera=scan  Home=menu", mode="HOME")
                 # else: _on_home_pressed() already put up the "AUDIO
                 # STOPPED" screen - don't overwrite it here. The answer
                 # text on bottom_text stays visible either way.
@@ -865,10 +836,7 @@ class NomadRightApplication(BaseApplication):
                 # traceback is in the logger call above.
                 self._log(f"ERROR {type(exc).__name__}: {exc}"[:52])
                 self.board.button_led(False)
-                with self._screen_lock:
-                    self.board.statusbar("[ERROR]")
-                    self.board.top_text("SYSTEM ERROR")
-                    self.board.bottom_text("Please try again")
+                self.board.update_screen(status="[ERROR]", top="SYSTEM ERROR", bottom="Please try again")
                 time.sleep(2.0)
 
     def stop(self) -> None:

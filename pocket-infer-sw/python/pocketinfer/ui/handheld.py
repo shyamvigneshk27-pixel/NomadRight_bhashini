@@ -10,6 +10,7 @@ from adafruit_bitmap_font import bitmap_font
 from adafruit_button.button import Button
 
 from pocketinfer.ui import icons
+from pocketinfer.ui import touch_calibration
 from importlib.resources import files
 from collections import deque
 from multiprocessing import Queue, Pipe
@@ -68,6 +69,13 @@ class HandheldUI:
         # Shutdown/Reboot.
         self._touch_active_buttons = set()
         self._touch_was_down = False
+        # Empirical per-axis correction applied to every _raw_screen_point()
+        # result (see check_touch()) - identity until load_touch_calibration()
+        # loads a saved one or calibrate_interactive() fits a fresh one. See
+        # ui/touch_calibration.py for why this exists instead of a per-panel
+        # constant.
+        self._touch_calibration = touch_calibration.TouchCalibration.identity()
+        self._touch_calibration_path = None
         # Which of the three full-screen pages is currently up ('app',
         # 'settings' or 'log'). Previously this was implied by reading
         # self.setpage.hidden, which only worked while there were exactly
@@ -390,6 +398,29 @@ class HandheldUI:
         ''' Set the RAM usage value. '''
         self.memval.text = text
 
+    def update_screen(self, mode=None, top=None, bottom=None, status=None):
+        ''' Set any of mode/top/bottom/status text together, as one call.
+        Pass only the fields that should change - fields left None are
+        untouched. Called through RemoteUI (see get_remote()), this is a
+        single RPC round trip, and multiprocess_launch()'s dispatch loop
+        executes one call.execute() fully before it reads the next message
+        off the pipe - so every field given here lands before any other RPC
+        call (memory_text(), another update_screen(), ...) can run, which is
+        what makes this atomic. This is what replaced applications
+        assembling a screen state out of several separate top_text()/
+        bottom_text()/mode_text()/statusbar_text() calls: that sequence
+        could be interleaved by a concurrent caller between any two of its
+        calls, leaving one field from the old state on screen next to one
+        from the new state (the "overlay" glitch). '''
+        if mode is not None:
+            self.mode_text(mode)
+        if top is not None:
+            self.top_text(top)
+        if bottom is not None:
+            self.bottom_text(bottom)
+        if status is not None:
+            self.statusbar_text(status)
+
     def clear_screen(self):
         self.toptext.text = ""
         self.bottomtext.text = ""
@@ -442,6 +473,42 @@ class HandheldUI:
                 butt.selected = True
                 self._dispatch_button_cb(name)
 
+    def _raw_screen_point(self, args):
+        ''' Turn a raw (post-normalize) xpt2046 (x, y) reading into an
+        uncalibrated screen point - the exact transform check_touch() has
+        always used. NOTE, this implies 90 degree rotation on the display.
+        TODO - make this more robust to different rotations and touch
+        coordinate mappings.
+
+        Factored out of check_touch() so touch_calibration's interactive fit
+        samples precisely what check_touch() would otherwise dispatch to
+        check_buttons(), before self._touch_calibration is applied - see
+        ui/touch_calibration.py. '''
+        y, x = args
+        y = 240 - y
+        return x, y
+
+    def load_touch_calibration(self, path=None):
+        ''' Load a saved touch calibration from disk and apply it to every
+        subsequent check_touch() read. Safe to call with no file present -
+        falls back to the identity, i.e. today's uncalibrated behavior. '''
+        self._touch_calibration_path = path or touch_calibration.DEFAULT_CALIBRATION_PATH
+        self._touch_calibration = touch_calibration.load(self._touch_calibration_path)
+
+    def calibrate_interactive(self, targets=None, save_result=True):
+        ''' Run an interactive touch calibration (ui/touch_calibration.py),
+        apply the fitted correction immediately, and persist it so it
+        survives a restart. Blocks on physical taps - call this from a
+        maintenance shell (e.g. `board.UI.calibrate_interactive()`, which the
+        existing RPC proxy carries straight into the UI subprocess where
+        self.touch/self.display actually live), never during normal use. '''
+        calibration = touch_calibration.run_interactive_calibration(self, targets=targets)
+        self._touch_calibration = calibration
+        if save_result:
+            path = self._touch_calibration_path or touch_calibration.DEFAULT_CALIBRATION_PATH
+            touch_calibration.save(calibration, path)
+        return calibration
+
     def check_touch(self):
         # TODO - this is specific to the xpt2046 controller and involves SPI internals, should be made generic or moved out
         # It's possible this method was called while the display is in in the process of a refresh and is using the SPI bus
@@ -452,10 +519,8 @@ class HandheldUI:
             if pressed:
                 args = self.touch.get_coordinates()
                 if args is not None:
-                    # NOTE, this implies 90 degree rotation on the display
-                    # TODO - make this more robust to different rotations and touch coordinate mappings
-                    y, x = args
-                    y = 240 - y
+                    x, y = self._raw_screen_point(args)
+                    x, y = self._touch_calibration.apply(x, y)
                     print(f"Touch at ({x}, {y})")
                     self.check_buttons(x, y)
             elif self._touch_was_down:
@@ -495,6 +560,11 @@ class ILI9341UIConfig(NamedTuple):
     width: int = 320    # Width of the display in pixels
     height: int = 240   # Height of the display in pixels
     rotation: int = 90  # Rotation of the display in degrees
+    # Path a fitted touch calibration is loaded from (if it exists) at
+    # startup and saved to by calibrate_interactive(). See
+    # ui/touch_calibration.py - a missing file just means "uncalibrated",
+    # not an error.
+    calibration_file: str = touch_calibration.DEFAULT_CALIBRATION_PATH
 
 class UIRPCCall:
     ''' This class is used to send a function call from one process to another, and receive the result. It is used to allow the main application process to call functions in the UI process, and receive the result. '''
@@ -569,7 +639,8 @@ class IlI9341HandheldUI(HandheldUI):
 
         self.logger.debug('load UI')
         super().__init__(display, touch, self.logger)
-    
+        self.load_touch_calibration(ui_config.calibration_file)
+
     @classmethod
     def multiprocess_launch(cls, ui_config: ILI9341UIConfig, rpc_pipe: multiprocessing.connection.Connection, button_queue: multiprocessing.Queue):
         ''' Instantiate a new UI object and continuously check for touch events and requests from a remote process

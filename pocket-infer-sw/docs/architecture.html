@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NomadRight Signal Path</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f1ece0;
+    --panel:#fbf9f2;
+    --panel-alt:#e9e1c9;
+    --border:#d9cea9;
+    --ink:#211c13;
+    --ink-muted:#6b6250;
+    --ink-faint:#948a72;
+    --accent:#93590a;
+    --accent-bg:#f0dcae;
+    --net:#1f6b7a;
+    --net-bg:#d7ecef;
+    --proc:#5f4696;
+    --proc-bg:#e7dff4;
+    --hw:#57503e;
+    --hw-bg:#e7e0c8;
+    --danger:#a4302e;
+    --danger-bg:#f5dbd6;
+    --grid-line: rgba(33,28,19,0.07);
+    --font-display:'IBM Plex Sans', -apple-system, Segoe UI, sans-serif;
+    --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e0e09;
+      --panel:#171710;
+      --panel-alt:#1e1e14;
+      --border:#33301f;
+      --ink:#ece6d2;
+      --ink-muted:#a49b81;
+      --ink-faint:#756c56;
+      --accent:#ffb020;
+      --accent-bg:#3b2a0b;
+      --net:#71c6db;
+      --net-bg:#0f2f37;
+      --proc:#c4a7f3;
+      --proc-bg:#241a3a;
+      --hw:#b8b096;
+      --hw-bg:#27261a;
+      --danger:#ff6f6b;
+      --danger-bg:#3a1512;
+      --grid-line: rgba(236,230,210,0.07);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e0e09;
+    --panel:#171710;
+    --panel-alt:#1e1e14;
+    --border:#33301f;
+    --ink:#ece6d2;
+    --ink-muted:#a49b81;
+    --ink-faint:#756c56;
+    --accent:#ffb020;
+    --accent-bg:#3b2a0b;
+    --net:#71c6db;
+    --net-bg:#0f2f37;
+    --proc:#c4a7f3;
+    --proc-bg:#241a3a;
+    --hw:#b8b096;
+    --hw-bg:#27261a;
+    --danger:#ff6f6b;
+    --danger-bg:#3a1512;
+    --grid-line: rgba(236,230,210,0.07);
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--bg);}
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 44px),
+      repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 44px),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--font-display);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  a{color:var(--accent);}
+  ::selection{background:var(--accent-bg); color:var(--ink);}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:11.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent); flex:none;}
+  @media (prefers-reduced-motion: no-preference){
+    .dot--live{animation:blink 2.6s ease-in-out infinite;}
+  }
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:.35;}}
+
+  h1,h2,h3{font-weight:600; text-wrap:balance; margin:0;}
+  h1{font-size:clamp(2.1rem,4vw,3.05rem); letter-spacing:-.01em;}
+  h2{font-size:clamp(1.4rem,2.6vw,1.85rem); letter-spacing:-.005em;}
+  h3{font-size:1.08rem;}
+  p{margin:0;}
+  .lede{max-width:64ch; color:var(--ink-muted); font-size:1.06rem;}
+
+  header.hero{padding:64px 0 40px; border-bottom:1px solid var(--border);}
+  .hero-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:34px; flex-wrap:wrap; gap:10px;}
+  .hero-title{margin-top:14px; margin-bottom:16px;}
+  .hero-body{display:flex; gap:48px; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;}
+
+  .stat-grid{display:grid; grid-template-columns:repeat(4,minmax(140px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:40px;}
+  .stat-tile{background:var(--panel); padding:20px 18px;}
+  .stat-num{font-family:var(--font-mono); font-size:1.9rem; font-weight:600; color:var(--accent); font-variant-numeric:tabular-nums;}
+  .stat-label{margin-top:6px; font-size:12.5px; color:var(--ink-muted); line-height:1.4;}
+
+  section{padding:56px 0; border-bottom:1px solid var(--border);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{display:flex; flex-direction:column; gap:10px; margin-bottom:32px; max-width:74ch;}
+  .section-head .eyebrow{color:var(--net);}
+
+  /* legend */
+  .legend{display:flex; flex-wrap:wrap; gap:18px; margin:22px 0 18px; font-size:12.5px; color:var(--ink-muted); font-family:var(--font-mono);}
+  .legend span{display:inline-flex; align-items:center; gap:7px;}
+  .swatch{width:11px;height:11px;border-radius:3px; flex:none;}
+
+  .diagram-scroll{overflow-x:auto; border:1px solid var(--border); background:var(--panel); padding:8px 0 4px;}
+  .diagram-scroll svg{display:block; width:1400px; max-width:none; height:auto;}
+  .diagram-note{margin-top:10px; font-size:13px; color:var(--ink-faint);}
+
+  .node-num{font-family:var(--font-mono); font-size:11px; font-weight:600; fill:var(--ink);}
+  .node-label{font-family:var(--font-mono); font-size:11px; font-weight:600; letter-spacing:.03em; fill:var(--ink);}
+  .node-file{font-family:var(--font-mono); font-size:8.6px; fill:var(--ink-faint);}
+  .node-chip{font-family:var(--font-mono); font-size:9.6px; fill:var(--ink);}
+  .callout-title{font-family:var(--font-mono); font-size:10.5px; font-weight:700; letter-spacing:.08em; fill:var(--danger);}
+  .callout-line{font-family:var(--font-mono); font-size:10px; fill:var(--ink);}
+  .branch-label{font-family:var(--font-mono); font-size:9.5px; fill:var(--ink-faint);}
+
+  @media (prefers-reduced-motion: no-preference){
+    .pulse-ring{animation:pulse 2.4s ease-in-out infinite;}
+  }
+  @keyframes pulse{
+    0%{ r:34; opacity:.75; }
+    70%{ r:50; opacity:0; }
+    100%{ r:50; opacity:0; }
+  }
+
+  /* topology */
+  .topo-wrap{display:grid; grid-template-columns:1.05fr 1fr; gap:36px; align-items:center;}
+  .topo-wrap svg{width:100%; height:auto; display:block;}
+  .topo-copy{display:flex; flex-direction:column; gap:14px;}
+  .topo-copy p{color:var(--ink-muted); font-size:14.5px;}
+  .topo-box-label{font-family:var(--font-mono); font-size:10.6px; font-weight:600; fill:var(--ink);}
+  .topo-box-sub{font-family:var(--font-mono); font-size:8.6px; fill:var(--ink-faint);}
+  .topo-edge-label{font-family:var(--font-mono); font-size:8.6px; fill:var(--ink-faint);}
+
+  /* phases + cards */
+  .phase{margin-bottom:38px;}
+  .phase:last-child{margin-bottom:0;}
+  .phase-head{display:flex; align-items:baseline; gap:12px; margin-bottom:16px;}
+  .phase-head .eyebrow{color:var(--accent);}
+  .card-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border);}
+  .card{background:var(--panel); padding:18px 18px 20px; display:flex; flex-direction:column; gap:10px;}
+  .card-top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px;}
+  .card-id{font-family:var(--font-mono); font-size:11px; color:var(--ink-faint);}
+  .badge{font-family:var(--font-mono); font-size:9.8px; letter-spacing:.05em; text-transform:uppercase; padding:3px 8px; border-radius:20px; white-space:nowrap;}
+  .card h4{margin:0; font-size:15px; font-weight:600;}
+  .card .fileref{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-faint);}
+  .card p.desc{font-size:13.6px; color:var(--ink-muted);}
+  .chip-lat{align-self:flex-start; font-family:var(--font-mono); font-size:11px; padding:3px 9px; border-radius:20px; background:var(--panel-alt); color:var(--ink); border:1px solid var(--border);}
+  .risk{border-left:2px solid var(--danger); background:var(--danger-bg); padding:8px 10px; font-size:12.6px; color:var(--ink);}
+  .risk b{color:var(--danger);}
+
+  /* chart */
+  .chart-wrap{overflow-x:auto; border:1px solid var(--border); background:var(--panel); padding:8px 0;}
+  .chart-wrap svg{display:block; width:1040px; max-width:none; height:auto;}
+  .row-name{font-family:var(--font-display); font-size:12.5px; font-weight:600; fill:var(--ink);}
+  .row-file{font-family:var(--font-mono); font-size:9.6px; fill:var(--ink-faint);}
+  .tick-label{font-family:var(--font-mono); font-size:10.5px; fill:var(--ink-faint);}
+  .val-label{font-family:var(--font-mono); font-size:10.5px; fill:var(--ink-muted);}
+  .val-label--danger{fill:var(--danger); font-weight:600;}
+
+  /* diagnostic log */
+  .log{display:flex; flex-direction:column; border-top:1px solid var(--border);}
+  .log-row{display:grid; grid-template-columns:96px 1fr; gap:20px; padding:16px 0; border-bottom:1px solid var(--border); align-items:start;}
+  .sev{font-family:var(--font-mono); font-size:10.5px; font-weight:700; letter-spacing:.07em; padding:4px 0; text-align:left;}
+  .sev--critical{color:var(--danger);}
+  .sev--moderate{color:var(--accent);}
+  .sev--minor{color:var(--ink-faint);}
+  .log-title{font-weight:600; font-size:14.5px; margin-bottom:4px;}
+  .log-body{font-size:13.6px; color:var(--ink-muted); max-width:78ch;}
+  .log-ref{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-faint); margin-top:5px; display:block;}
+  .sev-group-head{font-family:var(--font-mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; margin:30px 0 4px; color:var(--ink-faint);}
+  .sev-group-head:first-child{margin-top:0;}
+
+  footer{padding:36px 0 60px;}
+  footer p{font-size:12.5px; color:var(--ink-faint); max-width:70ch;}
+  footer .eyebrow{margin-bottom:10px;}
+
+  @media (max-width:720px){
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+    .topo-wrap{grid-template-columns:1fr;}
+    .log-row{grid-template-columns:1fr; gap:4px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="hero-top">
+      <div class="eyebrow"><span class="dot dot--live"></span>SYS: NOMADRIGHT &middot; READ: STATIC SOURCE ANALYSIS &middot; BOARD: JETSON</div>
+      <div class="eyebrow">GENERATED 2026&#8209;09&#8209;07</div>
+    </div>
+    <h1 class="hero-title">The Signal Path</h1>
+    <div class="hero-body">
+      <p class="lede">NomadRight is a handheld voice assistant for India&rsquo;s migrant and informal
+      workers &mdash; brick&#8209;kiln hands, street vendors, construction labour &mdash; who need to know what a
+      welfare scheme like BOCW, MGNREGA, PM&#8209;KISAN or PMJAY actually owes them, spoken back in their own
+      language, with no phone signal required. A worker holds a button, asks a question aloud, and eleven
+      more stages run &mdash; speech recognition, two translation hops, a rules&#8209;and&#8209;retrieval decision
+      layer, an on&#8209;device 2B&#8209;parameter LLM, text&#8209;to&#8209;speech &mdash; before the speaker answers.
+      Every stage runs locally on the same board. <strong>None of them run in parallel.</strong></p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-tile"><div class="stat-num">20</div><div class="stat-label">welfare schemes in the on&#8209;device knowledge base</div></div>
+      <div class="stat-tile"><div class="stat-num">2 / 7</div><div class="stat-label">advertised source languages with a working ASR model &mdash; hi, ta</div></div>
+      <div class="stat-tile"><div class="stat-num">1</div><div class="stat-label">shared Jetson GPU, two competing model runtimes</div></div>
+      <div class="stat-tile"><div class="stat-num">242s</div><div class="stat-label">longest observed cold start for the LLM stage, against a 220s timeout</div></div>
+    </div>
+  </header>
+
+  <!-- TOPOLOGY -->
+  <section id="topology">
+    <div class="section-head">
+      <div class="eyebrow">01 &mdash; Runtime Topology</div>
+      <h2>Four processes, one board</h2>
+      <p class="lede">Before a single word is spoken, four independent OS processes are already running.
+      The app talks to two of them over plain HTTP &mdash; to itself, on <code>localhost</code> &mdash; and all
+      the heavy models share one physical memory pool, because Jetson has no separate VRAM.</p>
+    </div>
+    <div class="topo-wrap">
+      <svg viewBox="0 0 620 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Runtime topology diagram">
+        <rect x="330" y="118" width="270" height="196" rx="8" fill="none" stroke="var(--danger)" stroke-width="1.5" stroke-dasharray="5 4"/>
+        <text x="465" y="330" text-anchor="middle" class="topo-box-sub" fill="var(--danger)">shared unified GPU/CPU memory &mdash; contention risk</text>
+
+        <rect x="30" y="150" width="200" height="66" rx="6" fill="var(--hw-bg)" stroke="var(--hw)" stroke-width="1.5"/>
+        <text x="130" y="178" text-anchor="middle" class="topo-box-label">nomad_right / app.py</text>
+        <text x="130" y="193" text-anchor="middle" class="topo-box-sub">main process &middot; orchestrator</text>
+
+        <rect x="360" y="30" width="220" height="60" rx="6" fill="var(--hw-bg)" stroke="var(--hw)" stroke-width="1.5"/>
+        <text x="470" y="56" text-anchor="middle" class="topo-box-label">touchscreen UI</text>
+        <text x="470" y="70" text-anchor="middle" class="topo-box-sub">multiprocessing subprocess</text>
+
+        <rect x="360" y="140" width="220" height="60" rx="6" fill="var(--net-bg)" stroke="var(--net)" stroke-width="1.5"/>
+        <text x="470" y="166" text-anchor="middle" class="topo-box-label">bhashini_models.service</text>
+        <text x="470" y="180" text-anchor="middle" class="topo-box-sub">Flask dev server &middot; :11400</text>
+
+        <rect x="360" y="230" width="220" height="60" rx="6" fill="var(--net-bg)" stroke="var(--net)" stroke-width="1.5"/>
+        <text x="470" y="256" text-anchor="middle" class="topo-box-label">ollama daemon</text>
+        <text x="470" y="270" text-anchor="middle" class="topo-box-sub">Qwen3&#8209;VL GGUF &middot; :11434</text>
+
+        <path d="M230,166 L360,66" fill="none" stroke="var(--ink-faint)" stroke-width="1.5"/>
+        <text x="292" y="108" class="topo-edge-label">Pipe/Queue RPC</text>
+
+        <path d="M230,183 L360,170" fill="none" stroke="var(--net)" stroke-width="1.5"/>
+        <text x="248" y="168" class="topo-edge-label">HTTP: /asr /nmt /tts</text>
+
+        <path d="M230,200 L360,260" fill="none" stroke="var(--net)" stroke-width="1.5"/>
+        <text x="248" y="238" class="topo-edge-label">HTTP: /api/generate</text>
+      </svg>
+      <div class="topo-copy">
+        <p><strong>nomad_right/app.py</strong> is the only process a worker&rsquo;s query actually flows
+        through end&#8209;to&#8209;end. It talks to the touchscreen over a Pipe/Queue RPC, and to the two
+        model services purely over HTTP &mdash; even though everything lives on the same board.</p>
+        <p><strong>bhashini_models.service</strong> hosts ASR, NMT and TTS behind Flask&rsquo;s own
+        development server &mdash; not a production WSGI server &mdash; so it is single&#8209;request&#8209;at&#8209;a&#8209;time
+        by default.</p>
+        <p><strong>ollama</strong> runs the LLM as its own daemon. It and the BHASHINI models draw from the
+        same unified memory pool with no reservation between them &mdash; the code&rsquo;s own comments
+        describe a real CUDA out&#8209;of&#8209;memory crash this caused before the RAG embedder was pinned to CPU.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNAL PATH -->
+  <section id="signal-path">
+    <div class="section-head">
+      <div class="eyebrow">02 &mdash; The Turn, Stage by Stage</div>
+      <h2>Twelve stages, one hard sequential chain</h2>
+      <p class="lede">No stage starts before the last one returns. There is no streaming ASR, no
+      pipelined translation, no pre&#8209;fetched TTS &mdash; total turn latency is a straight sum of every
+      box below, not the slowest one.</p>
+    </div>
+
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--hw)"></i>hardware I/O</span>
+      <span><i class="swatch" style="background:var(--net)"></i>local service call (HTTP, same board)</span>
+      <span><i class="swatch" style="background:var(--accent)"></i>in&#8209;process CPU</span>
+      <span><i class="swatch" style="background:var(--proc)"></i>subprocess spawn (CLI binary)</span>
+      <span><i class="swatch" style="background:var(--danger)"></i>bottleneck</span>
+    </div>
+
+    <div class="diagram-scroll">
+      <svg viewBox="0 0 1400 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Signal path diagram, twelve sequential pipeline stages with the LLM generation stage flagged as the primary latency source">
+
+        <!-- callout -->
+        <rect x="739" y="16" width="260" height="80" rx="10" fill="var(--danger-bg)" stroke="var(--danger)" stroke-width="1.5"/>
+        <text x="869" y="35" text-anchor="middle" class="callout-title">WHERE THE LAG LIVES</text>
+        <text x="869" y="52" text-anchor="middle" class="callout-line">cold load: 108&ndash;242s</text>
+        <text x="869" y="67" text-anchor="middle" class="callout-line">evicted after 15m idle: ~53s</text>
+        <text x="869" y="82" text-anchor="middle" class="callout-line">hard timeout: 220s</text>
+        <line x1="869" y1="96" x2="869" y2="152" stroke="var(--danger)" stroke-width="2" stroke-dasharray="4 3"/>
+
+        <!-- spine -->
+        <line x1="80" y1="180" x2="1320" y2="180" stroke="var(--border)" stroke-width="3"/>
+        <text x="80" y="352" class="branch-label">critical path &rarr;</text>
+
+        <!-- branch to audit -->
+        <line x1="644" y1="206" x2="644" y2="300" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <rect x="569" y="300" width="150" height="38" rx="19" fill="var(--panel-alt)" stroke="var(--border)"/>
+        <text x="644" y="316" text-anchor="middle" class="node-chip" font-weight="700">AUDIT LOG</text>
+        <text x="644" y="330" text-anchor="middle" class="branch-label">async &middot; off critical path</text>
+
+        <!-- pulse ring on node 8 -->
+        <circle cx="869" cy="180" r="34" fill="none" stroke="var(--danger)" stroke-width="2.5" class="pulse-ring"/>
+
+        <!-- ===== nodes ===== -->
+        <!-- 1 TRIGGER -->
+        <g>
+          <circle cx="80" cy="180" r="26" fill="var(--hw-bg)" stroke="var(--hw)" stroke-width="2"/>
+          <text x="80" y="185" text-anchor="middle" class="node-num">01</text>
+          <text x="80" y="222" text-anchor="middle" class="node-label">TRIGGER</text>
+          <text x="80" y="234" text-anchor="middle" class="node-file">boards/jetson.py</text>
+          <rect x="34" y="252" width="92" height="18" rx="9" fill="var(--hw-bg)"/>
+          <text x="80" y="265" text-anchor="middle" class="node-chip">event&#8209;driven</text>
+        </g>
+        <!-- 2 CAPTURE -->
+        <g>
+          <circle cx="193" cy="180" r="26" fill="var(--hw-bg)" stroke="var(--hw)" stroke-width="2"/>
+          <text x="193" y="185" text-anchor="middle" class="node-num">02</text>
+          <text x="193" y="222" text-anchor="middle" class="node-label">CAPTURE</text>
+          <text x="193" y="234" text-anchor="middle" class="node-file">boards/base.py</text>
+          <rect x="147" y="252" width="92" height="18" rx="9" fill="var(--hw-bg)"/>
+          <text x="193" y="265" text-anchor="middle" class="node-chip">hold duration</text>
+        </g>
+        <!-- 3 ASR -->
+        <g>
+          <circle cx="306" cy="180" r="26" fill="var(--net-bg)" stroke="var(--net)" stroke-width="2"/>
+          <text x="306" y="185" text-anchor="middle" class="node-num">03</text>
+          <text x="306" y="222" text-anchor="middle" class="node-label">ASR</text>
+          <text x="306" y="234" text-anchor="middle" class="node-file">asr/infer.py</text>
+          <rect x="256" y="252" width="100" height="18" rx="9" fill="var(--net-bg)"/>
+          <text x="306" y="265" text-anchor="middle" class="node-chip">0.3s &rarr; 5.7s cold</text>
+        </g>
+        <!-- 4 NMT-IN -->
+        <g>
+          <circle cx="418" cy="180" r="26" fill="var(--net-bg)" stroke="var(--net)" stroke-width="2"/>
+          <text x="418" y="185" text-anchor="middle" class="node-num">04</text>
+          <text x="418" y="222" text-anchor="middle" class="node-label">NMT&#8209;IN</text>
+          <text x="418" y="234" text-anchor="middle" class="node-file">nmt/infer.py</text>
+          <rect x="368" y="252" width="100" height="18" rx="9" fill="var(--net-bg)"/>
+          <text x="418" y="265" text-anchor="middle" class="node-chip">&le;15s timeout</text>
+        </g>
+        <!-- 5 SHORTCUT -->
+        <g>
+          <circle cx="531" cy="180" r="26" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="2"/>
+          <text x="531" y="185" text-anchor="middle" class="node-num">05</text>
+          <text x="531" y="222" text-anchor="middle" class="node-label">SHORTCUT</text>
+          <text x="531" y="234" text-anchor="middle" class="node-file">scenario_cache.py</text>
+          <rect x="475" y="252" width="112" height="18" rx="9" fill="var(--accent-bg)"/>
+          <text x="531" y="265" text-anchor="middle" class="node-chip">0.2s &rarr; 4.9s cold</text>
+        </g>
+        <!-- 6 DECISION -->
+        <g>
+          <circle cx="644" cy="180" r="26" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="2"/>
+          <text x="644" y="185" text-anchor="middle" class="node-num">06</text>
+          <text x="644" y="222" text-anchor="middle" class="node-label">DECISION</text>
+          <text x="644" y="234" text-anchor="middle" class="node-file">workflow.py</text>
+          <rect x="608" y="252" width="72" height="18" rx="9" fill="var(--accent-bg)"/>
+          <text x="644" y="265" text-anchor="middle" class="node-chip">&lt; 2ms</text>
+        </g>
+        <!-- 7 RULES/RAG -->
+        <g>
+          <circle cx="756" cy="180" r="26" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="2"/>
+          <text x="756" y="185" text-anchor="middle" class="node-num">07</text>
+          <text x="756" y="222" text-anchor="middle" class="node-label">RULES/RAG</text>
+          <text x="756" y="234" text-anchor="middle" class="node-file">rules.py &middot; rag_pipeline.py</text>
+          <rect x="694" y="252" width="124" height="18" rx="9" fill="var(--accent-bg)"/>
+          <text x="756" y="265" text-anchor="middle" class="node-chip">&lt;1ms / ~100s ms</text>
+        </g>
+        <!-- 8 QWEN -->
+        <g>
+          <circle cx="869" cy="180" r="26" fill="var(--danger-bg)" stroke="var(--danger)" stroke-width="2.5"/>
+          <text x="869" y="185" text-anchor="middle" class="node-num">08</text>
+          <text x="869" y="222" text-anchor="middle" class="node-label" fill="var(--danger)">QWEN LLM</text>
+          <text x="869" y="234" text-anchor="middle" class="node-file">qwen_client.py</text>
+          <rect x="797" y="252" width="144" height="18" rx="9" fill="var(--danger-bg)"/>
+          <text x="869" y="265" text-anchor="middle" class="node-chip" fill="var(--danger)">1&ndash;3s warm &middot; 242s cold</text>
+        </g>
+        <!-- 9 COMPOSE -->
+        <g>
+          <circle cx="982" cy="180" r="26" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="2"/>
+          <text x="982" y="185" text-anchor="middle" class="node-num">09</text>
+          <text x="982" y="222" text-anchor="middle" class="node-label">COMPOSE</text>
+          <text x="982" y="234" text-anchor="middle" class="node-file">response.py</text>
+          <rect x="946" y="252" width="72" height="18" rx="9" fill="var(--accent-bg)"/>
+          <text x="982" y="265" text-anchor="middle" class="node-chip">&lt; 1ms</text>
+        </g>
+        <!-- 10 NMT-OUT -->
+        <g>
+          <circle cx="1094" cy="180" r="26" fill="var(--net-bg)" stroke="var(--net)" stroke-width="2"/>
+          <text x="1094" y="185" text-anchor="middle" class="node-num">10</text>
+          <text x="1094" y="222" text-anchor="middle" class="node-label">NMT&#8209;OUT</text>
+          <text x="1094" y="234" text-anchor="middle" class="node-file">nmt/infer.py</text>
+          <rect x="1044" y="252" width="100" height="18" rx="9" fill="var(--net-bg)"/>
+          <text x="1094" y="265" text-anchor="middle" class="node-chip">&le;15s timeout</text>
+        </g>
+        <!-- 11 TTS -->
+        <g>
+          <circle cx="1207" cy="180" r="26" fill="var(--proc-bg)" stroke="var(--proc)" stroke-width="2"/>
+          <text x="1207" y="185" text-anchor="middle" class="node-num">11</text>
+          <text x="1207" y="222" text-anchor="middle" class="node-label">TTS</text>
+          <text x="1207" y="234" text-anchor="middle" class="node-file">tts/infer.py</text>
+          <rect x="1151" y="252" width="112" height="18" rx="9" fill="var(--proc-bg)"/>
+          <text x="1207" y="265" text-anchor="middle" class="node-chip">flite + ffmpeg &times;2</text>
+        </g>
+        <!-- 12 PLAYBACK -->
+        <g>
+          <circle cx="1320" cy="180" r="26" fill="var(--hw-bg)" stroke="var(--hw)" stroke-width="2"/>
+          <text x="1320" y="185" text-anchor="middle" class="node-num">12</text>
+          <text x="1320" y="222" text-anchor="middle" class="node-label">PLAYBACK</text>
+          <text x="1320" y="234" text-anchor="middle" class="node-file">audio.AudioPlayer</text>
+          <rect x="1264" y="252" width="112" height="18" rx="9" fill="var(--hw-bg)"/>
+          <text x="1320" y="265" text-anchor="middle" class="node-chip">not budgeted</text>
+        </g>
+      </svg>
+    </div>
+    <p class="diagram-note">Scroll horizontally on narrow screens. The red ring marks stage 08 &mdash;
+    Qwen generation &mdash; the only stage whose worst case is measured in minutes, not seconds.</p>
+  </section>
+
+  <!-- STAGE WALKTHROUGH -->
+  <section id="stages">
+    <div class="section-head">
+      <div class="eyebrow">03 &mdash; Nook and Corner</div>
+      <h2>What each stage actually does</h2>
+      <p class="lede">Grouped the way the code groups itself &mdash; capture, bridge languages in, take a
+      shortcut if one exists, decide, generate, bridge languages back out, speak.</p>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head"><span class="eyebrow">Phase A</span><h3>Capture &amp; Bridge In</h3></div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-top"><span class="card-id">01&ndash;02</span><span class="badge" style="background:var(--hw-bg);color:var(--hw)">hardware</span></div>
+          <h4>Trigger &amp; Audio Capture</h4>
+          <p class="fileref">boards/jetson.py &middot; boards/base.py</p>
+          <p class="desc">A GPIO interrupt fires on button&#8209;down and sets a <code>threading.Event</code> &mdash;
+          event&#8209;driven, no polling loop. The mic records for exactly as long as the worker holds the
+          button; that duration isn&rsquo;t counted against turn latency, which starts on button&#8209;up.</p>
+          <span class="chip-lat">instant trigger &middot; variable capture</span>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-id">03</span><span class="badge" style="background:var(--net-bg);color:var(--net)">local service</span></div>
+          <h4>ASR &mdash; Speech to Text</h4>
+          <p class="fileref">bhashini_bridge.py &rarr; asr/infer.py</p>
+          <p class="desc">A blocking HTTP call to the on&#8209;device BHASHINI service, which runs an ONNX
+          conformer + CTC decoder on the Jetson GPU. Models load once at service startup and stay resident.
+          Only Hindi and Tamil sessions actually exist.</p>
+          <span class="chip-lat">0.3s warm &middot; 5.7s cold</span>
+          <div class="risk"><b>Risk &mdash; </b><code>SOURCE_LANGUAGES</code> advertises 7 codes
+          (hi, ta, or, bho, mai, sat, hne); the ASR service only loads sessions for 2. An unsupported code
+          raises an uncaught exception that a blanket <code>except</code> turns into a silent empty result.</div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-id">04</span><span class="badge" style="background:var(--net-bg);color:var(--net)">local service</span></div>
+          <h4>NMT&#8209;IN &mdash; Native &rarr; English</h4>
+          <p class="fileref">bhashini_bridge.py &rarr; nmt/infer.py</p>
+          <p class="desc">A second blocking HTTP call, CTranslate2 int8 models on GPU. The Decision Layer
+          downstream is English&#8209;only regex matching, so this hop is load&#8209;bearing for every query.</p>
+          <span class="chip-lat">&le;15s timeout</span>
+          <div class="risk"><b>Risk &mdash; </b>on failure this returns the <em>untranslated</em> source
+          text rather than an error. Five languages (bho, mai, hne, awa, mag) have no dedicated model and
+          are silently rerouted through Hindi&rsquo;s.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head"><span class="eyebrow">Phase B</span><h3>Fast Paths</h3></div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-top"><span class="card-id">05</span><span class="badge" style="background:var(--accent-bg);color:var(--accent)">in&#8209;process</span></div>
+          <h4>Shortcut Checks</h4>
+          <p class="fileref">app.py &middot; scenario_cache.py</p>
+          <p class="desc">Three checks run before the full Decision Layer: a pending&#8209;photo follow&#8209;up
+          (routes straight to vision Qwen), a curated scenario cache (embedding match, &ge;0.93 similarity,
+          currently 3 entries &mdash; all PDS), and an official&#8209;translation bridge for
+          <code>TRANSLATION_REQUEST</code> intents. Any hit skips everything below.</p>
+          <span class="chip-lat">0.2s warm &middot; 4.9s cold</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head"><span class="eyebrow">Phase C</span><h3>Decision Layer</h3></div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-top"><span class="card-id">06</span><span class="badge" style="background:var(--accent-bg);color:var(--accent)">in&#8209;process</span></div>
+          <h4>Intent &middot; Entities &middot; SQLite</h4>
+          <p class="fileref">intent.py &middot; entities.py &middot; classifier.py &middot; database.py</p>
+          <p class="desc">Pure Python, CPU only: a regex cascade for intent, gazetteer extraction for
+          entities, and a SQLite lookup against all 20 schemes&rsquo; records &mdash; preloaded into an
+          in&#8209;process dict cache at startup, so this is an L1 hit, not a disk read.</p>
+          <span class="chip-lat">&lt; 2ms</span>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-id">07</span><span class="badge" style="background:var(--accent-bg);color:var(--accent)">in&#8209;process</span></div>
+          <h4>Rules Engine &amp; RAG Retrieval</h4>
+          <p class="fileref">rules.py &middot; rag_pipeline.py</p>
+          <p class="desc">Four schemes (PDS, PMJAY, eShram, BOCW) have a deterministic, hallucination&#8209;safe
+          rules branch. The other 16 fall to ChromaDB retrieval &mdash; a 118M&#8209;param multilingual&#8209;e5
+          embedder, forced onto CPU to avoid GPU contention with Qwen, top&#8209;3 chunks above a 0.83
+          cosine floor.</p>
+          <span class="chip-lat">rules &lt;1ms &middot; RAG ~100s ms</span>
+          <div class="risk"><b>Risk &mdash; </b>the code&rsquo;s own tuning notes put legitimate queries
+          at 0.83&ndash;0.88 similarity and garbled ones at 0.79&ndash;0.84 &mdash; the cutoff sits inside the
+          overlap. Index warm&#8209;up costs 10&ndash;140s, paid once at boot.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head"><span class="eyebrow">Phase D</span><h3>Generation</h3></div>
+      <div class="card-grid">
+        <div class="card" style="border-left:3px solid var(--danger)">
+          <div class="card-top"><span class="card-id">08</span><span class="badge" style="background:var(--danger-bg);color:var(--danger)">bottleneck</span></div>
+          <h4>Qwen LLM (Ollama)</h4>
+          <p class="fileref">qwen_client.py &rarr; ollama :11434</p>
+          <p class="desc">A 2B&#8209;parameter Qwen3&#8209;VL GGUF model, forced to full GPU offload
+          (<code>num_gpu=99</code>) because Ollama&rsquo;s auto&#8209;fit heuristic otherwise offloads
+          nothing once BHASHINI holds memory. Called on every RAG&#8209;routed query above threshold, every
+          rules&#8209;and&#8209;RAG miss, and every camera&#8209;photo read &mdash; not the &ldquo;narrow,
+          explicitly&#8209;gated&rdquo; case the module docstring describes.</p>
+          <span class="chip-lat" style="border-color:var(--danger);color:var(--danger)">1&ndash;3s warm &middot; ~53s evicted &middot; 108&ndash;242s cold</span>
+          <div class="risk"><b>Risk &mdash; </b>a single blocking call, no streaming, no retry. The
+          220s timeout exists specifically because a real on&#8209;device run took &gt;150s and was nearly
+          cut off. Cancellation is checkpoint&#8209;based &mdash; a worker pressing Home mid&#8209;call still
+          waits for it to finish.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head"><span class="eyebrow">Phase E</span><h3>Bridge Out &amp; Delivery</h3></div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-top"><span class="card-id">09</span><span class="badge" style="background:var(--accent-bg);color:var(--accent)">in&#8209;process</span></div>
+          <h4>Response Synthesis</h4>
+          <p class="fileref">response.py</p>
+          <p class="desc">A six&#8209;tier priority chain (rules &rarr; RAG+Qwen &rarr; LLM fallback &rarr; raw
+          RAG template &rarr; KB&#8209;only &rarr; generic) picks the final answer text and formats it for TTS
+          and the LCD.</p>
+          <span class="chip-lat">&lt; 1ms</span>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-id">10</span><span class="badge" style="background:var(--net-bg);color:var(--net)">local service</span></div>
+          <h4>NMT&#8209;OUT &mdash; English &rarr; Native</h4>
+          <p class="fileref">bhashini_bridge.py &rarr; nmt/infer.py</p>
+          <p class="desc">The mirror of stage 04, translating the composed answer back to the worker&rsquo;s
+          language before synthesis.</p>
+          <span class="chip-lat">&le;15s timeout</span>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-id">11</span><span class="badge" style="background:var(--proc-bg);color:var(--proc)">subprocess</span></div>
+          <h4>Text&#8209;to&#8209;Speech</h4>
+          <p class="fileref">bhashini_bridge.py &middot; tts/infer.py</p>
+          <p class="desc">Flite synthesizes over a CLI subprocess + temp file. An optional voice&#8209;styling
+          pass then runs a <em>second</em> subprocess &mdash; ffmpeg, a five&#8209;stage filter chain
+          (pitch/tempo, highpass, dual EQ, compressor, loudnorm) &mdash; with its own temp files. Both run on
+          every single answer.</p>
+          <span class="chip-lat">flite + ffmpeg &times;2</span>
+          <div class="risk"><b>Risk &mdash; </b><code>or</code> (Odia) is an advertised source language
+          with no entry in the TTS voice map at all.</div>
+        </div>
+        <div class="card">
+          <div class="card-top"><span class="card-id">12</span><span class="badge" style="background:var(--hw-bg);color:var(--hw)">hardware</span></div>
+          <h4>Playback</h4>
+          <p class="fileref">audio.AudioPlayer &middot; ffplay</p>
+          <p class="desc">Plays over the speaker via ffplay, interruptible by the Home button; the LCD shows
+          the question and answer together. Playback time isn&rsquo;t counted against the response&#8209;time
+          budget, but the device is occupied until it finishes or is stopped.</p>
+          <span class="chip-lat">not budgeted</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-head"><span class="eyebrow">Off Path</span><h3>Audit Logging</h3></div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-top"><span class="card-id">&mdash;</span><span class="badge" style="background:var(--accent-bg);color:var(--accent)">async</span></div>
+          <h4>Audit Log</h4>
+          <p class="fileref">database.py &middot; AsyncAuditLogger</p>
+          <p class="desc">A background daemon thread drains a queue and writes PII&#8209;masked
+          (Aadhaar/phone redacted) query records to SQLite. Enqueue&#8209;and&#8209;return &mdash; it never
+          blocks a worker&rsquo;s turn. One of the few genuinely well&#8209;isolated stages in the pipeline.</p>
+          <span class="chip-lat">off critical path</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATENCY CHART -->
+  <section id="latency">
+    <div class="section-head">
+      <div class="eyebrow">04 &mdash; Where the Lag Lives</div>
+      <h2>One axis, six orders of magnitude</h2>
+      <p class="lede">The scale below is logarithmic, because the fastest stage &mdash; a warmed SQLite
+      lookup &mdash; and the slowest &mdash; a cold LLM load &mdash; differ by nearly six orders of magnitude.
+      The Qwen row is the only one that reaches past the charted decades.</p>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--ink-faint)"></i>full observed range</span>
+      <span><i class="swatch" style="background:var(--accent)"></i>typical warm range</span>
+      <span><i class="swatch" style="background:var(--danger)"></i>worst&#8209;case / critical</span>
+    </div>
+    <div class="chart-wrap">
+      <svg viewBox="0 0 1040 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Latency by pipeline stage, logarithmic scale from one millisecond to over two hundred seconds">
+        <!-- grid + axis -->
+        <g stroke="var(--grid-line)" stroke-width="1">
+          <line x1="210" y1="40" x2="210" y2="390"/>
+          <line x1="345" y1="40" x2="345" y2="390"/>
+          <line x1="479" y1="40" x2="479" y2="390"/>
+          <line x1="614" y1="40" x2="614" y2="390"/>
+          <line x1="748" y1="40" x2="748" y2="390"/>
+          <line x1="883" y1="40" x2="883" y2="390"/>
+        </g>
+        <line x1="170" y1="390" x2="950" y2="390" stroke="var(--border)" stroke-width="1.5"/>
+        <g class="tick-label" text-anchor="middle">
+          <text x="210" y="408">1ms</text>
+          <text x="345" y="408">10ms</text>
+          <text x="479" y="408">100ms</text>
+          <text x="614" y="408">1s</text>
+          <text x="748" y="408">10s</text>
+          <text x="883" y="408">100s</text>
+        </g>
+
+        <!-- row 0: Qwen -->
+        <text x="20" y="63" class="row-name">Qwen / Ollama generation</text>
+        <text x="20" y="76" class="row-file">qwen_client.py</text>
+        <line x1="614" y1="69" x2="935" y2="69" stroke="var(--ink-faint)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="614" y1="69" x2="678" y2="69" stroke="var(--accent)" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="846" cy="69" r="3.5" fill="var(--danger)"/>
+        <text x="846" y="60" text-anchor="middle" class="val-label" font-size="9.5">53s evicted</text>
+        <circle cx="935" cy="69" r="5" fill="var(--danger)"/>
+        <text x="920" y="87" text-anchor="end" class="val-label val-label--danger">242s cold</text>
+
+        <!-- row 1: RAG warm-up -->
+        <text x="20" y="121" class="row-name">RAG index warm&#8209;up</text>
+        <text x="20" y="134" class="row-file">rag_pipeline.py &middot; boot&#8209;time only</text>
+        <line x1="748" y1="127" x2="903" y2="127" stroke="var(--ink-faint)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 5"/>
+        <line x1="748" y1="127" x2="903" y2="127" stroke="var(--proc)" stroke-width="9" stroke-linecap="round" opacity="0.55"/>
+        <circle cx="903" cy="127" r="4" fill="var(--proc)"/>
+        <text x="888" y="145" text-anchor="end" class="val-label">140s, paid once</text>
+
+        <!-- row 2: ASR/NMT/TTS cold first turn -->
+        <text x="20" y="179" class="row-name">ASR/NMT/TTS cold model</text>
+        <text x="20" y="192" class="row-file">app.py &middot; first turn of session</text>
+        <line x1="543" y1="185" x2="716" y2="185" stroke="var(--ink-faint)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="543" y1="185" x2="573" y2="185" stroke="var(--accent)" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="716" cy="185" r="4" fill="var(--accent)"/>
+        <text x="700" y="203" text-anchor="end" class="val-label">5.7s cold, then 0.3s</text>
+
+        <!-- row 3: TTS + ffmpeg -->
+        <text x="20" y="237" class="row-name">TTS + ffmpeg styling</text>
+        <text x="20" y="250" class="row-file">bhashini_bridge.py &middot; 2 spawns / turn</text>
+        <line x1="543" y1="243" x2="654" y2="243" stroke="var(--proc)" stroke-width="9" stroke-linecap="round"/>
+        <text x="670" y="248" class="val-label">sub&#8209;second&ndash;low secs</text>
+
+        <!-- row 4: NMT hops -->
+        <text x="20" y="295" class="row-name">Two NMT hops (in + out)</text>
+        <text x="20" y="308" class="row-file">nmt/infer.py &middot; every turn</text>
+        <line x1="543" y1="301" x2="772" y2="301" stroke="var(--ink-faint)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="543" y1="301" x2="654" y2="301" stroke="var(--net)" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="772" cy="301" r="4" fill="var(--ink-muted)"/>
+        <text x="757" y="319" text-anchor="end" class="val-label">15s timeout ceiling</text>
+
+        <!-- row 5: decision layer -->
+        <text x="20" y="353" class="row-name">Decision layer (warm)</text>
+        <text x="20" y="366" class="row-file">workflow.py &middot; intent/entity/rules/DB</text>
+        <line x1="170" y1="359" x2="251" y2="359" stroke="var(--accent)" stroke-width="9" stroke-linecap="round"/>
+        <text x="266" y="364" class="val-label">&lt; 2ms</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- DRAWBACKS -->
+  <section id="drawbacks">
+    <div class="section-head">
+      <div class="eyebrow">05 &mdash; Diagnostic Log</div>
+      <h2>Where the design is fragile</h2>
+      <p class="lede">Seventeen findings from a static read of the source, ranked by how badly each one
+      can go wrong for a worker mid&#8209;query &mdash; not by how easy each is to fix.</p>
+    </div>
+
+    <div class="log">
+      <div class="sev-group-head">Critical</div>
+      <div class="log-row">
+        <span class="sev sev--critical">CRITICAL</span>
+        <div><div class="log-title">The pipeline never overlaps a single stage with the next</div>
+        <div class="log-body">ASR, both NMT hops, retrieval, generation, and TTS run one after another with
+        no pipelining or pre&#8209;fetching. Total turn time is a straight sum of every stage, so any one
+        slow stage delays all the fast ones behind it.</div>
+        <span class="log-ref">app.py::run()</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--critical">CRITICAL</span>
+        <div><div class="log-title">Qwen cold&#8209;load and eviction can cost minutes, not seconds</div>
+        <div class="log-body">Observed cold loads of 108&ndash;242s, and a ~53s reload after 15 minutes idle.
+        Against a 220s timeout, a worker can face over three minutes of silence with no progress
+        indication beyond a static status line.</div>
+        <span class="log-ref">qwen_client.py &middot; constants.py</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--critical">CRITICAL</span>
+        <div><div class="log-title">Unsupported ASR languages fail silently</div>
+        <div class="log-body">Five of seven advertised source languages have no ONNX session. An
+        unsupported code raises an uncaught exception server&#8209;side; the client&rsquo;s blanket
+        <code>except</code> turns it into a blank &ldquo;ask again&rdquo; screen with no diagnostic trail
+        beyond a generic log line.</div>
+        <span class="log-ref">bhashini_models/asr/infer.py &middot; models/asr.py</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--critical">CRITICAL</span>
+        <div><div class="log-title">No text&#8209;to&#8209;speech voice exists for Odia</div>
+        <div class="log-body"><code>or</code> is a listed source language with no entry in the TTS voice
+        map &mdash; even a correct Odia answer has nothing to speak it back with.</div>
+        <span class="log-ref">bhashini_models/tts/infer.py</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--critical">CRITICAL</span>
+        <div><div class="log-title">A live model call can&rsquo;t be cancelled</div>
+        <div class="log-body">Home&#8209;button cancellation is checkpoint&#8209;based. A worker who wants
+        out of a 220&#8209;second Qwen call has to wait for it to return anyway.</div>
+        <span class="log-ref">app.py</span></div>
+      </div>
+
+      <div class="sev-group-head">Moderate</div>
+      <div class="log-row">
+        <span class="sev sev--moderate">MODERATE</span>
+        <div><div class="log-title">Translation failures degrade silently</div>
+        <div class="log-body">A broken NMT call returns the untranslated source text instead of an error, so
+        a native&#8209;language sentence can reach the English&#8209;only regex intent recognizer
+        untouched, silently degrading to a wrong route.</div>
+        <span class="log-ref">models/nmt.py</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--moderate">MODERATE</span>
+        <div><div class="log-title">Five languages borrow someone else&rsquo;s translation model</div>
+        <div class="log-body">Bhojpuri, Maithili, Chhattisgarhi, Awadhi and Magahi are silently routed
+        through the Hindi NMT model; Santali through Odia&rsquo;s. No dedicated model, no disclosure to the
+        worker that the translation is an approximation.</div>
+        <span class="log-ref">models/nmt.py::_NMT_LANG_ROUTE</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--moderate">MODERATE</span>
+        <div><div class="log-title">Qwen runs far more often than the code claims it does</div>
+        <div class="log-body">The module docstring frames the LLM as a &ldquo;narrow, explicitly&#8209;gated&rdquo;
+        fallback, but the RAG route calls it on nearly every query for 16 of the 20 schemes &mdash; not just
+        true misses.</div>
+        <span class="log-ref">rag_pipeline.py &middot; response.py</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--moderate">MODERATE</span>
+        <div><div class="log-title">The RAG relevance cutoff sits inside a noisy overlap band</div>
+        <div class="log-body">The code&rsquo;s own tuning notes put legitimate queries at 0.83&ndash;0.88
+        cosine similarity and garbled ones at 0.79&ndash;0.84. The 0.83 threshold lives inside that overlap,
+        so both false&#8209;accepts and false&#8209;rejects are expected by design.</div>
+        <span class="log-ref">rag_pipeline.py &middot; RAG_MIN_SCORE</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--moderate">MODERATE</span>
+        <div><div class="log-title">Two model runtimes contend for one GPU</div>
+        <div class="log-body">BHASHINI and Ollama share Jetson&rsquo;s unified memory with no reservation
+        between them. The RAG embedder was moved to CPU specifically after this caused a documented CUDA
+        out&#8209;of&#8209;memory crash.</div>
+        <span class="log-ref">rag_pipeline.py, inline comments</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--moderate">MODERATE</span>
+        <div><div class="log-title">Every answer spawns two CLI subprocesses and writes temp files twice</div>
+        <div class="log-body">Flite synthesizes, then ffmpeg re&#8209;processes through a five&#8209;stage
+        filter chain &mdash; both process spawns, both round&#8209;tripping through disk, on every single
+        turn.</div>
+        <span class="log-ref">bhashini_bridge.py::_apply_voice_style</span></div>
+      </div>
+
+      <div class="sev-group-head">Minor / Operational</div>
+      <div class="log-row">
+        <span class="sev sev--minor">MINOR</span>
+        <div><div class="log-title">The &ldquo;vllm&rdquo; deployment role doesn&rsquo;t install vLLM</div>
+        <div class="log-body">It installs Ollama. A naming trap for the next person maintaining
+        provisioning.</div>
+        <span class="log-ref">rootfs/roles/vllm/tasks/main.yml</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--minor">MINOR</span>
+        <div><div class="log-title">The pinned LLM model tag isn&rsquo;t verified against what&rsquo;s provisioned</div>
+        <div class="log-body"><code>constants.py</code> pins one GGUF tag string; the Ansible role pulls a
+        differently formatted tag. Nothing in the codebase confirms they resolve to the same model.</div>
+        <span class="log-ref">constants.py &middot; rootfs/roles/vllm</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--minor">MINOR</span>
+        <div><div class="log-title">ASR/NMT/TTS run behind Flask&rsquo;s development server</div>
+        <div class="log-body">Not a production WSGI server &mdash; single&#8209;request&#8209;at&#8209;a&#8209;time
+        by transport&#8209;layer default.</div>
+        <span class="log-ref">bhashini_models.service</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--minor">MINOR</span>
+        <div><div class="log-title">Touchscreen updates aren&rsquo;t atomic</div>
+        <div class="log-body">A screen refresh is 2&ndash;4 separate RPC calls to the UI subprocess. A
+        documented overlay glitch was patched with an app&#8209;side lock, not a protocol fix.</div>
+        <span class="log-ref">app.py, screen&#8209;lock comment</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--minor">MINOR</span>
+        <div><div class="log-title">The curated fast&#8209;path cache covers three answers</div>
+        <div class="log-body">All Public Distribution System questions. Every other scheme still walks the
+        full Decision Layer.</div>
+        <span class="log-ref">scenario_cache.py</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--minor">MINOR</span>
+        <div><div class="log-title">The audit queue has no back&#8209;pressure or crash recovery</div>
+        <div class="log-body">An unbounded <code>queue.Queue</code> could accumulate if the writer
+        thread&rsquo;s DB connection stalls; nothing checks queue depth.</div>
+        <span class="log-ref">database.py::AsyncAuditLogger</span></div>
+      </div>
+      <div class="log-row">
+        <span class="sev sev--minor">MINOR</span>
+        <div><div class="log-title">Fourteen of twenty schemes list &ldquo;UNKNOWN&rdquo; for their helpline</div>
+        <div class="log-body">A content gap the code itself flags in comments &mdash; not a code bug, but a
+        real completeness gap a worker will hit.</div>
+        <span class="log-ref">constants.py::SCHEME_HELPLINES</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="eyebrow"><span class="dot"></span>COLOPHON</div>
+    <p>Compiled from a static read of <code>pocket-infer-sw</code> &mdash; function names, file paths,
+    constants and the measured examples logged in the source&rsquo;s own comments and benchmark harness.
+    This is not a live telemetry dashboard: every number here is either a hard&#8209;coded constant
+    (timeouts, thresholds) or a specific measurement the codebase&rsquo;s own authors recorded in comments.
+    Re&#8209;generate after any change to <code>app.py</code>, <code>workflow.py</code>, <code>qwen_client.py</code>
+    or the BHASHINI/Ollama service configuration.</p>
+  </footer>
+</div>
+
+</body>
+</html>

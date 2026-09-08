@@ -34,7 +34,7 @@ import base64
 import logging
 import time
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 import requests
 
@@ -96,11 +96,21 @@ _VISION_SYSTEM_PROMPT = (
 # in irrelevant scheme text - not sentinel-gated, since there's no context
 # to fail to find an answer in.
 _GENERAL_SYSTEM_PROMPT = (
-    "You are a helpful voice assistant at an offline welfare-rights kiosk "
-    "for migrant workers in India. The worker just asked something that "
-    "isn't about a specific government welfare scheme. Answer directly and "
-    "helpfully in plain, simple language. Keep the answer under 40 words. "
-    "If you genuinely don't know, say so briefly rather than guessing."
+    "You are a voice assistant at an offline welfare-rights kiosk for "
+    "migrant workers in India. This kiosk's ONLY purpose is helping "
+    "workers understand and access Indian government welfare schemes - "
+    "eligibility, documents, benefits, applications, portability between "
+    "states, and related government processes. The worker just asked "
+    "something that didn't name a specific scheme. Judge ONLY the "
+    "question itself, not how well-formed or conversational it sounds: "
+    "if it is a genuine question about welfare schemes, government "
+    "benefits, or documents that you can actually answer, answer directly "
+    "in plain, simple language, under 40 words. For every other case - "
+    "small talk, greetings, acknowledgements, the weather, app/device "
+    "questions, or anything not about government welfare - reply with "
+    f"exactly this text and nothing else: {constants.LLM_SENTINEL_NOT_FOUND}. "
+    "When genuinely unsure whether a question fits, prefer that exact "
+    "reply over guessing."
 )
 
 
@@ -198,6 +208,28 @@ class QwenClient:
 
     # ── Public API ───────────────────────────────────────────────────────────
 
+    def _grounded_answer(self, query: str, context_snippets: List[str]) -> Tuple[Optional[str], bool]:
+        """
+        Shared implementation behind answer_text() and
+        answer_text_with_decline(): one Qwen call, returning both the
+        answer-or-None and whether the model was actually reached and
+        explicitly returned the not-found sentinel (declined=True) as
+        opposed to erroring/timing out or never being asked (declined=
+        False). Most callers only need the text (see answer_text()); a
+        caller deciding whether a raw RAG chunk is still safe to echo as a
+        last resort (response.py Priority 4, via workflow.py Step 6.5a)
+        needs that distinction too, and this avoids a second Qwen round
+        trip just to get it.
+        """
+        if not query or not query.strip():
+            return None, False
+        prompt = self._build_prompt(query, context_snippets)
+        try:
+            result = self._call(prompt, images=None, num_predict=constants.LLM_NUM_PREDICT_TEXT)
+        except QwenClientError:
+            return None, False
+        return (result.text if result.found else None), (not result.found)
+
     def answer_text(self, query: str, context_snippets: List[str]) -> Optional[str]:
         """
         Text-only grounded QA for the intent/RAG fallback path. Returns None
@@ -205,14 +237,18 @@ class QwenClient:
         callers treat that identically to "no answer" (existing constant
         fallback).
         """
-        if not query or not query.strip():
-            return None
-        prompt = self._build_prompt(query, context_snippets)
-        try:
-            result = self._call(prompt, images=None, num_predict=constants.LLM_NUM_PREDICT_TEXT)
-        except QwenClientError:
-            return None
-        return result.text if result.found else None
+        text, _declined = self._grounded_answer(query, context_snippets)
+        return text
+
+    def answer_text_with_decline(self, query: str, context_snippets: List[str]) -> Tuple[Optional[str], bool]:
+        """
+        Same request/response as answer_text() (identical prompt, identical
+        sentinel gating), but also reports whether Qwen was reached and
+        explicitly declined the context (see _grounded_answer()'s
+        docstring). Used where that distinction changes what a caller does
+        next - see workflow.py Step 6.5a / response.py Priority 4.
+        """
+        return self._grounded_answer(query, context_snippets)
 
     def answer_vision(
         self, query: str, image_jpg: bytes, context_snippets: Optional[List[str]] = None
@@ -249,9 +285,20 @@ class QwenClient:
         """
         Ungrounded general-assistant QA for a query that isn't about any
         welfare scheme (no scheme named, RulesEngine and RAG both found
-        nothing - see workflow.py Step 6.5). Not sentinel-gated - there's no
-        context to fail to find an answer in, so any non-empty response is
-        used as-is. Returns None only on an actual error/timeout.
+        nothing - see workflow.py Step 6.5). Sentinel-gated the same way as
+        answer_text()/answer_vision(): the model is instructed to decline
+        (return constants.LLM_SENTINEL_NOT_FOUND) rather than fabricate an
+        answer to anything unrelated to what this kiosk can actually help
+        with. Earlier this method used any non-empty response as-is with no
+        decline path at all, on the theory that "there's no context to fail
+        to find an answer in" - but with nothing to ground it, an
+        ungated free-form call answers *everything* confidently, including
+        pure noise: reproduced with NEGATIVE_CONTROLS in pipeline_test.py
+        (e.g. "What is the weather today?", garbled ASR strings), which all
+        got a fabricated response.py "SCHEME INFO" answer instead of
+        QUERY_NOT_FOUND. Sentinel-gating this call closes that gap while
+        still answering genuine general questions the model actually can
+        help with. Returns None on an actual error/timeout too.
         """
         if not query or not query.strip():
             return None
@@ -260,4 +307,4 @@ class QwenClient:
             result = self._call(prompt, images=None, num_predict=constants.LLM_NUM_PREDICT_TEXT)
         except QwenClientError:
             return None
-        return result.text or None
+        return result.text if result.found else None
