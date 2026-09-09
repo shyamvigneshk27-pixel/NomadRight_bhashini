@@ -76,7 +76,11 @@ DEFAULT_CHROMA_PERSIST_DIR = os.path.join(
 # UI & Display Limits
 # ============================================================================
 
-# 320x240 LCD screen
+# 320x240 LCD screen - LEGACY context only. The physical 2.4" ILI9341
+# touchscreen this refers to (ui/handheld.py) has been superseded by the
+# HDMI browser UI (ui/hdmi/ + boards/hdmi.py + /home/stark-x/UI), which
+# has no such fixed-pixel budget. These limits still apply when running
+# with `--legacy-lcd`.
 
 DISPLAY_HEADER_MAX_LEN = 30
 DISPLAY_BODY_MAX_LEN = 60
@@ -231,6 +235,94 @@ TTS_TARGET_LUFS = -18
 TTS_TRUE_PEAK_DB = -2
 
 TTS_LOUDNESS_RANGE = 7
+
+
+# ============================================================================
+# Generative Fallback Model (qwen, via Ollama) - see qwen_client.py
+# ============================================================================
+#
+# These were missing from this file (an incomplete merge dropped them
+# while qwen_client.py, workflow.py, and app.py's RegisterApplication
+# metadata already expected them, leaving pocketinfer-service unable to
+# even import). Restored here to match qwen_client.py's actual usage and
+# this device's actually-installed Ollama model (`ollama list`).
+
+# Master switch for the intent/RAG generative fallback (workflow.py Step
+# 6.5) - only ever the last resort when rules AND thresholded RAG both
+# find nothing; never the primary answer path (see app.py's module
+# docstring).
+LLM_FALLBACK_ENABLED = True
+
+# Must match a model actually pulled in Ollama on this device (`ollama
+# list`) - matches master.py's --model default.
+LLM_FALLBACK_MODEL = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:Q4_K_M"
+
+# How long Ollama keeps this model resident after the last call before
+# unloading it. Deliberately NOT -1 (permanently resident, which
+# pocketinfer.models.ollama.Ollama uses) - this module's own docstring
+# explains why: the fallback is only occasionally needed, so tying up
+# ~2.4GB of RAM for the model's whole lifetime would be wasteful (see
+# master.py's app_needs_ollama()/pre-warm skip comment).
+#
+# Was "5m" - measured live on-device (2026-09-09) that a cold Ollama
+# load of this model takes ~43-45s here (llama-server's own
+# "load_duration" in the /api/generate response). A 5-minute TTL means
+# any two real citizen queries more than 5 minutes apart - completely
+# normal at a walk-up kiosk - forces that ~45s reload on the second
+# query, which then raced LLM_REQUEST_TIMEOUT_S below and frequently
+# lost outright (falls to the wrong-topic template fallback instead of
+# a real answer). 30 minutes covers realistic gaps between visitors
+# during operating hours while still releasing the ~2.4GB during a
+# genuinely idle stretch (overnight, etc).
+LLM_KEEP_ALIVE = "30m"
+
+# Forced high on every call rather than left to Ollama's own auto-fit
+# heuristic: the Jetson's GPU/CPU share one physical RAM pool, and that
+# heuristic offloads 0 layers whenever BHASHINI is already resident
+# (which is always) - see qwen_client.py's module docstring. 999 is the
+# conventional llama.cpp/Ollama "as many layers as fit" sentinel.
+LLM_NUM_GPU = 999
+
+# Jetson Orin Nano has 6 CPU cores - matches
+# pocketinfer.models.ollama.Ollama's own default.
+LLM_NUM_THREAD = 6
+
+# Context window - generous enough for the grounded prompt (system
+# prompt + a handful of RAG snippets + the question) without paying for
+# more KV-cache than this edge device needs.
+LLM_NUM_CTX = 2048
+
+LLM_TEMPERATURE = 0.2
+
+# Vision analysis in particular can take a while on this hardware - see
+# app.py's "[ANALYZING PHOTO] This may take a moment" status text.
+#
+# Was 45.0 - too tight a margin above the ~43-45s cold-load time
+# measured above (LLM_KEEP_ALIVE's comment): a cold-load call and this
+# timeout were essentially racing to the same finish line, so a cold
+# load frequently got cut off just short of finishing and returned
+# nothing usable instead of the real (if slow) answer. Raised well
+# above the observed cold-load time so a cold-load call actually
+# completes instead of aborting right at the line.
+LLM_REQUEST_TIMEOUT_S = 90.0
+
+# Every qwen prompt in qwen_client.py caps answers at "under 40 words" -
+# these leave comfortable headroom above that without letting a run-on
+# response burn extra latency.
+LLM_NUM_PREDICT_TEXT = 100
+LLM_NUM_PREDICT_VISION = 100
+
+# Exact string the model is instructed to return verbatim when it has no
+# grounded answer (see qwen_client.py's system prompts) - distinctive
+# enough that it will never appear in a genuine answer.
+LLM_SENTINEL_NOT_FOUND = "[[NO_ANSWER_FOUND]]"
+
+# How long a Camera-button photo stays valid awaiting its follow-up
+# question before being silently discarded (see app.py's
+# pending_form_image) - long enough for a worker to think of their
+# question, short enough that a much later unrelated question can't
+# accidentally attach to a stale photo.
+LLM_VISION_PENDING_TTL_S = 90.0
 
 
 # ============================================================================

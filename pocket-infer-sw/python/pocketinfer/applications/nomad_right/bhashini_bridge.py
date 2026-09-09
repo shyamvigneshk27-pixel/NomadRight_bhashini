@@ -37,79 +37,62 @@ logger = logging.getLogger(__name__)
 def _apply_voice_style(wav_bytes: bytes) -> bytes:
     """
     Post-processes BHASHINI TTS WAV output via ffmpeg for clarity and
-    consistent volume — without changing the TTS model itself.
+    consistent, comfortable volume — without changing the TTS model itself
+    or its pitch. An earlier version of this pitch-shifted (asetrate/
+    atempo) for a "male-leaning" delivery, but that made the voice sound
+    robotic/metallic/"Megatron-like" — see constants.py's TTS_* comment
+    block for the before/after. Gated by constants.TTS_VOICE_STYLE_ENABLED.
 
-    DSP chain (applied in order):
-      1. asetrate / aresample / atempo — pitch + tempo from constants
-         (male-leaning delivery; see TTS_PITCH_FACTOR / TTS_ENERGY_BOOST)
-      2. highpass (f=80Hz) — removes low-frequency mic/speaker rumble that
-         muddies speech, especially on the small onboard speaker.
-      3. equalizer boosts — lifts the 2–4 kHz "presence" band where speech
-         intelligibility lives; adds a gentle 8 kHz "air" lift for crispness.
-      4. acompressor — dynamic range compression so quiet syllables are pulled
-         up and loud ones pulled down; gives a consistent, broadcast-style
-         perceived loudness across the full utterance.
-      5. loudnorm (two-pass EBU R128) — normalises integrated loudness to
-         -16 LUFS so every answer plays at the same comfortable volume
-         regardless of how loud/soft the Flite voice happened to render it.
+    DSP chain (applied in order, every value tunable via constants.py's
+    TTS_* constants):
+      1. highpass — removes very low-frequency rumble while preserving
+         voice warmth.
+      2. equalizer x2 — a small presence boost (better consonant
+         intelligibility) and a small high-frequency "air" lift.
+         TTS_AIR_FREQUENCY_HZ is deliberately kept well below 16kHz
+         audio's 8000Hz Nyquist: an earlier attempt at exactly 8kHz was
+         measured on-device to silently zero out 100% of the output
+         samples (ffmpeg's peaking EQ is numerically degenerate exactly
+         at Nyquist, with no error — the process exits 0 with a "valid",
+         completely silent WAV).
+      3. acompressor — gentle dynamic range compression so quiet
+         syllables stay audible without crushing the whole voice.
+      4. loudnorm (EBU R128) — normalises integrated loudness to a level
+         comfortable on a small embedded speaker.
 
     Never raises: on any failure (ffmpeg missing, bad input, timeout) this
     logs a warning and returns the original, unmodified audio so a styling
     problem can never break TTS playback.
     """
-    if not wav_bytes or not shutil.which("ffmpeg"):
+    if not constants.TTS_VOICE_STYLE_ENABLED or not wav_bytes or not shutil.which("ffmpeg"):
         return wav_bytes
     in_path = out_path = None
     try:
-        # asetrate reinterprets the stream at a new nominal rate to shift
-        # pitch - it must be computed from this WAV's ACTUAL sample rate,
-        # not a hardcoded guess, or the shift comes out wrong/distorted.
         with wave.open(BytesIO(wav_bytes), "rb") as wf:
             source_rate = wf.getframerate()
-        shifted_rate = int(source_rate * constants.TTS_PITCH_FACTOR)
-        # Cancel the duration stretch asetrate introduces, then add the extra
-        # energy boost on top - see constants.TTS_ENERGY_BOOST.
-        tempo = (1.0 / constants.TTS_PITCH_FACTOR) * constants.TTS_ENERGY_BOOST
 
-        # ── Clarity-enhancing filter chain ─────────────────────────────────
-        # Stage 1: Pitch shift + tempo correction (unchanged from before)
-        stage1 = (
-            f"asetrate={shifted_rate},"
-            f"aresample={source_rate},"
-            f"atempo={tempo:.4f}"
+        # ── Gentle clarity/comfort filter chain ─────────────────────────────
+        stage1 = f"highpass=f={constants.TTS_HIGHPASS_HZ}"
+        stage2 = (
+            f"equalizer=f={constants.TTS_PRESENCE_FREQUENCY_HZ}:width_type=o:width=1.5:"
+            f"g={constants.TTS_PRESENCE_GAIN_DB},"
+            f"equalizer=f={constants.TTS_AIR_FREQUENCY_HZ}:width_type=o:width=1.0:"
+            f"g={constants.TTS_AIR_GAIN_DB}"
         )
-        # Stage 2: Highpass — cut sub-80 Hz rumble (boom/hum on small speakers)
-        stage2 = "highpass=f=80"
-
-        # Stage 3: EQ — boost speech "presence" (2-4 kHz).
-        # Flite/Indic TTS tends to sound nasal and mid-heavy; these lifts open
-        # it up and make consonants sharper and easier to distinguish. There
-        # is deliberately no 8kHz "air" band here: BHASHINI TTS outputs
-        # 16kHz audio, whose Nyquist frequency is exactly 8000Hz - a peaking
-        # equalizer centered exactly at Nyquist is numerically degenerate in
-        # ffmpeg's biquad implementation and was measured on-device to
-        # silently zero out 100% of the output samples (peak amplitude 0,
-        # no ffmpeg error/warning - the process exits 0 with a "valid",
-        # completely silent WAV). This was why every answer played nothing
-        # at all through the speaker despite ffmpeg reporting success.
         stage3 = (
-            "equalizer=f=2500:width_type=o:width=1.5:g=3,"   # +3 dB presence
-            "equalizer=f=4000:width_type=o:width=1.0:g=2"    # +2 dB definition
+            f"acompressor=threshold={constants.TTS_COMPRESSOR_THRESHOLD_DB}dB:"
+            f"ratio={constants.TTS_COMPRESSOR_RATIO}:"
+            f"attack={constants.TTS_COMPRESSOR_ATTACK_MS}:"
+            f"release={constants.TTS_COMPRESSOR_RELEASE_MS}:"
+            f"makeup={constants.TTS_COMPRESSOR_MAKEUP_DB}dB"
         )
-        # Stage 4: Compressor — tighten dynamic range so every syllable is heard.
-        # threshold=-18dB: starts compressing above comfortable speech level.
-        # ratio=3:1: gentle enough to not sound squashed.
-        # attack=5ms / release=50ms: fast enough to catch plosives, slow enough
-        # not to pump on vowels.
-        stage4 = "acompressor=threshold=-18dB:ratio=3:attack=5:release=50:makeup=2dB"
+        stage4 = (
+            f"loudnorm=I={constants.TTS_TARGET_LUFS}:"
+            f"TP={constants.TTS_TRUE_PEAK_DB}:"
+            f"LRA={constants.TTS_LOUDNESS_RANGE}"
+        )
 
-        # Stage 5: Loudness normalisation (EBU R128, target -16 LUFS).
-        # loudnorm in ffmpeg's linear mode is a single-pass approximation —
-        # good enough for short TTS utterances without the 2x processing cost
-        # of a true two-pass encode.
-        stage5 = "loudnorm=I=-16:TP=-1.5:LRA=7"
-
-        filter_chain = ",".join([stage1, stage2, stage3, stage4, stage5])
+        filter_chain = ",".join([stage1, stage2, stage3, stage4])
 
         # Real files, not pipes: a WAV written to a pipe can't be seeked back
         # to patch in the true RIFF/data chunk sizes once streaming is done,

@@ -111,6 +111,16 @@ class NomadRightApplication(BaseApplication):
         # is never armed until the capture is actually confirmed on screen.
         self._camera_busy = threading.Event()
 
+        # Text-query entry point for the HDMI UI's on-screen keyboard (see
+        # ui/hdmi/protocol.py's CMD_ASK_DOCUMENT_TEXT and submit_text_query()
+        # below) - an alternative to holding the trigger button and
+        # speaking, primarily for the Document Scanner Q&A view. Wakes
+        # run()'s _wait_for_next_turn() the same way a physical press does;
+        # the submitted text is used directly as that turn's native_query,
+        # skipping the mic/ASR stage entirely.
+        self._text_query_pending: Optional[str] = None
+        self._text_query_event = threading.Event()
+
         # ── Mode / navigation state (Home <-> Voice Translation <-> ────────
         # Document Scanner) - see module docstring's "UI modes" section.
         # Display-only label reflecting what the LCD's mode_text should
@@ -381,6 +391,21 @@ class NomadRightApplication(BaseApplication):
             self._on_camera_pressed()
         elif msg == "Home":
             self._on_home_pressed()
+        elif msg.startswith("DocText "):
+            self.submit_text_query(msg[8:])
+
+    def submit_text_query(self, text: str) -> None:
+        """
+        Entry point for the HDMI UI's on-screen-keyboard question - lets a
+        worker type a follow-up instead of holding the trigger button and
+        speaking (see the Document Scanner Q&A view). Safe to call from any
+        thread (the UI callback thread, via ui_cb above).
+        """
+        text = (text or "").strip()
+        if not text:
+            return
+        self._text_query_pending = text
+        self._text_query_event.set()
 
     def _on_camera_pressed(self) -> None:
         """
@@ -487,6 +512,29 @@ class NomadRightApplication(BaseApplication):
             self.board.update_screen(top="CANCELLED", bottom=self.HOME_HINT, status="[READY]")
         else:
             self.logger.info("[NomadRight] Home pressed - already at Home.")
+
+    def _wait_for_next_turn(self) -> str:
+        """
+        Blocks until either the physical trigger button is pressed or a
+        text query is submitted from the HDMI UI's on-screen keyboard
+        (submit_text_query()) - whichever comes first. Returns 'button',
+        'text', or 'stop' (self.running went False while waiting).
+
+        Polls wait_for_trigger_button_down() with a short timeout rather
+        than blocking on it indefinitely, so a text query submitted while
+        idle is picked up promptly instead of waiting on a button press
+        that may never come. Board.wait_for_trigger_button_down()
+        (boards/base.py) clears-then-checks-then-waits internally on every
+        call specifically to make this kind of repeated short-timeout
+        polling race-free (see its own docstring).
+        """
+        while self.running:
+            if self._text_query_event.is_set():
+                return "text"
+            self.board.wait_for_trigger_button_down(timeout=0.2)
+            if self.board.trigger_button:
+                return "button"
+        return "stop"
 
     def _stop_audio(self) -> bool:
         """
@@ -598,9 +646,9 @@ class NomadRightApplication(BaseApplication):
                 lang_name = constants.SOURCE_LANGUAGES.get(lang, lang.upper())
                 self.board.update_screen(mode="HOME", status=f"[READY] Lang:{lang_name}  Hold=ask")
 
-            self.board.wait_for_trigger_button_down()
+            turn_kind = self._wait_for_next_turn()
 
-            if not self.running:
+            if turn_kind == "stop" or not self.running:
                 break
 
             # A Camera-button capture may still be in flight on the UI
@@ -614,46 +662,67 @@ class NomadRightApplication(BaseApplication):
                 self._camera_busy.wait(timeout=5.0)
 
             try:
-                self.board.button_led(True)
-                self.board.update_screen(status="[LISTENING]", top="", bottom="")
-                # Logged before audio.start() rather than after, so the log
-                # confirms the press registered even if opening the capture
-                # device is what goes wrong.
-                self._log("BTN DOWN - listening")
+                if turn_kind == "text":
+                    # On-screen-keyboard question (Document Scanner Q&A) -
+                    # skip the mic/ASR stage entirely and use the typed
+                    # text directly as this turn's native_query.
+                    native_query = (self._text_query_pending or "").strip()
+                    self._text_query_pending = None
+                    self._text_query_event.clear()
+                    turn_start = time.time()
+                    self._log(f"TEXT QUERY {len(native_query)} chars")
 
-                # Press & hold triggers the mic - matches the wired capacitive
-                # touch button on GPIO09 (see jetson_suno_sutra_expansion_pinout.png).
-                record_start = time.time()
-                self.board.audio.start()
-                self.board.wait_for_trigger_button_up()
-                self.board.button_led(False)
-                self.board.audio.stop()
-                record_s = time.time() - record_start
-                # Everything after the button is released counts against the
-                # end-to-end budget - the worker's own hold time doesn't.
-                turn_start = time.time()
-                self._log(f"BTN UP - recorded {record_s:.1f}s")
+                    if not native_query:
+                        self.board.update_screen(status="[ERROR]", top="Empty question",
+                                                  bottom="Please try again")
+                        time.sleep(1.0)
+                        continue
 
-                # ── 1. ASR: worker's spoken language -> native text ─────────
-                self.board.statusbar("[PROCESSING] Recognizing speech")
-                stage_start = time.time()
-                wav_bytes = self.board.audio.to_audio_data().get_wav_data()
-                native_query = self.bridge.listen(wav_bytes, lang)
-                self._log(f"ASR {lang} {len(native_query)} chars  {time.time() - stage_start:.1f}s")
+                    self.board.top_text(f"You: {native_query}"[:80])
+                    self.logger.info(f"[NomadRight] TEXT query: '{native_query}'")
+                else:
+                    self.board.button_led(True)
+                    self.board.update_screen(status="[LISTENING]", top="", bottom="")
+                    # Logged before audio.start() rather than after, so the log
+                    # confirms the press registered even if opening the capture
+                    # device is what goes wrong.
+                    self._log("BTN DOWN - listening")
 
-                if not native_query.strip():
-                    self.logger.warning("[NomadRight] ASR returned empty text.")
-                    self._log("ASR empty - ask again")
-                    self.board.update_screen(status="[ERROR]", top="Could not hear you",
-                                              bottom="Please try again")
-                    time.sleep(1.5)
-                    continue
+                    # Press & hold triggers the mic - matches the wired capacitive
+                    # touch button on GPIO09 (see jetson_suno_sutra_expansion_pinout.png),
+                    # or the HDMI UI's on-screen "tap to speak" button (see
+                    # boards/hdmi.py's virtual_trigger_down()/_up()).
+                    record_start = time.time()
+                    self.board.audio.start(max_seconds=constants.MAX_AUDIO_RECORD_SECONDS)
+                    self.board.wait_for_trigger_button_up()
+                    self.board.button_led(False)
+                    self.board.audio.stop()
+                    record_s = time.time() - record_start
+                    # Everything after the button is released counts against the
+                    # end-to-end budget - the worker's own hold time doesn't.
+                    turn_start = time.time()
+                    self._log(f"BTN UP - recorded {record_s:.1f}s")
 
-                # Keep the worker's own question visible on screen for the
-                # rest of this turn (not overwritten by the answer) so both
-                # sides of the exchange stay readable at a glance.
-                self.board.top_text(f"You: {native_query}"[:80])
-                self.logger.info(f"[NomadRight] ASR[{lang}] query: '{native_query}'")
+                    # ── 1. ASR: worker's spoken language -> native text ─────────
+                    self.board.statusbar("[PROCESSING] Recognizing speech")
+                    stage_start = time.time()
+                    wav_bytes = self.board.audio.to_audio_data().get_wav_data()
+                    native_query = self.bridge.listen(wav_bytes, lang)
+                    self._log(f"ASR {lang} {len(native_query)} chars  {time.time() - stage_start:.1f}s")
+
+                    if not native_query.strip():
+                        self.logger.warning("[NomadRight] ASR returned empty text.")
+                        self._log("ASR empty - ask again")
+                        self.board.update_screen(status="[ERROR]", top="Could not hear you",
+                                                  bottom="Please try again")
+                        time.sleep(1.5)
+                        continue
+
+                    # Keep the worker's own question visible on screen for the
+                    # rest of this turn (not overwritten by the answer) so both
+                    # sides of the exchange stay readable at a glance.
+                    self.board.top_text(f"You: {native_query}"[:80])
+                    self.logger.info(f"[NomadRight] ASR[{lang}] query: '{native_query}'")
 
                 # ── 2. NMT: native language -> English for the Decision Layer ─
                 self.board.statusbar("[TRANSLATING]")
@@ -709,47 +778,11 @@ class NomadRightApplication(BaseApplication):
                         self.board.statusbar(f"[TRANSLATING] for official ({target_name})")
                         bridged_text = self.bridge.bridge_translate(self.last_answer_en, "EN", target_lang)
 
-<<<<<<< HEAD
-                            self.board.update_screen(top="VOICE BRIDGE", bottom=bridged_text[:100],
-                                                      status="[SPEAKING] Home=stop")
-                            played_fully = self._play(self.bridge.speak(bridged_text, target_lang))
-                            if played_fully:
-                                self.board.update_screen(status="[READY]", mode="HOME")
-                            # else: _on_home_pressed() already set the
-                            # "AUDIO STOPPED" screen - don't overwrite it here.
-                            continue
-
-                        # ── 4. Decision Layer: Intent -> Entity -> Rules/RAG -> Response ─
-                        self.logger.info("[PIPELINE] VOICE_SCHEME")
-                        self.logger.info(f"[ASR] lang={lang} text='{native_query}'")
-                        self.logger.info(f"[LANGUAGE] input={lang}")
-                        self.logger.info(f"[TRANSLATION] EN: '{query_en}'")
-                        self.board.update_screen(mode="VOICE TRANSLATION", status="[PROCESSING] Finding your answer")
-                        stage_start = time.time()
-                        response_pkg = self.workflow.process(
-                            query_en, context_scheme_code=self.last_scheme_code
-                        )
-                        self._log(
-                            f"DECIDE {response_pkg.scheme_code or 'no-match'}  "
-                            f"{time.time() - stage_start:.1f}s"
-                        )
-                        self.last_answer_en = response_pkg.voice_text
-                        # Only update on an actual scheme match this turn - keep the
-                        # previous scheme remembered across a genuinely unrelated/
-                        # unmatched follow-up rather than losing it (see
-                        # EntityExtractor._CONTEXT_INHERITABLE_INTENTS).
-                        if response_pkg.scheme_code:
-                            self.last_scheme_code = response_pkg.scheme_code
-=======
-                        with self._screen_lock:
-                            self.board.top_text("VOICE BRIDGE")
-                            self.board.bottom_text(bridged_text[:100])
-                            self.board.statusbar("[SPEAKING] Home=stop")
+                        self.board.update_screen(top="VOICE BRIDGE", bottom=bridged_text[:100],
+                                                  status="[SPEAKING] Home=stop")
                         played_fully = self._play(self.bridge.speak(bridged_text, target_lang))
                         if played_fully:
-                            with self._screen_lock:
-                                self.board.statusbar("[READY]")
-                                self.board.mode_text("HOME")
+                            self.board.update_screen(status="[READY]", mode="HOME")
                         # else: _on_home_pressed() already set the
                         # "AUDIO STOPPED" screen - don't overwrite it here.
                         continue
@@ -759,8 +792,7 @@ class NomadRightApplication(BaseApplication):
                     self.logger.info(f"[ASR] lang={lang} text='{native_query}'")
                     self.logger.info(f"[LANGUAGE] input={lang}")
                     self.logger.info(f"[TRANSLATION] EN: '{query_en}'")
-                    self.board.mode_text("VOICE TRANSLATION")
-                    self.board.statusbar("[PROCESSING] Finding your answer")
+                    self.board.update_screen(mode="VOICE TRANSLATION", status="[PROCESSING] Finding your answer")
                     stage_start = time.time()
                     response_pkg = self.workflow.process(
                         query_en, context_scheme_code=self.last_scheme_code
@@ -776,7 +808,6 @@ class NomadRightApplication(BaseApplication):
                     # EntityExtractor._CONTEXT_INHERITABLE_INTENTS).
                     if response_pkg.scheme_code:
                         self.last_scheme_code = response_pkg.scheme_code
->>>>>>> 03201c7ba8a5030b1857e889b72b4ea8aca8866e
 
                 # Home was pressed while the Qwen/RAG call above was in
                 # flight - it can't be safely aborted mid-request (see

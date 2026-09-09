@@ -59,6 +59,12 @@ class PocketInferDevboard(Board):
             self.logger.debug("Trigger button up")
 
 class PocketInferDevboardUI(PocketInferDevboard):
+    ''' LEGACY - drives the physical 2.4" ILI9341 SPI touchscreen +
+    XPT2046 touch controller (ui/handheld.py). Superseded by
+    boards.hdmi.PocketInferHDMIBoard (the HDMI browser UI); kept only as
+    a hardware fallback if this small display is ever reattached - select
+    it explicitly with `pocketinfer-service --legacy-lcd`. Not the
+    default any more. '''
     TOUCH_IRQ_BOARD_IDX = 'GP37_SPI3_MISO'  # Physical pin 22 on header
     ALSA_PLAYBACK_NAME = 'UACDemo'
     ALSA_PLAYBACK_CHANNEL_NAME = "PCM"

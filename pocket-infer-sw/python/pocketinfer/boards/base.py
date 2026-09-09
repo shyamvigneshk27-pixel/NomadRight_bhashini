@@ -281,13 +281,16 @@ class Board:
         return bytearray(buffer)
 
     @classmethod
-    def get_board(cls, headless=False):
+    def get_board(cls, headless=False, legacy_lcd=False):
         ''' Auto-detects and instantiates the correct Board subclass for this device.
-        If headless=True, the touchscreen LCD/touch UI subprocess is skipped entirely
-        (falling back to console-logged statusbar/top_text/etc from the base Board
-        class) - trigger button, microphone, and speaker are still fully real
-        hardware. Use this when the touchscreen display/touch controller is
-        unavailable or crashing, to still exercise the rest of the pipeline. '''
+        If headless=True, no display/UI layer is started at all (falling back to
+        console-logged statusbar/top_text/etc from the base Board class) - trigger
+        button, microphone, and speaker are still fully real hardware. Use this when
+        no display is available, to still exercise the rest of the pipeline.
+        If legacy_lcd=True, uses the LEGACY physical 2.4" ILI9341 touchscreen UI
+        (PocketInferDevboardUI, boards/jetson.py) instead of the default HDMI UI
+        (PocketInferHDMIBoard, boards/hdmi.py) - only needed if that hardware is
+        ever reattached; the HDMI UI is the supported default. '''
         args = {}
         if not exists('/proc/device-tree/model'):
             raise NotImplementedError('/proc/device-tree not found: Must be a linux system with modern kernel >4')
@@ -317,10 +320,15 @@ class Board:
                 if headless:
                     from pocketinfer.boards.jetson import PocketInferDevboard
                     return PocketInferDevboard(args)
-                # We could also instantiate a PocketInferDevboard, which has no UI
-                # But automatic detection of the screen is a challenge
-                from pocketinfer.boards.jetson import PocketInferDevboardUI
-                return PocketInferDevboardUI(args)
+                if legacy_lcd:
+                    # LEGACY: physical 2.4" ILI9341 SPI touchscreen -
+                    # superseded by PocketInferHDMIBoard below. Kept only
+                    # as a hardware fallback if that display is ever
+                    # reattached; not the default any more.
+                    from pocketinfer.boards.jetson import PocketInferDevboardUI
+                    return PocketInferDevboardUI(args)
+                from pocketinfer.boards.hdmi import PocketInferHDMIBoard
+                return PocketInferHDMIBoard(args)
             if carrier_ver.startswith(b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'):
                 # The seeeedstudio carrier board has an eeprom present but zero-ed out memory
                 from pocketinfer.boards.jetson import PocketInferDemo

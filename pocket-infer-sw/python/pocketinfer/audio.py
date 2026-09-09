@@ -75,7 +75,10 @@ CONTROLS = [
 def set_volume(alsa_card, volume, controls=None):
     ''' Set volume of ALL inputs or outputs of alsa_card to volume
      Volume should be an integer 0-100
-      controls may be a  list of controls to set, defaults to an expansive list of defaults '''
+      controls may be a  list of controls to set, defaults to an expansive list of defaults.
+      Returns True if at least one control was actually set, False otherwise (e.g. no
+      matching control found) - used by boards/hdmi.py's set_volume_live() to report
+      success/failure to the UI instead of assuming it always worked. '''
     if controls is None:
         controls = CONTROLS
     elif isinstance(controls, str):
@@ -98,6 +101,7 @@ def set_volume(alsa_card, volume, controls=None):
                 logging.error(f'Unable to set {control} volume for card {alsa_card}: {ret.stderr}')
     if not set_one:
         logging.warning(f'Volume not set: No controls for card {alsa_card} matched: {found_controls}')
+    return set_one
 
 
 
@@ -135,7 +139,14 @@ class AudioRecorder:
             except ValueError:
                 continue
 
-    def start(self):
+    def start(self, max_seconds=None):
+        ''' max_seconds, if given, hard-caps how long the background thread
+        keeps appending captured frames, regardless of how long the caller
+        keeps `recording` True (e.g. a hold-to-speak button held down for
+        an unusually long time). Without this the buffer - and eventually
+        the ASR request built from it - grows unbounded; NomadRight passes
+        constants.MAX_AUDIO_RECORD_SECONDS here (a limit that existed as a
+        constant but was never actually wired to anything). '''
         self.logger.debug('Opening device index %s for recording', self.device_idx)
         self.stream = self.p.open(format=pyaudio.paInt16,
                                   channels=self.channels,
@@ -144,6 +155,7 @@ class AudioRecorder:
                                   input_device_index=self.device_idx,
                                   frames_per_buffer=self.frames_per_buffer)
         self.frames = []
+        self.max_seconds = max_seconds
         self.thread = threading.Thread(target=self._record)
         self.thread.daemon = True
         self.recording = True
@@ -152,8 +164,16 @@ class AudioRecorder:
     def _record(self):
         if self.stream is None:
             return
+        start_time = time.monotonic()
         try:
             while self.recording:
+                if self.max_seconds is not None and (time.monotonic() - start_time) >= self.max_seconds:
+                    self.logger.warning(
+                        f'Recording hit max_seconds={self.max_seconds} cap - stopping capture '
+                        f'(caller is still holding the trigger; only what was captured up to '
+                        f'the cap will be transcribed)'
+                    )
+                    break
                 data = self.stream.read(self.frames_per_buffer)
                 self.logger.debug(f'Read {len(data)} bytes from audio stream, {len(self.frames)} frames collected so far')
                 self.frames.append(data)
@@ -189,7 +209,12 @@ class AudioRecorder:
         arr = np.frombuffer(byte_data, dtype=np.int16)
         if len(arr) == 0:
             return AudioData(byte_data, self.rate, 2)
-        ampl = max(abs(np.min(arr)), abs(np.max(arr)))
+        # int16's range is -32768..32767, so abs(-32768) alone overflows
+        # int16 (wraps back to -32768) - genuinely happens on loud
+        # mic input that hits full-scale negative clipping, silently
+        # producing a wrong (garbage) gain below instead of erroring.
+        # Widen to int64 first so abs() has headroom.
+        ampl = max(abs(int(np.min(arr))), abs(int(np.max(arr))))
         gain = 32768.0 / ampl if ampl > 0 else 1.0
         arr = (arr*gain*1.2) # Intentionall hard-clip a little
         arr = np.clip(arr, -32768, 32767).astype(np.int16)
@@ -202,11 +227,14 @@ class AudioRecorder:
 class DummyAudioRecorder(AudioRecorder):
     def __init__(self, filename):
         self.filename = filename
-        self.channels = 1 
+        self.channels = 1
         self.frames_per_buffer = 1024
         self.frames = []
 
-    def start(self):
+    def start(self, max_seconds=None):
+        # max_seconds accepted for interface parity with AudioRecorder.start()
+        # (app.py always passes it) - meaningless here since a dummy board
+        # reads a fixed pre-recorded file, not a live unbounded stream.
         # open the file for reading.
         self.frames = []
 

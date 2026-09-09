@@ -5,6 +5,15 @@ After=network.target
 [Service]
 Group=ubuntu
 WorkingDirectory=/home/ubuntu/pocket-infer-sw
+# The HDMI UI (boards/hdmi.py) launches a kiosk browser, which needs a
+# real X/Wayland session to draw into. If this unit runs outside the
+# interactive desktop session (e.g. started before login, or as a system
+# unit rather than a user unit), set DISPLAY/XAUTHORITY to match that
+# session - e.g.:
+#   Environment=DISPLAY=:1
+#   Environment=XAUTHORITY=/home/ubuntu/.Xauthority
+# Leave unset if this unit is itself launched from within the desktop
+# session (DISPLAY is then inherited automatically).
 ExecStart=/home/ubuntu/pocket-infer-sw/python/venv/bin/pocketinfer-service
 Restart=always
 

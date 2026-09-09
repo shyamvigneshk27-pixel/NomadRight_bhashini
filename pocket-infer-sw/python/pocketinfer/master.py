@@ -33,10 +33,11 @@ def app_needs_ollama(app_name: str) -> bool:
     in its @RegisterApplication METADATA. NomadRight does declare one (see
     applications/nomad_right/app.py's METADATA["models"]["ollama"] - it uses
     Qwen for both the RAG-LLM fallback and camera vision queries), so this
-    starts/pre-warms Ollama for it. Apps that never call Ollama at all don't
-    need it started or pre-warmed - doing so anyway wastes ~2.4GB of RAM held
-    forever (keep_alive=-1) and has been observed to starve other processes
-    on this 8GB device.
+    starts/pre-warms Ollama for it (with a bounded TTL, not keep_alive=-1 -
+    see verify_ollama_model()'s docstring for why that distinction matters).
+    Apps that never call Ollama at all don't need it started or pre-warmed
+    at all - doing so anyway wastes real RAM on this 8GB device for no
+    benefit.
     """
     app_cls = ApplicationRegistry.get_application(app_name)
     if app_cls is None:
@@ -46,7 +47,27 @@ def app_needs_ollama(app_name: str) -> bool:
 
 
 def verify_ollama_model(model_name: str = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:Q4_K_M") -> bool:
-    """Verify Ollama is reachable and asynchronously pre-warm model into RAM with keep_alive=-1."""
+    """Verify Ollama is reachable and asynchronously pre-warm model into RAM.
+
+    Deliberately does NOT pass keep_alive=-1 here (that used to be the
+    case, and it was a real memory leak in practice - not a code leak,
+    but a residency one): -1 means "never unload", so every single
+    service launch re-armed permanent residency for this ~2GB model,
+    regardless of whether an actual query ever followed. Confirmed
+    on-device via `ollama ps`: UNTIL showed "Forever" after 16+ idle
+    minutes with zero real Qwen-routed queries run, eating ~27% of this
+    8GB device's RAM before the app had even started - which is what was
+    forcing bhashini_models' own resident memory into swap (confirmed:
+    ~900MB of it swapped out), slowing every subsequent stage down
+    (RAG/embedding cold-load, even the kiosk browser's own process
+    spawns) as collateral damage.
+
+    Omitting keep_alive lets Ollama apply its own default TTL (~5
+    minutes) - the same bounded lifetime qwen_client.py's real query path
+    already uses (constants.LLM_KEEP_ALIVE) - so an idle device actually
+    gives that RAM back instead of holding it forever on the strength of
+    one warm-up ping nobody asked to be permanent.
+    """
     logging.info(f"Verifying Ollama endpoint and pre-warming model '{model_name}'...")
     try:
         resp = requests.get("http://localhost:11434/api/tags", timeout=5.0)
@@ -63,12 +84,11 @@ def verify_ollama_model(model_name: str = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:
                     json={
                         "model": model_name,
                         "prompt": "",
-                        "keep_alive": -1,
                         "options": {"num_thread": 6}
                     },
                     timeout=60.0
                 )
-                logging.info(f"Model '{model_name}' pre-warmed into RAM.")
+                logging.info(f"Model '{model_name}' pre-warmed into RAM (bounded TTL, not permanent).")
             except Exception as e:
                 logging.warning(f"Async model warmup notice: {e}")
 

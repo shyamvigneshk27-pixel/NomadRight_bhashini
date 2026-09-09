@@ -1,3 +1,14 @@
+# ============================================================================
+# LEGACY - physical 2.4" ILI9341 SPI touchscreen UI (320x240).
+#
+# Superseded by the HDMI browser UI: pocketinfer/ui/hdmi/ (bridge server)
+# + boards/hdmi.py (PocketInferHDMIBoard) + /home/stark-x/UI (React
+# frontend). Kept only as a hardware fallback if this small display is
+# ever reattached - select it explicitly with `pocketinfer-service
+# --legacy-lcd` (see boards/base.py's Board.get_board()). Not the default
+# any more; do not build new features against this module.
+# ============================================================================
+
 import time
 import logging
 import threading
@@ -19,9 +30,11 @@ from typing import NamedTuple
 
 
 class HandheldUI:
-    ''' This is a graphical UI based on the Adafruit displayIO framework.
-    It was originally designed for a circuitpython IO expander board, but has been adapted to run on an Embedded linux platform 
-    via the Adafruit blinka compatibility layer. It is designed for a 320x240 pixel touchscreen.
+    ''' LEGACY (see module header above). This is a graphical UI based on
+    the Adafruit displayIO framework. It was originally designed for a
+    circuitpython IO expander board, but has been adapted to run on an
+    Embedded linux platform via the Adafruit blinka compatibility layer.
+    It is designed for a 320x240 pixel touchscreen.
     This class is agnostic to the underlying display and transport, but will be subclassed for specific hardware support.
     '''
     ICON_FONT = bitmap_font.load_font(str(files('pocketinfer.ui').joinpath('forkawesome-16.pcf')))

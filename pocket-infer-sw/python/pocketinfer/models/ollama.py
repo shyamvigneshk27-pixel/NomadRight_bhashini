@@ -1,5 +1,6 @@
 import ollama
 import logging
+import threading
 from subprocess import check_output
 import requests
 
@@ -73,15 +74,51 @@ class Ollama:
     
     @classmethod
     def verify(cls, args):
+        """
+        Reports whether `args['model_name']` is actually pulled and Ollama
+        is reachable - nothing more. Used to gate whether to fall through
+        to update() (ollama.pull(), a real internet download this 100%-
+        offline device can't make - see master.py's app docstring).
+
+        The pre-warm POST below used to be inside the same try/except as
+        the availability check, and unbounded (no `timeout=`) - a slow
+        cold GPU load (or any transient hiccup) on that warm-up call made
+        this whole method report the model *unavailable* even though it
+        was genuinely present, which then triggered update()'s doomed
+        pull() attempt and could crash startup entirely
+        (verify_dependencies() raises if the post-update re-verify also
+        fails). The warm-up is now fire-and-forget on its own thread,
+        exactly like master.py's own verify_ollama_model() does the same
+        thing - it can never affect this method's return value.
+        """
         try:
             ret = ollama.list()
-            for model in ret.models:
-                if model.model == args["model_name"]:
-                    requests.post('http://localhost:11434/api/generate', json={'model': args['model_name'], 'keep_alive': -1, 'options': {'num_thread': 6}})
-                    return True, "Ollama service is available."
-            return False, f"Model '{args['model_name']}' not found."
+            model_found = any(model.model == args["model_name"] for model in ret.models)
         except Exception as e:
             return False, str(e)
+        if not model_found:
+            return False, f"Model '{args['model_name']}' not found."
+
+        def _warm():
+            # No keep_alive here on purpose - omitting it lets Ollama's
+            # own default TTL (~5min) apply instead of the old
+            # keep_alive=-1 (never unload). Confirmed on-device via
+            # `ollama ps`: this device's own verify() calls (this one and
+            # master.py's) were the reason Qwen sat "Forever" resident
+            # (~2GB) after every single service launch, regardless of
+            # whether a real query ever followed - a real, measured
+            # contributor to the memory pressure that was slowing down
+            # everything else (RAG cold-load, even the kiosk browser).
+            try:
+                requests.post(
+                    'http://localhost:11434/api/generate',
+                    json={'model': args['model_name'], 'prompt': '', 'options': {'num_thread': 6}},
+                    timeout=60.0,
+                )
+            except Exception as e:
+                logging.getLogger(__name__).debug(f"Ollama pre-warm (verify) skipped: {e}")
+        threading.Thread(target=_warm, daemon=True).start()
+        return True, "Ollama service is available."
 
     @classmethod
     def update(cls, args):

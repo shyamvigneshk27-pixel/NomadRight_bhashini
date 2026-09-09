@@ -16,7 +16,15 @@ import requests
 
 BHASHINI_HOST = "localhost"
 BHASHINI_PORT = 11400
-DEFAULT_TIMEOUT = 15.0
+# Was 15.0 - too tight once ASR started running on GPU: the very first
+# ASR call after a bhashini_models restart pays a one-time ~37s CUDA
+# graph-build cost, and NMT's first call for a given translation
+# direction pays a real disk-load cost too (each direction now loads
+# lazily on first use rather than all being loaded eagerly at startup).
+# Both were measured live (2026-09-09) racing this timeout and losing -
+# the call fails outright instead of just being slow once. Raised with
+# real margin above the observed ~37s worst case.
+DEFAULT_TIMEOUT = 60.0
 HEALTH_TIMEOUT = 3.0
 
 logger = logging.getLogger(__name__)

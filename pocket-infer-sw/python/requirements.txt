@@ -11,6 +11,8 @@ psutil
 requests
 chromadb
 sentence-transformers
+fastapi
+uvicorn[standard]
 Adafruit-Blinka==9.1.0
 adafruit-blinka-displayio==2.3.2
 adafruit-circuitpython-bitmap_font==2.4.2

@@ -23,7 +23,8 @@ def main():
     parser.add_argument('--list-apps', action='store_true', help='List available applications and exit')
     parser.add_argument('--update-app', action='store_true', default=False, help='Install dependencies for the specified application and exit')
     parser.add_argument('--dummy-board', action='store_true', default=False, help='Do not use hardware features - load audio and image from file')
-    parser.add_argument('--headless', action='store_true', default=False, help='Use real hardware (trigger button, mic, speaker) but skip the touchscreen LCD/touch UI subprocess - status/text goes to the console log instead. Use this if the touchscreen display or touch controller is unavailable/crashing.')
+    parser.add_argument('--headless', action='store_true', default=False, help='Use real hardware (trigger button, mic, speaker) but skip the display/UI layer entirely - status/text goes to the console log instead. Use this if no display is available.')
+    parser.add_argument('--legacy-lcd', action='store_true', default=False, help='Use the LEGACY physical 2.4" ILI9341 touchscreen UI (ui/handheld.py) instead of the default HDMI browser UI (ui/hdmi/). Only needed if that display hardware is reattached.')
     parser.add_argument('--audio-file', type=str, help='Path to 16kHz 16-bit wav file to use with dummy board')
     parser.add_argument('--image-file', type=str, help='Path to image file to use with dummy board')
     parser.add_argument('--settings-file', default=None, type=str, help='Path to JSON file with application settings to override defaults')
@@ -64,7 +65,7 @@ def main():
         settings[key] = value
 
     if not args.dummy_board:
-        board = Board.get_board(headless=args.headless)
+        board = Board.get_board(headless=args.headless, legacy_lcd=args.legacy_lcd)
     else:
         board = DummyBoard(vars(args))
     threading.Thread(target=_update_stats, args=(board,), daemon=True).start()
