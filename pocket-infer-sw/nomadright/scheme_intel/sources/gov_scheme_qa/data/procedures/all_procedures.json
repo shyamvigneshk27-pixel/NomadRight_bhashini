@@ -1,0 +1,292 @@
+[
+  {
+    "procedure_id": "PROC_ONORC_001",
+    "scheme_id": "SCH_ONORC",
+    "mode": "HYBRID",
+    "online_steps": [
+      "Download and open 'MERA RATION' mobile application (available in 13 languages).",
+      "Enter Aadhaar number or Ration Card number to check active entitlement and nearest Fair Price Shop (FPS).",
+      "Use the app to locate POS-enabled Fair Price Shops in the destination state/district."
+    ],
+    "offline_steps": [
+      "Visit any Fair Price Shop (FPS) with ePoS device anywhere in India.",
+      "Quote Aadhaar number or Ration Card number to the FPS dealer.",
+      "Perform biometric (fingerprint or iris) authentication on the ePoS device.",
+      "Collect entitled full or partial food grains at central issue prices."
+    ],
+    "processing_time": "Instantaneous at ePoS terminal",
+    "fees": "Zero application or registration fees",
+    "source_pages": [
+      1,
+      2
+    ]
+  },
+  {
+    "procedure_id": "PROC_PMSYM_001",
+    "scheme_id": "SCH_PMSYM",
+    "mode": "OFFLINE_AND_ONLINE",
+    "online_steps": [
+      "Visit the official portal maandhan.in or self-enrollment section on e-Shram portal.",
+      "Enter Aadhaar number and verify using OTP sent to registered mobile.",
+      "Fill applicant details, unorganised worker occupation, and bank IFSC.",
+      "Set up bank auto-debit mandate and make the initial monthly contribution online."
+    ],
+    "offline_steps": [
+      "Visit the nearest Common Services Centre (CSC) along with Aadhaar card and Savings Bank Passbook.",
+      "VLE (Village Level Entrepreneur) enters details and takes biometric authentication.",
+      "System calculates monthly contribution (Rs 55 to Rs 200 based on age).",
+      "Pay the first installment in cash at CSC; system generates PMSYM Card immediately."
+    ],
+    "processing_time": "Instant card generation upon first contribution",
+    "fees": "Free enrollment (Govt pays CSC fee)",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "procedure_id": "PROC_PMKISAN_001",
+    "scheme_id": "SCH_PMKISAN",
+    "mode": "ONLINE_AND_OFFLINE",
+    "online_steps": [
+      "Visit official PM-KISAN portal (pmkisan.gov.in) -> Farmers Corner -> 'New Farmer Registration'.",
+      "Select Rural Farmer Registration or Urban Farmer Registration.",
+      "Enter Aadhaar Number and Mobile Number, select State, and verify OTP.",
+      "Fill personal, bank, and land details (survey/khata number, dag/khasra number, land size in hectares).",
+      "Complete mandatory e-KYC using Aadhaar OTP or facial recognition via PM-KISAN Mobile App."
+    ],
+    "offline_steps": [
+      "Visit the nearest Common Service Centre (CSC) or local Patwari / Revenue Officer / Nodal Agriculture Officer.",
+      "Submit land records, Aadhaar, and bank passbook for verification."
+    ],
+    "processing_time": "Approval by State/District Nodal Officer within 15-30 days",
+    "fees": "Free on portal; standard CSC assistance charges apply for CSC visits",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "procedure_id": "PROC_PMSURYA_001",
+    "scheme_id": "SCH_PMSURYA",
+    "mode": "ONLINE",
+    "online_steps": [
+      "Register on National Portal for PM Surya Ghar (pmsuryaghar.gov.in) by selecting State, Distribution Company (DISCOM), and Consumer Account Number.",
+      "Apply for Rooftop Solar installation by submitting roof area and sanctioned load details.",
+      "Wait for DISCOM feasibility approval online.",
+      "Select a registered vendor and get the rooftop solar plant installed.",
+      "Submit plant details and apply for net meter inspection.",
+      "Upon DISCOM inspection and commissioning certificate generation, submit bank account details for direct subsidy disbursement."
+    ],
+    "offline_steps": [
+      "Net meter physical inspection and installation by DISCOM field team."
+    ],
+    "processing_time": "Subsidy credited directly to bank account within 30 days of commissioning",
+    "fees": "Application online is free; plant cost net of subsidy payable to vendor",
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "procedure_id": "PROC_SVANIDHI_001",
+    "scheme_id": "SCH_SVANIDHI",
+    "mode": "ONLINE_AND_OFFLINE",
+    "online_steps": [
+      "Access PM SVANidhi portal (pmsvanidhi.mohua.gov.in) or PM SVANidhi mobile app.",
+      "Enter mobile number and verify via OTP.",
+      "Select vendor category: (A) Vendors with Vending Card/LoR, (B) Vendors left out of survey, (C) Surrounding rural vendors.",
+      "Upload KYC documents and select preferred lending institution / bank.",
+      "Submit loan application for 1st tranche (up to Rs 10,000)."
+    ],
+    "offline_steps": [
+      "Visit nearest CSC, Municipal Corporation office, or bank branch for application submission.",
+      "Collect Letter of Recommendation (LoR) from Town Vending Committee (TVC) if not possessing ID card."
+    ],
+    "processing_time": "Loan sanctioned typically within 7-14 working days",
+    "fees": "No collateral or processing charges",
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "procedure_id": "PROC_VISHWA_001",
+    "scheme_id": "SCH_VISHWA",
+    "mode": "ONLINE_VIA_CSC",
+    "online_steps": [
+      "Artisan visits nearest CSC for Aadhaar-based biometric registration on PM Vishwakarma Portal.",
+      "Three-tier verification: Stage 1 Gram Panchayat / ULB verification; Stage 2 District Implementation Committee; Stage 3 Screening Committee.",
+      "Upon approval, download PM Vishwakarma Certificate and ID Card.",
+      "Undergo 5-7 days basic skill training (Rs 500/day stipend).",
+      "Receive Rs 15,000 toolkit digital e-voucher and apply for Enterprise Development Loan (Tranche 1: Rs 1 Lakh at 5% interest)."
+    ],
+    "offline_steps": [
+      "Physical biometric verification and hands-on skill training at designated training centers."
+    ],
+    "processing_time": "15-30 days for complete 3-tier verification",
+    "fees": "Free registration at CSC",
+    "source_pages": [
+      7
+    ]
+  },
+  {
+    "procedure_id": "PROC_PMUY_001",
+    "scheme_id": "SCH_PMUY",
+    "mode": "ONLINE_AND_OFFLINE",
+    "online_steps": [
+      "Visit pmuy.gov.in portal, select LPG distributor (Indane, Bharatgas, or HP Gas).",
+      "Submit online application form with Aadhaar and family ration card details."
+    ],
+    "offline_steps": [
+      "Visit nearest LPG distributor showroom.",
+      "Submit filled application form along with Aadhaar, ration card, bank passbook, and 14-point declaration.",
+      "Distributor verifies eligibility against OMC de-duplication database.",
+      "Receive LPG cylinder, pressure regulator, hose pipe, and stove."
+    ],
+    "processing_time": "Connection released within 7-10 days of document verification",
+    "fees": "Free security deposit, free first cylinder and stove assistance",
+    "source_pages": [
+      8
+    ]
+  },
+  {
+    "procedure_id": "PROC_MGNREGA_001",
+    "scheme_id": "SCH_MGNREGA",
+    "mode": "OFFLINE",
+    "online_steps": [
+      "Check Job Card status and muster roll payment on nrega.nic.in portal."
+    ],
+    "offline_steps": [
+      "Adult members of rural household submit application (oral or written) for registration to Gram Panchayat.",
+      "Gram Panchayat verifies local residence and household adulthood within 14 days.",
+      "Gram Panchayat issues Job Card bearing photographs of all adult members free of cost.",
+      "Worker submits written application demanding employment specifying dates and duration.",
+      "Gram Panchayat / Block Programme Officer allots wage employment within 15 days, or pays statutory unemployment allowance."
+    ],
+    "processing_time": "Job card issued within 15 days; employment provided within 15 days of demand",
+    "fees": "Free of cost",
+    "source_pages": [
+      14,
+      17,
+      18
+    ]
+  },
+  {
+    "procedure_id": "PROC_NSAP_001",
+    "scheme_id": "SCH_NSAP",
+    "mode": "OFFLINE_AND_ONLINE",
+    "online_steps": [
+      "Visit the official NSAP portal (nsap.nic.in) or state social welfare department portal.",
+      "Navigate to 'Apply Online' and choose the relevant pension component (IGNOAPS / IGNWPS / IGNDPS).",
+      "Enter Aadhaar number and complete e-KYC authentication.",
+      "Upload scanned copies of Age Proof, BPL ration card, and bank account passbook details.",
+      "Submit the application and note down the generated Application Reference Number for tracking."
+    ],
+    "offline_steps": [
+      "Obtain the physical NSAP application form from the local Gram Panchayat office, Block Development Office (BDO), or Urban Local Body (Municipality/Corporation).",
+      "Fill out the applicant details and attach self-attested copies of Aadhaar, Age Certificate, BPL Proof, and Bank Passbook.",
+      "Submit the completed application form to the designated Social Welfare Officer / BDO office.",
+      "Undergo field verification conducted by the Gram Panchayat or designated local verification officer.",
+      "Upon verification and sanction, receive monthly pension directly disbursed to the linked bank/post office account via DBT."
+    ],
+    "processing_time": "30-45 working days from submission to sanction",
+    "fees": "Free of cost / No application fee",
+    "source_pages": [65, 66]
+  },
+  {
+    "procedure_id": "PROC_NSAP_OA_001",
+    "scheme_id": "SCH_NSAP_OA",
+    "mode": "OFFLINE_AND_ONLINE",
+    "online_steps": [
+      "Visit the official NSAP portal (nsap.nic.in) or your state social welfare department portal.",
+      "Select 'Apply Online' and choose 'Indira Gandhi National Old Age Pension Scheme (IGNOAPS)'.",
+      "Complete Aadhaar e-KYC authentication.",
+      "Upload age proof document (showing age 60+) and BPL ration card/income certificate.",
+      "Enter bank account details linked to Aadhaar for Direct Benefit Transfer.",
+      "Submit application and note down tracking reference number."
+    ],
+    "offline_steps": [
+      "Collect IGNOAPS application form from Gram Panchayat / Block Development Office / Municipality.",
+      "Attach Aadhaar card, age proof certificate, BPL proof, and bank passbook photocopy.",
+      "Submit form to Social Welfare Officer or Block Development Office.",
+      "Verification is conducted by local administration before sanction."
+    ],
+    "processing_time": "30-45 working days",
+    "fees": "Free of cost / No application fee",
+    "source_pages": [65, 66]
+  },
+  {
+    "procedure_id": "PROC_NSAP_W_001",
+    "scheme_id": "SCH_NSAP_W",
+    "mode": "OFFLINE_AND_ONLINE",
+    "online_steps": [
+      "Visit the official NSAP portal (nsap.nic.in) or state social welfare department portal.",
+      "Select 'Apply Online' and choose 'Indira Gandhi National Widow Pension Scheme (IGNWPS)'.",
+      "Upload death certificate of husband, age proof (40+), and BPL proof.",
+      "Provide bank account details for DBT pension transfer."
+    ],
+    "offline_steps": [
+      "Obtain application form from Gram Panchayat / BDO office.",
+      "Attach death certificate of husband, age proof, BPL card, and bank passbook.",
+      "Submit to Social Welfare Officer / BDO office."
+    ],
+    "processing_time": "30-45 working days",
+    "fees": "Free of cost / No application fee",
+    "source_pages": [65, 66]
+  },
+  {
+    "procedure_id": "PROC_NSAP_D_001",
+    "scheme_id": "SCH_NSAP_D",
+    "mode": "OFFLINE_AND_ONLINE",
+    "online_steps": [
+      "Visit the NSAP portal or state social welfare portal.",
+      "Select 'Apply Online' -> 'Indira Gandhi National Disability Pension Scheme (IGNDPS)'.",
+      "Upload disability certificate (80%+ severe/multiple disability or UDID card) and BPL proof.",
+      "Provide Aadhaar and bank account details."
+    ],
+    "offline_steps": [
+      "Obtain application form from BDO / Gram Panchayat / District Social Welfare Office.",
+      "Attach disability certificate / UDID card, BPL ration card, and bank passbook.",
+      "Submit to BDO or District Disability Rehabilitation Centre."
+    ],
+    "processing_time": "30-45 working days",
+    "fees": "Free of cost / No application fee",
+    "source_pages": [65, 66]
+  },
+  {
+    "procedure_id": "PROC_NSAP_FB_001",
+    "scheme_id": "SCH_NSAP_FB",
+    "mode": "OFFLINE_AND_ONLINE",
+    "online_steps": [
+      "Visit the NSAP portal or state social welfare portal.",
+      "Select 'Apply Online' -> 'National Family Benefit Scheme (NFBS)'.",
+      "Upload death certificate of breadwinner (died aged 18-59) and BPL proof.",
+      "Provide head of household bank account details."
+    ],
+    "offline_steps": [
+      "Obtain NFBS application form from Gram Panchayat / BDO office.",
+      "Attach breadwinner's death certificate, age verification, BPL card, and bank details.",
+      "Submit to BDO / District Social Welfare Officer within designated period."
+    ],
+    "processing_time": "30-45 working days",
+    "fees": "Free of cost / No application fee",
+    "source_pages": [65, 66]
+  },
+  {
+    "procedure_id": "PROC_NSAP_AP_001",
+    "scheme_id": "SCH_NSAP_AP",
+    "mode": "OFFLINE_AND_ONLINE",
+    "online_steps": [
+      "Visit state Food and Civil Supplies / Social Welfare portal.",
+      "Select 'Apply for Annapurna Scheme'.",
+      "Upload age proof (60+) and declaration of non-receipt of pension under IGNOAPS.",
+      "Select designated Fair Price Shop (FPS) for food grain collection."
+    ],
+    "offline_steps": [
+      "Obtain Annapurna Scheme form from Gram Panchayat or Taluk Supply Office / Ration Office.",
+      "Attach age proof (60+), BPL ration card, and non-pensioner certificate.",
+      "Submit to local Food & Civil Supplies Inspector or BDO office.",
+      "Upon sanction, an Annapurna special ration card is issued for 10 kg free grains monthly."
+    ],
+    "processing_time": "30 working days",
+    "fees": "Free of cost / No application fee",
+    "source_pages": [65, 66]
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "scheme_id": "SCH_NSAP_D",
+  "official_name": "Indira Gandhi National Disability Pension Scheme",
+  "abbreviation": "IGNDPS",
+  "aliases": [
+    "IGNDPS",
+    "disability pension",
+    "indira gandhi disability pension",
+    "nsap disability",
+    "NSAP-D"
+  ],
+  "category": "Social Justice",
+  "subcategory": "Disability Pension",
+  "entity_type": "SUB_SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "parent_scheme_id": "SCH_NSAP",
+  "objective": "Provide monthly pension to BPL persons with severe or multiple disabilities (80% or more) aged 18-79 years under the National Social Assistance Programme.",
+  "description": "IGNDPS is a component of NSAP providing monthly pension to BPL persons with 80% or more disability. Central Government contribution: Rs 300/month for age 18-79 years, Rs 500/month for age 80 years and above. Disability must be certified by a competent medical authority. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2009-02-01",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [60, 61, 62, 63, 64, 65, 66],
+  "source_sections": [
+    "NSAP overview",
+    "IGNDPS component",
+    "NSAP FAQs"
+  ]
+}

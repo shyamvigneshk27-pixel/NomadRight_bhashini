@@ -1,0 +1,38 @@
+{
+  "scheme_id": "SCH_ABPMJAY",
+  "official_name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+  "abbreviation": "AB PM-JAY MMSBY",
+  "aliases": [
+    "AB PM-JAY",
+    "MMSBY",
+    "ayushman bharat",
+    "sehat bima",
+    "health insurance Punjab",
+    "ayushman"
+  ],
+  "category": "Health",
+  "subcategory": "State Health Insurance",
+  "entity_type": "SCHEME",
+  "scheme_type": "STATE_FLAGSHIP",
+  "objective": "Provide cashless health insurance cover for secondary and tertiary care hospitalization.",
+  "description": "Flagship State Health Insurance Scheme for Punjab. Launched 20 August 2019. Covers 65% of Punjab population. Cashless and paperless treatment at Government and empaneled private hospitals. Rs 5 lakh per family per year. Covers 1579 treatment packages including pre-hospitalization (3 days) and post-hospitalization (15 days). Entitlement-based scheme; no separate enrollment for identified families. E-card generation via Ayushman App or beneficiary.nha.gov.in.",
+  "ministry": "Government of Punjab",
+  "department": "Health & Family Welfare",
+  "implementing_agency": "State Health Agency Punjab, National Health Authority",
+  "geographic_scope": "STATE_SPECIFIC",
+  "target_state": "Punjab",
+  "status": "ACTIVE",
+  "effective_from": "2019-08-20",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    68,
+    69,
+    70,
+    71
+  ],
+  "source_sections": [
+    "AB PM-JAY MMSBY details",
+    "AB PM-JAY MMSBY FAQs"
+  ]
+}

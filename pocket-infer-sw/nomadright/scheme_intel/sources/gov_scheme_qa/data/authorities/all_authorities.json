@@ -1,0 +1,108 @@
+[
+  {
+    "authority_id": "AUTH_ONORC",
+    "scheme_id": "SCH_ONORC",
+    "ministry": "Ministry of Consumer Affairs, Food & Public Distribution",
+    "department": "Department of Food & Public Distribution",
+    "implementing_agency": "State / UT Food and Civil Supplies Departments & Fair Price Shops",
+    "portal_url": "https://nfsa.gov.in",
+    "helpline": "1967 / 14445",
+    "grievance_redressal": "State PDS Portals & District Food Supplies Officer",
+    "source_pages": [
+      1
+    ]
+  },
+  {
+    "authority_id": "AUTH_PMSYM",
+    "scheme_id": "SCH_PMSYM",
+    "ministry": "Ministry of Labour and Employment",
+    "department": "Social Security Division",
+    "implementing_agency": "Life Insurance Corporation of India (LIC) & CSC e-Governance Services India Ltd",
+    "portal_url": "https://maandhan.in",
+    "helpline": "1800 267 6888 / 14434",
+    "grievance_redressal": "LIC Branch Grievance Officers & Joint Secretary (Labour)",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "authority_id": "AUTH_PMKISAN",
+    "scheme_id": "SCH_PMKISAN",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "department": "Department of Agriculture and Farmers Welfare",
+    "implementing_agency": "State/UT Agriculture Departments via PFMS and NPCI DBT",
+    "portal_url": "https://pmkisan.gov.in",
+    "helpline": "155261 / 011-24300606",
+    "grievance_redressal": "District Nodal Agriculture Officers & PM-KISAN Grievance Portal",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "authority_id": "AUTH_PMSURYA",
+    "scheme_id": "SCH_PMSURYA",
+    "ministry": "Ministry of New and Renewable Energy",
+    "department": "Rooftop Solar Division",
+    "implementing_agency": "State Power Distribution Companies (DISCOMs) & REC Limited",
+    "portal_url": "https://pmsuryaghar.gov.in",
+    "helpline": "15555",
+    "grievance_redressal": "DISCOM Consumer Forum & National Portal Support Desk",
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "authority_id": "AUTH_SVANIDHI",
+    "scheme_id": "SCH_SVANIDHI",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "department": "Urban Livelihoods Division",
+    "implementing_agency": "Urban Local Bodies (ULBs) & Scheduled Commercial Banks / SIDBI",
+    "portal_url": "https://pmsvanidhi.mohua.gov.in",
+    "helpline": "1800 11 1979",
+    "grievance_redressal": "Town Vending Committee & SIDBI Helpdesk",
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "authority_id": "AUTH_VISHWA",
+    "scheme_id": "SCH_VISHWA",
+    "ministry": "Ministry of Micro, Small and Medium Enterprises",
+    "department": "MSME Development & National Skill Development Corporation (NSDC)",
+    "implementing_agency": "Jointly implemented by MoMSME, MoSDE, and MoF via CSCs & Banks",
+    "portal_url": "https://pmvishwakarma.gov.in",
+    "helpline": "1800 267 7777 / 17923",
+    "grievance_redressal": "District Implementation Committee & MSME-DFO",
+    "source_pages": [
+      7
+    ]
+  },
+  {
+    "authority_id": "AUTH_PMUY",
+    "scheme_id": "SCH_PMUY",
+    "ministry": "Ministry of Petroleum and Natural Gas",
+    "department": "LPG Division",
+    "implementing_agency": "Oil Marketing Companies (IOCL, BPCL, HPCL)",
+    "portal_url": "https://pmuy.gov.in",
+    "helpline": "1800 233 3555 / 1906",
+    "grievance_redressal": "OMC Area Offices & MoP&NG Helpdesk",
+    "source_pages": [
+      8
+    ]
+  },
+  {
+    "authority_id": "AUTH_MGNREGA",
+    "scheme_id": "SCH_MGNREGA",
+    "ministry": "Ministry of Rural Development",
+    "department": "Department of Rural Development",
+    "implementing_agency": "Gram Panchayats, Block Programme Coordinators & District Collectors",
+    "portal_url": "https://nrega.nic.in",
+    "helpline": "1800 110 707",
+    "grievance_redressal": "District MGNREGA Ombudsman & Gram Sabha Social Audit",
+    "source_pages": [
+      14,
+      21,
+      22
+    ]
+  }
+]

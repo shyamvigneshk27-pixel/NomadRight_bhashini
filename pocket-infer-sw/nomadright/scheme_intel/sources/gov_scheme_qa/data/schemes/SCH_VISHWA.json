@@ -1,0 +1,39 @@
+{
+  "scheme_id": "SCH_VISHWA",
+  "official_name": "PM Vishwakarma Scheme",
+  "abbreviation": "PM Vishwakarma",
+  "aliases": [
+    "vishwakarma",
+    "pm vishwakarma",
+    "artisan scheme",
+    "visvakaram",
+    "vishwakarm"
+  ],
+  "category": "MSME",
+  "subcategory": "Artisan Welfare",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide end-to-end support for artisans and craftspersons of 18 traditional trades through recognition, skill training, credit, and market support.",
+  "description": "Provides PM Vishwakarma Certificate and ID card, basic training (5-7 days), advanced training (15+ days), stipend Rs 500/day during training, toolkit incentive of Rs 15,000, collateral-free loans at 5% interest (Tranche 1: up to Rs 1 lakh/18 months; Tranche 2: up to Rs 2 lakh/30 months), digital transaction incentive Rs 1/transaction up to 100 per month, marketing support. Early repayment restriction: not before 6 months from disbursement. Helpline: 1800 267 7777. Family = husband, wife, unmarried children; only 1 per family can apply.",
+  "ministry": "Ministry of Micro, Small and Medium Enterprises",
+  "department": null,
+  "implementing_agency": "MoMSME, MoSD&E, DFS, Common Service Centres (CSCs)",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "helpline": "1800 267 7777",
+  "portal": "pmvishwakarma.gov.in",
+  "source_pages": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "source_sections": [
+    "PM Vishwakarma FAQs"
+  ]
+}

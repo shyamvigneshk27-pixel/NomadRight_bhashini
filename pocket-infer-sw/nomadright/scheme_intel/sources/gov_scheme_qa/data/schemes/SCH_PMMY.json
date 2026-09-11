@@ -1,0 +1,38 @@
+{
+  "scheme_id": "SCH_PMMY",
+  "official_name": "Pradhan Mantri Mudra Yojana",
+  "abbreviation": "PMMY",
+  "aliases": [
+    "mudra",
+    "mudra loan",
+    "PMMY",
+    "mudra yojana",
+    "shishu kishor tarun"
+  ],
+  "category": "Financial Inclusion",
+  "subcategory": "Micro Enterprise Credit",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide micro finance support to non-corporate, non-farm small/micro enterprises.",
+  "description": "Implemented through MUDRA (Micro Units Development & Refinance Agency), a subsidiary of SIDBI. Categories: Shishu (up to Rs 50,000), Kishor (Rs 50,001 to Rs 5 lakh), Tarun (Rs 5,00,001 to Rs 10 lakh), Tarun Plus (Rs 10,00,001 to Rs 20 lakh). No collateral required. Purpose: manufacturing, trading, service activities. Women entrepreneurs encouraged with additional facilities.",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "MUDRA, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2015-04-08",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    40,
+    41,
+    42,
+    43,
+    44
+  ],
+  "source_sections": [
+    "PMMY description",
+    "MUDRA offerings",
+    "Loan categories"
+  ]
+}

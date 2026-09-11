@@ -1,0 +1,98 @@
+[
+  {
+    "scheme_id": "SCH_ONORC",
+    "launch_year": 2018,
+    "status": "ACTIVE",
+    "frequency": "MONTHLY",
+    "financial_cycle": "Continuous",
+    "deadlines": "Monthly ration lifting cycle"
+  },
+  {
+    "scheme_id": "SCH_PMSYM",
+    "launch_year": 2019,
+    "status": "ACTIVE",
+    "frequency": "MONTHLY",
+    "financial_cycle": "Monthly auto-debit",
+    "deadlines": "Monthly contribution on set bank date"
+  },
+  {
+    "scheme_id": "SCH_PMKISAN",
+    "launch_year": 2019,
+    "status": "ACTIVE",
+    "frequency": "FOUR_MONTHLY",
+    "financial_cycle": "Tri-annual",
+    "deadlines": "April-July, August-November, December-March installments"
+  },
+  {
+    "scheme_id": "SCH_PMSURYA",
+    "launch_year": 2024,
+    "status": "ACTIVE",
+    "frequency": "ONE_TIME",
+    "financial_cycle": "Financial year target",
+    "deadlines": "Target of 1 crore households"
+  },
+  {
+    "scheme_id": "SCH_SVANIDHI",
+    "launch_year": 2020,
+    "status": "ACTIVE",
+    "frequency": "RECURRING_LOAN",
+    "financial_cycle": "Annual loan tranches",
+    "deadlines": "Timely monthly EMI repayment unlocks next tranche"
+  },
+  {
+    "scheme_id": "SCH_VISHWA",
+    "launch_year": 2023,
+    "status": "ACTIVE",
+    "frequency": "MULTI_STAGE",
+    "financial_cycle": "2023-24 to 2027-28",
+    "deadlines": "Tranche 2 unlocked after 6 months of Tranche 1 regular repayment"
+  },
+  {
+    "scheme_id": "SCH_PMUY",
+    "launch_year": 2016,
+    "status": "ACTIVE",
+    "frequency": "ONE_TIME_SUBSIDY",
+    "financial_cycle": "Continuous under Ujjwala 2.0",
+    "deadlines": "Connection release on verification"
+  },
+  {
+    "scheme_id": "SCH_PMJJBY",
+    "launch_year": 2015,
+    "status": "ACTIVE",
+    "frequency": "ANNUAL",
+    "financial_cycle": "June 1 to May 31",
+    "deadlines": "Annual premium auto-debit by May 31 each year"
+  },
+  {
+    "scheme_id": "SCH_PMSBY",
+    "launch_year": 2015,
+    "status": "ACTIVE",
+    "frequency": "ANNUAL",
+    "financial_cycle": "June 1 to May 31",
+    "deadlines": "Annual premium auto-debit by May 31 each year"
+  },
+  {
+    "scheme_id": "SCH_APY",
+    "launch_year": 2015,
+    "status": "ACTIVE",
+    "frequency": "MONTHLY",
+    "financial_cycle": "Auto-debit",
+    "deadlines": "Monthly auto-debit depending on subscriber choice"
+  },
+  {
+    "scheme_id": "SCH_SSY",
+    "launch_year": 2015,
+    "status": "ACTIVE",
+    "frequency": "ANNUAL_DEPOSIT",
+    "financial_cycle": "Financial year",
+    "deadlines": "Minimum deposit of Rs 250 required before March 31 annually"
+  },
+  {
+    "scheme_id": "SCH_MGNREGA",
+    "launch_year": 2005,
+    "status": "ACTIVE",
+    "frequency": "ON_DEMAND",
+    "financial_cycle": "Financial year (100 days per household)",
+    "deadlines": "Work must be provided within 15 days of demand"
+  }
+]

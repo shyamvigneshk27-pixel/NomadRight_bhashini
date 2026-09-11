@@ -1,0 +1,32 @@
+{
+  "scheme_id": "SCH_NPST",
+  "official_name": "National Pension Scheme for Traders and Self-Employed Persons",
+  "abbreviation": "NPS-Traders",
+  "aliases": [
+    "NPS traders",
+    "vyapari pension",
+    "shopkeeper pension"
+  ],
+  "category": "Pension & Social Security",
+  "subcategory": "Traders Pension",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Old age pension for retail traders, shopkeepers, and self-employed persons.",
+  "description": "Voluntary and contributory pension scheme. Monthly contribution ranges from Rs 55 to Rs 200. 50% paid by beneficiary, 50% by Central Government. Annual turnover must not exceed Rs 1.5 Crore.",
+  "ministry": "Ministry of Labour & Employment",
+  "department": null,
+  "implementing_agency": "Common Service Centres (CSCs)",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    3,
+    4
+  ],
+  "source_sections": [
+    "e-Shram Social Security Welfare Schemes",
+    "NPS eligibility and benefits"
+  ]
+}

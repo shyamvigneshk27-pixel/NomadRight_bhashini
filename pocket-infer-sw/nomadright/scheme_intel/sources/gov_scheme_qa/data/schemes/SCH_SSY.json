@@ -1,0 +1,37 @@
+{
+  "scheme_id": "SCH_SSY",
+  "official_name": "Sukanya Samriddhi Yojana",
+  "abbreviation": "SSY",
+  "aliases": [
+    "sukanya samriddhi",
+    "SSY",
+    "girl child savings",
+    "sukanya"
+  ],
+  "category": "Small Savings",
+  "subcategory": "Girl Child Welfare",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Encourage savings for girl child's education and marriage.",
+  "description": "Account can be opened for girl child below 10 years of age by parent/guardian. Interest rate: 8.2% per annum, compounded yearly. Deposits for 15 years; account matures after 21 years from opening. Partial withdrawal permitted after girl attains 18 years for education (up to 50% of balance). EEE tax status (Section 80C deduction, tax-free interest, tax-free maturity). Maximum 2 accounts per family (exception for twins). Account can be opened at post offices and designated banks.",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Economic Affairs",
+  "implementing_agency": "Post Offices, Designated Banks",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "interest_rate_note": "Historical rates in document; current rate 8.2% p.a. Historical rates referenced: 7.6% mentioned as outdated example.",
+  "source_pages": [
+    51,
+    52,
+    53,
+    54,
+    55
+  ],
+  "source_sections": [
+    "SSY details",
+    "SSY FAQs"
+  ]
+}

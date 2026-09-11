@@ -27,6 +27,10 @@ import threading
 from io import BytesIO
 from typing import Optional, Dict, Any
 
+import cv2
+
+from pocketinfer.applications.nomad_right import document_crop
+
 from pocketinfer.applications.base import BaseApplication
 from pocketinfer.applications.registry import RegisterApplication
 from pocketinfer.audio import AudioPlayer
@@ -37,6 +41,7 @@ from pocketinfer.applications.nomad_right.workflow import WorkflowController
 from pocketinfer.applications.nomad_right.response import StructuredResponsePackage
 from pocketinfer.applications.nomad_right.bhashini_bridge import BhashiniBridge
 from pocketinfer.applications.nomad_right.intent import IntentType
+from pocketinfer.applications.nomad_right.scheme_intel.metrics import LATENCY
 
 logger = logging.getLogger(__name__)
 
@@ -58,6 +63,17 @@ logger = logging.getLogger(__name__)
         "log_directory": constants.DEFAULT_LOG_DIR,
     },
     "service_dependencies": ["bhashini_models"],
+    # Runner options master.py pre-warms Qwen with. They MUST equal
+    # QwenClient's per-request options (qwen_client._call): Ollama reloads the
+    # model whenever they differ. Measured 2026-09-11: a pre-warm with only
+    # {"num_thread": 6} loaded a 4096-token context (1884 MB), then the first
+    # real query paid a second 34.9 s load to switch to num_ctx 2048 (1658 MB).
+    # Kept outside "models" so BaseApplication.verify_dependencies() is unaffected.
+    "ollama_runner_options": {
+        "num_gpu": constants.LLM_NUM_GPU,
+        "num_thread": constants.LLM_NUM_THREAD,
+        "num_ctx": constants.LLM_NUM_CTX,
+    },
 })
 class NomadRightApplication(BaseApplication):
     """
@@ -437,7 +453,24 @@ class NomadRightApplication(BaseApplication):
             self._log("CAMERA pressed - capturing")
             capture_start = time.time()
             try:
-                image_jpg = self.board.camera_frame_jpg()
+                # Raw frame (not camera_frame_jpg()'s pre-encoded JPEG) so
+                # auto_crop_document() can run on the actual pixel data
+                # before compression - camera_frame_jpg() stays untouched
+                # for the live preview stream (boards/hdmi.py), which must
+                # keep showing the worker's real, uncropped framing while
+                # they position the document. Boards without the raw-frame
+                # API (older board classes, the ui_navigation/lcd_log test
+                # boards) keep the original camera_frame_jpg() path.
+                if hasattr(self.board, "camera_frame"):
+                    frame = self.board.camera_frame()
+                    if frame is None:
+                        image_jpg = None
+                    else:
+                        cropped = document_crop.auto_crop_document(frame)
+                        ok, buffer = cv2.imencode(".jpg", cropped)
+                        image_jpg = bytearray(buffer) if ok else None
+                else:
+                    image_jpg = self.board.camera_frame_jpg()
             except Exception as exc:
                 self.logger.error(f"[NomadRight] Camera capture failed: {exc}")
                 self._log(f"CAMERA FAILED: {exc}"[:52])
@@ -497,7 +530,18 @@ class NomadRightApplication(BaseApplication):
              self._home_requested at safe checkpoints (never mid-inference;
              a live Qwen/RAG call can't be safely aborted once sent) and
              drops back to Home there instead of speaking a stale answer.
+
+        Screen is updated immediately in every case where a turn was
+        actually in flight (not just the audio/photo cases) - this thread
+        is the only one that can respond instantly. run()'s main loop
+        remains synchronously blocked inside whatever ASR/NMT/RAG/Qwen
+        call was already in progress and won't notice self._home_requested
+        until that call returns on its own, however long that takes; the
+        worker seeing this screen flip to READY right away - not the
+        eventual silent discard once the stale call finishes - is what
+        makes Cancel feel instant instead of "did that even do anything?".
         """
+        was_already_home = self._mode == "HOME"
         stopped_audio = self._stop_audio()
         self._home_requested.set()
         with self._image_lock:
@@ -509,6 +553,9 @@ class NomadRightApplication(BaseApplication):
             self.board.update_screen(top="AUDIO STOPPED", bottom=self.HOME_HINT, status="[READY]")
         elif had_pending_photo:
             self.logger.info("[NomadRight] Home pressed - Document Scanner cancelled.")
+            self.board.update_screen(top="CANCELLED", bottom=self.HOME_HINT, status="[READY]")
+        elif not was_already_home:
+            self.logger.info("[NomadRight] Home pressed - cancelling in-flight turn.")
             self.board.update_screen(top="CANCELLED", bottom=self.HOME_HINT, status="[READY]")
         else:
             self.logger.info("[NomadRight] Home pressed - already at Home.")
@@ -597,6 +644,14 @@ class NomadRightApplication(BaseApplication):
 
     # ── Main loop ────────────────────────────────────────────────────────────
 
+    @staticmethod
+    def _latency(stage: str, start: float) -> None:
+        """Feeds the bounded P50/P95/P99 stage recorder (scheme_intel/metrics.py). Never raises."""
+        try:
+            LATENCY.record(stage, (time.time() - start) * 1000.0)
+        except Exception:
+            pass
+
     def run(self) -> None:
         """
         Main application thread execution loop blocking on trigger button
@@ -628,7 +683,6 @@ class NomadRightApplication(BaseApplication):
         while self.running:
             lang = self.settings.get("input_language", constants.DEFAULT_SOURCE_LANGUAGE)
             bridge_lang = self.settings.get("bridge_language", constants.DEFAULT_BRIDGE_LANGUAGE)
-            self._home_requested.clear()
 
             with self._image_lock:
                 scanner_pending = self.pending_form_image is not None
@@ -650,6 +704,36 @@ class NomadRightApplication(BaseApplication):
 
             if turn_kind == "stop" or not self.running:
                 break
+
+            # Cleared here - right as a real turn actually begins - not
+            # before the wait above. _on_home_pressed() sets this flag
+            # unconditionally on every Home press, even a harmless one
+            # with nothing to cancel ("already at Home", logged when idle
+            # between turns). Clearing before the wait left that flag set
+            # for however long the worker then took to press the trigger
+            # button next, silently discarding the following turn's
+            # perfectly good answer for a Home tap that had nothing to do
+            # with it - confirmed on-device: ASR/NMT/RAG/Qwen all
+            # completed normally, discarded anyway at the final
+            # self._home_requested check below.
+            self._home_requested.clear()
+
+            # Documented above (self._mode's own docstring) as switching to
+            # "VOICE TRANSLATION" for the duration of one active turn, but
+            # that assignment never actually existed - self._mode stayed
+            # "HOME" for a plain voice turn's entire LISTENING/PROCESSING
+            # duration (scanner_pending turns were unaffected: they already
+            # got "DOCUMENT SCANNER" set above, before the wait). That gap
+            # is what made _on_home_pressed()'s was_already_home check
+            # silently useless for the most common case: cancelling a
+            # voice turn set self._home_requested correctly, but
+            # was_already_home read True (self._mode still "HOME"), so no
+            # screen update ever fired - the worker stayed looking at
+            # "PROCESSING" for however long the abandoned ASR/NMT/RAG/Qwen
+            # call took to finish on its own, looking exactly like Cancel
+            # did nothing.
+            if not scanner_pending:
+                self._mode = "VOICE TRANSLATION"
 
             # A Camera-button capture may still be in flight on the UI
             # callback thread (see _on_camera_pressed) - don't start
@@ -709,6 +793,7 @@ class NomadRightApplication(BaseApplication):
                     wav_bytes = self.board.audio.to_audio_data().get_wav_data()
                     native_query = self.bridge.listen(wav_bytes, lang)
                     self._log(f"ASR {lang} {len(native_query)} chars  {time.time() - stage_start:.1f}s")
+                    self._latency(f"asr_{lang}", stage_start)
 
                     if not native_query.strip():
                         self.logger.warning("[NomadRight] ASR returned empty text.")
@@ -729,6 +814,21 @@ class NomadRightApplication(BaseApplication):
                 stage_start = time.time()
                 query_en = self.bridge.to_pipeline_language(native_query, lang)
                 self._log(f"NMT {lang}->EN  {time.time() - stage_start:.1f}s")
+                self._latency(f"nmt_{lang}_en", stage_start)
+
+                # Cancelled during LISTENING/ASR/NMT (all fast/cheap stages,
+                # a few seconds at most) - skip the expensive Decision
+                # Layer entirely (RAG retrieval + a Qwen call - 2-45+s
+                # observed on this device) rather than running the whole
+                # thing just to discard it at the final checkpoint below.
+                # ASR/NMT themselves can't be aborted mid-request (same
+                # reasoning as the module docstring), but nothing has
+                # committed to Qwen/RAG yet at this point, so this is real
+                # saved latency and compute, not just an earlier check.
+                if self._home_requested.is_set():
+                    self.logger.info("[NomadRight] Home pressed - skipping Decision Layer, turn discarded")
+                    self._log("HOME pressed - turn discarded")
+                    continue
 
                 # ── 3. Camera follow-up short-circuit ────────────────────────
                 # A pending form photo (Camera button, see ui_cb/_on_camera_pressed)
@@ -759,6 +859,7 @@ class NomadRightApplication(BaseApplication):
                         query_en, image_for_this_turn, context_scheme_code=self.last_scheme_code
                     )
                     self._log(f"QWEN-VL done  {time.time() - stage_start:.1f}s")
+                    self._latency("vision", stage_start)
                     self.last_answer_en = response_pkg.voice_text
                     if response_pkg.scheme_code:
                         self.last_scheme_code = response_pkg.scheme_code
@@ -795,12 +896,14 @@ class NomadRightApplication(BaseApplication):
                     self.board.update_screen(mode="VOICE TRANSLATION", status="[PROCESSING] Finding your answer")
                     stage_start = time.time()
                     response_pkg = self.workflow.process(
-                        query_en, context_scheme_code=self.last_scheme_code
+                        query_en, context_scheme_code=self.last_scheme_code,
+                        original_query=native_query, response_language=lang,
                     )
                     self._log(
                         f"DECIDE {response_pkg.scheme_code or 'no-match'}  "
                         f"{time.time() - stage_start:.1f}s"
                     )
+                    self._latency("decision", stage_start)
                     self.last_answer_en = response_pkg.voice_text
                     # Only update on an actual scheme match this turn - keep the
                     # previous scheme remembered across a genuinely unrelated/
@@ -825,6 +928,7 @@ class NomadRightApplication(BaseApplication):
                 stage_start = time.time()
                 answer_native = self.bridge.from_pipeline_language(response_pkg.voice_text, lang)
                 self._log(f"NMT EN->{lang}  {time.time() - stage_start:.1f}s")
+                self._latency(f"nmt_en_{lang}", stage_start)
                 self.logger.info(f"[TRANSLATION_OUTPUT] {lang}: '{answer_native}'")
 
                 # ── 6. Display + Speak — conversation view ────────────────────
@@ -845,6 +949,8 @@ class NomadRightApplication(BaseApplication):
                 # takes to read out loud.
                 self._log(f"TTS {lang}  {time.time() - stage_start:.1f}s")
                 self._log(f"ANSWER after {time.time() - turn_start:.1f}s - speaking")
+                self._latency(f"tts_{lang}", stage_start)
+                self._latency("end_to_end", turn_start)
                 played_fully = self._play(tts_wav)
 
                 if played_fully:

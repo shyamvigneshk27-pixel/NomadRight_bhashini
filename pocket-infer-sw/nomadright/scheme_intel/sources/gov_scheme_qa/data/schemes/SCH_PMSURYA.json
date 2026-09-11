@@ -1,0 +1,39 @@
+{
+  "scheme_id": "SCH_PMSURYA",
+  "official_name": "PM Surya Ghar: Muft Bijli Yojana",
+  "abbreviation": "PM Surya Ghar",
+  "aliases": [
+    "surya ghar",
+    "muft bijli",
+    "rooftop solar",
+    "solar subsidy",
+    "pm surya ghar"
+  ],
+  "category": "Renewable Energy",
+  "subcategory": "Rooftop Solar",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Light up 1 crore households by providing up to 300 units of free electricity per month through subsidized rooftop solar installation.",
+  "description": "Investment of over Rs 75,000 crore. Subsidy for residential households: Rs 30,000/kW up to 2 kW; Rs 18,000/kW for additional capacity up to 3 kW; total subsidy for systems larger than 3 kW capped at Rs 78,000. GHS/RWA: Rs 18,000/kW for common facilities up to 500 kW. Special states: additional 10% subsidy per kW. Online application at pmsuryaghar.gov.in.",
+  "ministry": "Ministry of New and Renewable Energy",
+  "department": null,
+  "implementing_agency": "DISCOMs, REC, National Portal",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "portal": "https://pmsuryaghar.gov.in/",
+  "source_pages": [
+    18,
+    19,
+    20,
+    21
+  ],
+  "source_sections": [
+    "PM Surya Ghar details",
+    "Consumer Application Journey",
+    "Benefits",
+    "FAQs"
+  ]
+}

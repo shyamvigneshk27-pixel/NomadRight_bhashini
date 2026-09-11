@@ -1,0 +1,33 @@
+{
+  "scheme_id": "SCH_NSAP_AP",
+  "official_name": "Annapurna Scheme",
+  "abbreviation": "Annapurna",
+  "aliases": [
+    "Annapurna",
+    "annapurna scheme",
+    "nsap annapurna",
+    "NSAP-AP",
+    "free food grains elderly"
+  ],
+  "category": "Social Justice",
+  "subcategory": "Food Security for Elderly",
+  "entity_type": "SUB_SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "parent_scheme_id": "SCH_NSAP",
+  "objective": "Provide 10 kg of free food grains per month to eligible elderly persons aged 60 and above who are not receiving pension under IGNOAPS, under the National Social Assistance Programme.",
+  "description": "Annapurna is a component of NSAP providing 10 kg of food grains (wheat or rice) per month free of cost to eligible BPL senior citizens aged 60 years and above who are not receiving pension under IGNOAPS. The scheme is meant to ensure food security for destitute elderly who have been left out of IGNOAPS coverage.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2000-04-01",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [60, 61, 62, 63, 64, 65, 66],
+  "source_sections": [
+    "NSAP overview",
+    "Annapurna component",
+    "NSAP FAQs"
+  ]
+}

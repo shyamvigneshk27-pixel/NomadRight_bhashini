@@ -1,0 +1,158 @@
+{
+  "_about": "Extra labelled example questions for the intent classifier (second stage after the rules). Combined at build time with sources/gov_scheme_qa/dataset/intent_dataset.json, whose labels are mapped to question types. Labels: 'I:<Intent>' is a final intent, 'Q:<QType>' is a question type that still needs a scheme or topic. Scheme names are masked at build time, so the examples teach the form of the question, not the scheme.",
+  "examples": {
+    "I:SCHEME_DISCOVERY": [
+      "What government schemes can I get?",
+      "Which schemes am I eligible for?",
+      "What benefits can I get from the government?",
+      "I don't know what scheme I can apply for",
+      "Tell me schemes for people like me",
+      "What help is available for workers like me?",
+      "Is there any scheme for me?",
+      "Which government yojana can help my family?",
+      "What can the government do for me?",
+      "Suggest some schemes for me",
+      "I am new here, what can I get?",
+      "What facilities does the government give to migrant workers?",
+      "Please help me find a scheme",
+      "What support can I get as a labourer?",
+      "Am I eligible for any government benefit?"
+    ],
+    "I:RATION_ACCESS": [
+      "Can I get my ration here?",
+      "Will my ration card work in this state?",
+      "I moved to another state, how do I get ration?",
+      "The ration shop is not giving me rice",
+      "Where can I get free food grains?",
+      "Can my family take ration in the village while I am in the city?",
+      "How much rice will I get on my ration card?",
+      "Can I buy ration in Chennai with my Bihar card?"
+    ],
+    "I:HEALTH_SUPPORT": [
+      "I need help with hospital treatment",
+      "Is there any free treatment for my family?",
+      "Which scheme pays for surgery?",
+      "My wife is sick, can the government help with the hospital bill?",
+      "How can I get free health insurance?",
+      "Where can I get treatment without paying?",
+      "Is there a health scheme for poor families?"
+    ],
+    "I:WORKER_SUPPORT": [
+      "My contractor is not paying my wages",
+      "I got injured at the construction site, what can I do?",
+      "My employer is paying less than minimum wage",
+      "What are my rights as a worker?",
+      "I was not paid for two months",
+      "The contractor took my money, where do I complain?",
+      "What happens if I have an accident at work?"
+    ],
+    "I:PENSION_SUPPORT": [
+      "How can I get a pension when I am old?",
+      "Is there a pension scheme for me?",
+      "I want monthly money after sixty",
+      "Which pension can my old mother get?",
+      "How do I save for my old age?",
+      "My father is 70, can he get a pension?"
+    ],
+    "I:MATERNITY_SUPPORT": [
+      "I am pregnant, is there any help?",
+      "My wife is expecting a baby, what support can we get?",
+      "Is there money for delivery in hospital?",
+      "What help is there for pregnant women workers?",
+      "Maternity benefit for construction workers"
+    ],
+    "I:EDUCATION_SUPPORT": [
+      "Is there help for my children's education?",
+      "How can my son get a scholarship?",
+      "I want to learn a skill, is there free training?",
+      "Scheme for my daughter's studies",
+      "Free training for a job"
+    ],
+    "I:HOUSING_SUPPORT": [
+      "I don't have a house, can the government help?",
+      "How can I get a pucca house?",
+      "Scheme to build a house in my village",
+      "We live in a kutcha house, is there any help?",
+      "Government help for housing"
+    ],
+    "I:DISABILITY_SUPPORT": [
+      "I am disabled, what help can I get?",
+      "Is there a pension for handicapped people?",
+      "My son is blind, which scheme can help him?",
+      "Help for people with disability"
+    ],
+    "I:FINANCIAL_SUPPORT": [
+      "I need a loan to start a small business",
+      "How can I open a bank account without money?",
+      "Is there any insurance for poor people?",
+      "Loan without guarantee for my shop",
+      "I need money for my business",
+      "Cheap insurance scheme from the bank"
+    ],
+    "I:MIGRANT_SUPPORT": [
+      "I moved from my home state for work, what happens to my benefits?",
+      "Do my benefits work in another state?",
+      "I am a migrant worker, which schemes work everywhere?",
+      "I shifted to a new city, will my schemes continue?",
+      "Can I use my card outside my state?"
+    ],
+    "I:APPLICATION_STATUS": [
+      "What is the status of my application?",
+      "I applied last month but got nothing",
+      "When will I get my money?",
+      "My pension has not come this month",
+      "How do I check my application status?",
+      "My card has not been issued yet",
+      "The installment is not credited to my account"
+    ],
+    "I:GRIEVANCE": [
+      "I want to file a complaint",
+      "The ration dealer is cheating me",
+      "The officer is asking for a bribe",
+      "They refused to give me my ration",
+      "Where can I complain about the hospital?",
+      "My application was rejected unfairly"
+    ],
+    "I:DOCUMENT_HELP": [
+      "I lost my ration card, what should I do?",
+      "How do I link Aadhaar with my ration card?",
+      "How can I get a new ration card?",
+      "My Aadhaar has a wrong name",
+      "How do I make an income certificate?",
+      "How to update my mobile number in Aadhaar?"
+    ],
+    "Q:CONTACT": [
+      "What is the helpline number?",
+      "Whom should I call for this scheme?",
+      "Give me the toll free number",
+      "What is the official website?",
+      "Which office should I go to?"
+    ],
+    "Q:FEES": [
+      "Is it free?",
+      "Do I have to pay any fee?",
+      "How much does it cost to apply?",
+      "What is the premium?",
+      "How much do I have to pay every month?"
+    ],
+    "I:OTHER": [
+      "Hello",
+      "Good morning",
+      "Thank you",
+      "Okay",
+      "Who are you?",
+      "What is your name?",
+      "Tell me a joke",
+      "What time is it?",
+      "Play a song",
+      "What is the weather today?",
+      "How do I use this machine?",
+      "Updating the app",
+      "Stop",
+      "Cancel",
+      "I need to be frozen",
+      "Who won the match yesterday?",
+      "What is the capital of France?"
+    ]
+  }
+}

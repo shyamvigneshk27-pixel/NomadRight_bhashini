@@ -1,0 +1,51 @@
+{
+  "scheme_id": "SCH_NSAP",
+  "official_name": "National Social Assistance Programme",
+  "abbreviation": "NSAP",
+  "aliases": [
+    "NSAP",
+    "national social assistance",
+    "IGNOAPS",
+    "IGNWPS",
+    "IGNDPS",
+    "NFBS",
+    "Annapurna"
+  ],
+  "category": "Social Justice",
+  "subcategory": "Social Assistance",
+  "entity_type": "PROGRAMME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "objective": "Provide social assistance to BPL households for old age, widows, disabled persons, and bereaved families.",
+  "description": "Launched 15 August 1995. Five components: IGNOAPS (old age pension: Rs 200/month for 60-79, Rs 500/month for 80+), IGNWPS (widow pension: Rs 300/month, Rs 500/month after 80), IGNDPS (disability pension: Rs 300/month, Rs 500/month after 80), NFBS (Rs 20,000 one-time on breadwinner death aged 18-59 in BPL), Annapurna (10 kg food grains/month for eligible elderly not receiving IGNOAPS). Social audit required every 6 months; 100% beneficiary verification.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "1995-08-15",
+  "effective_until": null,
+  "version": "current",
+  "sub_schemes": [
+    "IGNOAPS",
+    "IGNWPS",
+    "IGNDPS",
+    "NFBS",
+    "Annapurna"
+  ],
+  "source_pages": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68
+  ],
+  "source_sections": [
+    "NSAP overview",
+    "NSAP Social Audit Guidelines",
+    "NSAP FAQs"
+  ]
+}

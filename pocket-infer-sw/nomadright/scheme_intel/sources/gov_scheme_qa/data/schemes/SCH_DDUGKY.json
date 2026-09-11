@@ -1,0 +1,31 @@
+{
+  "scheme_id": "SCH_DDUGKY",
+  "official_name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+  "abbreviation": "DDU-GKY",
+  "aliases": [
+    "DDU-GKY",
+    "grameen kaushalya",
+    "rural skill training"
+  ],
+  "category": "Skill Development",
+  "subcategory": "Rural Youth Skilling",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "objective": "Skill rural poor youth and provide them with jobs having regular monthly wages.",
+  "description": "Training programs for youth aged 15-35 (up to 45 for women and vulnerable groups including PwD). Placement-linked skill training.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "DDU-GKY Training Centres",
+  "geographic_scope": "RURAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    4,
+    5
+  ],
+  "source_sections": [
+    "e-Shram Social Security Welfare Schemes - DDU-GKY"
+  ]
+}

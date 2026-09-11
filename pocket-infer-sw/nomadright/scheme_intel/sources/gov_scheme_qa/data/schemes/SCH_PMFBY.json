@@ -1,0 +1,39 @@
+{
+  "scheme_id": "SCH_PMFBY",
+  "official_name": "Pradhan Mantri Fasal Bima Yojana",
+  "abbreviation": "PMFBY",
+  "aliases": [
+    "fasal bima",
+    "crop insurance",
+    "PMFBY",
+    "pm fasal bima"
+  ],
+  "category": "Agriculture",
+  "subcategory": "Crop Insurance",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "objective": "Provide affordable crop insurance and comprehensive risk cover to farmers against non-preventable natural risks from pre-sowing to post-harvest.",
+  "description": "Launched from Kharif 2016. Optional for all farmers including KCC holders (loanee farmers can opt out at least 7 days before cut-off date). Covers food crops, oilseeds, annual commercial/horticultural crops. Risks covered: drought, dry spells, flood, inundation, widespread pest/disease, landslides, natural fire, storms, hailstorms, cyclones. Prevented sowing/mid-season adversity/post-harvest (up to 2 weeks) coverage. Localized calamities covered. Exclusions: war, nuclear risks, malicious damage, preventable risks. Technology: YES-TECH, CROPIC App, CCE Agri App. Portal: National Crop Insurance Portal (NCIP).",
+  "ministry": "Ministry of Agriculture and Farmers Welfare",
+  "department": null,
+  "implementing_agency": "Insurance companies, Banks, PACS, CSCs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2016-01-01",
+  "effective_until": null,
+  "version": "Operational Guidelines 2023",
+  "portal": "pmfby.gov.in",
+  "source_pages": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "source_sections": [
+    "PMFBY Operational Guidelines",
+    "PMFBY FAQs"
+  ]
+}

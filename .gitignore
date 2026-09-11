@@ -1,0 +1,3 @@
+
+# per-checkout isolated venv (not shared, not committed)
+pocket-infer-sw/python/venv/

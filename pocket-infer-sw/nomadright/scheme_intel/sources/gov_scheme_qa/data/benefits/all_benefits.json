@@ -1,0 +1,685 @@
+[
+  {
+    "benefit_id": "BEN_ONORC_001",
+    "scheme_id": "SCH_ONORC",
+    "benefit_type": "PDS_PORTABILITY",
+    "description": "Claim full or part food grains from any Fair Price Shop across India",
+    "beneficiary_count": "81 crore beneficiaries",
+    "coverage": "All 36 States/UTs",
+    "method": "Aadhaar/biometric authentication at ePoS device",
+    "source_pages": [
+      1
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSYM_001",
+    "scheme_id": "SCH_PMSYM",
+    "benefit_type": "MONTHLY_PENSION",
+    "value_inr": 3000,
+    "frequency": "MONTHLY",
+    "trigger": "On attaining age 60",
+    "description": "Monthly assured pension of Rs 3000 after age 60",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSYM_002",
+    "scheme_id": "SCH_PMSYM",
+    "benefit_type": "FAMILY_PENSION",
+    "value_percentage": 50,
+    "description": "Spouse eligible for 50% of monthly pension on death of beneficiary",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSYM_003",
+    "scheme_id": "SCH_PMSYM",
+    "benefit_type": "JOINT_PENSION",
+    "value_inr": 6000,
+    "frequency": "MONTHLY",
+    "description": "If husband and wife both join, jointly eligible for Rs 6000/month",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "benefit_id": "BEN_NPST_001",
+    "scheme_id": "SCH_NPST",
+    "benefit_type": "MONTHLY_PENSION",
+    "value_inr": 3000,
+    "frequency": "MONTHLY",
+    "trigger": "On attaining age 60",
+    "description": "Monthly assured pension of Rs 3000 after age 60",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMJJBY_001",
+    "scheme_id": "SCH_PMJJBY",
+    "benefit_type": "LIFE_INSURANCE",
+    "value_inr": 200000,
+    "trigger": "Death due to any cause",
+    "premium_pa_inr": 436,
+    "description": "Rs 2 lakh on death due to any reason",
+    "source_pages": [
+      5,
+      7
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSBY_001",
+    "scheme_id": "SCH_PMSBY",
+    "benefit_type": "ACCIDENT_INSURANCE",
+    "value_inr": 200000,
+    "trigger": "Accidental death or total permanent disability",
+    "premium_pa_inr": 20,
+    "description": "Rs 2 lakh for accidental death or total permanent disability",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSBY_002",
+    "scheme_id": "SCH_PMSBY",
+    "benefit_type": "ACCIDENT_INSURANCE",
+    "value_inr": 100000,
+    "trigger": "Partial permanent disability",
+    "premium_pa_inr": 20,
+    "description": "Rs 1 lakh for partial permanent disability",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "benefit_id": "BEN_APY_001",
+    "scheme_id": "SCH_APY",
+    "benefit_type": "MONTHLY_PENSION",
+    "value_inr": [
+      1000,
+      2000,
+      3000,
+      4000,
+      5000
+    ],
+    "frequency": "MONTHLY",
+    "trigger": "On completion of 60 years",
+    "description": "Guaranteed minimum monthly pension of Rs 1000 to Rs 5000 at age 60, depending on contribution amount and entry age",
+    "source_pages": [
+      6,
+      9
+    ]
+  },
+  {
+    "benefit_id": "BEN_APY_002",
+    "scheme_id": "SCH_APY",
+    "benefit_type": "FAMILY_PENSION",
+    "description": "On subscriber death, spouse receives same pension amount",
+    "source_pages": [
+      9
+    ]
+  },
+  {
+    "benefit_id": "BEN_APY_003",
+    "scheme_id": "SCH_APY",
+    "benefit_type": "CORPUS_RETURN",
+    "description": "On death of both subscriber and spouse, accumulated pension corpus returned to nominee",
+    "source_pages": [
+      9
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMKISAN_001",
+    "scheme_id": "SCH_PMKISAN",
+    "benefit_type": "DIRECT_INCOME_SUPPORT",
+    "value_inr": 6000,
+    "frequency": "ANNUAL",
+    "payment_structure": "3 installments of Rs 2000 each every 4 months",
+    "payment_method": "Direct Bank Transfer (DBT)",
+    "description": "Rs 6000 per year income support to farmer families",
+    "source_pages": [
+      10
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSURYA_001",
+    "scheme_id": "SCH_PMSURYA",
+    "benefit_type": "CAPITAL_SUBSIDY",
+    "value_inr": 30000,
+    "value_unit": "per kW up to 2 kW",
+    "description": "Rs 30,000 per kW subsidy for residential households (up to 2 kW)",
+    "source_pages": [
+      19
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSURYA_002",
+    "scheme_id": "SCH_PMSURYA",
+    "benefit_type": "CAPITAL_SUBSIDY",
+    "value_inr": 18000,
+    "value_unit": "per kW for additional capacity up to 3 kW",
+    "description": "Rs 18,000 per kW for additional capacity between 2-3 kW",
+    "source_pages": [
+      19
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSURYA_003",
+    "scheme_id": "SCH_PMSURYA",
+    "benefit_type": "CAPITAL_SUBSIDY",
+    "value_inr": 78000,
+    "value_unit": "total cap for systems above 3 kW",
+    "description": "Total subsidy capped at Rs 78,000 for systems larger than 3 kW",
+    "source_pages": [
+      19
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMSURYA_004",
+    "scheme_id": "SCH_PMSURYA",
+    "benefit_type": "FREE_ELECTRICITY",
+    "value_unit": "up to 300 units per month",
+    "description": "Up to 300 units of free electricity per month",
+    "source_pages": [
+      18
+    ]
+  },
+  {
+    "benefit_id": "BEN_VISHWA_001",
+    "scheme_id": "SCH_VISHWA",
+    "benefit_type": "COLLATERAL_FREE_LOAN",
+    "value_inr": 100000,
+    "tenure_months": 18,
+    "interest_rate_pct": 5,
+    "govt_subvention_pct": 8,
+    "description": "First tranche: collateral-free loan up to Rs 1 lakh at 5% interest for 18 months",
+    "source_pages": [
+      27,
+      28
+    ]
+  },
+  {
+    "benefit_id": "BEN_VISHWA_002",
+    "scheme_id": "SCH_VISHWA",
+    "benefit_type": "COLLATERAL_FREE_LOAN",
+    "value_inr": 200000,
+    "tenure_months": 30,
+    "interest_rate_pct": 5,
+    "description": "Second tranche: up to Rs 2 lakh for 30 months after repayment of first tranche",
+    "source_pages": [
+      27,
+      28
+    ]
+  },
+  {
+    "benefit_id": "BEN_VISHWA_003",
+    "scheme_id": "SCH_VISHWA",
+    "benefit_type": "TOOLKIT_INCENTIVE",
+    "value_inr": 15000,
+    "description": "One-time toolkit incentive of Rs 15,000 after skill assessment",
+    "source_pages": [
+      28,
+      29
+    ]
+  },
+  {
+    "benefit_id": "BEN_VISHWA_004",
+    "scheme_id": "SCH_VISHWA",
+    "benefit_type": "TRAINING_STIPEND",
+    "value_inr_per_day": 500,
+    "description": "Stipend of Rs 500/day during skill training",
+    "source_pages": [
+      29
+    ]
+  },
+  {
+    "benefit_id": "BEN_VISHWA_005",
+    "scheme_id": "SCH_VISHWA",
+    "benefit_type": "DIGITAL_TRANSACTION_INCENTIVE",
+    "value_inr": 1,
+    "value_unit": "per digital transaction",
+    "max_transactions": 100,
+    "frequency": "MONTHLY",
+    "description": "Rs 1 per eligible digital transaction, up to 100 transactions per month",
+    "source_pages": [
+      30
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMUY_001",
+    "scheme_id": "SCH_PMUY",
+    "benefit_type": "CASH_ASSISTANCE",
+    "value_inr": 2050,
+    "value_unit": "for 14.2 kg cylinder connection",
+    "description": "Cash assistance of Rs 2050 for 14.2 kg cylinder deposit-free connection",
+    "source_pages": [
+      33
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMUY_002",
+    "scheme_id": "SCH_PMUY",
+    "benefit_type": "CASH_ASSISTANCE",
+    "value_inr": 1300,
+    "value_unit": "for 5 kg cylinder connection",
+    "description": "Cash assistance of Rs 1300 for 5 kg cylinder connection",
+    "source_pages": [
+      33
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMUY_003",
+    "scheme_id": "SCH_PMUY",
+    "benefit_type": "IN_KIND_BENEFIT",
+    "description": "First LPG refill free + Stove (hotplate) free from OMCs",
+    "source_pages": [
+      33
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMJDY_001",
+    "scheme_id": "SCH_PMJDY",
+    "benefit_type": "BANKING_ACCOUNT",
+    "description": "Basic Savings Bank Deposit (BSBD) account with no minimum balance requirement",
+    "source_pages": [
+      24
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMJDY_002",
+    "scheme_id": "SCH_PMJDY",
+    "benefit_type": "ACCIDENT_INSURANCE",
+    "value_inr": 200000,
+    "description": "Free RuPay debit card with accident insurance cover of Rs 2 lakh (for post-28.8.2018 accounts; Rs 1 lakh for older accounts)",
+    "source_pages": [
+      24,
+      25
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMJDY_003",
+    "scheme_id": "SCH_PMJDY",
+    "benefit_type": "OVERDRAFT_FACILITY",
+    "value_inr": 10000,
+    "description": "Overdraft facility up to Rs 10,000 for eligible account holders",
+    "source_pages": [
+      25
+    ]
+  },
+  {
+    "benefit_id": "BEN_MGNREGA_001",
+    "scheme_id": "SCH_MGNREGA",
+    "benefit_type": "WAGE_EMPLOYMENT",
+    "value_days": 100,
+    "frequency": "ANNUAL",
+    "description": "HISTORICAL: 100 days guaranteed wage employment per household per year (valid until 30 June 2026)",
+    "source_pages": [
+      12
+    ],
+    "valid_until": "2026-06-30"
+  },
+  {
+    "benefit_id": "BEN_MGNREGA_002",
+    "scheme_id": "SCH_MGNREGA",
+    "benefit_type": "UNEMPLOYMENT_ALLOWANCE",
+    "description": "Unemployment allowance payable if employment not provided within 15 days",
+    "source_pages": [
+      13
+    ],
+    "valid_until": "2026-06-30"
+  },
+  {
+    "benefit_id": "BEN_MGNREGA_003",
+    "scheme_id": "SCH_MGNREGA",
+    "benefit_type": "EX_GRATIA",
+    "value_inr": 25000,
+    "trigger": "Death or permanent disability from accident at worksite",
+    "description": "Ex gratia of Rs 25,000 for death/permanent disability at worksite",
+    "source_pages": [
+      15
+    ],
+    "valid_until": "2026-06-30"
+  },
+  {
+    "benefit_id": "BEN_VBG_RAMG_001",
+    "scheme_id": "SCH_VBG_RAMG",
+    "benefit_type": "WAGE_EMPLOYMENT",
+    "value_days": 125,
+    "frequency": "ANNUAL",
+    "description": "125 days guaranteed wage employment per rural household per year (from 1 July 2026)",
+    "source_pages": [
+      21
+    ],
+    "valid_from": "2026-07-01"
+  },
+  {
+    "benefit_id": "BEN_VBG_RAMG_002",
+    "scheme_id": "SCH_VBG_RAMG",
+    "benefit_type": "UNEMPLOYMENT_ALLOWANCE",
+    "description": "Unemployment allowance payable if eligible employment not provided under the Act",
+    "source_pages": [
+      22
+    ],
+    "valid_from": "2026-07-01"
+  },
+  {
+    "benefit_id": "BEN_PMAYG_001",
+    "scheme_id": "SCH_PMAYG",
+    "benefit_type": "CONSTRUCTION_ASSISTANCE",
+    "value_inr": 120000,
+    "value_unit": "plain areas",
+    "description": "Rs 1.20 lakh unit assistance for house construction in plain areas",
+    "source_pages": [
+      56
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMAYG_002",
+    "scheme_id": "SCH_PMAYG",
+    "benefit_type": "CONSTRUCTION_ASSISTANCE",
+    "value_inr": 130000,
+    "value_unit": "hill/NE/difficult areas",
+    "description": "Rs 1.30 lakh unit assistance for house construction in hilly/NE/difficult areas",
+    "source_pages": [
+      56
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMAYG_003",
+    "scheme_id": "SCH_PMAYG",
+    "benefit_type": "TOILET_ASSISTANCE",
+    "value_inr": 12000,
+    "description": "Rs 12,000 for toilet construction through SBM-G convergence",
+    "source_pages": [
+      56
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMAYG_004",
+    "scheme_id": "SCH_PMAYG",
+    "benefit_type": "WAGE_LABOUR",
+    "value_days": 90,
+    "description": "90/95 person-days unskilled wage labour through MGNREGS convergence",
+    "source_pages": [
+      56
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_IGNOAPS_001",
+    "scheme_id": "SCH_NSAP_OA",
+    "benefit_type": "OLD_AGE_PENSION",
+    "value_inr": 200,
+    "frequency": "MONTHLY",
+    "trigger": "Age 60-79 years",
+    "component": "IGNOAPS",
+    "description": "Rs 200/month old age pension for persons aged 60-79 (Central share)",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_IGNOAPS_002",
+    "scheme_id": "SCH_NSAP_OA",
+    "benefit_type": "OLD_AGE_PENSION",
+    "value_inr": 500,
+    "frequency": "MONTHLY",
+    "trigger": "Age 80 years and above",
+    "component": "IGNOAPS",
+    "description": "Rs 500/month old age pension for persons aged 80+ (Central share)",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_IGNWPS_001",
+    "scheme_id": "SCH_NSAP_W",
+    "benefit_type": "WIDOW_PENSION",
+    "value_inr": 300,
+    "frequency": "MONTHLY",
+    "component": "IGNWPS",
+    "description": "Rs 300/month widow pension (Central share)",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_IGNWPS_002",
+    "scheme_id": "SCH_NSAP_W",
+    "benefit_type": "WIDOW_PENSION",
+    "value_inr": 500,
+    "frequency": "MONTHLY",
+    "trigger": "Age 80 and above",
+    "component": "IGNWPS",
+    "description": "Rs 500/month widow pension for 80+ (Central share)",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_IGNDPS_001",
+    "scheme_id": "SCH_NSAP_D",
+    "benefit_type": "DISABILITY_PENSION",
+    "value_inr": 300,
+    "frequency": "MONTHLY",
+    "component": "IGNDPS",
+    "description": "Rs 300/month disability pension (Central share)",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_IGNDPS_002",
+    "scheme_id": "SCH_NSAP_D",
+    "benefit_type": "DISABILITY_PENSION",
+    "value_inr": 500,
+    "frequency": "MONTHLY",
+    "trigger": "Age 80 and above",
+    "component": "IGNDPS",
+    "description": "Rs 500/month disability pension for 80+ (Central share)",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_NFBS_001",
+    "scheme_id": "SCH_NSAP_FB",
+    "benefit_type": "DEATH_ASSISTANCE",
+    "value_inr": 20000,
+    "frequency": "ONE_TIME",
+    "component": "NFBS",
+    "trigger": "Death of primary breadwinner aged 18-59 from BPL family",
+    "description": "Rs 20,000 one-time assistance on death of breadwinner",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_NSAP_ANN_001",
+    "scheme_id": "SCH_NSAP_AP",
+    "benefit_type": "FOOD_GRAIN",
+    "value_kg": 10,
+    "frequency": "MONTHLY",
+    "component": "Annapurna",
+    "description": "10 kg food grains per month free for eligible elderly not receiving IGNOAPS",
+    "source_pages": [
+      65
+    ]
+  },
+  {
+    "benefit_id": "BEN_ABPMJAY_001",
+    "scheme_id": "SCH_ABPMJAY",
+    "benefit_type": "HEALTH_INSURANCE",
+    "value_inr": 500000,
+    "frequency": "ANNUAL",
+    "description": "Cashless health insurance cover of Rs 5 lakh per family per year",
+    "coverage_packages": 1579,
+    "pre_hospitalization_days": 3,
+    "post_hospitalization_days": 15,
+    "source_pages": [
+      68,
+      69
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMMY_001",
+    "scheme_id": "SCH_PMMY",
+    "benefit_type": "MICRO_ENTERPRISE_LOAN",
+    "value_inr": 50000,
+    "category": "SHISHU",
+    "description": "Shishu: Loans up to Rs 50,000",
+    "source_pages": [
+      42
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMMY_002",
+    "scheme_id": "SCH_PMMY",
+    "benefit_type": "MICRO_ENTERPRISE_LOAN",
+    "value_inr_min": 50001,
+    "value_inr_max": 500000,
+    "category": "KISHOR",
+    "description": "Kishor: Loans above Rs 50,000 and up to Rs 5 lakh",
+    "source_pages": [
+      42
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMMY_003",
+    "scheme_id": "SCH_PMMY",
+    "benefit_type": "MICRO_ENTERPRISE_LOAN",
+    "value_inr_min": 500001,
+    "value_inr_max": 1000000,
+    "category": "TARUN",
+    "description": "Tarun: Loans above Rs 5 lakh and up to Rs 10 lakh",
+    "source_pages": [
+      42
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMMY_004",
+    "scheme_id": "SCH_PMMY",
+    "benefit_type": "MICRO_ENTERPRISE_LOAN",
+    "value_inr_min": 1000001,
+    "value_inr_max": 2000000,
+    "category": "TARUN_PLUS",
+    "description": "Tarun Plus: Loans above Rs 10 lakh and up to Rs 20 lakh",
+    "source_pages": [
+      42
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMFBY_001",
+    "scheme_id": "SCH_PMFBY",
+    "benefit_type": "CROP_INSURANCE",
+    "description": "Comprehensive crop insurance from pre-sowing to post-harvest against natural risks",
+    "covers": [
+      "drought",
+      "dry_spells",
+      "flood",
+      "inundation",
+      "pest_disease",
+      "landslides",
+      "natural_fire",
+      "storms",
+      "hailstorms",
+      "cyclones"
+    ],
+    "source_pages": [
+      44,
+      45
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMFBY_002",
+    "scheme_id": "SCH_PMFBY",
+    "benefit_type": "POST_HARVEST_COVERAGE",
+    "duration_weeks": 2,
+    "description": "Post-harvest loss coverage for up to 2 weeks after harvest for crops left in field for drying",
+    "source_pages": [
+      45
+    ]
+  },
+  {
+    "benefit_id": "BEN_DDUGKY_001",
+    "scheme_id": "SCH_DDUGKY",
+    "benefit_type": "PLACEMENT_LINKED_SKILL_TRAINING",
+    "description": "Free skill training with placement assistance for rural poor youth aged 15-35 (45 for women/PwD)",
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "benefit_id": "BEN_PMJKMY_001",
+    "scheme_id": "SCH_PMJKMY",
+    "benefit_type": "MONTHLY_PENSION",
+    "value_inr": 3000,
+    "frequency": "MONTHLY",
+    "trigger": "After age 60",
+    "description": "Monthly pension of Rs 3,000 for small and marginal farmers after age 60",
+    "source_pages": [
+      7,
+      8
+    ]
+  },
+  {
+    "benefit_id": "BEN_SVANIDHI_001",
+    "scheme_id": "SCH_SVANIDHI",
+    "benefit_type": "WORKING_CAPITAL_TRANCHE_1",
+    "quantified_value": "Up to Rs 10,000",
+    "coverage": "Street vendors vending in urban areas",
+    "description": "First tranche working capital loan up to Rs 10,000 with 1-year repayment tenure",
+    "source_pages": [
+      22,
+      23
+    ]
+  },
+  {
+    "benefit_id": "BEN_SVANIDHI_002",
+    "scheme_id": "SCH_SVANIDHI",
+    "benefit_type": "WORKING_CAPITAL_TRANCHE_2",
+    "quantified_value": "Up to Rs 20,000",
+    "coverage": "Vendors with timely repayment of 1st loan",
+    "description": "Second tranche enhanced working capital loan up to Rs 20,000 upon timely or early repayment of first tranche",
+    "source_pages": [
+      22,
+      23
+    ]
+  },
+  {
+    "benefit_id": "BEN_SVANIDHI_003",
+    "scheme_id": "SCH_SVANIDHI",
+    "benefit_type": "WORKING_CAPITAL_TRANCHE_3",
+    "quantified_value": "Up to Rs 50,000",
+    "coverage": "Vendors with timely repayment of 2nd loan",
+    "description": "Third tranche working capital loan up to Rs 50,000 upon timely repayment of second tranche",
+    "source_pages": [
+      22,
+      23
+    ]
+  },
+  {
+    "benefit_id": "BEN_SVANIDHI_004",
+    "scheme_id": "SCH_SVANIDHI",
+    "benefit_type": "INTEREST_SUBSIDY",
+    "quantified_value": "7% per annum",
+    "coverage": "All timely repaying vendors",
+    "description": "Interest subsidy at 7% per annum credited quarterly directly into beneficiary bank account via DBT",
+    "source_pages": [
+      22,
+      23
+    ]
+  },
+  {
+    "benefit_id": "BEN_SVANIDHI_005",
+    "scheme_id": "SCH_SVANIDHI",
+    "benefit_type": "DIGITAL_TRANSACTION_INCENTIVE",
+    "quantified_value": "Up to Rs 100/month (Rs 1,200/year)",
+    "coverage": "Digitally active street vendors",
+    "description": "Monthly cashback incentive: Rs 50 for first 50 transactions, additional Rs 25 for next 50, and Rs 25 for next 100 eligible digital transactions",
+    "source_pages": [
+      23
+    ]
+  }
+]

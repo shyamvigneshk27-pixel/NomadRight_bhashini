@@ -1,0 +1,29 @@
+{
+  "scheme_id": "SCH_GKRY",
+  "official_name": "Garib Kalyan Rozgar Yojana",
+  "abbreviation": "GKRY",
+  "aliases": [
+    "garib kalyan rozgar",
+    "GKRY"
+  ],
+  "category": "Rural Development",
+  "subcategory": "Employment Campaign",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide 125 days of employment in 25 types of working areas.",
+  "description": "Scheme provides employment for 125 days. Target workers identified in 25 working areas including PM Kusum Works, cattle sheds, poultry sheds, goat sheds, Shyama Prasad Mukherjee RURBAN mission, national highways, well construction etc.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "Gram Panchayats, Designated Worksites",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    4
+  ],
+  "source_sections": [
+    "e-Shram - Garib Kalyan Rozgar Yojana"
+  ]
+}

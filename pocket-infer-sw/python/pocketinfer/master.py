@@ -46,8 +46,31 @@ def app_needs_ollama(app_name: str) -> bool:
     return "ollama" in app_cls.METADATA.get("models", {})
 
 
-def verify_ollama_model(model_name: str = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:Q4_K_M") -> bool:
+def app_ollama_runner_options(app_name: str):
+    """
+    Ollama runner options the application's own requests use (its METADATA
+    "ollama_runner_options"), or None if it declares none. Pre-warming with
+    anything else makes Ollama load a second, different runner on the first
+    real request - see verify_ollama_model().
+    """
+    app_cls = ApplicationRegistry.get_application(app_name)
+    if app_cls is None:
+        return None
+    return app_cls.METADATA.get("ollama_runner_options")
+
+
+def verify_ollama_model(model_name: str = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:Q4_K_M",
+                        options: dict = None) -> bool:
     """Verify Ollama is reachable and asynchronously pre-warm model into RAM.
+
+    `options` should be the app's own runner options (num_ctx, num_gpu,
+    num_thread - app_ollama_runner_options()). Ollama keys a loaded runner on
+    them: measured 2026-09-11, a pre-warm with only {"num_thread": 6} loaded
+    a 4096-token context (1884 MB) and the app's first real query (num_ctx
+    2048, num_gpu 999) then paid a second full load (34.9 s) - which is the
+    "qwen answered in 37.9s (load_ms=36591)" seen right after start-up. With
+    matching options the first query found the runner warm (2.4 s). Without
+    `options` the historical {"num_thread": 6} pre-warm is kept.
 
     Deliberately does NOT pass keep_alive=-1 here (that used to be the
     case, and it was a real memory leak in practice - not a code leak,
@@ -84,11 +107,12 @@ def verify_ollama_model(model_name: str = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:
                     json={
                         "model": model_name,
                         "prompt": "",
-                        "options": {"num_thread": 6}
+                        "options": dict(options) if options else {"num_thread": 6}
                     },
                     timeout=60.0
                 )
-                logging.info(f"Model '{model_name}' pre-warmed into RAM (bounded TTL, not permanent).")
+                logging.info(f"Model '{model_name}' pre-warmed into RAM (bounded TTL, not permanent) "
+                             f"with runner options {dict(options) if options else {'num_thread': 6}}.")
             except Exception as e:
                 logging.warning(f"Async model warmup notice: {e}")
 
@@ -238,7 +262,7 @@ def run_master():
 
     # 2. Warm up models
     if needs_ollama:
-        verify_ollama_model(args.model)
+        verify_ollama_model(args.model, options=app_ollama_runner_options(args.app))
     else:
         logging.info(f"App '{args.app}' does not use Ollama - skipping model pre-warm (saves ~2.4GB RAM).")
     verify_bhashini_service()

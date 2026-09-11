@@ -1,0 +1,40 @@
+{
+  "scheme_id": "SCH_PMAYG",
+  "official_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+  "abbreviation": "PMAY-G",
+  "aliases": [
+    "PMAY-G",
+    "pmay gramin",
+    "rural housing scheme",
+    "awaas yojana gramin",
+    "pmayg"
+  ],
+  "category": "Rural Housing",
+  "subcategory": "Rural Shelter",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "objective": "Provide pucca house with basic amenities to eligible houseless rural households.",
+  "description": "Implemented from 1 April 2016. Framework 2022 applicable. Minimum house size: 25 sq metres including cooking area. Unit assistance: Rs 1.20 lakh (plain areas), Rs 1.30 lakh (hilly/NE/difficult). Cost sharing: 60:40 (Centre:State) for plains; 90:10 for NE/Himachal/Uttarakhand/J&K; 100% Central for UTs. Toilet assistance Rs 12,000 via SBM-G/MGNREGS convergence. MGNREGS labour: 90/95 person-days. Beneficiary selection via SECC 2011 housing deprivation data and Awaas+ lists verified by Gram Sabha. AwaasApp for geo-tagged monitoring. Institutional finance up to Rs 70,000 facilitated. Extended 2024-29 with 2 crore additional houses; total target 4.95 crore by 2029.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats",
+  "geographic_scope": "RURAL",
+  "status": "ACTIVE",
+  "effective_from": "2016-04-01",
+  "effective_until": null,
+  "version": "2022 Framework (extended to 2024-29)",
+  "it_tools": [
+    "AwaasSoft",
+    "AwaasApp"
+  ],
+  "source_pages": [
+    55,
+    56,
+    57,
+    58
+  ],
+  "source_sections": [
+    "PMAY-G Framework 2022",
+    "PMAY-G details"
+  ]
+}

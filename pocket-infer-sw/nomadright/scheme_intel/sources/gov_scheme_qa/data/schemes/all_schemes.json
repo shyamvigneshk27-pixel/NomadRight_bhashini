@@ -1,0 +1,1223 @@
+[
+  {
+    "scheme_id": "SCH_ONORC",
+    "official_name": "One Nation One Ration Card",
+    "abbreviation": "ONORC",
+    "aliases": [
+      "ONORC",
+      "one nation ration card",
+      "ration portability",
+      "mera ration"
+    ],
+    "category": "Food Security",
+    "subcategory": "PDS Portability",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Enable nationwide portability of PDS benefits for NFSA beneficiaries, especially migrant workers, using Aadhaar/biometric authentication at any Fair Price Shop across India.",
+    "description": "ONORC is a national ration-card portability scheme launched in 2018 by Department of Food & Supplies and Consumer Affairs. It enables migrant workers and their family members to access PDS benefits from any Fair Price Shop anywhere in the country. Implemented in all 36 States/UTs. Mobile app MERA RATION available in 13 languages.",
+    "ministry": "Ministry of Consumer Affairs, Food & Public Distribution",
+    "department": "Department of Food & Supplies and Consumer Affairs",
+    "implementing_agency": "States/UTs via ePoS at Fair Price Shops",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2018-01-01",
+    "effective_until": null,
+    "version": "current",
+    "portals": [
+      "National Food Security Portal"
+    ],
+    "mobile_app": "MERA RATION (13 languages)",
+    "source_pages": [
+      1,
+      2
+    ],
+    "source_sections": [
+      "Short Description",
+      "Details",
+      "Benefits",
+      "Eligibility",
+      "Application Process",
+      "Documents Required",
+      "FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMSYM",
+    "official_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "abbreviation": "PM-SYM",
+    "aliases": [
+      "PM SYM",
+      "shram yogi maandhan",
+      "PMSYM",
+      "unorganised worker pension"
+    ],
+    "category": "Pension & Social Security",
+    "subcategory": "Unorganised Workers Pension",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Old age protection for unorganised workers by providing assured monthly pension of Rs 3000 after age 60.",
+    "description": "Voluntary and contributory pension scheme for unorganised workers. Monthly contribution ranges from Rs 55 to Rs 200 depending upon the entry age. 50% paid by beneficiary and 50% matched by Central Government.",
+    "ministry": "Ministry of Labour & Employment",
+    "department": null,
+    "implementing_agency": "Common Service Centres (CSCs)",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      3,
+      4,
+      5
+    ],
+    "source_sections": [
+      "e-Shram Social Security Welfare Schemes",
+      "PMSYM eligibility and benefits"
+    ]
+  },
+  {
+    "scheme_id": "SCH_NPST",
+    "official_name": "National Pension Scheme for Traders and Self-Employed Persons",
+    "abbreviation": "NPS-Traders",
+    "aliases": [
+      "NPS traders",
+      "vyapari pension",
+      "shopkeeper pension"
+    ],
+    "category": "Pension & Social Security",
+    "subcategory": "Traders Pension",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Old age pension for retail traders, shopkeepers, and self-employed persons.",
+    "description": "Voluntary and contributory pension scheme. Monthly contribution ranges from Rs 55 to Rs 200. 50% paid by beneficiary, 50% by Central Government. Annual turnover must not exceed Rs 1.5 Crore.",
+    "ministry": "Ministry of Labour & Employment",
+    "department": null,
+    "implementing_agency": "Common Service Centres (CSCs)",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      3,
+      4
+    ],
+    "source_sections": [
+      "e-Shram Social Security Welfare Schemes",
+      "NPS eligibility and benefits"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMJJBY",
+    "official_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "abbreviation": "PMJJBY",
+    "aliases": [
+      "jeevan jyoti",
+      "life insurance scheme",
+      "PMJJBY"
+    ],
+    "category": "Financial Inclusion",
+    "subcategory": "Life Insurance",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide affordable life insurance cover for death due to any cause.",
+    "description": "One-year renewable term life insurance offering Rs 2 lakh cover for death due to any reason. Annual premium Rs 436/-. Cover period 1 June to 31 May. Entry age 18-50 years, cover continues up to age 55. Lien period of 30 days for non-accidental deaths for new/rejoining subscribers. Administered through LIC and other life insurance companies via participating Banks/Post Offices.",
+    "ministry": "Ministry of Finance",
+    "department": "Department of Financial Services",
+    "implementing_agency": "Banks, Post Offices, LIC and other life insurance companies",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2022-06-01",
+    "effective_until": null,
+    "version": "Revised Rules effective 1 June 2022",
+    "source_pages": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "source_sections": [
+      "PMJJBY eligibility",
+      "PMJJBY benefits",
+      "PMJJBY FAQs",
+      "Revised Rules PMJJBY"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMSBY",
+    "official_name": "Pradhan Mantri Suraksha Bima Yojana",
+    "abbreviation": "PMSBY",
+    "aliases": [
+      "suraksha bima",
+      "accident insurance",
+      "PMSBY"
+    ],
+    "category": "Financial Inclusion",
+    "subcategory": "Accident Insurance",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide affordable personal accident insurance cover.",
+    "description": "One-year renewable personal accident insurance scheme. Premium Rs 20 per annum. Cover period 1 June to 31 May. Entry age 18-70 years. Rs 2 lakh for accidental death or total disability; Rs 1 lakh for partial disability.",
+    "ministry": "Ministry of Finance",
+    "department": "Department of Financial Services",
+    "implementing_agency": "Banks, Post Offices",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2022-06-01",
+    "effective_until": null,
+    "version": "Revised Rules effective 1 June 2022",
+    "source_pages": [
+      5,
+      6
+    ],
+    "source_sections": [
+      "e-Shram Social Security Welfare Schemes",
+      "PMSBY eligibility"
+    ]
+  },
+  {
+    "scheme_id": "SCH_APY",
+    "official_name": "Atal Pension Yojana",
+    "abbreviation": "APY",
+    "aliases": [
+      "atal pension",
+      "APY",
+      "NPS-Lite"
+    ],
+    "category": "Pension & Social Security",
+    "subcategory": "Universal Pension",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide guaranteed monthly pension to all citizens, particularly unorganised sector workers.",
+    "description": "Defined contributory pension scheme regulated by PFRDA. Guaranteed monthly pension of Rs 1000 to Rs 5000 at age 60 depending on contribution amount and entry age. On subscriber death, spouse receives the same pension; on spouse death, corpus returned to nominee. Existing Swavalamban subscribers migrated to APY. Charges levied for delayed/non-payment.",
+    "ministry": "Ministry of Finance",
+    "department": "Department of Financial Services",
+    "implementing_agency": "PFRDA, Banks, Post Offices (DoP CBS Platform), Business Correspondents",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "regulatory_body": "PFRDA (Pension Fund Regulatory and Development Authority)",
+    "source_pages": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "source_sections": [
+      "APY gazette notification",
+      "APY guidelines",
+      "APY FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMKISAN",
+    "official_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "abbreviation": "PM-KISAN",
+    "aliases": [
+      "PM Kisan",
+      "kisan samman nidhi",
+      "pm-kisan",
+      "farmer income support"
+    ],
+    "category": "Agriculture",
+    "subcategory": "Farmer Income Support",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide income support of Rs 6000 per year to landholding farmer families.",
+    "description": "Direct income support of Rs 6000 per year paid in 3 equal installments of Rs 2000 every four months via DBT. All landholding farmer families irrespective of land size eligible (revised from initial 2 ha limit on 01.06.2019). Land cut-off date: 01.02.2019 for determining landholding eligibility. Aadhaar mandatory. Bank account with IFSC mandatory.",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "department": null,
+    "implementing_agency": "State/UT Governments, Patwari/Revenue Officers, pmkisan.gov.in",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2018-12-01",
+    "effective_until": null,
+    "version": "current (land-size restriction removed from 01.06.2019)",
+    "special_notes": [
+      "CONFLICT: Earlier FAQs mention 2-hectare cap. Revised: all farmer families eligible from 01.06.2019 irrespective of land size.",
+      "Land cut-off date for eligibility determination: 01.02.2019",
+      "J&K, Assam, Meghalaya: Aadhaar not mandatory for first installment only"
+    ],
+    "source_pages": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "source_sections": [
+      "PM-KISAN FAQs Set 1",
+      "PM-KISAN FAQs Set 2"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMSURYA",
+    "official_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "abbreviation": "PM Surya Ghar",
+    "aliases": [
+      "surya ghar",
+      "muft bijli",
+      "rooftop solar",
+      "solar subsidy",
+      "pm surya ghar"
+    ],
+    "category": "Renewable Energy",
+    "subcategory": "Rooftop Solar",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Light up 1 crore households by providing up to 300 units of free electricity per month through subsidized rooftop solar installation.",
+    "description": "Investment of over Rs 75,000 crore. Subsidy for residential households: Rs 30,000/kW up to 2 kW; Rs 18,000/kW for additional capacity up to 3 kW; total subsidy for systems larger than 3 kW capped at Rs 78,000. GHS/RWA: Rs 18,000/kW for common facilities up to 500 kW. Special states: additional 10% subsidy per kW. Online application at pmsuryaghar.gov.in.",
+    "ministry": "Ministry of New and Renewable Energy",
+    "department": null,
+    "implementing_agency": "DISCOMs, REC, National Portal",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "portal": "https://pmsuryaghar.gov.in/",
+    "source_pages": [
+      18,
+      19,
+      20,
+      21
+    ],
+    "source_sections": [
+      "PM Surya Ghar details",
+      "Consumer Application Journey",
+      "Benefits",
+      "FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_SVANIDHI",
+    "official_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "abbreviation": "PM SVANidhi",
+    "aliases": [
+      "svanidhi",
+      "pm svanidhi",
+      "street vendor loan",
+      "atma nirbhar nidhi"
+    ],
+    "category": "Urban Livelihoods",
+    "subcategory": "Street Vendor Micro-Credit",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Facilitate working capital loans to street vendors to resume livelihoods after COVID-19 lockdowns.",
+    "description": "Central Sector Scheme. Initial working capital loan up to Rs 10,000 for 1 year (generic FAQ). Interest subsidy at 7%. Monthly cashback incentive on digital transactions (Rs 50 on 50 transactions; additional Rs 25 on next 50; additional Rs 25 on next 100; max Rs 100/month). Higher loan on timely repayment. No collateral required. Scheme implemented up to March 2022 per FAQ 8.",
+    "ministry": "Ministry of Housing and Urban Affairs",
+    "department": null,
+    "implementing_agency": "SIDBI, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs, SHG Banks, Indian Bank (PAiSA portal)",
+    "geographic_scope": "URBAN",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": "2022-03-31",
+    "version": "current",
+    "special_notes": [
+      "CONFLICT: Generic FAQ states initial loan up to Rs 10,000; operational guidelines (other sources) reference Rs 15,000 for Tranche 1. PDF source FAQs consistently state Rs 10,000.",
+      "Scheme originally intended until March 2022 per FAQ; may have been extended"
+    ],
+    "portal": "pmsvanidhi.mohua.gov.in",
+    "source_pages": [
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "source_sections": [
+      "PM SVANidhi Scheme FAQs Generic",
+      "FAQs For Beneficiaries"
+    ]
+  },
+  {
+    "scheme_id": "SCH_VISHWA",
+    "official_name": "PM Vishwakarma Scheme",
+    "abbreviation": "PM Vishwakarma",
+    "aliases": [
+      "vishwakarma",
+      "pm vishwakarma",
+      "artisan scheme",
+      "visvakaram",
+      "vishwakarm"
+    ],
+    "category": "MSME",
+    "subcategory": "Artisan Welfare",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide end-to-end support for artisans and craftspersons of 18 traditional trades through recognition, skill training, credit, and market support.",
+    "description": "Provides PM Vishwakarma Certificate and ID card, basic training (5-7 days), advanced training (15+ days), stipend Rs 500/day during training, toolkit incentive of Rs 15,000, collateral-free loans at 5% interest (Tranche 1: up to Rs 1 lakh/18 months; Tranche 2: up to Rs 2 lakh/30 months), digital transaction incentive Rs 1/transaction up to 100 per month, marketing support. Early repayment restriction: not before 6 months from disbursement. Helpline: 1800 267 7777. Family = husband, wife, unmarried children; only 1 per family can apply.",
+    "ministry": "Ministry of Micro, Small and Medium Enterprises",
+    "department": null,
+    "implementing_agency": "MoMSME, MoSD&E, DFS, Common Service Centres (CSCs)",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "helpline": "1800 267 7777",
+    "portal": "pmvishwakarma.gov.in",
+    "source_pages": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "source_sections": [
+      "PM Vishwakarma FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMUY",
+    "official_name": "Pradhan Mantri Ujjwala Yojana",
+    "abbreviation": "PMUY",
+    "aliases": [
+      "ujjwala",
+      "ujjwala yojana",
+      "LPG scheme",
+      "PMUY",
+      "pmuy",
+      "gas connection scheme"
+    ],
+    "category": "Petroleum & Natural Gas",
+    "subcategory": "Clean Cooking Fuel",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Make clean cooking fuel (LPG) available to rural and deprived households.",
+    "description": "Launched 1 May 2016 in Ballia, Uttar Pradesh. Deposit-free LPG connection. Cash assistance: Rs 2,050 for 14.2 kg cylinder; Rs 1,300 for 5 kg cylinder. First LPG refill free. Stove (hotplate) free. Administered by Ministry of Petroleum and Natural Gas through OMCs.",
+    "ministry": "Ministry of Petroleum and Natural Gas",
+    "department": null,
+    "implementing_agency": "Oil Marketing Companies (OMCs), LPG distributors",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2016-05-01",
+    "effective_until": null,
+    "version": "current",
+    "portal": "pmuy.gov.in",
+    "source_pages": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "source_sections": [
+      "PMUY description",
+      "Eligibility",
+      "Documents",
+      "Benefits",
+      "PMUY FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMSBY_FULL",
+    "official_name": "Pradhan Mantri Suraksha Bima Yojana - Full Rules",
+    "abbreviation": "PMSBY",
+    "aliases": [
+      "suraksha bima",
+      "accident insurance scheme"
+    ],
+    "category": "Financial Inclusion",
+    "subcategory": "Accident Insurance",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide affordable personal accident insurance.",
+    "description": "Rs 20 annual premium. Rs 2 lakh for accidental death or total permanent disability. Rs 1 lakh for partial permanent disability. Cover period 1 June to 31 May. NRI with eligible bank account in India eligible. Offered through banks/post offices.",
+    "ministry": "Ministry of Finance",
+    "department": "Department of Financial Services",
+    "implementing_agency": "Banks, Post Offices",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2022-06-01",
+    "effective_until": null,
+    "version": "Revised Rules effective 1 June 2022",
+    "source_pages": [
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "source_sections": [
+      "PMSBY detailed rules",
+      "PMSBY FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMMY",
+    "official_name": "Pradhan Mantri Mudra Yojana",
+    "abbreviation": "PMMY",
+    "aliases": [
+      "mudra",
+      "mudra loan",
+      "PMMY",
+      "mudra yojana",
+      "shishu kishor tarun"
+    ],
+    "category": "Financial Inclusion",
+    "subcategory": "Micro Enterprise Credit",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide micro finance support to non-corporate, non-farm small/micro enterprises.",
+    "description": "Implemented through MUDRA (Micro Units Development & Refinance Agency), a subsidiary of SIDBI. Categories: Shishu (up to Rs 50,000), Kishor (Rs 50,001 to Rs 5 lakh), Tarun (Rs 5,00,001 to Rs 10 lakh), Tarun Plus (Rs 10,00,001 to Rs 20 lakh). No collateral required. Purpose: manufacturing, trading, service activities. Women entrepreneurs encouraged with additional facilities.",
+    "ministry": "Ministry of Finance",
+    "department": "Department of Financial Services",
+    "implementing_agency": "MUDRA, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2015-04-08",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      40,
+      41,
+      42,
+      43,
+      44
+    ],
+    "source_sections": [
+      "PMMY description",
+      "MUDRA offerings",
+      "Loan categories"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMFBY",
+    "official_name": "Pradhan Mantri Fasal Bima Yojana",
+    "abbreviation": "PMFBY",
+    "aliases": [
+      "fasal bima",
+      "crop insurance",
+      "PMFBY",
+      "pm fasal bima"
+    ],
+    "category": "Agriculture",
+    "subcategory": "Crop Insurance",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "objective": "Provide affordable crop insurance and comprehensive risk cover to farmers against non-preventable natural risks from pre-sowing to post-harvest.",
+    "description": "Launched from Kharif 2016. Optional for all farmers including KCC holders (loanee farmers can opt out at least 7 days before cut-off date). Covers food crops, oilseeds, annual commercial/horticultural crops. Risks covered: drought, dry spells, flood, inundation, widespread pest/disease, landslides, natural fire, storms, hailstorms, cyclones. Prevented sowing/mid-season adversity/post-harvest (up to 2 weeks) coverage. Localized calamities covered. Exclusions: war, nuclear risks, malicious damage, preventable risks. Technology: YES-TECH, CROPIC App, CCE Agri App. Portal: National Crop Insurance Portal (NCIP).",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "department": null,
+    "implementing_agency": "Insurance companies, Banks, PACS, CSCs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2016-01-01",
+    "effective_until": null,
+    "version": "Operational Guidelines 2023",
+    "portal": "pmfby.gov.in",
+    "source_pages": [
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "source_sections": [
+      "PMFBY Operational Guidelines",
+      "PMFBY FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_SSY",
+    "official_name": "Sukanya Samriddhi Yojana",
+    "abbreviation": "SSY",
+    "aliases": [
+      "sukanya samriddhi",
+      "SSY",
+      "girl child savings",
+      "sukanya"
+    ],
+    "category": "Small Savings",
+    "subcategory": "Girl Child Welfare",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Encourage savings for girl child's education and marriage.",
+    "description": "Account can be opened for girl child below 10 years of age by parent/guardian. Interest rate: 8.2% per annum, compounded yearly. Deposits for 15 years; account matures after 21 years from opening. Partial withdrawal permitted after girl attains 18 years for education (up to 50% of balance). EEE tax status (Section 80C deduction, tax-free interest, tax-free maturity). Maximum 2 accounts per family (exception for twins). Account can be opened at post offices and designated banks.",
+    "ministry": "Ministry of Finance",
+    "department": "Department of Economic Affairs",
+    "implementing_agency": "Post Offices, Designated Banks",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "interest_rate_note": "Historical rates in document; current rate 8.2% p.a. Historical rates referenced: 7.6% mentioned as outdated example.",
+    "source_pages": [
+      51,
+      52,
+      53,
+      54,
+      55
+    ],
+    "source_sections": [
+      "SSY details",
+      "SSY FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMAYG",
+    "official_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "abbreviation": "PMAY-G",
+    "aliases": [
+      "PMAY-G",
+      "pmay gramin",
+      "rural housing scheme",
+      "awaas yojana gramin",
+      "pmayg"
+    ],
+    "category": "Rural Housing",
+    "subcategory": "Rural Shelter",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "objective": "Provide pucca house with basic amenities to eligible houseless rural households.",
+    "description": "Implemented from 1 April 2016. Framework 2022 applicable. Minimum house size: 25 sq metres including cooking area. Unit assistance: Rs 1.20 lakh (plain areas), Rs 1.30 lakh (hilly/NE/difficult). Cost sharing: 60:40 (Centre:State) for plains; 90:10 for NE/Himachal/Uttarakhand/J&K; 100% Central for UTs. Toilet assistance Rs 12,000 via SBM-G/MGNREGS convergence. MGNREGS labour: 90/95 person-days. Beneficiary selection via SECC 2011 housing deprivation data and Awaas+ lists verified by Gram Sabha. AwaasApp for geo-tagged monitoring. Institutional finance up to Rs 70,000 facilitated. Extended 2024-29 with 2 crore additional houses; total target 4.95 crore by 2029.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats",
+    "geographic_scope": "RURAL",
+    "status": "ACTIVE",
+    "effective_from": "2016-04-01",
+    "effective_until": null,
+    "version": "2022 Framework (extended to 2024-29)",
+    "it_tools": [
+      "AwaasSoft",
+      "AwaasApp"
+    ],
+    "source_pages": [
+      55,
+      56,
+      57,
+      58
+    ],
+    "source_sections": [
+      "PMAY-G Framework 2022",
+      "PMAY-G details"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMJDY",
+    "official_name": "Pradhan Mantri Jan Dhan Yojana",
+    "abbreviation": "PMJDY",
+    "aliases": [
+      "jan dhan",
+      "PMJDY",
+      "jan dhan yojana",
+      "basic bank account"
+    ],
+    "category": "Financial Inclusion",
+    "subcategory": "Universal Banking",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Ensure access to financial services including savings, credit, insurance, and pension for excluded sections.",
+    "description": "Launched 28.8.2014. Provides Basic Savings Bank Deposit (BSBD) account with no minimum balance. Free RuPay debit card with accident insurance Rs 2 lakh (Rs 1 lakh for pre-28.8.2018 accounts). Overdraft up to Rs 10,000. Financial literacy programs. As of 28.02.2025: 54.97 crore accounts; Rs 2,52,750 crore deposits; 30.60 crore women accounts (55.7%); 36.59 crore rural/semi-urban (66.6%); 37.60 crore RuPay cards. Extended beyond 14.8.2018 with focus shifting to every unbanked adult.",
+    "ministry": "Ministry of Finance",
+    "department": "Department of Financial Services",
+    "implementing_agency": "Banks, Bank Mitras (Business Correspondents)",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2014-08-28",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      24,
+      25,
+      26,
+      27
+    ],
+    "source_sections": [
+      "PMJDY description",
+      "PMJDY benefits",
+      "PMJDY FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_MGNREGA",
+    "official_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "abbreviation": "MGNREGA",
+    "aliases": [
+      "MGNREGA",
+      "NREGA",
+      "100 days work",
+      "mgnregs",
+      "rural employment guarantee"
+    ],
+    "category": "Rural Development",
+    "subcategory": "Wage Employment",
+    "entity_type": "ACT",
+    "scheme_type": "STATUTORY",
+    "objective": "Enhance livelihood security of rural households by guaranteeing 100 days of wage employment per year.",
+    "description": "Statutory Act No. 42 of 2005. 100 days guaranteed wage employment per household per financial year for adult members willing to do unskilled manual work. Employment to be provided within 15 days. Unemployment allowance payable if employment not provided. Works at worksite: safe drinking water, shade, first aid. Medical treatment free if injured. Death/permanent disability ex gratia: Rs 25,000. Equal wages; no gender discrimination. REPEALED from 1 July 2026 by VB-G RAM G Act 2025.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "Gram Panchayats, Programme Officers, District Programme Coordinators",
+    "geographic_scope": "RURAL",
+    "status": "REPEALED",
+    "effective_from": "2005-09-05",
+    "effective_until": "2026-06-30",
+    "version": "original 2005 Act",
+    "superseded_by": "SCH_VBG_RAMG",
+    "source_pages": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "source_sections": [
+      "MGNREGA Act text",
+      "Schedules",
+      "FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_VBG_RAMG",
+    "official_name": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+    "abbreviation": "VB-G RAM G",
+    "aliases": [
+      "VB-G RAM G",
+      "viksit bharat rozgar",
+      "125 days employment",
+      "rural employment 2026"
+    ],
+    "category": "Rural Development",
+    "subcategory": "Wage Employment",
+    "entity_type": "ACT",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "objective": "Provide statutory guarantee of 125 days of wage employment per rural household per financial year.",
+    "description": "Came into force 1 July 2026. Replaced MGNREGA. Increases guarantee from 100 to 125 days. 60-day agricultural season break where works may be suspended. Weekly wage payment (not later than fortnight after work done). Unemployment allowance for unmet guarantee. Four priority areas: water security, core rural infrastructure, livelihood-related infrastructure, extreme weather mitigation. Plans from Viksit Gram Panchayat Plans. Fund sharing: 60:40 (Centre:State); 90:10 for NE/Himalayan States. Existing MGNREGA e-KYC cards valid until Gramin Rozgar Guarantee Cards issued.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "Gram Panchayats, Block/District/State administrations",
+    "geographic_scope": "RURAL",
+    "status": "ACTIVE",
+    "effective_from": "2026-07-01",
+    "effective_until": null,
+    "version": "2025 Act",
+    "replaces": "SCH_MGNREGA",
+    "source_pages": [
+      21,
+      22,
+      23
+    ],
+    "source_sections": [
+      "VB-G RAM G Act details"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMJKMY",
+    "official_name": "Pradhan Mantri Kisan Mandhan Yojana",
+    "abbreviation": "PM-KMY",
+    "aliases": [
+      "kisan maandhan",
+      "farmer pension",
+      "pm kisan mandhan"
+    ],
+    "category": "Agriculture",
+    "subcategory": "Farmer Pension",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide old-age pension to small and marginal farmers.",
+    "description": "Voluntary contributory pension scheme for small and marginal farmers with cultivable land up to 2 hectares. Entry age 18-40. Monthly pension Rs 3,000 at age 60. Monthly contribution Rs 55 to Rs 200 (equal matching by Central Government).",
+    "ministry": "Ministry of Agriculture and Farmers Welfare",
+    "department": null,
+    "implementing_agency": "Common Service Centres (CSCs)",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      7,
+      8
+    ],
+    "source_sections": [
+      "Pradhan Mantri Kisan Mandhan Yojana"
+    ]
+  },
+  {
+    "scheme_id": "SCH_DDUGKY",
+    "official_name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+    "abbreviation": "DDU-GKY",
+    "aliases": [
+      "DDU-GKY",
+      "grameen kaushalya",
+      "rural skill training"
+    ],
+    "category": "Skill Development",
+    "subcategory": "Rural Youth Skilling",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "objective": "Skill rural poor youth and provide them with jobs having regular monthly wages.",
+    "description": "Training programs for youth aged 15-35 (up to 45 for women and vulnerable groups including PwD). Placement-linked skill training.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "DDU-GKY Training Centres",
+    "geographic_scope": "RURAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      4,
+      5
+    ],
+    "source_sections": [
+      "e-Shram Social Security Welfare Schemes - DDU-GKY"
+    ]
+  },
+  {
+    "scheme_id": "SCH_GKRY",
+    "official_name": "Garib Kalyan Rozgar Yojana",
+    "abbreviation": "GKRY",
+    "aliases": [
+      "garib kalyan rozgar",
+      "GKRY"
+    ],
+    "category": "Rural Development",
+    "subcategory": "Employment Campaign",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide 125 days of employment in 25 types of working areas.",
+    "description": "Scheme provides employment for 125 days. Target workers identified in 25 working areas including PM Kusum Works, cattle sheds, poultry sheds, goat sheds, Shyama Prasad Mukherjee RURBAN mission, national highways, well construction etc.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "Gram Panchayats, Designated Worksites",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      4
+    ],
+    "source_sections": [
+      "e-Shram - Garib Kalyan Rozgar Yojana"
+    ]
+  },
+  {
+    "scheme_id": "SCH_DAY",
+    "official_name": "Deen Dayal Upadhyaya Antyodaya Yojana",
+    "abbreviation": "DAY",
+    "aliases": [
+      "antyodaya yojana",
+      "DAY",
+      "deen dayal antyodaya"
+    ],
+    "category": "Livelihoods",
+    "subcategory": "Poverty Alleviation",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "objective": "Enhance skills and self-business by financing and supporting the poor.",
+    "description": "For any Indian citizen intending to get trained on skills. Aims to enhance skills and self-business financing. Covers both urban and rural poor.",
+    "ministry": "Ministry of Rural Development / Ministry of Housing and Urban Affairs",
+    "department": null,
+    "implementing_agency": "ULBs, State Rural Livelihoods Missions",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      4
+    ],
+    "source_sections": [
+      "e-Shram - DAY"
+    ]
+  },
+  {
+    "scheme_id": "SCH_PMKVY",
+    "official_name": "Pradhan Mantri Kaushal Vikas Yojana",
+    "abbreviation": "PMKVY",
+    "aliases": [
+      "PMKVY",
+      "kaushal vikas",
+      "skill india",
+      "skill training scheme"
+    ],
+    "category": "Skill Development",
+    "subcategory": "Youth Skilling",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "objective": "Create ecosystem for youth to get skill training and certification.",
+    "description": "For Indian nationals aged 18-45. 12th class dropouts or 10th pass students can enroll. Provides skill training and certification. Targets 8 lakh youth over scheme period 2020-21. Promotes sustainable Skill Centres and private sector participation.",
+    "ministry": "Ministry of Skill Development and Entrepreneurship",
+    "department": null,
+    "implementing_agency": "NSDC Training Partners, Skill India Centres",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      4,
+      5
+    ],
+    "source_sections": [
+      "e-Shram - PMKVY"
+    ]
+  },
+  {
+    "scheme_id": "SCH_NSAP",
+    "official_name": "National Social Assistance Programme",
+    "abbreviation": "NSAP",
+    "aliases": [
+      "NSAP",
+      "national social assistance",
+      "IGNOAPS",
+      "IGNWPS",
+      "IGNDPS",
+      "NFBS",
+      "Annapurna"
+    ],
+    "category": "Social Justice",
+    "subcategory": "Social Assistance",
+    "entity_type": "PROGRAMME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "objective": "Provide social assistance to BPL households for old age, widows, disabled persons, and bereaved families.",
+    "description": "Launched 15 August 1995. Five components: IGNOAPS (old age pension: Rs 200/month for 60-79, Rs 500/month for 80+), IGNWPS (widow pension: Rs 300/month, Rs 500/month after 80), IGNDPS (disability pension: Rs 300/month, Rs 500/month after 80), NFBS (Rs 20,000 one-time on breadwinner death aged 18-59 in BPL), Annapurna (10 kg food grains/month for eligible elderly not receiving IGNOAPS). Social audit required every 6 months; 100% beneficiary verification.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "1995-08-15",
+    "effective_until": null,
+    "version": "current",
+    "sub_schemes": [
+      "IGNOAPS",
+      "IGNWPS",
+      "IGNDPS",
+      "NFBS",
+      "Annapurna"
+    ],
+    "source_pages": [
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68
+    ],
+    "source_sections": [
+      "NSAP overview",
+      "NSAP Social Audit Guidelines",
+      "NSAP FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_NSAP_OA",
+    "official_name": "Indira Gandhi National Old Age Pension Scheme",
+    "abbreviation": "IGNOAPS",
+    "aliases": [
+      "IGNOAPS",
+      "old age pension",
+      "indira gandhi old age pension",
+      "nsap old age",
+      "NSAP-OA"
+    ],
+    "category": "Social Justice",
+    "subcategory": "Old Age Pension",
+    "entity_type": "SUB_SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "parent_scheme_id": "SCH_NSAP",
+    "objective": "Provide monthly pension to BPL elderly persons aged 60 years and above under the National Social Assistance Programme.",
+    "description": "IGNOAPS is a component of NSAP providing monthly pension to BPL senior citizens. Central Government contribution: Rs 200/month for age 60-79 years, Rs 500/month for age 80 years and above. States may add their own top-up contribution. Launched 15 August 1995. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "1995-08-15",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [60, 61, 62, 63, 64, 65, 66],
+    "source_sections": [
+      "NSAP overview",
+      "IGNOAPS component",
+      "NSAP FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_NSAP_W",
+    "official_name": "Indira Gandhi National Widow Pension Scheme",
+    "abbreviation": "IGNWPS",
+    "aliases": [
+      "IGNWPS",
+      "widow pension",
+      "indira gandhi widow pension",
+      "nsap widow",
+      "NSAP-W"
+    ],
+    "category": "Social Justice",
+    "subcategory": "Widow Pension",
+    "entity_type": "SUB_SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "parent_scheme_id": "SCH_NSAP",
+    "objective": "Provide monthly pension to BPL widows aged 40-79 years under the National Social Assistance Programme.",
+    "description": "IGNWPS is a component of NSAP providing monthly pension to BPL widows. Central Government contribution: Rs 300/month for age 40-79 years, Rs 500/month for age 80 years and above. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2009-02-01",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [60, 61, 62, 63, 64, 65, 66],
+    "source_sections": [
+      "NSAP overview",
+      "IGNWPS component",
+      "NSAP FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_NSAP_D",
+    "official_name": "Indira Gandhi National Disability Pension Scheme",
+    "abbreviation": "IGNDPS",
+    "aliases": [
+      "IGNDPS",
+      "disability pension",
+      "indira gandhi disability pension",
+      "nsap disability",
+      "NSAP-D"
+    ],
+    "category": "Social Justice",
+    "subcategory": "Disability Pension",
+    "entity_type": "SUB_SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "parent_scheme_id": "SCH_NSAP",
+    "objective": "Provide monthly pension to BPL persons with severe or multiple disabilities (80% or more) aged 18-79 years under the National Social Assistance Programme.",
+    "description": "IGNDPS is a component of NSAP providing monthly pension to BPL persons with 80% or more disability. Central Government contribution: Rs 300/month for age 18-79 years, Rs 500/month for age 80 years and above. Disability must be certified by a competent medical authority. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2009-02-01",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [60, 61, 62, 63, 64, 65, 66],
+    "source_sections": [
+      "NSAP overview",
+      "IGNDPS component",
+      "NSAP FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_NSAP_FB",
+    "official_name": "National Family Benefit Scheme",
+    "abbreviation": "NFBS",
+    "aliases": [
+      "NFBS",
+      "family benefit scheme",
+      "national family benefit",
+      "nsap family benefit",
+      "NSAP-FB",
+      "breadwinner death benefit"
+    ],
+    "category": "Social Justice",
+    "subcategory": "Bereaved Family Assistance",
+    "entity_type": "SUB_SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "parent_scheme_id": "SCH_NSAP",
+    "objective": "Provide one-time lump sum financial assistance to BPL households on the death of the primary breadwinner aged 18-59 years under the National Social Assistance Programme.",
+    "description": "NFBS is a component of NSAP providing Rs 20,000 one-time lump sum to BPL families on the death of the primary breadwinner aged 18-59 years. The assistance is paid to the surviving head of the household. Disbursed through DBT to the bank account of the bereaved family.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "1995-08-15",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [60, 61, 62, 63, 64, 65, 66],
+    "source_sections": [
+      "NSAP overview",
+      "NFBS component",
+      "NSAP FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_NSAP_AP",
+    "official_name": "Annapurna Scheme",
+    "abbreviation": "Annapurna",
+    "aliases": [
+      "Annapurna",
+      "annapurna scheme",
+      "nsap annapurna",
+      "NSAP-AP",
+      "free food grains elderly"
+    ],
+    "category": "Social Justice",
+    "subcategory": "Food Security for Elderly",
+    "entity_type": "SUB_SCHEME",
+    "scheme_type": "CENTRALLY_SPONSORED",
+    "parent_scheme_id": "SCH_NSAP",
+    "objective": "Provide 10 kg of free food grains per month to eligible elderly persons aged 60 and above who are not receiving pension under IGNOAPS, under the National Social Assistance Programme.",
+    "description": "Annapurna is a component of NSAP providing 10 kg of food grains (wheat or rice) per month free of cost to eligible BPL senior citizens aged 60 years and above who are not receiving pension under IGNOAPS. The scheme is meant to ensure food security for destitute elderly who have been left out of IGNOAPS coverage.",
+    "ministry": "Ministry of Rural Development",
+    "department": null,
+    "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "2000-04-01",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [60, 61, 62, 63, 64, 65, 66],
+    "source_sections": [
+      "NSAP overview",
+      "Annapurna component",
+      "NSAP FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_ABPMJAY",
+    "official_name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+    "abbreviation": "AB PM-JAY MMSBY",
+    "aliases": [
+      "AB PM-JAY",
+      "MMSBY",
+      "ayushman bharat",
+      "sehat bima",
+      "health insurance Punjab",
+      "ayushman"
+    ],
+    "category": "Health",
+    "subcategory": "State Health Insurance",
+    "entity_type": "SCHEME",
+    "scheme_type": "STATE_FLAGSHIP",
+    "objective": "Provide cashless health insurance cover for secondary and tertiary care hospitalization.",
+    "description": "Flagship State Health Insurance Scheme for Punjab. Launched 20 August 2019. Covers 65% of Punjab population. Cashless and paperless treatment at Government and empaneled private hospitals. Rs 5 lakh per family per year. Covers 1579 treatment packages including pre-hospitalization (3 days) and post-hospitalization (15 days). Entitlement-based scheme; no separate enrollment for identified families. E-card generation via Ayushman App or beneficiary.nha.gov.in.",
+    "ministry": "Government of Punjab",
+    "department": "Health & Family Welfare",
+    "implementing_agency": "State Health Agency Punjab, National Health Authority",
+    "geographic_scope": "STATE_SPECIFIC",
+    "target_state": "Punjab",
+    "status": "ACTIVE",
+    "effective_from": "2019-08-20",
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      68,
+      69,
+      70,
+      71
+    ],
+    "source_sections": [
+      "AB PM-JAY MMSBY details",
+      "AB PM-JAY MMSBY FAQs"
+    ]
+  },
+  {
+    "scheme_id": "SCH_HIS_WEAVERS",
+    "official_name": "Health Insurance Scheme for Weavers",
+    "abbreviation": "HIS",
+    "aliases": [
+      "weaver health insurance",
+      "HIS weavers"
+    ],
+    "category": "Health",
+    "subcategory": "Weaver Welfare",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide health coverage to handloom weavers.",
+    "description": "Health insurance for handloom weavers earning 50% or more income from weaving.",
+    "ministry": "Ministry of Textiles",
+    "department": null,
+    "implementing_agency": "Weavers Service Centres",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      6
+    ],
+    "source_sections": [
+      "e-Shram Health Insurance Scheme for Weavers"
+    ]
+  },
+  {
+    "scheme_id": "SCH_SRMS",
+    "official_name": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+    "abbreviation": "SRMS",
+    "aliases": [
+      "manual scavenger rehabilitation",
+      "SRMS"
+    ],
+    "category": "Social Justice",
+    "subcategory": "Rehabilitation",
+    "entity_type": "SCHEME",
+    "scheme_type": "CENTRAL_SECTOR",
+    "objective": "Provide cash assistance and skill training for rehabilitation of manual scavengers.",
+    "description": "One-time cash assistance of Rs 40,000 and free skill training with stipend Rs 3,000/month for identified manual scavengers.",
+    "ministry": "Ministry of Social Justice and Empowerment",
+    "department": null,
+    "implementing_agency": "NSKFDC",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": null,
+    "effective_until": null,
+    "version": "current",
+    "source_pages": [
+      7
+    ],
+    "source_sections": [
+      "e-Shram Social Security Welfare Schemes - SRMS"
+    ]
+  },
+  {
+    "scheme_id": "SCH_BOCW",
+    "official_name": "Building and Other Construction Workers Welfare Framework",
+    "abbreviation": "BOCW",
+    "aliases": [
+      "BOCW",
+      "construction workers",
+      "building workers welfare"
+    ],
+    "category": "Labour & Employment",
+    "subcategory": "Construction Worker Welfare",
+    "entity_type": "FRAMEWORK",
+    "scheme_type": "STATUTORY",
+    "objective": "Protect safety, health, welfare and social security of construction workers.",
+    "description": "Framework based on: BOCW (Regulation of Employment and Conditions of Service) Act 1996 and BOCW Welfare Cess Act 1996 (now subsumed under OSH Code 2020 and Code on Social Security 2020). State BOCW Welfare Boards register eligible workers and provide welfare from welfare fund. Registration: age 18-60; 90+ days construction work in last 12 months. Benefits vary by state: life insurance, disability, health, maternity, education, pension, housing. BOCW MIS Portal: bocw.labour.gov.in.",
+    "ministry": "Ministry of Labour & Employment",
+    "department": null,
+    "implementing_agency": "State/UT Building and Other Construction Workers Welfare Boards",
+    "geographic_scope": "NATIONAL",
+    "status": "ACTIVE",
+    "effective_from": "1996-01-01",
+    "effective_until": null,
+    "version": "current (OSH Code 2020 effective)",
+    "portal": "BOCW MIS Portal",
+    "source_pages": [
+      57,
+      58,
+      59,
+      60
+    ],
+    "source_sections": [
+      "BOCW description",
+      "BOCW eligibility",
+      "BOCW welfare boards"
+    ]
+  }
+]

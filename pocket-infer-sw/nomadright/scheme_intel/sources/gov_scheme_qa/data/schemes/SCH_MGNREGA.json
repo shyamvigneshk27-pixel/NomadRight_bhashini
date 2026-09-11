@@ -1,0 +1,44 @@
+{
+  "scheme_id": "SCH_MGNREGA",
+  "official_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+  "abbreviation": "MGNREGA",
+  "aliases": [
+    "MGNREGA",
+    "NREGA",
+    "100 days work",
+    "mgnregs",
+    "rural employment guarantee"
+  ],
+  "category": "Rural Development",
+  "subcategory": "Wage Employment",
+  "entity_type": "ACT",
+  "scheme_type": "STATUTORY",
+  "objective": "Enhance livelihood security of rural households by guaranteeing 100 days of wage employment per year.",
+  "description": "Statutory Act No. 42 of 2005. 100 days guaranteed wage employment per household per financial year for adult members willing to do unskilled manual work. Employment to be provided within 15 days. Unemployment allowance payable if employment not provided. Works at worksite: safe drinking water, shade, first aid. Medical treatment free if injured. Death/permanent disability ex gratia: Rs 25,000. Equal wages; no gender discrimination. REPEALED from 1 July 2026 by VB-G RAM G Act 2025.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "Gram Panchayats, Programme Officers, District Programme Coordinators",
+  "geographic_scope": "RURAL",
+  "status": "REPEALED",
+  "effective_from": "2005-09-05",
+  "effective_until": "2026-06-30",
+  "version": "original 2005 Act",
+  "superseded_by": "SCH_VBG_RAMG",
+  "source_pages": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "source_sections": [
+    "MGNREGA Act text",
+    "Schedules",
+    "FAQs"
+  ]
+}

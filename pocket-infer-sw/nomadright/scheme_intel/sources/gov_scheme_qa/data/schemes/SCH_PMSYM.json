@@ -1,0 +1,34 @@
+{
+  "scheme_id": "SCH_PMSYM",
+  "official_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+  "abbreviation": "PM-SYM",
+  "aliases": [
+    "PM SYM",
+    "shram yogi maandhan",
+    "PMSYM",
+    "unorganised worker pension"
+  ],
+  "category": "Pension & Social Security",
+  "subcategory": "Unorganised Workers Pension",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Old age protection for unorganised workers by providing assured monthly pension of Rs 3000 after age 60.",
+  "description": "Voluntary and contributory pension scheme for unorganised workers. Monthly contribution ranges from Rs 55 to Rs 200 depending upon the entry age. 50% paid by beneficiary and 50% matched by Central Government.",
+  "ministry": "Ministry of Labour & Employment",
+  "department": null,
+  "implementing_agency": "Common Service Centres (CSCs)",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    3,
+    4,
+    5
+  ],
+  "source_sections": [
+    "e-Shram Social Security Welfare Schemes",
+    "PMSYM eligibility and benefits"
+  ]
+}

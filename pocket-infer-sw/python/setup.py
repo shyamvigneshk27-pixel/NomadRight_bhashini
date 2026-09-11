@@ -17,7 +17,11 @@ setup(
     install_requires=requirements,
     include_package_data=True,
     entry_points={
-        'console_scripts': ['pocketinfer-service=pocketinfer.service:main'],
+        # master.run_master() is the real entry point - it defaults --app
+        # to "NomadRight" (service.main() alone defaults to the legacy
+        # "HearTheWorld") and pre-warms Ollama only for apps that need it.
+        # See master.py's run_master() docstring/comments.
+        'console_scripts': ['pocketinfer-service=pocketinfer.master:run_master'],
     },
     classifiers=[
         'Programming Language :: Python :: 3',

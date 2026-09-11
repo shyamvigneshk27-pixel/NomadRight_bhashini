@@ -1,0 +1,42 @@
+{
+  "scheme_id": "SCH_ONORC",
+  "official_name": "One Nation One Ration Card",
+  "abbreviation": "ONORC",
+  "aliases": [
+    "ONORC",
+    "one nation ration card",
+    "ration portability",
+    "mera ration"
+  ],
+  "category": "Food Security",
+  "subcategory": "PDS Portability",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Enable nationwide portability of PDS benefits for NFSA beneficiaries, especially migrant workers, using Aadhaar/biometric authentication at any Fair Price Shop across India.",
+  "description": "ONORC is a national ration-card portability scheme launched in 2018 by Department of Food & Supplies and Consumer Affairs. It enables migrant workers and their family members to access PDS benefits from any Fair Price Shop anywhere in the country. Implemented in all 36 States/UTs. Mobile app MERA RATION available in 13 languages.",
+  "ministry": "Ministry of Consumer Affairs, Food & Public Distribution",
+  "department": "Department of Food & Supplies and Consumer Affairs",
+  "implementing_agency": "States/UTs via ePoS at Fair Price Shops",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2018-01-01",
+  "effective_until": null,
+  "version": "current",
+  "portals": [
+    "National Food Security Portal"
+  ],
+  "mobile_app": "MERA RATION (13 languages)",
+  "source_pages": [
+    1,
+    2
+  ],
+  "source_sections": [
+    "Short Description",
+    "Details",
+    "Benefits",
+    "Eligibility",
+    "Application Process",
+    "Documents Required",
+    "FAQs"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "scheme_id": "SCH_NSAP_W",
+  "official_name": "Indira Gandhi National Widow Pension Scheme",
+  "abbreviation": "IGNWPS",
+  "aliases": [
+    "IGNWPS",
+    "widow pension",
+    "indira gandhi widow pension",
+    "nsap widow",
+    "NSAP-W"
+  ],
+  "category": "Social Justice",
+  "subcategory": "Widow Pension",
+  "entity_type": "SUB_SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "parent_scheme_id": "SCH_NSAP",
+  "objective": "Provide monthly pension to BPL widows aged 40-79 years under the National Social Assistance Programme.",
+  "description": "IGNWPS is a component of NSAP providing monthly pension to BPL widows. Central Government contribution: Rs 300/month for age 40-79 years, Rs 500/month for age 80 years and above. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2009-02-01",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [60, 61, 62, 63, 64, 65, 66],
+  "source_sections": [
+    "NSAP overview",
+    "IGNWPS component",
+    "NSAP FAQs"
+  ]
+}

@@ -1,0 +1,1174 @@
+[
+  {
+    "rule_id": "RULE_ONORC_ELIG",
+    "scheme_id": "SCH_ONORC",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for One Nation One Ration Card",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "institutional.has_ration_card",
+        "operator": "==",
+        "value": true,
+        "description": "Must be a ration cardholder covered under NFSA 2013",
+        "citation": "Page 1, Eligibility section"
+      },
+      {
+        "field": "institutional.is_aadhaar_seeded_in_ration_card",
+        "operator": "==",
+        "value": true,
+        "description": "Aadhaar number must be seeded in ration card",
+        "citation": "Page 1, Eligibility section"
+      }
+    ],
+    "source_pages": [1],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMSYM_ELIG",
+    "scheme_id": "SCH_PMSYM",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM Shram Yogi Maan-Dhan",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.citizenship",
+        "operator": "==",
+        "value": "INDIAN",
+        "description": "Must be an Indian Citizen",
+        "citation": "Page 3, PMSYM Eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Age must be 18 years or above",
+        "citation": "Page 3, PMSYM Eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 40,
+        "description": "Age must not exceed 40 years",
+        "citation": "Page 3, PMSYM Eligibility"
+      },
+      {
+        "field": "economic.monthly_income_inr",
+        "operator": "<=",
+        "value": 15000,
+        "description": "Monthly income must be below Rs 15,000",
+        "citation": "Page 3, PMSYM Eligibility"
+      },
+      {
+        "field": "occupational.occupation_type",
+        "operator": "==",
+        "value": "UNORGANISED_WORKER",
+        "description": "Must be an unorganised worker",
+        "citation": "Page 3, PMSYM Eligibility"
+      }
+    ],
+    "source_pages": [3],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMSYM_EXCL",
+    "scheme_id": "SCH_PMSYM",
+    "rule_type": "EXCLUSION",
+    "description": "Excluded from PM Shram Yogi Maan-Dhan",
+    "operator": "OR",
+    "conditions": [
+      {
+        "field": "institutional.covered_by_epfo",
+        "operator": "==",
+        "value": true,
+        "description": "EPFO member is excluded",
+        "citation": "Page 3, PMSYM Eligibility"
+      },
+      {
+        "field": "institutional.covered_by_esic",
+        "operator": "==",
+        "value": true,
+        "description": "ESIC member is excluded",
+        "citation": "Page 3, PMSYM Eligibility"
+      },
+      {
+        "field": "institutional.covered_by_nps_govt",
+        "operator": "==",
+        "value": true,
+        "description": "Government-funded NPS member is excluded",
+        "citation": "Page 3, PMSYM Eligibility"
+      },
+      {
+        "field": "economic.is_income_tax_payer",
+        "operator": "==",
+        "value": true,
+        "description": "Income tax payer is excluded",
+        "citation": "Page 3, PMSYM Eligibility"
+      }
+    ],
+    "source_pages": [3],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_NPST_ELIG",
+    "scheme_id": "SCH_NPST",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for NPS Traders Scheme",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.citizenship",
+        "operator": "==",
+        "value": "INDIAN",
+        "description": "Must be Indian Citizen",
+        "citation": "Page 3, NPS Traders Eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Age must be 18 or above",
+        "citation": "Page 3, NPS Traders Eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 40,
+        "description": "Age must not exceed 40",
+        "citation": "Page 3, NPS Traders Eligibility"
+      },
+      {
+        "field": "occupational.occupation_type",
+        "operator": "IN",
+        "value": ["SHOPKEEPER", "SMALL_TRADER", "SELF_EMPLOYED"],
+        "description": "Must be a shopkeeper, petty/small shop owner (restaurants, hotels, real estate brokers etc.)",
+        "citation": "Page 3, NPS Traders Eligibility"
+      },
+      {
+        "field": "economic.annual_turnover_inr",
+        "operator": "<=",
+        "value": 15000000,
+        "description": "Annual turnover must not exceed Rs 1.5 Crore",
+        "citation": "Page 3, NPS Traders Eligibility"
+      }
+    ],
+    "source_pages": [3],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_NPST_EXCL",
+    "scheme_id": "SCH_NPST",
+    "rule_type": "EXCLUSION",
+    "description": "Excluded from NPS Traders",
+    "operator": "OR",
+    "conditions": [
+      {
+        "field": "institutional.covered_by_epfo",
+        "operator": "==",
+        "value": true,
+        "description": "EPFO member excluded",
+        "citation": "Page 3, NPS Traders"
+      },
+      {
+        "field": "institutional.covered_by_esic",
+        "operator": "==",
+        "value": true,
+        "description": "ESIC member excluded",
+        "citation": "Page 3, NPS Traders"
+      },
+      {
+        "field": "institutional.enrolled_in_pmsym",
+        "operator": "==",
+        "value": true,
+        "description": "Already enrolled in PM-SYM excluded",
+        "citation": "Page 3, NPS Traders"
+      }
+    ],
+    "source_pages": [3],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMJJBY_ELIG",
+    "scheme_id": "SCH_PMJJBY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM Jeevan Jyoti Bima Yojana",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Age must be 18 years (completed) or above",
+        "citation": "Page 5, PMJJBY Eligibility; Revised Rules Para 7"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 50,
+        "description": "Age must not exceed 50 years (age nearer birthday)",
+        "citation": "Page 5, PMJJBY Eligibility; Revised Rules Para 7"
+      },
+      {
+        "field": "institutional.has_bank_account",
+        "operator": "==",
+        "value": true,
+        "description": "Must have a bank or post office savings account",
+        "citation": "Page 5, PMJJBY; Revised Rules Para 2"
+      },
+      {
+        "field": "institutional.has_aadhaar",
+        "operator": "==",
+        "value": true,
+        "description": "Aadhaar is primary KYC for bank account",
+        "citation": "Revised Rules Para 2"
+      }
+    ],
+    "source_pages": [5, 6, 7],
+    "valid_from": "2022-06-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMJJBY_LIEN",
+    "scheme_id": "SCH_PMJJBY",
+    "rule_type": "SPECIAL_CONDITION",
+    "description": "30-day lien period for non-accidental death (new/rejoining subscribers from 1 June 2021)",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "temporal.enrollment_date_within_30_days",
+        "operator": "==",
+        "value": true,
+        "description": "Death within first 30 days from enrollment",
+        "citation": "Revised Rules Para 4"
+      },
+      {
+        "field": "event.death_cause",
+        "operator": "!=",
+        "value": "ACCIDENT",
+        "description": "Non-accidental death during lien period is not covered",
+        "citation": "Revised Rules Para 4"
+      }
+    ],
+    "source_pages": [7],
+    "valid_from": "2021-06-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMSBY_ELIG",
+    "scheme_id": "SCH_PMSBY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM Suraksha Bima Yojana",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Age 18 or above",
+        "citation": "Page 5, PMSBY Eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 70,
+        "description": "Age 70 or below",
+        "citation": "Page 5, PMSBY Eligibility"
+      },
+      {
+        "field": "institutional.has_bank_account",
+        "operator": "==",
+        "value": true,
+        "description": "Must have Jan Dhan or savings bank account with Aadhaar",
+        "citation": "Page 5, PMSBY Eligibility"
+      }
+    ],
+    "source_pages": [5, 6],
+    "valid_from": "2022-06-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_APY_ELIG",
+    "scheme_id": "SCH_APY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for Atal Pension Yojana",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Minimum age 18 years",
+        "citation": "Page 6, APY guidelines"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 40,
+        "description": "Maximum entry age 40 years",
+        "citation": "Page 6, APY guidelines"
+      },
+      {
+        "field": "institutional.has_savings_bank_account",
+        "operator": "==",
+        "value": true,
+        "description": "Must have a savings bank account",
+        "citation": "Page 6, APY guidelines"
+      }
+    ],
+    "source_pages": [6, 7, 8, 9],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMKISAN_ELIG",
+    "scheme_id": "SCH_PMKISAN",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM-KISAN income support",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "agriculture.owns_cultivable_land",
+        "operator": "==",
+        "value": true,
+        "description": "Must be a landholding farmer family with cultivable land in their name (any size from 01.06.2019)",
+        "citation": "Page 10, PM-KISAN FAQ; land size restriction removed 01.06.2019"
+      },
+      {
+        "field": "agriculture.land_is_in_family_name",
+        "operator": "==",
+        "value": true,
+        "description": "Cultivable land must be in the name of the farmer family",
+        "citation": "Page 10, PM-KISAN"
+      }
+    ],
+    "source_pages": [10, 11, 12, 13],
+    "valid_from": "2019-06-01",
+    "valid_until": null,
+    "supersedes_rule": "RULE_PMKISAN_ELIG_LEGACY"
+  },
+  {
+    "rule_id": "RULE_PMKISAN_ELIG_LEGACY",
+    "scheme_id": "SCH_PMKISAN",
+    "rule_type": "QUALIFICATION",
+    "description": "HISTORICAL: Initial PM-KISAN eligibility (land up to 2 hectares only)",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "agriculture.owns_cultivable_land",
+        "operator": "==",
+        "value": true,
+        "description": "Must own cultivable land",
+        "citation": "Page 13, Set 2 FAQs (historical)"
+      },
+      {
+        "field": "agriculture.land_area_ha",
+        "operator": "<=",
+        "value": 2.0,
+        "description": "HISTORICAL: Land must be up to 2 hectares (pre-01.06.2019)",
+        "citation": "Page 13, PM-KISAN Set 2 FAQs (historical - before revision)"
+      }
+    ],
+    "source_pages": [13],
+    "valid_from": "2018-12-01",
+    "valid_until": "2019-05-31",
+    "superseded_by": "RULE_PMKISAN_ELIG"
+  },
+  {
+    "rule_id": "RULE_PMKISAN_EXCL",
+    "scheme_id": "SCH_PMKISAN",
+    "rule_type": "EXCLUSION",
+    "description": "Excluded from PM-KISAN",
+    "operator": "OR",
+    "conditions": [
+      {
+        "field": "agriculture.is_institutional_landholder",
+        "operator": "==",
+        "value": true,
+        "description": "Institutional landholders (companies, trusts etc.) excluded",
+        "citation": "Page 10, PM-KISAN exclusions"
+      },
+      {
+        "field": "institutional.is_constitutional_post_holder",
+        "operator": "==",
+        "value": true,
+        "description": "Former/current MP, MLA, Ministers, Mayors excluded",
+        "citation": "Page 10, PM-KISAN exclusions"
+      },
+      {
+        "field": "occupational.is_central_state_govt_employee",
+        "operator": "==",
+        "value": true,
+        "description": "Central/State Government employees (except MTS/Group D) excluded",
+        "citation": "Page 10, PM-KISAN exclusions"
+      },
+      {
+        "field": "economic.monthly_pension_inr",
+        "operator": ">=",
+        "value": 10000,
+        "description": "Persons getting pension of Rs 10,000 or more per month excluded",
+        "citation": "Page 10, PM-KISAN exclusions"
+      },
+      {
+        "field": "economic.is_income_tax_payer",
+        "operator": "==",
+        "value": true,
+        "description": "Income tax payers excluded",
+        "citation": "Page 10, PM-KISAN exclusions"
+      },
+      {
+        "field": "occupational.is_registered_professional",
+        "operator": "==",
+        "value": true,
+        "description": "Doctors, engineers, lawyers, CAs and other registered professionals excluded",
+        "citation": "Page 10, PM-KISAN exclusions"
+      }
+    ],
+    "source_pages": [10, 11],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMSURYA_ELIG",
+    "scheme_id": "SCH_PMSURYA",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM Surya Ghar rooftop solar subsidy",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "institutional.has_electricity_connection",
+        "operator": "==",
+        "value": true,
+        "description": "Must have registered DISCOM electricity connection",
+        "citation": "Page 18, PM Surya Ghar Consumer Registration"
+      },
+      {
+        "field": "housing.roof_type",
+        "operator": "==",
+        "value": "SUITABLE_FOR_SOLAR",
+        "description": "Roof must be feasible for solar installation (DISCOM approval)",
+        "citation": "Page 19, Application step 3"
+      }
+    ],
+    "source_pages": [18, 19, 20],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_SVANIDHI_ELIG",
+    "scheme_id": "SCH_SVANIDHI",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM SVANidhi working capital loan",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.citizenship",
+        "operator": "==",
+        "value": "INDIAN",
+        "description": "Must be Indian Citizen",
+        "citation": "Page 4, e-Shram SVANidhi"
+      },
+      {
+        "field": "occupational.occupation_type",
+        "operator": "==",
+        "value": "STREET_VENDOR",
+        "description": "Must be a street vendor/hawker",
+        "citation": "Page 22, SVANidhi FAQ 5"
+      },
+      {
+        "field": "occupational.vending_as_of_march_2020",
+        "operator": "==",
+        "value": true,
+        "description": "Must have been vending in urban areas as on or before March 24, 2020",
+        "citation": "Page 22, SVANidhi FAQ 5"
+      },
+      {
+        "operator": "OR",
+        "conditions": [
+          {
+            "field": "institutional.has_cov_or_id_card",
+            "operator": "==",
+            "value": true,
+            "description": "Has Certificate of Vending or Identity Card from ULB",
+            "citation": "Page 22, SVANidhi Eligibility"
+          },
+          {
+            "field": "institutional.is_in_survey_list",
+            "operator": "==",
+            "value": true,
+            "description": "Is in the surveyed vendor list (Provisional CoV issued)",
+            "citation": "Page 22, SVANidhi Eligibility"
+          },
+          {
+            "field": "institutional.has_lor_from_ulb",
+            "operator": "==",
+            "value": true,
+            "description": "Has Letter of Recommendation from ULB/TVC (for peri-urban/unsurveyed vendors)",
+            "citation": "Page 23, SVANidhi FAQ 5/6"
+          }
+        ]
+      }
+    ],
+    "source_pages": [22, 23],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_VISHWA_ELIG",
+    "scheme_id": "SCH_VISHWA",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM Vishwakarma scheme",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Must be 18 years or above",
+        "citation": "Page 27, PM Vishwakarma FAQs"
+      },
+      {
+        "field": "occupational.artisan_trade",
+        "operator": "IN",
+        "value": [
+          "CARPENTER", "BOAT_MAKER", "ARMOURER", "BLACKSMITH", "HAMMER_AND_TOOL_KIT_MAKER",
+          "LOCKSMITH", "SCULPTOR_STONE_CARVER", "GOLDSMITH", "POTTER", "COBBLER",
+          "MASON", "BASKET_MAT_BROOM_MAKER_COIR_WEAVER", "DOLL_AND_TOY_MAKER",
+          "BARBER", "GARLAND_MAKER", "WASHERMAN", "TAILOR", "FISHING_NET_MAKER"
+        ],
+        "description": "Must work in one of the 18 approved traditional artisan trades",
+        "citation": "Page 27, PM Vishwakarma FAQs"
+      }
+    ],
+    "source_pages": [27, 28, 29, 30, 31, 32],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_VISHWA_EXCL",
+    "scheme_id": "SCH_VISHWA",
+    "rule_type": "EXCLUSION",
+    "description": "Excluded from PM Vishwakarma",
+    "operator": "OR",
+    "conditions": [
+      {
+        "field": "institutional.is_govt_employee_or_family",
+        "operator": "==",
+        "value": true,
+        "description": "Government employee and their family members not eligible",
+        "citation": "Page 31, PM Vishwakarma FAQ 21"
+      },
+      {
+        "field": "institutional.has_family_member_availed_vishwa",
+        "operator": "==",
+        "value": true,
+        "description": "Only one member per family (husband, wife, unmarried children) can apply",
+        "citation": "Page 31, PM Vishwakarma FAQ 23"
+      },
+      {
+        "field": "institutional.availed_pmegp",
+        "operator": "==",
+        "value": true,
+        "description": "PMEGP loan availed - not eligible",
+        "citation": "Page 31, PM Vishwakarma FAQ 24"
+      },
+      {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "institutional.has_outstanding_svanidhi_loan",
+            "operator": "==",
+            "value": true,
+            "description": "Outstanding PM SVANidhi loan - not eligible (unless fully repaid)",
+            "citation": "Page 31, PM Vishwakarma FAQ 24"
+          }
+        ]
+      },
+      {
+        "operator": "AND",
+        "conditions": [
+          {
+            "field": "institutional.has_outstanding_mudra_loan",
+            "operator": "==",
+            "value": true,
+            "description": "Outstanding PM MUDRA loan - not eligible (unless fully repaid)",
+            "citation": "Page 31, PM Vishwakarma FAQ 24"
+          }
+        ]
+      }
+    ],
+    "source_pages": [31],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMUY_ELIG",
+    "scheme_id": "SCH_PMUY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM Ujjwala Yojana LPG connection",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.gender",
+        "operator": "==",
+        "value": "FEMALE",
+        "description": "Applicant must be a woman",
+        "citation": "Page 32, PMUY Eligibility point 1"
+      },
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Must have attained 18 years of age",
+        "citation": "Page 32, PMUY Eligibility point 1"
+      },
+      {
+        "field": "institutional.has_existing_lpg_connection_in_household",
+        "operator": "==",
+        "value": false,
+        "description": "No other LPG connection from any OMC should exist in the same household",
+        "citation": "Page 32, PMUY Eligibility point 2"
+      },
+      {
+        "field": "economic.is_from_poor_household",
+        "operator": "==",
+        "value": true,
+        "description": "Must belong to a poor household (deprivation declaration required)",
+        "citation": "Page 32, PMUY Eligibility point 3"
+      }
+    ],
+    "source_pages": [32, 33],
+    "valid_from": "2016-05-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMAYG_ELIG",
+    "scheme_id": "SCH_PMAYG",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PMAY-G rural housing assistance",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "geographic.area_type",
+        "operator": "==",
+        "value": "RURAL",
+        "description": "Must be a rural household",
+        "citation": "Page 55, PMAY-G"
+      },
+      {
+        "operator": "OR",
+        "conditions": [
+          {
+            "field": "housing.secc_housing_deprivation",
+            "operator": "IN",
+            "value": ["HOUSELESS", "ZERO_ROOM_KUTCHA", "ONE_ROOM_KUTCHA", "TWO_ROOM_KUTCHA"],
+            "description": "Household is houseless or living in 0, 1, or 2 kutcha wall/roof house per SECC 2011",
+            "citation": "Page 56, PMAY-G beneficiary selection"
+          },
+          {
+            "field": "housing.in_awasplus_list",
+            "operator": "==",
+            "value": true,
+            "description": "Household included in Awaas+ list",
+            "citation": "Page 56, PMAY-G"
+          }
+        ]
+      }
+    ],
+    "source_pages": [55, 56],
+    "valid_from": "2016-04-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_BOCW_ELIG",
+    "scheme_id": "SCH_BOCW",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for BOCW worker registration",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Must be 18 years or above",
+        "citation": "Page 57, BOCW eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 60,
+        "description": "Must not have completed 60 years",
+        "citation": "Page 57, BOCW eligibility"
+      },
+      {
+        "field": "occupational.construction_days_in_last_12_months",
+        "operator": ">=",
+        "value": 90,
+        "description": "Must have worked in construction for at least 90 days in the preceding 12 months",
+        "citation": "Page 57, BOCW eligibility"
+      }
+    ],
+    "source_pages": [57],
+    "valid_from": "1996-01-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_SSY_ELIG",
+    "scheme_id": "SCH_SSY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for Sukanya Samriddhi Yojana account",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.gender",
+        "operator": "==",
+        "value": "FEMALE",
+        "description": "Account is for girl child only",
+        "citation": "Page 51, SSY details"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<",
+        "value": 10,
+        "description": "Girl child must be below 10 years at time of account opening",
+        "citation": "Page 51, SSY details"
+      },
+      {
+        "field": "demographic.citizenship",
+        "operator": "==",
+        "value": "INDIAN_RESIDENT",
+        "description": "Must be resident Indian (NRI not eligible)",
+        "citation": "Page 51, SSY details"
+      }
+    ],
+    "source_pages": [51, 52],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_SSY_FAMILY_CAP",
+    "scheme_id": "SCH_SSY",
+    "rule_type": "EXCLUSION",
+    "description": "SSY family limit: maximum 2 girls per family",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "family.existing_ssy_accounts_count",
+        "operator": ">=",
+        "value": 2,
+        "description": "Maximum 2 SSY accounts per family (exception for twins/triplets)",
+        "citation": "Page 51, SSY details"
+      }
+    ],
+    "source_pages": [51],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_ABPMJAY_ELIG",
+    "scheme_id": "SCH_ABPMJAY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for AB PM-JAY MMSBY (Punjab)",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "geographic.state",
+        "operator": "==",
+        "value": "Punjab",
+        "description": "Must be a resident of Punjab",
+        "citation": "Page 68, AB PM-JAY Eligibility"
+      },
+      {
+        "operator": "OR",
+        "conditions": [
+          {
+            "field": "institutional.in_secc_2011_data",
+            "operator": "==",
+            "value": true,
+            "description": "Part of SECC 2011 data families",
+            "citation": "Page 68, AB PM-JAY Eligibility"
+          },
+          {
+            "field": "institutional.has_smart_ration_card",
+            "operator": "==",
+            "value": true,
+            "description": "Smart Ration Card holder family",
+            "citation": "Page 68, AB PM-JAY Eligibility"
+          },
+          {
+            "field": "institutional.is_jform_farmer",
+            "operator": "==",
+            "value": true,
+            "description": "J-Form holder farmer",
+            "citation": "Page 68, AB PM-JAY Eligibility"
+          },
+          {
+            "field": "institutional.is_small_trader_registered",
+            "operator": "==",
+            "value": true,
+            "description": "Small trader registered with Excise & Taxation Department",
+            "citation": "Page 68, AB PM-JAY Eligibility"
+          },
+          {
+            "field": "agriculture.is_small_marginal_farmer",
+            "operator": "==",
+            "value": true,
+            "description": "Small & Marginal Farmer",
+            "citation": "Page 68, AB PM-JAY Eligibility"
+          },
+          {
+            "field": "institutional.is_accredited_journalist",
+            "operator": "==",
+            "value": true,
+            "description": "Accredited & Yellow Card Journalist",
+            "citation": "Page 68, AB PM-JAY Eligibility"
+          },
+          {
+            "field": "institutional.is_bocw_registered_worker",
+            "operator": "==",
+            "value": true,
+            "description": "Construction worker registered with Punjab BOCW Welfare Board",
+            "citation": "Page 68, AB PM-JAY Eligibility"
+          }
+        ]
+      }
+    ],
+    "source_pages": [68, 69],
+    "valid_from": "2019-08-20",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMKMY_ELIG",
+    "scheme_id": "SCH_PMJKMY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PM Kisan Mandhan Yojana (farmer pension)",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "agriculture.is_small_marginal_farmer",
+        "operator": "==",
+        "value": true,
+        "description": "Must be a small and marginal farmer",
+        "citation": "Page 7, Pradhan Mantri Kisan Mandhan Yojana"
+      },
+      {
+        "field": "agriculture.land_area_ha",
+        "operator": "<=",
+        "value": 2.0,
+        "description": "Cultivable land must be up to 2 hectares",
+        "citation": "Page 7, Pradhan Mantri Kisan Mandhan Yojana"
+      },
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Age 18 or above",
+        "citation": "Page 7, Pradhan Mantri Kisan Mandhan Yojana"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 40,
+        "description": "Age 40 or below",
+        "citation": "Page 7, Pradhan Mantri Kisan Mandhan Yojana"
+      }
+    ],
+    "source_pages": [7, 8],
+    "valid_from": null,
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_PMFBY_ELIG",
+    "scheme_id": "SCH_PMFBY",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for PMFBY crop insurance",
+    "operator": "AND",
+    "conditions": [
+      {
+        "operator": "OR",
+        "conditions": [
+          {
+            "field": "agriculture.farmer_type",
+            "operator": "IN",
+            "value": ["OWNER_FARMER", "SHARECROPPER", "TENANT_FARMER"],
+            "description": "Can be owner, sharecropper, or tenant farmer",
+            "citation": "Page 44, PMFBY FAQ 3"
+          },
+          {
+            "field": "agriculture.is_tribal_forest_dweller",
+            "operator": "==",
+            "value": true,
+            "description": "Tribal farmers with FRA land eligible",
+            "citation": "Page 44, PMFBY FAQ 5"
+          },
+          {
+            "field": "agriculture.cultivates_community_land",
+            "operator": "==",
+            "value": true,
+            "description": "Farmers cultivating community-owned land (NE states) eligible",
+            "citation": "Page 44, PMFBY FAQ 6"
+          }
+        ]
+      },
+      {
+        "field": "agriculture.has_insurable_interest_in_crop",
+        "operator": "==",
+        "value": true,
+        "description": "Must have an insurable interest in the insured crop",
+        "citation": "Page 44, PMFBY FAQ 3"
+      },
+      {
+        "field": "agriculture.crop_is_notified",
+        "operator": "==",
+        "value": true,
+        "description": "Must be growing notified crops in notified areas",
+        "citation": "Page 44, PMFBY FAQ 3"
+      }
+    ],
+    "source_pages": [44, 45],
+    "valid_from": "2016-01-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_MGNREGA_ELIG",
+    "scheme_id": "SCH_MGNREGA",
+    "rule_type": "QUALIFICATION",
+    "description": "HISTORICAL: Eligible for MGNREGA (valid until 30 June 2026)",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Must be an adult member (18+)",
+        "citation": "Page 12, MGNREGA FAQ 2"
+      },
+      {
+        "field": "geographic.area_type",
+        "operator": "==",
+        "value": "RURAL",
+        "description": "Must reside in rural area",
+        "citation": "Page 12, MGNREGA FAQ 2"
+      },
+      {
+        "field": "occupational.willing_for_unskilled_manual_work",
+        "operator": "==",
+        "value": true,
+        "description": "Must be willing to do unskilled manual work",
+        "citation": "Page 12, MGNREGA FAQ 2"
+      }
+    ],
+    "source_pages": [12, 13],
+    "valid_from": "2005-09-05",
+    "valid_until": "2026-06-30"
+  },
+  {
+    "rule_id": "RULE_VBG_RAMG_ELIG",
+    "scheme_id": "SCH_VBG_RAMG",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for VB-G RAM G Act 2025 employment (from 1 July 2026)",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Must be an adult member (18+)",
+        "citation": "Page 21, VB-G RAM G Act details"
+      },
+      {
+        "field": "geographic.area_type",
+        "operator": "==",
+        "value": "RURAL",
+        "description": "Must reside in rural area",
+        "citation": "Page 21, VB-G RAM G Act details"
+      },
+      {
+        "field": "occupational.willing_for_unskilled_manual_work",
+        "operator": "==",
+        "value": true,
+        "description": "Must volunteer to undertake unskilled manual work",
+        "citation": "Page 21, VB-G RAM G Act details"
+      }
+    ],
+    "source_pages": [21, 22, 23],
+    "valid_from": "2026-07-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_NSAP_OA_ELIG",
+    "scheme_id": "SCH_NSAP_OA",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for IGNOAPS Old Age Pension",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 60,
+        "description": "Applicant must be aged 60 years or above",
+        "citation": "Page 65, NSAP IGNOAPS Eligibility"
+      },
+      {
+        "field": "economic.is_bpl",
+        "operator": "==",
+        "value": true,
+        "description": "Applicant must belong to a household living below the poverty line (BPL)",
+        "citation": "Page 65, NSAP IGNOAPS Eligibility"
+      }
+    ],
+    "source_pages": [65, 66],
+    "valid_from": "1995-08-15",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_NSAP_W_ELIG",
+    "scheme_id": "SCH_NSAP_W",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for IGNWPS Widow Pension",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 40,
+        "description": "Widow must be aged 40 years or above",
+        "citation": "Page 65, NSAP IGNWPS Eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 79,
+        "description": "Widow must be aged 79 years or below (Rs 500/month for 80+)",
+        "citation": "Page 65, NSAP IGNWPS Eligibility"
+      },
+      {
+        "field": "demographic.marital_status",
+        "operator": "==",
+        "value": "WIDOW",
+        "description": "Applicant must be a widow",
+        "citation": "Page 65, NSAP IGNWPS Eligibility"
+      },
+      {
+        "field": "economic.is_bpl",
+        "operator": "==",
+        "value": true,
+        "description": "Applicant must belong to a BPL household",
+        "citation": "Page 65, NSAP IGNWPS Eligibility"
+      }
+    ],
+    "source_pages": [65, 66],
+    "valid_from": "2009-02-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_NSAP_D_ELIG",
+    "scheme_id": "SCH_NSAP_D",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for IGNDPS Disability Pension",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Applicant must be aged 18 years or above",
+        "citation": "Page 65, NSAP IGNDPS Eligibility"
+      },
+      {
+        "field": "demographic.age",
+        "operator": "<=",
+        "value": 79,
+        "description": "Applicant must be aged 79 years or below (Rs 500/month for 80+)",
+        "citation": "Page 65, NSAP IGNDPS Eligibility"
+      },
+      {
+        "field": "disability.percentage",
+        "operator": ">=",
+        "value": 80,
+        "description": "Applicant must have 80% or more disability certified by competent medical authority",
+        "citation": "Page 65, NSAP IGNDPS Eligibility"
+      },
+      {
+        "field": "economic.is_bpl",
+        "operator": "==",
+        "value": true,
+        "description": "Applicant must belong to a BPL household",
+        "citation": "Page 65, NSAP IGNDPS Eligibility"
+      }
+    ],
+    "source_pages": [65, 66],
+    "valid_from": "2009-02-01",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_NSAP_FB_ELIG",
+    "scheme_id": "SCH_NSAP_FB",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for NFBS National Family Benefit Scheme",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.breadwinner_age",
+        "operator": ">=",
+        "value": 18,
+        "description": "Deceased breadwinner must have been aged 18 years or above",
+        "citation": "Page 65, NSAP NFBS Eligibility"
+      },
+      {
+        "field": "demographic.breadwinner_age",
+        "operator": "<=",
+        "value": 59,
+        "description": "Deceased breadwinner must have been aged 59 years or below",
+        "citation": "Page 65, NSAP NFBS Eligibility"
+      },
+      {
+        "field": "economic.is_bpl",
+        "operator": "==",
+        "value": true,
+        "description": "Family must belong to a BPL household",
+        "citation": "Page 65, NSAP NFBS Eligibility"
+      }
+    ],
+    "source_pages": [65, 66],
+    "valid_from": "1995-08-15",
+    "valid_until": null
+  },
+  {
+    "rule_id": "RULE_NSAP_AP_ELIG",
+    "scheme_id": "SCH_NSAP_AP",
+    "rule_type": "QUALIFICATION",
+    "description": "Eligible for Annapurna Scheme (food grains for elderly)",
+    "operator": "AND",
+    "conditions": [
+      {
+        "field": "demographic.age",
+        "operator": ">=",
+        "value": 60,
+        "description": "Applicant must be aged 60 years or above",
+        "citation": "Page 65, NSAP Annapurna Eligibility"
+      },
+      {
+        "field": "institutional.enrolled_in_ignoaps",
+        "operator": "==",
+        "value": false,
+        "description": "Applicant must NOT be receiving pension under IGNOAPS",
+        "citation": "Page 65, NSAP Annapurna Eligibility"
+      },
+      {
+        "field": "economic.is_bpl",
+        "operator": "==",
+        "value": true,
+        "description": "Applicant must belong to a BPL household",
+        "citation": "Page 65, NSAP Annapurna Eligibility"
+      }
+    ],
+    "source_pages": [65, 66],
+    "valid_from": "2000-04-01",
+    "valid_until": null
+  }
+]

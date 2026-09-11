@@ -1,0 +1,30 @@
+{
+  "scheme_id": "SCH_DAY",
+  "official_name": "Deen Dayal Upadhyaya Antyodaya Yojana",
+  "abbreviation": "DAY",
+  "aliases": [
+    "antyodaya yojana",
+    "DAY",
+    "deen dayal antyodaya"
+  ],
+  "category": "Livelihoods",
+  "subcategory": "Poverty Alleviation",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "objective": "Enhance skills and self-business by financing and supporting the poor.",
+  "description": "For any Indian citizen intending to get trained on skills. Aims to enhance skills and self-business financing. Covers both urban and rural poor.",
+  "ministry": "Ministry of Rural Development / Ministry of Housing and Urban Affairs",
+  "department": null,
+  "implementing_agency": "ULBs, State Rural Livelihoods Missions",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    4
+  ],
+  "source_sections": [
+    "e-Shram - DAY"
+  ]
+}

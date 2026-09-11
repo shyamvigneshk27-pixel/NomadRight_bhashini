@@ -1,0 +1,36 @@
+{
+  "scheme_id": "SCH_APY",
+  "official_name": "Atal Pension Yojana",
+  "abbreviation": "APY",
+  "aliases": [
+    "atal pension",
+    "APY",
+    "NPS-Lite"
+  ],
+  "category": "Pension & Social Security",
+  "subcategory": "Universal Pension",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide guaranteed monthly pension to all citizens, particularly unorganised sector workers.",
+  "description": "Defined contributory pension scheme regulated by PFRDA. Guaranteed monthly pension of Rs 1000 to Rs 5000 at age 60 depending on contribution amount and entry age. On subscriber death, spouse receives the same pension; on spouse death, corpus returned to nominee. Existing Swavalamban subscribers migrated to APY. Charges levied for delayed/non-payment.",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "PFRDA, Banks, Post Offices (DoP CBS Platform), Business Correspondents",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "regulatory_body": "PFRDA (Pension Fund Regulatory and Development Authority)",
+  "source_pages": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "source_sections": [
+    "APY gazette notification",
+    "APY guidelines",
+    "APY FAQs"
+  ]
+}

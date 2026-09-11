@@ -1,0 +1,33 @@
+{
+  "scheme_id": "SCH_NSAP_OA",
+  "official_name": "Indira Gandhi National Old Age Pension Scheme",
+  "abbreviation": "IGNOAPS",
+  "aliases": [
+    "IGNOAPS",
+    "old age pension",
+    "indira gandhi old age pension",
+    "nsap old age",
+    "NSAP-OA"
+  ],
+  "category": "Social Justice",
+  "subcategory": "Old Age Pension",
+  "entity_type": "SUB_SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "parent_scheme_id": "SCH_NSAP",
+  "objective": "Provide monthly pension to BPL elderly persons aged 60 years and above under the National Social Assistance Programme.",
+  "description": "IGNOAPS is a component of NSAP providing monthly pension to BPL senior citizens. Central Government contribution: Rs 200/month for age 60-79 years, Rs 500/month for age 80 years and above. States may add their own top-up contribution. Launched 15 August 1995. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "1995-08-15",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [60, 61, 62, 63, 64, 65, 66],
+  "source_sections": [
+    "NSAP overview",
+    "IGNOAPS component",
+    "NSAP FAQs"
+  ]
+}

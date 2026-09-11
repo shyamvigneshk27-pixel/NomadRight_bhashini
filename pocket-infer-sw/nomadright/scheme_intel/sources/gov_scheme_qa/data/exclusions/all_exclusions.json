@@ -1,0 +1,192 @@
+[
+  {
+    "exclusion_id": "EXCL_PMSYM_001",
+    "scheme_id": "SCH_PMSYM",
+    "category": "INCOME_TAX",
+    "description": "Income Tax Payers are not eligible",
+    "rule_condition": "tax.is_income_tax_payer == True",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMSYM_002",
+    "scheme_id": "SCH_PMSYM",
+    "category": "FORMAL_SOCIAL_SECURITY",
+    "description": "Members covered under EPFO, ESIC, or NPS (Govt funded) are excluded",
+    "rule_condition": "employment.is_epfo_or_esic_member == True",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMSYM_003",
+    "scheme_id": "SCH_PMSYM",
+    "category": "INCOME_LIMIT",
+    "description": "Monthly income exceeds Rs. 15,000 per month",
+    "rule_condition": "income.monthly_income > 15000",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_NPST_001",
+    "scheme_id": "SCH_NPST",
+    "category": "TURNOVER_LIMIT",
+    "description": "Annual turnover exceeding Rs. 1.5 Crore",
+    "rule_condition": "business.annual_turnover > 15000000",
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_NPST_002",
+    "scheme_id": "SCH_NPST",
+    "category": "FORMAL_SECTOR",
+    "description": "Beneficiaries enrolled in EPFO, ESIC, NPS, or Income Tax Payers",
+    "rule_condition": "tax.is_income_tax_payer == True or employment.is_epfo_or_esic_member == True",
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMKISAN_001",
+    "scheme_id": "SCH_PMKISAN",
+    "category": "INSTITUTIONAL_LAND",
+    "description": "Institutional land holders are excluded",
+    "rule_condition": "farmer.is_institutional_landholder == True",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMKISAN_002",
+    "scheme_id": "SCH_PMKISAN",
+    "category": "CONSTITUTIONAL_POST",
+    "description": "Former and present holders of constitutional posts",
+    "rule_condition": "status.holds_constitutional_post == True",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMKISAN_003",
+    "scheme_id": "SCH_PMKISAN",
+    "category": "INCOME_TAX",
+    "description": "Persons who paid income tax in last assessment year",
+    "rule_condition": "tax.is_income_tax_payer == True",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMKISAN_004",
+    "scheme_id": "SCH_PMKISAN",
+    "category": "HIGH_PENSION",
+    "description": "Retired persons / pensioners whose monthly pension is Rs. 10,000 or more (excluding multi-tasking staff / Class IV)",
+    "rule_condition": "income.monthly_pension >= 10000 and employment.is_class_iv == False",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMKISAN_005",
+    "scheme_id": "SCH_PMKISAN",
+    "category": "PROFESSIONALS",
+    "description": "Doctors, Engineers, Lawyers, Chartered Accountants, and Architects registered with professional bodies",
+    "rule_condition": "occupation.is_registered_professional == True",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_APY_001",
+    "scheme_id": "SCH_APY",
+    "category": "INCOME_TAX",
+    "description": "Income tax payers are not permitted to open new APY accounts after 1st October 2022",
+    "rule_condition": "tax.is_income_tax_payer == True",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMUY_001",
+    "scheme_id": "SCH_PMUY",
+    "category": "EXISTING_CONNECTION",
+    "description": "Any household already having an existing LPG connection in the name of any family member",
+    "rule_condition": "household.has_lpg_connection == True",
+    "source_pages": [
+      8
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_SSY_001",
+    "scheme_id": "SCH_SSY",
+    "category": "GENDER_LIMIT",
+    "description": "Male children cannot open SSY accounts. Only girl child eligible.",
+    "rule_condition": "demographics.gender != 'FEMALE'",
+    "source_pages": [
+      10
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_SSY_002",
+    "scheme_id": "SCH_SSY",
+    "category": "MAX_ACCOUNTS",
+    "description": "Maximum of 2 accounts per family allowed, except in case of twin/triplet girl birth",
+    "rule_condition": "family.girl_count_in_family > 2 and family.is_twin_or_triplet == False",
+    "source_pages": [
+      10
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMAYG_001",
+    "scheme_id": "SCH_PMAYG",
+    "category": "PUCCA_HOUSE",
+    "description": "Households possessing a pucca house or receiving previous housing subsidy",
+    "rule_condition": "housing.has_pucca_house == True",
+    "source_pages": [
+      10
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMJKMY_001",
+    "scheme_id": "SCH_PMJKMY",
+    "category": "LARGE_FARMERS",
+    "description": "Farmers holding cultivable land greater than 2 hectares",
+    "rule_condition": "farmer.land_holding_hectares > 2.0",
+    "source_pages": [
+      12
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMJKMY_002",
+    "scheme_id": "SCH_PMJKMY",
+    "category": "TAX_EPFO",
+    "description": "Income tax payers or members of EPFO, NPS, ESIC or other pension schemes",
+    "rule_condition": "tax.is_income_tax_payer == True or employment.is_epfo_or_esic_member == True",
+    "source_pages": [
+      12
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMJJBY_001",
+    "scheme_id": "SCH_PMJJBY",
+    "category": "AGE_LIMIT",
+    "description": "Persons below 18 years or above 50 years of age (risk cover ends at age 55)",
+    "rule_condition": "demographics.age < 18 or demographics.age > 50",
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "exclusion_id": "EXCL_PMSBY_001",
+    "scheme_id": "SCH_PMSBY",
+    "category": "AGE_LIMIT",
+    "description": "Persons below 18 years or above 70 years of age",
+    "rule_condition": "demographics.age < 18 or demographics.age > 70",
+    "source_pages": [
+      4
+    ]
+  }
+]

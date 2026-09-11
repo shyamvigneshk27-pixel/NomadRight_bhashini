@@ -1,0 +1,156 @@
+[
+  {
+    "faq_id": "FAQ_ONORC_001",
+    "scheme_id": "SCH_ONORC",
+    "question": "I live in Mumbai but my family lives in Rajasthan, Can my family receive the ration at Rajasthan?",
+    "answer": "Yes, the ONORC scheme allows your family to claim their part of ration on the same Ration Card in Rajasthan while you can claim your share in Mumbai.",
+    "source_pages": [
+      2
+    ]
+  },
+  {
+    "faq_id": "FAQ_ONORC_002",
+    "scheme_id": "SCH_ONORC",
+    "question": "My allotted Fair Price Shop (FPS) does not give me the ration. Can I claim ration from any other FPS?",
+    "answer": "Yes, the scheme allows you to claim ration from any other Fair Price Shop (FPS) in the area or across the nation if your Aadhaar is seeded to your Ration Card.",
+    "source_pages": [
+      2
+    ]
+  },
+  {
+    "faq_id": "FAQ_ONORC_003",
+    "scheme_id": "SCH_ONORC",
+    "question": "Who are eligible for the One Nation One Ration Card scheme?",
+    "answer": "This scheme can be availed by all eligible ration cardholders or beneficiaries covered under the National Food Security Act (NFSA), 2013 with Aadhaar numbers seeded.",
+    "source_pages": [
+      2
+    ]
+  },
+  {
+    "faq_id": "FAQ_ESHRAM_001",
+    "scheme_id": "SCH_PMSYM",
+    "question": "Are gig and platform workers covered under e-Shram?",
+    "answer": "Yes, gig and platform workers are included in the e-Shram database and eligible for social security welfare schemes.",
+    "source_pages": [
+      13
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMSYM_001",
+    "scheme_id": "SCH_PMSYM",
+    "question": "What is the minimum assured pension under PM-SYM?",
+    "answer": "Beneficiaries receive an assured minimum monthly pension of Rs. 3,000 per month after attaining the age of 60 years.",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMSYM_002",
+    "scheme_id": "SCH_PMSYM",
+    "question": "What happens if a PM-SYM subscriber dies before reaching 60 years of age?",
+    "answer": "If a subscriber dies before 60, their spouse can continue the scheme by paying regular contributions, or exit the scheme and receive the subscriber's accumulated contribution along with interest.",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMSYM_003",
+    "scheme_id": "SCH_PMSYM",
+    "question": "What is the family pension after the demise of the PM-SYM pensioner?",
+    "answer": "During receipt of pension after age 60, if the pensioner dies, the spouse is entitled to receive 50% of the pension (i.e. Rs. 1,500 per month) as family pension. This is applicable only to spouse.",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMJJBY_001",
+    "scheme_id": "SCH_PMJJBY",
+    "question": "What is the premium and life insurance coverage under PMJJBY?",
+    "answer": "PMJJBY provides life insurance cover of Rs. 2,00,000 in case of death due to any reason. The annual premium is Rs. 436 per annum, auto-debited from the subscriber's bank account in May/June.",
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMSBY_001",
+    "scheme_id": "SCH_PMSBY",
+    "question": "What is the risk coverage and annual premium under PMSBY?",
+    "answer": "PMSBY offers accidental death and full disability cover of Rs. 2,00,000, and partial permanent disability cover of Rs. 1,00,000. The premium is only Rs. 20 per annum, auto-debited from the bank account.",
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "faq_id": "FAQ_APY_001",
+    "scheme_id": "SCH_APY",
+    "question": "What pension amounts can one choose under Atal Pension Yojana?",
+    "answer": "Under APY, subscribers can choose a guaranteed monthly pension of Rs. 1,000, Rs. 2,000, Rs. 3,000, Rs. 4,000, or Rs. 5,000 starting from age 60, based on monthly contribution.",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMKISAN_001",
+    "scheme_id": "SCH_PMKISAN",
+    "question": "How much financial benefit is given under PM-KISAN every year?",
+    "answer": "Under PM-KISAN, eligible farmer families receive Rs. 6,000 per year transferred directly into their Aadhaar-linked bank accounts in three equal 4-monthly installments of Rs. 2,000 each.",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMKISAN_002",
+    "scheme_id": "SCH_PMKISAN",
+    "question": "Is eKYC mandatory for PM-KISAN beneficiaries?",
+    "answer": "Yes, eKYC is mandatory for all PM-KISAN registered farmers. It can be done through OTP on the portal or biometric verification at CSC or facial recognition on the PM-KISAN App.",
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "faq_id": "FAQ_PMSURYA_001",
+    "scheme_id": "SCH_PMSURYA",
+    "question": "How much subsidy is provided under PM Surya Ghar Muft Bijli Yojana?",
+    "answer": "The scheme provides subsidy of Rs. 30,000 for 1 kW systems, Rs. 60,000 for 2 kW systems, and Rs. 78,000 for 3 kW or higher systems, providing up to 300 units of free electricity monthly.",
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "faq_id": "FAQ_SVANIDHI_001",
+    "scheme_id": "SCH_SVANIDHI",
+    "question": "What are the loan amounts and interest subsidy available under PM SVANidhi?",
+    "answer": "PM SVANidhi offers working capital loans: 1st tranche up to Rs. 10,000 (1-year tenure); 2nd tranche up to Rs. 20,000; and 3rd tranche up to Rs. 50,000 upon timely repayment, with 7% interest subsidy per annum and up to Rs. 1,200 annual cashback on digital transactions.",
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "faq_id": "FAQ_VISHWA_001",
+    "scheme_id": "SCH_VISHWA",
+    "question": "What trades and benefits are covered under PM Vishwakarma?",
+    "answer": "Covers 18 traditional trades (carpenters, blacksmiths, potters, weavers, etc.). Benefits include PM Vishwakarma Certificate & ID, basic skill training with Rs 500/day stipend, Rs 15,000 toolkit incentive, and collateral-free enterprise loans up to Rs 3 Lakh (Rs 1 Lakh tranche 1, Rs 2 Lakh tranche 2) at a concessional 5% interest rate.",
+    "source_pages": [
+      7
+    ]
+  },
+  {
+    "faq_id": "FAQ_SSY_001",
+    "scheme_id": "SCH_SSY",
+    "question": "When does a Sukanya Samriddhi Yojana (SSY) account mature?",
+    "answer": "An SSY account matures 21 years from the date of its opening or upon marriage of the girl child after attaining 18 years of age. Partial withdrawal up to 50% is allowed for higher education after age 18.",
+    "source_pages": [
+      10
+    ]
+  },
+  {
+    "faq_id": "FAQ_MGNREGA_001",
+    "scheme_id": "SCH_MGNREGA",
+    "question": "Within how many days must employment be provided under MGNREGA?",
+    "answer": "Employment must be provided within 15 days of receiving the application for work. If employment is not provided within 15 days, the applicant is legally entitled to daily unemployment allowance.",
+    "source_pages": [
+      14,
+      18
+    ]
+  }
+]

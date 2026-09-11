@@ -1,0 +1,41 @@
+{
+  "scheme_id": "SCH_PMUY",
+  "official_name": "Pradhan Mantri Ujjwala Yojana",
+  "abbreviation": "PMUY",
+  "aliases": [
+    "ujjwala",
+    "ujjwala yojana",
+    "LPG scheme",
+    "PMUY",
+    "pmuy",
+    "gas connection scheme"
+  ],
+  "category": "Petroleum & Natural Gas",
+  "subcategory": "Clean Cooking Fuel",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Make clean cooking fuel (LPG) available to rural and deprived households.",
+  "description": "Launched 1 May 2016 in Ballia, Uttar Pradesh. Deposit-free LPG connection. Cash assistance: Rs 2,050 for 14.2 kg cylinder; Rs 1,300 for 5 kg cylinder. First LPG refill free. Stove (hotplate) free. Administered by Ministry of Petroleum and Natural Gas through OMCs.",
+  "ministry": "Ministry of Petroleum and Natural Gas",
+  "department": null,
+  "implementing_agency": "Oil Marketing Companies (OMCs), LPG distributors",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2016-05-01",
+  "effective_until": null,
+  "version": "current",
+  "portal": "pmuy.gov.in",
+  "source_pages": [
+    32,
+    33,
+    34,
+    35
+  ],
+  "source_sections": [
+    "PMUY description",
+    "Eligibility",
+    "Documents",
+    "Benefits",
+    "PMUY FAQs"
+  ]
+}

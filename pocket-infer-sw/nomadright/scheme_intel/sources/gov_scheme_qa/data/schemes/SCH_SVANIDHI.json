@@ -1,0 +1,41 @@
+{
+  "scheme_id": "SCH_SVANIDHI",
+  "official_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+  "abbreviation": "PM SVANidhi",
+  "aliases": [
+    "svanidhi",
+    "pm svanidhi",
+    "street vendor loan",
+    "atma nirbhar nidhi"
+  ],
+  "category": "Urban Livelihoods",
+  "subcategory": "Street Vendor Micro-Credit",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Facilitate working capital loans to street vendors to resume livelihoods after COVID-19 lockdowns.",
+  "description": "Central Sector Scheme. Initial working capital loan up to Rs 10,000 for 1 year (generic FAQ). Interest subsidy at 7%. Monthly cashback incentive on digital transactions (Rs 50 on 50 transactions; additional Rs 25 on next 50; additional Rs 25 on next 100; max Rs 100/month). Higher loan on timely repayment. No collateral required. Scheme implemented up to March 2022 per FAQ 8.",
+  "ministry": "Ministry of Housing and Urban Affairs",
+  "department": null,
+  "implementing_agency": "SIDBI, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs, SHG Banks, Indian Bank (PAiSA portal)",
+  "geographic_scope": "URBAN",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": "2022-03-31",
+  "version": "current",
+  "special_notes": [
+    "CONFLICT: Generic FAQ states initial loan up to Rs 10,000; operational guidelines (other sources) reference Rs 15,000 for Tranche 1. PDF source FAQs consistently state Rs 10,000.",
+    "Scheme originally intended until March 2022 per FAQ; may have been extended"
+  ],
+  "portal": "pmsvanidhi.mohua.gov.in",
+  "source_pages": [
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "source_sections": [
+    "PM SVANidhi Scheme FAQs Generic",
+    "FAQs For Beneficiaries"
+  ]
+}

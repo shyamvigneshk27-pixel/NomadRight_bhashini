@@ -1,0 +1,29 @@
+{
+  "scheme_id": "SCH_HIS_WEAVERS",
+  "official_name": "Health Insurance Scheme for Weavers",
+  "abbreviation": "HIS",
+  "aliases": [
+    "weaver health insurance",
+    "HIS weavers"
+  ],
+  "category": "Health",
+  "subcategory": "Weaver Welfare",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide health coverage to handloom weavers.",
+  "description": "Health insurance for handloom weavers earning 50% or more income from weaving.",
+  "ministry": "Ministry of Textiles",
+  "department": null,
+  "implementing_agency": "Weavers Service Centres",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    6
+  ],
+  "source_sections": [
+    "e-Shram Health Insurance Scheme for Weavers"
+  ]
+}

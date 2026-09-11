@@ -1,0 +1,36 @@
+{
+  "scheme_id": "SCH_BOCW",
+  "official_name": "Building and Other Construction Workers Welfare Framework",
+  "abbreviation": "BOCW",
+  "aliases": [
+    "BOCW",
+    "construction workers",
+    "building workers welfare"
+  ],
+  "category": "Labour & Employment",
+  "subcategory": "Construction Worker Welfare",
+  "entity_type": "FRAMEWORK",
+  "scheme_type": "STATUTORY",
+  "objective": "Protect safety, health, welfare and social security of construction workers.",
+  "description": "Framework based on: BOCW (Regulation of Employment and Conditions of Service) Act 1996 and BOCW Welfare Cess Act 1996 (now subsumed under OSH Code 2020 and Code on Social Security 2020). State BOCW Welfare Boards register eligible workers and provide welfare from welfare fund. Registration: age 18-60; 90+ days construction work in last 12 months. Benefits vary by state: life insurance, disability, health, maternity, education, pension, housing. BOCW MIS Portal: bocw.labour.gov.in.",
+  "ministry": "Ministry of Labour & Employment",
+  "department": null,
+  "implementing_agency": "State/UT Building and Other Construction Workers Welfare Boards",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "1996-01-01",
+  "effective_until": null,
+  "version": "current (OSH Code 2020 effective)",
+  "portal": "BOCW MIS Portal",
+  "source_pages": [
+    57,
+    58,
+    59,
+    60
+  ],
+  "source_sections": [
+    "BOCW description",
+    "BOCW eligibility",
+    "BOCW welfare boards"
+  ]
+}

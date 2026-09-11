@@ -1,0 +1,34 @@
+{
+  "scheme_id": "SCH_PMSBY_FULL",
+  "official_name": "Pradhan Mantri Suraksha Bima Yojana - Full Rules",
+  "abbreviation": "PMSBY",
+  "aliases": [
+    "suraksha bima",
+    "accident insurance scheme"
+  ],
+  "category": "Financial Inclusion",
+  "subcategory": "Accident Insurance",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide affordable personal accident insurance.",
+  "description": "Rs 20 annual premium. Rs 2 lakh for accidental death or total permanent disability. Rs 1 lakh for partial permanent disability. Cover period 1 June to 31 May. NRI with eligible bank account in India eligible. Offered through banks/post offices.",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "Banks, Post Offices",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2022-06-01",
+  "effective_until": null,
+  "version": "Revised Rules effective 1 June 2022",
+  "source_pages": [
+    35,
+    36,
+    37,
+    38,
+    39
+  ],
+  "source_sections": [
+    "PMSBY detailed rules",
+    "PMSBY FAQs"
+  ]
+}

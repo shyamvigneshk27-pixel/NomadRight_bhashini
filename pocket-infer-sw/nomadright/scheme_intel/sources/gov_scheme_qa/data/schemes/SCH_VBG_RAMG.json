@@ -1,0 +1,34 @@
+{
+  "scheme_id": "SCH_VBG_RAMG",
+  "official_name": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+  "abbreviation": "VB-G RAM G",
+  "aliases": [
+    "VB-G RAM G",
+    "viksit bharat rozgar",
+    "125 days employment",
+    "rural employment 2026"
+  ],
+  "category": "Rural Development",
+  "subcategory": "Wage Employment",
+  "entity_type": "ACT",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "objective": "Provide statutory guarantee of 125 days of wage employment per rural household per financial year.",
+  "description": "Came into force 1 July 2026. Replaced MGNREGA. Increases guarantee from 100 to 125 days. 60-day agricultural season break where works may be suspended. Weekly wage payment (not later than fortnight after work done). Unemployment allowance for unmet guarantee. Four priority areas: water security, core rural infrastructure, livelihood-related infrastructure, extreme weather mitigation. Plans from Viksit Gram Panchayat Plans. Fund sharing: 60:40 (Centre:State); 90:10 for NE/Himalayan States. Existing MGNREGA e-KYC cards valid until Gramin Rozgar Guarantee Cards issued.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "Gram Panchayats, Block/District/State administrations",
+  "geographic_scope": "RURAL",
+  "status": "ACTIVE",
+  "effective_from": "2026-07-01",
+  "effective_until": null,
+  "version": "2025 Act",
+  "replaces": "SCH_MGNREGA",
+  "source_pages": [
+    21,
+    22,
+    23
+  ],
+  "source_sections": [
+    "VB-G RAM G Act details"
+  ]
+}

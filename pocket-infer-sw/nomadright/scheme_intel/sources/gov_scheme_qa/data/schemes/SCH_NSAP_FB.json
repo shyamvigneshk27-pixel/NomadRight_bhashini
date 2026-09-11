@@ -1,0 +1,34 @@
+{
+  "scheme_id": "SCH_NSAP_FB",
+  "official_name": "National Family Benefit Scheme",
+  "abbreviation": "NFBS",
+  "aliases": [
+    "NFBS",
+    "family benefit scheme",
+    "national family benefit",
+    "nsap family benefit",
+    "NSAP-FB",
+    "breadwinner death benefit"
+  ],
+  "category": "Social Justice",
+  "subcategory": "Bereaved Family Assistance",
+  "entity_type": "SUB_SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "parent_scheme_id": "SCH_NSAP",
+  "objective": "Provide one-time lump sum financial assistance to BPL households on the death of the primary breadwinner aged 18-59 years under the National Social Assistance Programme.",
+  "description": "NFBS is a component of NSAP providing Rs 20,000 one-time lump sum to BPL families on the death of the primary breadwinner aged 18-59 years. The assistance is paid to the surviving head of the household. Disbursed through DBT to the bank account of the bereaved family.",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "1995-08-15",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [60, 61, 62, 63, 64, 65, 66],
+  "source_sections": [
+    "NSAP overview",
+    "NFBS component",
+    "NSAP FAQs"
+  ]
+}

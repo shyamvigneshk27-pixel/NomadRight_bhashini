@@ -1,0 +1,431 @@
+{
+  "_about": "Hand-curated presentation layer for the scheme-intelligence knowledge base. It adds NO new scheme facts: every voice_summary restates facts that exist in the cited source fields (summary_basis). Spoken names/aliases/domains/target_occupations are classification metadata used for routing, not claims made to users. Unknown values stay null.",
+  "_sources": {
+    "canonical": "sources/gov_scheme_qa/data (extracted from the official compilation 'scheme 2.pdf')",
+    "legacy": "../*.json - the existing NomadRight scheme files (myscheme.gov.in, nha.gov.in, eshram.gov.in, labour.gov.in, nrega.nic.in ...), read-only",
+    "seed": "../<code>.json compact seed records - only their official URLs are used"
+  },
+  "domain_primary": {
+    "RATION": ["SCH_ONORC"],
+    "HEALTH": ["SCH_PMJAY"],
+    "MIGRANT": ["SCH_ONORC", "SCH_ESHRAM", "SCH_BOCW", "SCH_PMJAY"]
+  },
+  "unverified_schemes": {
+    "matru vandana": "Pradhan Mantri Matru Vandana Yojana",
+    "pmmvy": "Pradhan Mantri Matru Vandana Yojana",
+    "janani suraksha": "Janani Suraksha Yojana",
+    "pmay urban": "PM Awas Yojana Urban",
+    "pmay-u": "PM Awas Yojana Urban",
+    "awas yojana urban": "PM Awas Yojana Urban",
+    "udid": "the UDID disability card",
+    "national scholarship": "the National Scholarship Portal",
+    "scholarship portal": "the National Scholarship Portal",
+    "kisan credit card": "the Kisan Credit Card",
+    "stand up india": "Stand-Up India",
+    "pm poshan": "PM POSHAN",
+    "mid day meal": "the mid-day meal scheme",
+    "ladli behna": "Ladli Behna Yojana"
+  },
+  "verify_fields": [
+    "citizenship", "aadhaar", "has_bank_account", "aadhaar_seeded_ration", "nfsa_beneficiary",
+    "vending_since_march_2020", "cov_or_id_card", "in_survey_list", "lor_from_ulb", "willing_manual_work",
+    "insurable_interest", "crop_notified", "land_in_family_name", "roof_type", "ignoaps_member",
+    "in_awasplus_list", "lpg_connection", "has_electricity_connection", "in_secc_2011"
+  ],
+  "extra_rules": [
+    {
+      "rule_id": "RULE_ESHRAM_ELIG", "scheme_id": "SCH_ESHRAM", "rule_type": "QUALIFICATION",
+      "description": "Eligible to register on e-Shram",
+      "source": "eshram_osh.json eligibility (eshram.gov.in)",
+      "conditions": [
+        {"field": "age", "op": ">=", "value": 16, "desc": "Aged 16 or above", "source": "eshram.gov.in"},
+        {"field": "age", "op": "<=", "value": 59, "desc": "Aged 59 or below", "source": "eshram.gov.in"},
+        {"field": "is_unorganised_worker", "op": "==", "value": true, "desc": "Works in the unorganised sector", "source": "eshram.gov.in"},
+        {"field": "aadhaar", "op": "==", "value": true, "desc": "Has Aadhaar with a linked mobile number for OTP", "source": "eshram.gov.in"}
+      ]
+    },
+    {
+      "rule_id": "RULE_ESHRAM_EXCL", "scheme_id": "SCH_ESHRAM", "rule_type": "EXCLUSION",
+      "description": "EPFO/ESIC members cannot register on e-Shram",
+      "source": "eshram_osh.json eligibility/exceptions (eshram.gov.in)",
+      "conditions": [
+        {"field": "epfo_esic_member", "op": "==", "value": true, "desc": "is covered by PF or ESI", "source": "eshram.gov.in"}
+      ]
+    },
+    {
+      "rule_id": "RULE_PMJAY_ELIG", "scheme_id": "SCH_PMJAY", "rule_type": "QUALIFICATION",
+      "description": "Eligible for AB PM-JAY: SECC 2011 family, or any citizen aged 70+",
+      "source": "pmjay.json eligibility (nha.gov.in, pmjay.gov.in, india.gov.in)",
+      "conditions": [
+        {"op": "OR", "desc": "Family is in the SECC 2011 list, or you are 70 or older", "items": [
+          {"field": "in_secc_2011", "op": "==", "value": true, "desc": "Family is listed in the SECC 2011 data", "source": "nha.gov.in"},
+          {"field": "age", "op": ">=", "value": 70, "desc": "Aged 70 or above", "source": "india.gov.in, pib.gov.in"}
+        ]}
+      ]
+    },
+    {
+      "rule_id": "RULE_PMJAY_EXCL", "scheme_id": "SCH_PMJAY", "rule_type": "EXCLUSION",
+      "description": "SECC 2011 exclusion criteria (not applied to the 70+ category)",
+      "source": "pmjay.json exceptions (SECC 2011 exclusion criteria)",
+      "unless": {"field": "age", "op": ">=", "value": 70},
+      "conditions": [
+        {"field": "income_tax_payer", "op": "==", "value": true, "desc": "household pays income tax", "source": "SECC 2011"},
+        {"field": "govt_employee_or_family", "op": "==", "value": true, "desc": "a household member is a government employee", "source": "SECC 2011"}
+      ]
+    },
+    {
+      "rule_id": "RULE_ONORC_NFSA_CATEGORY", "scheme_id": "SCH_ONORC", "rule_type": "QUALIFICATION",
+      "description": "NFSA beneficiary (AAY or PHH category)",
+      "source": "pds.json eligibility[2] (nfsa.gov.in, dfpd.gov.in)",
+      "conditions": [
+        {"field": "nfsa_beneficiary", "op": "==", "value": true, "desc": "Card is an NFSA card (Antyodaya or Priority Household)", "source": "nfsa.gov.in"}
+      ]
+    },
+    {
+      "rule_id": "RULE_BOCW_EXCL", "scheme_id": "SCH_BOCW", "rule_type": "EXCLUSION",
+      "description": "Workers covered by ESIC / other organised-sector social security are not eligible",
+      "source": "bocw.json eligibility[4], exceptions[0] (BOCW Act 1996)",
+      "conditions": [
+        {"field": "epfo_esic_member", "op": "==", "value": true, "desc": "is covered by ESI or PF", "source": "BOCW Act 1996"}
+      ]
+    }
+  ],
+  "rule_patches": {
+    "_about": "group_kind=verify: the either/or list condition (SECC 2011 housing data / Awaas+ list) can only be confirmed officially, so it never makes a person ELIGIBLE on their own statement.",
+    "RULE_PMAYG_ELIG": {"group_kind": "verify"},
+    "RULE_BOCW_ELIG": {"soft_if": {"field": "construction_days_12m", "when_occupation_in": ["CONSTRUCTION_WORKER"]}},
+    "RULE_SSY_ELIG": {"replace_fields": {"demographic.gender+demographic.age": "girl_child_under_10"}}
+  },
+  "schemes": {
+    "SCH_ONORC": {
+      "base": "canonical+legacy", "legacy_code": "PDS", "legacy_json": "pds.json",
+      "short_name": "ONORC", "spoken_name": "One Nation One Ration Card",
+      "voice_summary": "One Nation One Ration Card lets ration card holders under the National Food Security Act collect their ration from any Fair Price Shop in India, with Aadhaar verification. No separate application is needed.",
+      "summary_basis": "pds.json description, benefits[4]; canonical SCH_ONORC description",
+      "domains": ["RATION", "MIGRANT"], "target_occupations": [],
+      "migration_support": true, "migration_support_source": "pds.json portability.inter_state",
+      "aliases": ["one nation one ration card", "one nation one ration", "one nation ration card", "onorc", "mera ration", "ration card portability", "ration portability", "pds", "public distribution system"],
+      "weak_aliases": ["ration card", "ration shop", "fair price shop"],
+      "state": "ALL"
+    },
+    "SCH_PMJAY": {
+      "base": "legacy", "legacy_code": "PMJAY", "legacy_json": "pmjay.json", "category": "Health",
+      "short_name": "PM-JAY", "spoken_name": "Ayushman Bharat PM-JAY",
+      "voice_summary": "Ayushman Bharat PM-JAY gives eligible poor and vulnerable families cashless hospital treatment up to 5 lakh rupees per family per year, at empanelled hospitals anywhere in India.",
+      "summary_basis": "pmjay.json description, benefits[0-1], portability",
+      "domains": ["HEALTH", "MATERNITY", "MIGRANT"], "target_occupations": [],
+      "migration_support": true, "migration_support_source": "pmjay.json portability.description",
+      "aliases": ["ayushman bharat", "ayushman", "pmjay", "pm-jay", "pm jay", "jan arogya", "golden card", "ayushman card", "ayushman bharat card"],
+      "weak_aliases": ["health card", "5 lakh health insurance", "health insurance"],
+      "state": "ALL"
+    },
+    "SCH_ESHRAM": {
+      "base": "legacy", "legacy_code": "ESHRAM", "legacy_json": "eshram_osh.json", "category": "Labour & Employment",
+      "short_name": "e-Shram", "spoken_name": "e-Shram registration",
+      "voice_summary": "e-Shram is a free national registration for unorganised workers aged 16 to 59. You get a card with a Universal Account Number that is valid across India.",
+      "summary_basis": "eshram_osh.json eligibility[0], faq[1], benefits[0]",
+      "domains": ["WORKER", "MIGRANT"], "target_occupations": ["UNORGANISED"],
+      "migration_support": true, "migration_support_source": "eshram_osh.json portability.inter_state",
+      "aliases": ["e-shram", "shram card", "uan card", "e-shram card", "unorganised worker card", "national database of unorganised workers"],
+      "weak_aliases": [],
+      "exclude_benefit_contains": ["Rs. 12/year"],
+      "exclude_reason": "PMSBY premium in eshram_osh.json (Rs 12) conflicts with the revised PMSBY rules in the official compilation (Rs 20 per annum from 1 June 2022)",
+      "state": "ALL"
+    },
+    "SCH_BOCW": {
+      "base": "canonical+legacy", "legacy_code": "BOCW", "legacy_json": "bocw.json",
+      "short_name": "BOCW", "spoken_name": "the construction workers welfare board",
+      "voice_summary": "The construction workers welfare board registers construction workers aged 18 to 60 who worked at least 90 days in construction in the last 12 months. Benefits include accident cover, pension and education help, and vary by state.",
+      "summary_basis": "bocw.json eligibility[0-1], benefits; canonical SCH_BOCW description ('Benefits vary by state')",
+      "domains": ["WORKER", "PENSION", "EDUCATION", "HOUSING", "MATERNITY", "HEALTH", "MIGRANT"], "target_occupations": ["CONSTRUCTION_WORKER"],
+      "migration_support": true, "migration_support_source": "bocw.json portability.inter_state (register with the destination state's board)",
+      "aliases": ["bocw", "labour card", "labor card", "construction worker card", "construction workers card", "construction workers welfare board", "construction welfare board", "building and other construction workers", "nirman shramik", "building workers welfare", "construction board", "welfare board card"],
+      "weak_aliases": ["welfare board"],
+      "state": "ALL"
+    },
+    "SCH_MGNREGA": {
+      "base": "canonical+legacy", "legacy_code": "MGNREGS", "legacy_json": "mgnregs.json",
+      "short_name": "MGNREGA", "spoken_name": "MGNREGA",
+      "voice_summary": "MGNREGA guaranteed 100 days of paid manual work a year to rural households. It was replaced from 1 July 2026 by the VB-G RAM G Act, which guarantees 125 days.",
+      "summary_basis": "canonical SCH_MGNREGA description/status, SCH_VBG_RAMG description; mgnregs.json description",
+      "domains": ["WORKER"], "target_occupations": [],
+      "migration_support": false, "migration_support_source": "mgnregs.json portability.note ('does not have inter-state portability')",
+      "aliases": ["mgnrega", "nrega", "mgnregs", "narega", "manrega", "100 days work", "100 days of work", "rural employment guarantee"],
+      "weak_aliases": ["job card"],
+      "state": "ALL"
+    },
+    "SCH_VBG_RAMG": {
+      "base": "canonical", "short_name": "VB-G RAM G", "spoken_name": "the VB-G RAM G rural jobs guarantee",
+      "voice_summary": "The VB-G RAM G Act, in force from 1 July 2026, guarantees 125 days of paid work a year to rural households whose adults volunteer for unskilled manual work.",
+      "summary_basis": "canonical SCH_VBG_RAMG description, RULE_VBG_RAMG_ELIG",
+      "domains": ["WORKER"], "target_occupations": ["AGRICULTURAL_LABOURER", "DAILY_WAGE_WORKER", "UNEMPLOYED"],
+      "migration_support": null,
+      "aliases": ["vb-g ram g", "vbg ram g", "vb g ram g", "viksit bharat rozgar", "viksit bharat guarantee for rozgar", "125 days work", "125 days of work", "gramin rozgar guarantee card"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_PMSYM": {
+      "base": "canonical", "short_name": "PM-SYM", "spoken_name": "PM Shram Yogi Maan-dhan pension",
+      "voice_summary": "PM Shram Yogi Maan-dhan is a pension scheme for unorganised workers aged 18 to 40 who earn up to 15000 rupees a month. It pays 3000 rupees a month after age 60.",
+      "summary_basis": "canonical RULE_PMSYM_ELIG, BEN_PMSYM_001; scheme compilation p.110-111",
+      "domains": ["PENSION", "WORKER"], "target_occupations": ["UNORGANISED"],
+      "migration_support": null,
+      "aliases": ["pm-sym", "pmsym", "pm sym", "shram yogi", "shram yogi maandhan", "shram yogi maan-dhan", "shram yogi mandhan", "maan-dhan", "maandhan yojana", "unorganised worker pension"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_NPST": {
+      "base": "canonical", "short_name": "NPS-Traders", "spoken_name": "the pension scheme for traders",
+      "voice_summary": "The National Pension Scheme for Traders is for shopkeepers, small traders and self-employed people aged 18 to 40. It pays 3000 rupees a month after age 60.",
+      "summary_basis": "canonical RULE_NPST_ELIG, BEN_NPST",
+      "domains": ["PENSION"], "target_occupations": ["SHOPKEEPER", "SMALL_TRADER", "SELF_EMPLOYED"],
+      "migration_support": null,
+      "aliases": ["nps traders", "nps-traders", "nps for traders", "vyapari pension", "traders pension", "pension for traders", "pension scheme for traders", "shopkeeper pension", "national pension scheme for traders"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_PMJJBY": {
+      "base": "canonical", "short_name": "PMJJBY", "spoken_name": "PM Jeevan Jyoti life insurance",
+      "voice_summary": "PM Jeevan Jyoti Bima Yojana is life insurance of 2 lakh rupees for people aged 18 to 50 with a bank account. The premium is 436 rupees a year.",
+      "summary_basis": "canonical SCH_PMJJBY description, RULE_PMJJBY_ELIG, BEN_PMJJBY",
+      "domains": ["FINANCIAL"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["pmjjby", "jeevan jyoti", "jeevan jyoti bima", "jeevan jyoti bima yojana"],
+      "weak_aliases": ["life insurance"], "state": "ALL"
+    },
+    "SCH_PMSBY": {
+      "base": "canonical", "short_name": "PMSBY", "spoken_name": "PM Suraksha accident insurance",
+      "voice_summary": "PM Suraksha Bima Yojana is accident insurance for people aged 18 to 70 with a bank account. It pays up to 2 lakh rupees, for a premium of 20 rupees a year.",
+      "summary_basis": "canonical SCH_PMSBY description, RULE_PMSBY_ELIG, BEN_PMSBY",
+      "domains": ["FINANCIAL", "DISABILITY"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["pmsby", "suraksha bima", "pm suraksha", "suraksha bima yojana"],
+      "weak_aliases": ["accident insurance"], "state": "ALL"
+    },
+    "SCH_PMSBY_FULL": {"base": "canonical", "merge_into": "SCH_PMSBY"},
+    "SCH_APY": {
+      "base": "canonical", "short_name": "APY", "spoken_name": "Atal Pension Yojana",
+      "voice_summary": "Atal Pension Yojana gives a guaranteed pension of 1000 to 5000 rupees a month after age 60. People aged 18 to 40 with a savings bank account can join.",
+      "summary_basis": "canonical SCH_APY description, RULE_APY_ELIG",
+      "domains": ["PENSION"], "target_occupations": ["UNORGANISED"],
+      "migration_support": null,
+      "aliases": ["atal pension", "atal pension yojana", "apy", "nps lite", "nps-lite"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_PMKISAN": {
+      "base": "canonical", "short_name": "PM-KISAN", "spoken_name": "PM-KISAN",
+      "voice_summary": "PM-KISAN gives land-holding farmer families 6000 rupees a year, paid in three instalments of 2000 rupees directly into their bank account.",
+      "summary_basis": "canonical SCH_PMKISAN description, BEN_PMKISAN",
+      "domains": ["FINANCIAL"], "target_occupations": ["FARMER"],
+      "migration_support": null,
+      "aliases": ["pm kisan", "pm-kisan", "pmkisan", "kisan samman", "kisan samman nidhi", "farmer income support"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_PMSURYA": {
+      "base": "canonical", "short_name": "PM Surya Ghar", "spoken_name": "PM Surya Ghar rooftop solar",
+      "voice_summary": "PM Surya Ghar gives households a subsidy of up to 78000 rupees for rooftop solar panels, and up to 300 units of free electricity a month.",
+      "summary_basis": "canonical SCH_PMSURYA objective, BEN_PMSURYA",
+      "domains": ["HOUSING", "FINANCIAL"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["surya ghar", "pm surya ghar", "muft bijli", "rooftop solar", "solar subsidy"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_SVANIDHI": {
+      "base": "canonical", "short_name": "PM SVANidhi", "spoken_name": "PM SVANidhi street vendor loans",
+      "voice_summary": "PM SVANidhi gives street vendors working capital loans without collateral, starting at up to 10000 rupees, with a 7 percent interest subsidy and cashback on digital payments.",
+      "summary_basis": "canonical SCH_SVANIDHI description, BEN_SVANIDHI",
+      "domains": ["FINANCIAL"], "target_occupations": ["STREET_VENDOR"],
+      "migration_support": null,
+      "aliases": ["svanidhi", "pm svanidhi", "swanidhi", "street vendor loan", "atma nirbhar nidhi", "atmanirbhar nidhi"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_VISHWA": {
+      "base": "canonical", "short_name": "PM Vishwakarma", "spoken_name": "PM Vishwakarma",
+      "voice_summary": "PM Vishwakarma supports artisans in 18 traditional trades with a certificate, training with a stipend, a 15000 rupee toolkit incentive, and loans at 5 percent interest.",
+      "summary_basis": "canonical SCH_VISHWA description, BEN_VISHWA",
+      "domains": ["FINANCIAL", "EDUCATION"], "target_occupations": ["ARTISAN"],
+      "migration_support": null,
+      "aliases": ["vishwakarma", "pm vishwakarma", "vishwakarma yojana", "artisan scheme"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_PMUY": {
+      "base": "canonical", "short_name": "PMUY", "spoken_name": "Ujjwala gas connection",
+      "voice_summary": "Pradhan Mantri Ujjwala Yojana gives a deposit-free LPG gas connection to adult women from poor households, with the first refill and a stove free.",
+      "summary_basis": "canonical SCH_PMUY description, RULE_PMUY_ELIG, BEN_PMUY",
+      "domains": ["HOUSING", "FINANCIAL"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["ujjwala", "ujjwala yojana", "pmuy", "free gas connection", "gas connection scheme", "lpg connection scheme"],
+      "weak_aliases": ["gas connection"], "state": "ALL"
+    },
+    "SCH_PMMY": {
+      "base": "canonical", "short_name": "MUDRA", "spoken_name": "MUDRA loans",
+      "voice_summary": "PM MUDRA Yojana gives loans without collateral to small and micro businesses: Shishu up to 50000 rupees, Kishor up to 5 lakh, Tarun up to 10 lakh and Tarun Plus up to 20 lakh.",
+      "summary_basis": "canonical SCH_PMMY description, BEN_PMMY",
+      "domains": ["FINANCIAL"], "target_occupations": ["SHOPKEEPER", "SMALL_TRADER", "SELF_EMPLOYED", "STREET_VENDOR", "ARTISAN"],
+      "migration_support": null,
+      "aliases": ["mudra", "mudra loan", "mudra yojana", "pmmy", "shishu loan", "kishor loan", "tarun loan"],
+      "weak_aliases": ["business loan"], "state": "ALL"
+    },
+    "SCH_PMFBY": {
+      "base": "canonical", "short_name": "PMFBY", "spoken_name": "PM Fasal Bima crop insurance",
+      "voice_summary": "PM Fasal Bima Yojana is crop insurance for farmers, including tenant farmers and sharecroppers, against crop loss from drought, flood, pests, storms and other natural risks.",
+      "summary_basis": "canonical SCH_PMFBY description, RULE_PMFBY_ELIG; scheme compilation p.184",
+      "domains": ["FINANCIAL"], "target_occupations": ["FARMER"],
+      "migration_support": null,
+      "aliases": ["fasal bima", "pm fasal bima", "pmfby", "crop insurance"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_SSY": {
+      "base": "canonical", "short_name": "SSY", "spoken_name": "Sukanya Samriddhi savings account",
+      "voice_summary": "Sukanya Samriddhi Yojana is a savings account for a girl child below 10 years, opened by a parent or guardian at a post office or bank.",
+      "summary_basis": "canonical SCH_SSY description, RULE_SSY_ELIG",
+      "domains": ["EDUCATION", "FINANCIAL"], "target_occupations": [],
+      "migration_support": true, "migration_support_source": "scheme compilation p.199 ('account can be transferred anywhere in India')",
+      "aliases": ["sukanya", "sukanya samriddhi", "sukanya samriddhi yojana", "ssy", "girl child savings"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_PMAYG": {
+      "base": "canonical", "short_name": "PMAY-G", "spoken_name": "PM Awaas Yojana Gramin housing",
+      "voice_summary": "PM Awaas Yojana Gramin helps houseless and poor rural families build a pucca house, with 1.2 lakh rupees in plain areas and 1.3 lakh in hilly areas.",
+      "summary_basis": "canonical SCH_PMAYG objective, BEN_PMAYG",
+      "domains": ["HOUSING"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["pmay-g", "pmay g", "pmayg", "pmay gramin", "awaas yojana", "awas yojana", "pm awas", "pm awaas", "pradhan mantri awas", "gramin awas", "awaas yojana gramin"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_PMJDY": {
+      "base": "canonical", "short_name": "PMJDY", "spoken_name": "Jan Dhan bank account",
+      "voice_summary": "PM Jan Dhan Yojana gives a basic bank account with no minimum balance, a free RuPay debit card with 2 lakh rupees accident insurance, and an overdraft of up to 10000 rupees.",
+      "summary_basis": "canonical SCH_PMJDY description, BEN_PMJDY",
+      "domains": ["FINANCIAL"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["jan dhan", "jan-dhan", "jandhan", "pmjdy", "jan dhan yojana", "jan dhan account"],
+      "weak_aliases": ["bank account", "zero balance account"], "state": "ALL"
+    },
+    "SCH_PMJKMY": {
+      "base": "canonical", "short_name": "PM-KMY", "spoken_name": "PM Kisan Mandhan pension",
+      "voice_summary": "PM Kisan Mandhan Yojana is a pension scheme for small and marginal farmers aged 18 to 40. It pays 3000 rupees a month after age 60.",
+      "summary_basis": "canonical SCH_PMJKMY description, BEN_PMJKMY",
+      "domains": ["PENSION"], "target_occupations": ["FARMER"],
+      "migration_support": null,
+      "aliases": ["kisan mandhan", "kisan maandhan", "kisan maan-dhan", "pm-kmy", "pmkmy", "pm kmy", "farmer pension"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_DDUGKY": {
+      "base": "canonical", "short_name": "DDU-GKY", "spoken_name": "Grameen Kaushalya skill training",
+      "voice_summary": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana gives free skill training with job placement to rural poor youth aged 15 to 35, and up to 45 for women.",
+      "summary_basis": "canonical SCH_DDUGKY description, BEN_DDUGKY",
+      "domains": ["EDUCATION", "WORKER"], "target_occupations": ["UNEMPLOYED", "STUDENT"],
+      "migration_support": null,
+      "aliases": ["ddu-gky", "ddugky", "ddu gky", "grameen kaushalya", "kaushalya yojana"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_GKRY": {
+      "base": "canonical", "short_name": "GKRY", "spoken_name": "Garib Kalyan Rozgar Yojana",
+      "voice_summary": "Garib Kalyan Rozgar Yojana provides 125 days of employment in 25 types of work.",
+      "summary_basis": "canonical SCH_GKRY description",
+      "domains": ["WORKER"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["garib kalyan rozgar", "garib kalyan rozgar yojana", "gkry"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_DAY": {
+      "base": "canonical", "short_name": "DAY", "spoken_name": "Deen Dayal Antyodaya Yojana",
+      "voice_summary": "Deen Dayal Antyodaya Yojana helps the urban and rural poor with skill training and financing to start their own business.",
+      "summary_basis": "canonical SCH_DAY description, objective",
+      "domains": ["WORKER", "FINANCIAL"], "target_occupations": ["UNEMPLOYED", "SELF_EMPLOYED"],
+      "migration_support": null,
+      "aliases": ["deen dayal antyodaya", "deendayal antyodaya", "day-nulm", "day-nrlm"],
+      "weak_aliases": [], "drop_aliases": ["antyodaya yojana", "day"], "state": "ALL"
+    },
+    "SCH_PMKVY": {
+      "base": "canonical", "short_name": "PMKVY", "spoken_name": "PM Kaushal Vikas skill training",
+      "voice_summary": "PM Kaushal Vikas Yojana gives skill training and certification to Indian youth aged 18 to 45.",
+      "summary_basis": "canonical SCH_PMKVY description",
+      "domains": ["EDUCATION"], "target_occupations": ["UNEMPLOYED", "STUDENT"],
+      "migration_support": null,
+      "aliases": ["pmkvy", "kaushal vikas", "pm kaushal vikas", "skill india"],
+      "weak_aliases": ["skill training"], "state": "ALL"
+    },
+    "SCH_NSAP": {
+      "base": "canonical", "short_name": "NSAP", "spoken_name": "the National Social Assistance Programme",
+      "voice_summary": "The National Social Assistance Programme gives pensions to poor elderly people, widows and disabled people, and one-time help to a poor family that loses its main earner.",
+      "summary_basis": "canonical SCH_NSAP objective, description",
+      "domains": ["PENSION", "DISABILITY"], "target_occupations": [], "listed": false,
+      "migration_support": null,
+      "aliases": ["nsap", "national social assistance", "national social assistance programme", "social assistance programme"],
+      "drop_aliases": ["ignoaps", "ignwps", "igndps", "nfbs", "annapurna"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_NSAP_OA": {
+      "base": "canonical", "short_name": "IGNOAPS", "spoken_name": "the old age pension",
+      "voice_summary": "The old age pension is for people aged 60 or above from below poverty line families. The central share is 200 rupees a month, and 500 rupees from age 80.",
+      "summary_basis": "canonical SCH_NSAP_OA description, RULE_NSAP_OA_ELIG",
+      "domains": ["PENSION"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["old age pension", "ignoaps", "indira gandhi old age pension", "vridha pension", "vriddha pension", "budhapa pension", "senior citizen pension"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_NSAP_W": {
+      "base": "canonical", "short_name": "IGNWPS", "spoken_name": "the widow pension",
+      "voice_summary": "The widow pension is for widows aged 40 to 79 from below poverty line families. The central share is 300 rupees a month.",
+      "summary_basis": "canonical SCH_NSAP_W description, RULE_NSAP_W_ELIG",
+      "domains": ["PENSION"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["widow pension", "ignwps", "indira gandhi widow pension", "vidhwa pension", "vidhva pension"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_NSAP_D": {
+      "base": "canonical", "short_name": "IGNDPS", "spoken_name": "the disability pension",
+      "voice_summary": "The disability pension is for people aged 18 to 79 with 80 percent or more disability, from below poverty line families. The central share is 300 rupees a month.",
+      "summary_basis": "canonical SCH_NSAP_D description, RULE_NSAP_D_ELIG",
+      "domains": ["PENSION", "DISABILITY"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["disability pension", "igndps", "indira gandhi disability pension", "viklang pension", "divyang pension", "handicapped pension"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_NSAP_FB": {
+      "base": "canonical", "short_name": "NFBS", "spoken_name": "the National Family Benefit Scheme",
+      "voice_summary": "The National Family Benefit Scheme gives 20000 rupees once to a below poverty line family when its main earner, aged 18 to 59, dies.",
+      "summary_basis": "canonical SCH_NSAP_FB description, BEN_NSAP_FB",
+      "domains": ["FINANCIAL"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["family benefit scheme", "national family benefit", "national family benefit scheme", "nfbs", "breadwinner death benefit"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_NSAP_AP": {
+      "base": "canonical", "short_name": "Annapurna", "spoken_name": "the Annapurna food grain scheme",
+      "voice_summary": "The Annapurna scheme gives 10 kilos of free food grains a month to poor elderly people aged 60 or above who do not get the old age pension.",
+      "summary_basis": "canonical SCH_NSAP_AP description, RULE_NSAP_AP_ELIG",
+      "domains": ["RATION", "PENSION"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["annapurna", "annapurna scheme", "annapurna yojana"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_ABPMJAY": {
+      "base": "canonical", "short_name": "Punjab MMSBY", "spoken_name": "Punjab Mukh Mantri Sehat Bima Yojana",
+      "voice_summary": "In Punjab, the Mukh Mantri Sehat Bima Yojana gives eligible families cashless hospital treatment of up to 5 lakh rupees per family per year.",
+      "summary_basis": "canonical SCH_ABPMJAY description, BEN_ABPMJAY",
+      "domains": ["HEALTH"], "target_occupations": [],
+      "migration_support": null,
+      "aliases": ["mmsby", "sehat bima", "mukh mantri sehat bima", "mukhmantri sehat bima", "sarbat sehat bima"],
+      "drop_aliases": ["ab pm-jay", "ayushman bharat", "ayushman", "health insurance punjab"],
+      "weak_aliases": [], "state": "Punjab"
+    },
+    "SCH_HIS_WEAVERS": {
+      "base": "canonical", "short_name": "HIS Weavers", "spoken_name": "health insurance for weavers",
+      "voice_summary": "The Health Insurance Scheme for Weavers gives health insurance to handloom weavers who earn at least half of their income from weaving.",
+      "summary_basis": "canonical SCH_HIS_WEAVERS description",
+      "domains": ["HEALTH"], "target_occupations": ["WEAVER"],
+      "migration_support": null,
+      "aliases": ["weaver health insurance", "health insurance for weavers", "health insurance scheme for weavers", "his weavers"],
+      "weak_aliases": [], "state": "ALL"
+    },
+    "SCH_SRMS": {
+      "base": "canonical", "short_name": "SRMS", "spoken_name": "the rehabilitation scheme for manual scavengers",
+      "voice_summary": "The rehabilitation scheme for manual scavengers gives identified manual scavengers 40000 rupees of one-time help and free skill training with a stipend.",
+      "summary_basis": "canonical SCH_SRMS description",
+      "domains": ["WORKER", "FINANCIAL"], "target_occupations": ["SANITATION_WORKER"],
+      "migration_support": null,
+      "aliases": ["srms", "rehabilitation of manual scavengers", "manual scavenger scheme", "manual scavengers scheme"],
+      "weak_aliases": [], "state": "ALL"
+    }
+  }
+}

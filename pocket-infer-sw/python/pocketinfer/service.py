@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import os
+import signal
 import sys
 import argparse
 import logging
@@ -15,6 +17,35 @@ def _update_stats(board):
     while True:
         board.memory_text(f"{int(virtual_memory().percent)}%")
         time.sleep(2.0)
+
+
+class _UILogHandler(logging.Handler):
+    """
+    Forwards every log record from every logger in this process to the
+    on-screen pipeline log (board.log_line()) - the same channel/transport
+    NomadRightApplication._log()'s curated stage lines already use, and
+    already wired all the way to the frontend's Settings > Logs tab
+    (state.log_lines, capped at 300 lines - see ui/hdmi/state.py).
+    Without this, that panel only ever showed a handful of explicit
+    _log() calls, not the full picture visible when running
+    `pocketinfer-service` directly in a terminal (ASR/NMT/RAG/Qwen
+    internals, warnings, tracebacks).
+
+    Hardcoded to INFO regardless of --log-level: a DEBUG console session
+    would otherwise push far more traffic than a 300-line kiosk log
+    panel (or the websocket carrying it) is meant for.
+    """
+
+    def __init__(self, board):
+        super().__init__(level=logging.INFO)
+        self.board = board
+        self.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s", datefmt="%H:%M:%S"))
+
+    def emit(self, record: logging.LogRecord) -> None:
+        try:
+            self.board.log_line(self.format(record))
+        except Exception:
+            self.handleError(record)
 
 def main():
     parser = argparse.ArgumentParser(description="PocketInfer Application Runner")
@@ -68,6 +99,31 @@ def main():
         board = Board.get_board(headless=args.headless, legacy_lcd=args.legacy_lcd)
     else:
         board = DummyBoard(vars(args))
+
+    # Without this, Ctrl+C / a systemd stop only kills this Python process -
+    # the HDMI board's kiosk browser subprocess (boards/hdmi.py's
+    # _launch_kiosk(), a plain subprocess.Popen with no lifecycle tie to
+    # this process) is orphaned and keeps running indefinitely, still
+    # pointed at this now-dead process's UI server. HDMIBoard.exit_app()
+    # already does exactly the right cleanup (kiosk terminate() + a bounded
+    # hard os._exit()) for the one path that used to call it (the in-app
+    # Admin "Exit Application" button) - this just wires the same path to
+    # SIGINT/SIGTERM too. Boards without a kiosk browser (DummyBoard,
+    # legacy LCD) simply don't define exit_app(), so this falls back to a
+    # plain exit for them.
+    def _handle_terminate_signal(signum, _frame):
+        logging.info(f"Received signal {signum} - shutting down")
+        exit_fn = getattr(board, "exit_app", None)
+        if callable(exit_fn):
+            exit_fn()
+        else:
+            os._exit(0)
+
+    signal.signal(signal.SIGINT, _handle_terminate_signal)
+    signal.signal(signal.SIGTERM, _handle_terminate_signal)
+
+    logging.getLogger().addHandler(_UILogHandler(board))
+
     threading.Thread(target=_update_stats, args=(board,), daemon=True).start()
     board.statusbar("Starting: {}...".format(args.app))
     board.button_led(False)

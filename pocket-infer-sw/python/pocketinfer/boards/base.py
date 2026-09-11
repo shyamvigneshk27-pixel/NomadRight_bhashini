@@ -22,7 +22,7 @@ class CameraIterable:
         return frame
 
 class CameraReader:
-    def __init__(self, camera_name='', camera_interface='usb', width=1280, height=720):
+    def __init__(self, camera_name='', camera_interface='usb', width=1920, height=1080):
         self.logger = logging.getLogger(__name__)
         self.camera_name = camera_name
         self.camera_interface = camera_interface
@@ -118,6 +118,16 @@ class CameraReader:
         self.cap = cv2.VideoCapture(self.camera_idx)
         if not self.cap.isOpened():
             raise RuntimeError(f"Unable to open VideoCapture({self.camera_idx})")
+        # FOURCC must be set BEFORE width/height, and before either is set
+        # at all V4L2 silently negotiates the uncompressed YUYV mode on
+        # this camera, which hard-caps it to 10fps at 1280x720 (5fps at
+        # 1920x1080) regardless of anything else here - confirmed via
+        # `v4l2-ctl --get-fmt-video` and by measuring real sustained read
+        # rates on-device. Requesting MJPG explicitly gets the camera's
+        # actual supported 30fps mode (verified: ~27.4fps sustained at
+        # 1920x1080, once fourcc is set first - some V4L2 drivers ignore
+        # a fourcc set after width/height).
+        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc(*'MJPG'))
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
         try:

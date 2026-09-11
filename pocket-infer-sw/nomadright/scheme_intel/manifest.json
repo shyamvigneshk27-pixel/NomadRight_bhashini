@@ -1,0 +1,69 @@
+{
+ "built_at": "2026-09-11T11:49:39+00:00",
+ "embedding_model": "intfloat/multilingual-e5-small",
+ "embeddings": {
+  "chunks": [
+   539,
+   384
+  ],
+  "prototypes": [
+   797,
+   384
+  ],
+  "faq_questions": [
+   48,
+   384
+  ],
+  "seconds": 119.9
+ },
+ "counts": {
+  "schemes": 35,
+  "rules": 40,
+  "benefits": 116,
+  "documents": 96,
+  "procedure_steps": 137,
+  "exceptions": 51,
+  "faqs": 48,
+  "contacts": 54,
+  "aliases": 280,
+  "chunks": 539,
+  "prototypes": 797
+ },
+ "sources": {
+  "sources/gov_scheme_qa/data/schemes/all_schemes.json": "8bf54cccf4a5c6d7",
+  "sources/gov_scheme_qa/data/benefits/all_benefits.json": "403c49469eecafa7",
+  "sources/gov_scheme_qa/data/documents/all_documents.json": "82136df875bc4d53",
+  "sources/gov_scheme_qa/data/procedures/all_procedures.json": "b9068ef24eb5792f",
+  "sources/gov_scheme_qa/data/faqs/all_faqs.json": "53fcd65863769299",
+  "sources/gov_scheme_qa/data/authorities/all_authorities.json": "d3ea3d26f875e856",
+  "sources/gov_scheme_qa/data/exclusions/all_exclusions.json": "e705d29b4880afbe",
+  "sources/gov_scheme_qa/data/rules/all_rules.json": "4d55ee44efe0e35d",
+  "sources/gov_scheme_qa/data/relationships/all_relationships.json": "c86d885f66544ca1",
+  "sources/gov_scheme_qa/data/temporal/all_temporal.json": "42b8d446efbdcdd6",
+  "sources/gov_scheme_qa/data/source_chunks/all_chunks.json": "8e6e2827505e2be8",
+  "../pds.json": "c0a94f5f416a35f5",
+  "../pmjay.json": "b0b0ea9e162074a0",
+  "../eshram_osh.json": "d18cd433a3cc39cb",
+  "../bocw.json": "1ec333d0bde844ca",
+  "../mgnregs.json": "b30552ec27f01781",
+  "../pm_sym.json": "70c898baefa14b83",
+  "../pmjjby.json": "e94992dc0b3646b9",
+  "../pmsby.json": "cf4ea2c0d9236630",
+  "../apy.json": "804489742c923641",
+  "../pm_kisan.json": "1af1a75fba3b172f",
+  "../pm_surya_ghar.json": "9fe9f5dd7461d81b",
+  "../pm_svanidhi.json": "10385a3aaf0a96d4",
+  "../pm_vishwakarma.json": "c3b793431f17b759",
+  "../pmuy.json": "c7b15d3e5e83f286",
+  "../pmmy.json": "7c0801dec5c40a7c",
+  "../pmfby.json": "f99ee04d2610f678",
+  "../sukanya_samriddhi.json": "3ce196132c1d87aa",
+  "../pmay_g.json": "62b4fe353c79c286",
+  "../pmjdy.json": "4e3a430179692ff4",
+  "../nsap.json": "eddb8de889d9d9e6",
+  "sources/gov_scheme_qa/dataset/intent_dataset.json": "0bb6ba6ae196be5f",
+  "sources/intent_examples.json": "1a2a717ea1cfd2b2"
+ },
+ "warnings": [],
+ "build_seconds": 129.0
+}

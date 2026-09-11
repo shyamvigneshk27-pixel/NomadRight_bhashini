@@ -1,0 +1,1855 @@
+[
+  {
+    "chunk_id": "CHK_0001",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      1,
+      2
+    ],
+    "text": "One Nation One Ration Card (ONORC): ONORC is a national ration-card portability scheme launched in 2018 by Department of Food & Supplies and Consumer Affairs. It enables migrant workers and their family members to access PDS benefits from any Fair Price Shop anywhere in the country. Implemented in all 36 States/UTs. Mobile app MERA RATION available in 13 languages. Objective: Enable nationwide portability of PDS benefits for NFSA beneficiaries, especially migrant workers, using Aadhaar/biometric authentication at any Fair Price Shop across India."
+  },
+  {
+    "chunk_id": "CHK_0002",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      1,
+      2
+    ],
+    "text": "One Nation One Ration Card is administered by Ministry of Consumer Affairs, Food & Public Distribution, Department of Food & Supplies and Consumer Affairs. Implementing Agency: States/UTs via ePoS at Fair Price Shops. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0003",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      3,
+      4,
+      5
+    ],
+    "text": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana (PM-SYM): Voluntary and contributory pension scheme for unorganised workers. Monthly contribution ranges from Rs 55 to Rs 200 depending upon the entry age. 50% paid by beneficiary and 50% matched by Central Government. Objective: Old age protection for unorganised workers by providing assured monthly pension of Rs 3000 after age 60."
+  },
+  {
+    "chunk_id": "CHK_0004",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      3,
+      4,
+      5
+    ],
+    "text": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana is administered by Ministry of Labour & Employment, None. Implementing Agency: Common Service Centres (CSCs). Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0005",
+    "scheme_id": "SCH_NPST",
+    "scheme_name": "National Pension Scheme for Traders and Self-Employed Persons",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      3,
+      4
+    ],
+    "text": "National Pension Scheme for Traders and Self-Employed Persons (NPS-Traders): Voluntary and contributory pension scheme. Monthly contribution ranges from Rs 55 to Rs 200. 50% paid by beneficiary, 50% by Central Government. Annual turnover must not exceed Rs 1.5 Crore. Objective: Old age pension for retail traders, shopkeepers, and self-employed persons."
+  },
+  {
+    "chunk_id": "CHK_0006",
+    "scheme_id": "SCH_NPST",
+    "scheme_name": "National Pension Scheme for Traders and Self-Employed Persons",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      3,
+      4
+    ],
+    "text": "National Pension Scheme for Traders and Self-Employed Persons is administered by Ministry of Labour & Employment, None. Implementing Agency: Common Service Centres (CSCs). Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0007",
+    "scheme_id": "SCH_PMJJBY",
+    "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "text": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY): One-year renewable term life insurance offering Rs 2 lakh cover for death due to any reason. Annual premium Rs 436/-. Cover period 1 June to 31 May. Entry age 18-50 years, cover continues up to age 55. Lien period of 30 days for non-accidental deaths for new/rejoining subscribers. Administered through LIC and other life insurance companies via participating Banks/Post Offices. Objective: Provide affordable life insurance cover for death due to any cause."
+  },
+  {
+    "chunk_id": "CHK_0008",
+    "scheme_id": "SCH_PMJJBY",
+    "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "text": "Pradhan Mantri Jeevan Jyoti Bima Yojana is administered by Ministry of Finance, Department of Financial Services. Implementing Agency: Banks, Post Offices, LIC and other life insurance companies. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0009",
+    "scheme_id": "SCH_PMSBY",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      5,
+      6
+    ],
+    "text": "Pradhan Mantri Suraksha Bima Yojana (PMSBY): One-year renewable personal accident insurance scheme. Premium Rs 20 per annum. Cover period 1 June to 31 May. Entry age 18-70 years. Rs 2 lakh for accidental death or total disability; Rs 1 lakh for partial disability. Objective: Provide affordable personal accident insurance cover."
+  },
+  {
+    "chunk_id": "CHK_0010",
+    "scheme_id": "SCH_PMSBY",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      5,
+      6
+    ],
+    "text": "Pradhan Mantri Suraksha Bima Yojana is administered by Ministry of Finance, Department of Financial Services. Implementing Agency: Banks, Post Offices. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0011",
+    "scheme_id": "SCH_APY",
+    "scheme_name": "Atal Pension Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "text": "Atal Pension Yojana (APY): Defined contributory pension scheme regulated by PFRDA. Guaranteed monthly pension of Rs 1000 to Rs 5000 at age 60 depending on contribution amount and entry age. On subscriber death, spouse receives the same pension; on spouse death, corpus returned to nominee. Existing Swavalamban subscribers migrated to APY. Charges levied for delayed/non-payment. Objective: Provide guaranteed monthly pension to all citizens, particularly unorganised sector workers."
+  },
+  {
+    "chunk_id": "CHK_0012",
+    "scheme_id": "SCH_APY",
+    "scheme_name": "Atal Pension Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "text": "Atal Pension Yojana is administered by Ministry of Finance, Department of Financial Services. Implementing Agency: PFRDA, Banks, Post Offices (DoP CBS Platform), Business Correspondents. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0013",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "text": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN): Direct income support of Rs 6000 per year paid in 3 equal installments of Rs 2000 every four months via DBT. All landholding farmer families irrespective of land size eligible (revised from initial 2 ha limit on 01.06.2019). Land cut-off date: 01.02.2019 for determining landholding eligibility. Aadhaar mandatory. Bank account with IFSC mandatory. Objective: Provide income support of Rs 6000 per year to landholding farmer families."
+  },
+  {
+    "chunk_id": "CHK_0014",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "text": "Pradhan Mantri Kisan Samman Nidhi is administered by Ministry of Agriculture and Farmers Welfare, None. Implementing Agency: State/UT Governments, Patwari/Revenue Officers, pmkisan.gov.in. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0015",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      18,
+      19,
+      20,
+      21
+    ],
+    "text": "PM Surya Ghar: Muft Bijli Yojana (PM Surya Ghar): Investment of over Rs 75,000 crore. Subsidy for residential households: Rs 30,000/kW up to 2 kW; Rs 18,000/kW for additional capacity up to 3 kW; total subsidy for systems larger than 3 kW capped at Rs 78,000. GHS/RWA: Rs 18,000/kW for common facilities up to 500 kW. Special states: additional 10% subsidy per kW. Online application at pmsuryaghar.gov.in. Objective: Light up 1 crore households by providing up to 300 units of free electricity per month through subsidized rooftop solar installation."
+  },
+  {
+    "chunk_id": "CHK_0016",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      18,
+      19,
+      20,
+      21
+    ],
+    "text": "PM Surya Ghar: Muft Bijli Yojana is administered by Ministry of New and Renewable Energy, None. Implementing Agency: DISCOMs, REC, National Portal. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0017",
+    "scheme_id": "SCH_SVANIDHI",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "text": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi): Central Sector Scheme. Initial working capital loan up to Rs 10,000 for 1 year (generic FAQ). Interest subsidy at 7%. Monthly cashback incentive on digital transactions (Rs 50 on 50 transactions; additional Rs 25 on next 50; additional Rs 25 on next 100; max Rs 100/month). Higher loan on timely repayment. No collateral required. Scheme implemented up to March 2022 per FAQ 8. Objective: Facilitate working capital loans to street vendors to resume livelihoods after COVID-19 lockdowns."
+  },
+  {
+    "chunk_id": "CHK_0018",
+    "scheme_id": "SCH_SVANIDHI",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "text": "PM Street Vendor's AtmaNirbhar Nidhi is administered by Ministry of Housing and Urban Affairs, None. Implementing Agency: SIDBI, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs, SHG Banks, Indian Bank (PAiSA portal). Scope: URBAN."
+  },
+  {
+    "chunk_id": "CHK_0019",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "text": "PM Vishwakarma Scheme (PM Vishwakarma): Provides PM Vishwakarma Certificate and ID card, basic training (5-7 days), advanced training (15+ days), stipend Rs 500/day during training, toolkit incentive of Rs 15,000, collateral-free loans at 5% interest (Tranche 1: up to Rs 1 lakh/18 months; Tranche 2: up to Rs 2 lakh/30 months), digital transaction incentive Rs 1/transaction up to 100 per month, marketing support. Early repayment restriction: not before 6 months from disbursement. Helpline: 1800 267 7777. Family = husband, wife, unmarried children; only 1 per family can apply. Objective: Provide end-to-end support for artisans and craftspersons of 18 traditional trades through recognition, skill training, credit, and market support."
+  },
+  {
+    "chunk_id": "CHK_0020",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "text": "PM Vishwakarma Scheme is administered by Ministry of Micro, Small and Medium Enterprises, None. Implementing Agency: MoMSME, MoSD&E, DFS, Common Service Centres (CSCs). Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0021",
+    "scheme_id": "SCH_PMUY",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "text": "Pradhan Mantri Ujjwala Yojana (PMUY): Launched 1 May 2016 in Ballia, Uttar Pradesh. Deposit-free LPG connection. Cash assistance: Rs 2,050 for 14.2 kg cylinder; Rs 1,300 for 5 kg cylinder. First LPG refill free. Stove (hotplate) free. Administered by Ministry of Petroleum and Natural Gas through OMCs. Objective: Make clean cooking fuel (LPG) available to rural and deprived households."
+  },
+  {
+    "chunk_id": "CHK_0022",
+    "scheme_id": "SCH_PMUY",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      32,
+      33,
+      34,
+      35
+    ],
+    "text": "Pradhan Mantri Ujjwala Yojana is administered by Ministry of Petroleum and Natural Gas, None. Implementing Agency: Oil Marketing Companies (OMCs), LPG distributors. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0023",
+    "scheme_id": "SCH_PMSBY_FULL",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana - Full Rules",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "text": "Pradhan Mantri Suraksha Bima Yojana - Full Rules (PMSBY): Rs 20 annual premium. Rs 2 lakh for accidental death or total permanent disability. Rs 1 lakh for partial permanent disability. Cover period 1 June to 31 May. NRI with eligible bank account in India eligible. Offered through banks/post offices. Objective: Provide affordable personal accident insurance."
+  },
+  {
+    "chunk_id": "CHK_0024",
+    "scheme_id": "SCH_PMSBY_FULL",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana - Full Rules",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "text": "Pradhan Mantri Suraksha Bima Yojana - Full Rules is administered by Ministry of Finance, Department of Financial Services. Implementing Agency: Banks, Post Offices. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0025",
+    "scheme_id": "SCH_PMMY",
+    "scheme_name": "Pradhan Mantri Mudra Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      40,
+      41,
+      42,
+      43,
+      44
+    ],
+    "text": "Pradhan Mantri Mudra Yojana (PMMY): Implemented through MUDRA (Micro Units Development & Refinance Agency), a subsidiary of SIDBI. Categories: Shishu (up to Rs 50,000), Kishor (Rs 50,001 to Rs 5 lakh), Tarun (Rs 5,00,001 to Rs 10 lakh), Tarun Plus (Rs 10,00,001 to Rs 20 lakh). No collateral required. Purpose: manufacturing, trading, service activities. Women entrepreneurs encouraged with additional facilities. Objective: Provide micro finance support to non-corporate, non-farm small/micro enterprises."
+  },
+  {
+    "chunk_id": "CHK_0026",
+    "scheme_id": "SCH_PMMY",
+    "scheme_name": "Pradhan Mantri Mudra Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      40,
+      41,
+      42,
+      43,
+      44
+    ],
+    "text": "Pradhan Mantri Mudra Yojana is administered by Ministry of Finance, Department of Financial Services. Implementing Agency: MUDRA, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0027",
+    "scheme_id": "SCH_PMFBY",
+    "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "text": "Pradhan Mantri Fasal Bima Yojana (PMFBY): Launched from Kharif 2016. Optional for all farmers including KCC holders (loanee farmers can opt out at least 7 days before cut-off date). Covers food crops, oilseeds, annual commercial/horticultural crops. Risks covered: drought, dry spells, flood, inundation, widespread pest/disease, landslides, natural fire, storms, hailstorms, cyclones. Prevented sowing/mid-season adversity/post-harvest (up to 2 weeks) coverage. Localized calamities covered. Exclusions: war, nuclear risks, malicious damage, preventable risks. Technology: YES-TECH, CROPIC App, CCE Agri App. Portal: National Crop Insurance Portal (NCIP). Objective: Provide affordable crop insurance and comprehensive risk cover to farmers against non-preventable natural risks from pre-sowing to post-harvest."
+  },
+  {
+    "chunk_id": "CHK_0028",
+    "scheme_id": "SCH_PMFBY",
+    "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+    ],
+    "text": "Pradhan Mantri Fasal Bima Yojana is administered by Ministry of Agriculture and Farmers Welfare, None. Implementing Agency: Insurance companies, Banks, PACS, CSCs. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0029",
+    "scheme_id": "SCH_SSY",
+    "scheme_name": "Sukanya Samriddhi Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      51,
+      52,
+      53,
+      54,
+      55
+    ],
+    "text": "Sukanya Samriddhi Yojana (SSY): Account can be opened for girl child below 10 years of age by parent/guardian. Interest rate: 8.2% per annum, compounded yearly. Deposits for 15 years; account matures after 21 years from opening. Partial withdrawal permitted after girl attains 18 years for education (up to 50% of balance). EEE tax status (Section 80C deduction, tax-free interest, tax-free maturity). Maximum 2 accounts per family (exception for twins). Account can be opened at post offices and designated banks. Objective: Encourage savings for girl child's education and marriage."
+  },
+  {
+    "chunk_id": "CHK_0030",
+    "scheme_id": "SCH_SSY",
+    "scheme_name": "Sukanya Samriddhi Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      51,
+      52,
+      53,
+      54,
+      55
+    ],
+    "text": "Sukanya Samriddhi Yojana is administered by Ministry of Finance, Department of Economic Affairs. Implementing Agency: Post Offices, Designated Banks. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0031",
+    "scheme_id": "SCH_PMAYG",
+    "scheme_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      55,
+      56,
+      57,
+      58
+    ],
+    "text": "Pradhan Mantri Awaas Yojana \u2013 Gramin (PMAY-G): Implemented from 1 April 2016. Framework 2022 applicable. Minimum house size: 25 sq metres including cooking area. Unit assistance: Rs 1.20 lakh (plain areas), Rs 1.30 lakh (hilly/NE/difficult). Cost sharing: 60:40 (Centre:State) for plains; 90:10 for NE/Himachal/Uttarakhand/J&K; 100% Central for UTs. Toilet assistance Rs 12,000 via SBM-G/MGNREGS convergence. MGNREGS labour: 90/95 person-days. Beneficiary selection via SECC 2011 housing deprivation data and Awaas+ lists verified by Gram Sabha. AwaasApp for geo-tagged monitoring. Institutional finance up to Rs 70,000 facilitated. Extended 2024-29 with 2 crore additional houses; total target 4.95 crore by 2029. Objective: Provide pucca house with basic amenities to eligible houseless rural households."
+  },
+  {
+    "chunk_id": "CHK_0032",
+    "scheme_id": "SCH_PMAYG",
+    "scheme_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      55,
+      56,
+      57,
+      58
+    ],
+    "text": "Pradhan Mantri Awaas Yojana \u2013 Gramin is administered by Ministry of Rural Development, None. Implementing Agency: State/UT Governments, District Administration, Gram Panchayats. Scope: RURAL."
+  },
+  {
+    "chunk_id": "CHK_0033",
+    "scheme_id": "SCH_PMJDY",
+    "scheme_name": "Pradhan Mantri Jan Dhan Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      24,
+      25,
+      26,
+      27
+    ],
+    "text": "Pradhan Mantri Jan Dhan Yojana (PMJDY): Launched 28.8.2014. Provides Basic Savings Bank Deposit (BSBD) account with no minimum balance. Free RuPay debit card with accident insurance Rs 2 lakh (Rs 1 lakh for pre-28.8.2018 accounts). Overdraft up to Rs 10,000. Financial literacy programs. As of 28.02.2025: 54.97 crore accounts; Rs 2,52,750 crore deposits; 30.60 crore women accounts (55.7%); 36.59 crore rural/semi-urban (66.6%); 37.60 crore RuPay cards. Extended beyond 14.8.2018 with focus shifting to every unbanked adult. Objective: Ensure access to financial services including savings, credit, insurance, and pension for excluded sections."
+  },
+  {
+    "chunk_id": "CHK_0034",
+    "scheme_id": "SCH_PMJDY",
+    "scheme_name": "Pradhan Mantri Jan Dhan Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      24,
+      25,
+      26,
+      27
+    ],
+    "text": "Pradhan Mantri Jan Dhan Yojana is administered by Ministry of Finance, Department of Financial Services. Implementing Agency: Banks, Bank Mitras (Business Correspondents). Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0035",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "text": "Mahatma Gandhi National Rural Employment Guarantee Act 2005 (MGNREGA): Statutory Act No. 42 of 2005. 100 days guaranteed wage employment per household per financial year for adult members willing to do unskilled manual work. Employment to be provided within 15 days. Unemployment allowance payable if employment not provided. Works at worksite: safe drinking water, shade, first aid. Medical treatment free if injured. Death/permanent disability ex gratia: Rs 25,000. Equal wages; no gender discrimination. REPEALED from 1 July 2026 by VB-G RAM G Act 2025. Objective: Enhance livelihood security of rural households by guaranteeing 100 days of wage employment per year."
+  },
+  {
+    "chunk_id": "CHK_0036",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "text": "Mahatma Gandhi National Rural Employment Guarantee Act 2005 is administered by Ministry of Rural Development, None. Implementing Agency: Gram Panchayats, Programme Officers, District Programme Coordinators. Scope: RURAL."
+  },
+  {
+    "chunk_id": "CHK_0037",
+    "scheme_id": "SCH_VBG_RAMG",
+    "scheme_name": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      21,
+      22,
+      23
+    ],
+    "text": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025 (VB-G RAM G): Came into force 1 July 2026. Replaced MGNREGA. Increases guarantee from 100 to 125 days. 60-day agricultural season break where works may be suspended. Weekly wage payment (not later than fortnight after work done). Unemployment allowance for unmet guarantee. Four priority areas: water security, core rural infrastructure, livelihood-related infrastructure, extreme weather mitigation. Plans from Viksit Gram Panchayat Plans. Fund sharing: 60:40 (Centre:State); 90:10 for NE/Himalayan States. Existing MGNREGA e-KYC cards valid until Gramin Rozgar Guarantee Cards issued. Objective: Provide statutory guarantee of 125 days of wage employment per rural household per financial year."
+  },
+  {
+    "chunk_id": "CHK_0038",
+    "scheme_id": "SCH_VBG_RAMG",
+    "scheme_name": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      21,
+      22,
+      23
+    ],
+    "text": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025 is administered by Ministry of Rural Development, None. Implementing Agency: Gram Panchayats, Block/District/State administrations. Scope: RURAL."
+  },
+  {
+    "chunk_id": "CHK_0039",
+    "scheme_id": "SCH_PMJKMY",
+    "scheme_name": "Pradhan Mantri Kisan Mandhan Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      7,
+      8
+    ],
+    "text": "Pradhan Mantri Kisan Mandhan Yojana (PM-KMY): Voluntary contributory pension scheme for small and marginal farmers with cultivable land up to 2 hectares. Entry age 18-40. Monthly pension Rs 3,000 at age 60. Monthly contribution Rs 55 to Rs 200 (equal matching by Central Government). Objective: Provide old-age pension to small and marginal farmers."
+  },
+  {
+    "chunk_id": "CHK_0040",
+    "scheme_id": "SCH_PMJKMY",
+    "scheme_name": "Pradhan Mantri Kisan Mandhan Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      7,
+      8
+    ],
+    "text": "Pradhan Mantri Kisan Mandhan Yojana is administered by Ministry of Agriculture and Farmers Welfare, None. Implementing Agency: Common Service Centres (CSCs). Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0041",
+    "scheme_id": "SCH_DDUGKY",
+    "scheme_name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      4,
+      5
+    ],
+    "text": "Deen Dayal Upadhyay Grameen Kaushalya Yojana (DDU-GKY): Training programs for youth aged 15-35 (up to 45 for women and vulnerable groups including PwD). Placement-linked skill training. Objective: Skill rural poor youth and provide them with jobs having regular monthly wages."
+  },
+  {
+    "chunk_id": "CHK_0042",
+    "scheme_id": "SCH_DDUGKY",
+    "scheme_name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      4,
+      5
+    ],
+    "text": "Deen Dayal Upadhyay Grameen Kaushalya Yojana is administered by Ministry of Rural Development, None. Implementing Agency: DDU-GKY Training Centres. Scope: RURAL."
+  },
+  {
+    "chunk_id": "CHK_0043",
+    "scheme_id": "SCH_GKRY",
+    "scheme_name": "Garib Kalyan Rozgar Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      4
+    ],
+    "text": "Garib Kalyan Rozgar Yojana (GKRY): Scheme provides employment for 125 days. Target workers identified in 25 working areas including PM Kusum Works, cattle sheds, poultry sheds, goat sheds, Shyama Prasad Mukherjee RURBAN mission, national highways, well construction etc. Objective: Provide 125 days of employment in 25 types of working areas."
+  },
+  {
+    "chunk_id": "CHK_0044",
+    "scheme_id": "SCH_GKRY",
+    "scheme_name": "Garib Kalyan Rozgar Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      4
+    ],
+    "text": "Garib Kalyan Rozgar Yojana is administered by Ministry of Rural Development, None. Implementing Agency: Gram Panchayats, Designated Worksites. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0045",
+    "scheme_id": "SCH_DAY",
+    "scheme_name": "Deen Dayal Upadhyaya Antyodaya Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      4
+    ],
+    "text": "Deen Dayal Upadhyaya Antyodaya Yojana (DAY): For any Indian citizen intending to get trained on skills. Aims to enhance skills and self-business financing. Covers both urban and rural poor. Objective: Enhance skills and self-business by financing and supporting the poor."
+  },
+  {
+    "chunk_id": "CHK_0046",
+    "scheme_id": "SCH_DAY",
+    "scheme_name": "Deen Dayal Upadhyaya Antyodaya Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      4
+    ],
+    "text": "Deen Dayal Upadhyaya Antyodaya Yojana is administered by Ministry of Rural Development / Ministry of Housing and Urban Affairs, None. Implementing Agency: ULBs, State Rural Livelihoods Missions. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0047",
+    "scheme_id": "SCH_PMKVY",
+    "scheme_name": "Pradhan Mantri Kaushal Vikas Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      4,
+      5
+    ],
+    "text": "Pradhan Mantri Kaushal Vikas Yojana (PMKVY): For Indian nationals aged 18-45. 12th class dropouts or 10th pass students can enroll. Provides skill training and certification. Targets 8 lakh youth over scheme period 2020-21. Promotes sustainable Skill Centres and private sector participation. Objective: Create ecosystem for youth to get skill training and certification."
+  },
+  {
+    "chunk_id": "CHK_0048",
+    "scheme_id": "SCH_PMKVY",
+    "scheme_name": "Pradhan Mantri Kaushal Vikas Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      4,
+      5
+    ],
+    "text": "Pradhan Mantri Kaushal Vikas Yojana is administered by Ministry of Skill Development and Entrepreneurship, None. Implementing Agency: NSDC Training Partners, Skill India Centres. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0049",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68
+    ],
+    "text": "National Social Assistance Programme (NSAP): Launched 15 August 1995. Five components: IGNOAPS (old age pension: Rs 200/month for 60-79, Rs 500/month for 80+), IGNWPS (widow pension: Rs 300/month, Rs 500/month after 80), IGNDPS (disability pension: Rs 300/month, Rs 500/month after 80), NFBS (Rs 20,000 one-time on breadwinner death aged 18-59 in BPL), Annapurna (10 kg food grains/month for eligible elderly not receiving IGNOAPS). Social audit required every 6 months; 100% beneficiary verification. Objective: Provide social assistance to BPL households for old age, widows, disabled persons, and bereaved families."
+  },
+  {
+    "chunk_id": "CHK_0050",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68
+    ],
+    "text": "National Social Assistance Programme is administered by Ministry of Rural Development, None. Implementing Agency: State/UT Governments, District Administration, Gram Panchayats/ULBs. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0051",
+    "scheme_id": "SCH_ABPMJAY",
+    "scheme_name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      68,
+      69,
+      70,
+      71
+    ],
+    "text": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana (AB PM-JAY MMSBY): Flagship State Health Insurance Scheme for Punjab. Launched 20 August 2019. Covers 65% of Punjab population. Cashless and paperless treatment at Government and empaneled private hospitals. Rs 5 lakh per family per year. Covers 1579 treatment packages including pre-hospitalization (3 days) and post-hospitalization (15 days). Entitlement-based scheme; no separate enrollment for identified families. E-card generation via Ayushman App or beneficiary.nha.gov.in. Objective: Provide cashless health insurance cover for secondary and tertiary care hospitalization."
+  },
+  {
+    "chunk_id": "CHK_0052",
+    "scheme_id": "SCH_ABPMJAY",
+    "scheme_name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      68,
+      69,
+      70,
+      71
+    ],
+    "text": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana is administered by Government of Punjab, Health & Family Welfare. Implementing Agency: State Health Agency Punjab, National Health Authority. Scope: STATE_SPECIFIC."
+  },
+  {
+    "chunk_id": "CHK_0053",
+    "scheme_id": "SCH_HIS_WEAVERS",
+    "scheme_name": "Health Insurance Scheme for Weavers",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      6
+    ],
+    "text": "Health Insurance Scheme for Weavers (HIS): Health insurance for handloom weavers earning 50% or more income from weaving. Objective: Provide health coverage to handloom weavers."
+  },
+  {
+    "chunk_id": "CHK_0054",
+    "scheme_id": "SCH_HIS_WEAVERS",
+    "scheme_name": "Health Insurance Scheme for Weavers",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      6
+    ],
+    "text": "Health Insurance Scheme for Weavers is administered by Ministry of Textiles, None. Implementing Agency: Weavers Service Centres. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0055",
+    "scheme_id": "SCH_SRMS",
+    "scheme_name": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      7
+    ],
+    "text": "Self Employment Scheme for Rehabilitation of Manual Scavengers (SRMS): One-time cash assistance of Rs 40,000 and free skill training with stipend Rs 3,000/month for identified manual scavengers. Objective: Provide cash assistance and skill training for rehabilitation of manual scavengers."
+  },
+  {
+    "chunk_id": "CHK_0056",
+    "scheme_id": "SCH_SRMS",
+    "scheme_name": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      7
+    ],
+    "text": "Self Employment Scheme for Rehabilitation of Manual Scavengers is administered by Ministry of Social Justice and Empowerment, None. Implementing Agency: NSKFDC. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0057",
+    "scheme_id": "SCH_BOCW",
+    "scheme_name": "Building and Other Construction Workers Welfare Framework",
+    "section": "OVERVIEW_AND_DESCRIPTION",
+    "page_numbers": [
+      57,
+      58,
+      59,
+      60
+    ],
+    "text": "Building and Other Construction Workers Welfare Framework (BOCW): Framework based on: BOCW (Regulation of Employment and Conditions of Service) Act 1996 and BOCW Welfare Cess Act 1996 (now subsumed under OSH Code 2020 and Code on Social Security 2020). State BOCW Welfare Boards register eligible workers and provide welfare from welfare fund. Registration: age 18-60; 90+ days construction work in last 12 months. Benefits vary by state: life insurance, disability, health, maternity, education, pension, housing. BOCW MIS Portal: bocw.labour.gov.in. Objective: Protect safety, health, welfare and social security of construction workers."
+  },
+  {
+    "chunk_id": "CHK_0058",
+    "scheme_id": "SCH_BOCW",
+    "scheme_name": "Building and Other Construction Workers Welfare Framework",
+    "section": "ADMINISTRATION",
+    "page_numbers": [
+      57,
+      58,
+      59,
+      60
+    ],
+    "text": "Building and Other Construction Workers Welfare Framework is administered by Ministry of Labour & Employment, None. Implementing Agency: State/UT Building and Other Construction Workers Welfare Boards. Scope: NATIONAL."
+  },
+  {
+    "chunk_id": "CHK_0059",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "BENEFITS",
+    "page_numbers": [
+      1
+    ],
+    "text": "Benefit for SCH_ONORC: Type: PDS_PORTABILITY. Claim full or part food grains from any Fair Price Shop across India. Quantified value:  All 36 States/UTs."
+  },
+  {
+    "chunk_id": "CHK_0060",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      3
+    ],
+    "text": "Benefit for SCH_PMSYM: Type: MONTHLY_PENSION. Monthly assured pension of Rs 3000 after age 60. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0061",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      3
+    ],
+    "text": "Benefit for SCH_PMSYM: Type: FAMILY_PENSION. Spouse eligible for 50% of monthly pension on death of beneficiary. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0062",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      3
+    ],
+    "text": "Benefit for SCH_PMSYM: Type: JOINT_PENSION. If husband and wife both join, jointly eligible for Rs 6000/month. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0063",
+    "scheme_id": "SCH_NPST",
+    "scheme_name": "National Pension Scheme for Traders and Self-Employed Persons",
+    "section": "BENEFITS",
+    "page_numbers": [
+      3
+    ],
+    "text": "Benefit for SCH_NPST: Type: MONTHLY_PENSION. Monthly assured pension of Rs 3000 after age 60. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0064",
+    "scheme_id": "SCH_PMJJBY",
+    "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      5,
+      7
+    ],
+    "text": "Benefit for SCH_PMJJBY: Type: LIFE_INSURANCE. Rs 2 lakh on death due to any reason. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0065",
+    "scheme_id": "SCH_PMSBY",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      5
+    ],
+    "text": "Benefit for SCH_PMSBY: Type: ACCIDENT_INSURANCE. Rs 2 lakh for accidental death or total permanent disability. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0066",
+    "scheme_id": "SCH_PMSBY",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      5
+    ],
+    "text": "Benefit for SCH_PMSBY: Type: ACCIDENT_INSURANCE. Rs 1 lakh for partial permanent disability. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0067",
+    "scheme_id": "SCH_APY",
+    "scheme_name": "Atal Pension Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      6,
+      9
+    ],
+    "text": "Benefit for SCH_APY: Type: MONTHLY_PENSION. Guaranteed minimum monthly pension of Rs 1000 to Rs 5000 at age 60, depending on contribution amount and entry age. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0068",
+    "scheme_id": "SCH_APY",
+    "scheme_name": "Atal Pension Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      9
+    ],
+    "text": "Benefit for SCH_APY: Type: FAMILY_PENSION. On subscriber death, spouse receives same pension amount. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0069",
+    "scheme_id": "SCH_APY",
+    "scheme_name": "Atal Pension Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      9
+    ],
+    "text": "Benefit for SCH_APY: Type: CORPUS_RETURN. On death of both subscriber and spouse, accumulated pension corpus returned to nominee. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0070",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "BENEFITS",
+    "page_numbers": [
+      10
+    ],
+    "text": "Benefit for SCH_PMKISAN: Type: DIRECT_INCOME_SUPPORT. Rs 6000 per year income support to farmer families. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0071",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      19
+    ],
+    "text": "Benefit for SCH_PMSURYA: Type: CAPITAL_SUBSIDY. Rs 30,000 per kW subsidy for residential households (up to 2 kW). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0072",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      19
+    ],
+    "text": "Benefit for SCH_PMSURYA: Type: CAPITAL_SUBSIDY. Rs 18,000 per kW for additional capacity between 2-3 kW. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0073",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      19
+    ],
+    "text": "Benefit for SCH_PMSURYA: Type: CAPITAL_SUBSIDY. Total subsidy capped at Rs 78,000 for systems larger than 3 kW. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0074",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      18
+    ],
+    "text": "Benefit for SCH_PMSURYA: Type: FREE_ELECTRICITY. Up to 300 units of free electricity per month. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0075",
+    "scheme_id": "SCH_SVANIDHI",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "section": "BENEFITS",
+    "page_numbers": [
+      22,
+      23
+    ],
+    "text": "Benefit for SCH_SVANIDHI: Type: WORKING_CAPITAL_LOAN. Initial working capital loan up to Rs 10,000 for 1 year. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0076",
+    "scheme_id": "SCH_SVANIDHI",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "section": "BENEFITS",
+    "page_numbers": [
+      23
+    ],
+    "text": "Benefit for SCH_SVANIDHI: Type: DIGITAL_TRANSACTION_INCENTIVE. Monthly cashback: Rs 50 for 50 transactions; additional Rs 25 for next 50; max Rs 100/month. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0077",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      27,
+      28
+    ],
+    "text": "Benefit for SCH_VISHWA: Type: COLLATERAL_FREE_LOAN. First tranche: collateral-free loan up to Rs 1 lakh at 5% interest for 18 months. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0078",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      27,
+      28
+    ],
+    "text": "Benefit for SCH_VISHWA: Type: COLLATERAL_FREE_LOAN. Second tranche: up to Rs 2 lakh for 30 months after repayment of first tranche. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0079",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      28,
+      29
+    ],
+    "text": "Benefit for SCH_VISHWA: Type: TOOLKIT_INCENTIVE. One-time toolkit incentive of Rs 15,000 after skill assessment. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0080",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      29
+    ],
+    "text": "Benefit for SCH_VISHWA: Type: TRAINING_STIPEND. Stipend of Rs 500/day during skill training. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0081",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      30
+    ],
+    "text": "Benefit for SCH_VISHWA: Type: DIGITAL_TRANSACTION_INCENTIVE. Rs 1 per eligible digital transaction, up to 100 transactions per month. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0082",
+    "scheme_id": "SCH_PMUY",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      33
+    ],
+    "text": "Benefit for SCH_PMUY: Type: CASH_ASSISTANCE. Cash assistance of Rs 2050 for 14.2 kg cylinder deposit-free connection. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0083",
+    "scheme_id": "SCH_PMUY",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      33
+    ],
+    "text": "Benefit for SCH_PMUY: Type: CASH_ASSISTANCE. Cash assistance of Rs 1300 for 5 kg cylinder connection. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0084",
+    "scheme_id": "SCH_PMUY",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      33
+    ],
+    "text": "Benefit for SCH_PMUY: Type: IN_KIND_BENEFIT. First LPG refill free + Stove (hotplate) free from OMCs. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0085",
+    "scheme_id": "SCH_PMJDY",
+    "scheme_name": "Pradhan Mantri Jan Dhan Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      24
+    ],
+    "text": "Benefit for SCH_PMJDY: Type: BANKING_ACCOUNT. Basic Savings Bank Deposit (BSBD) account with no minimum balance requirement. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0086",
+    "scheme_id": "SCH_PMJDY",
+    "scheme_name": "Pradhan Mantri Jan Dhan Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      24,
+      25
+    ],
+    "text": "Benefit for SCH_PMJDY: Type: ACCIDENT_INSURANCE. Free RuPay debit card with accident insurance cover of Rs 2 lakh (for post-28.8.2018 accounts; Rs 1 lakh for older accounts). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0087",
+    "scheme_id": "SCH_PMJDY",
+    "scheme_name": "Pradhan Mantri Jan Dhan Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      25
+    ],
+    "text": "Benefit for SCH_PMJDY: Type: OVERDRAFT_FACILITY. Overdraft facility up to Rs 10,000 for eligible account holders. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0088",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "BENEFITS",
+    "page_numbers": [
+      12
+    ],
+    "text": "Benefit for SCH_MGNREGA: Type: WAGE_EMPLOYMENT. HISTORICAL: 100 days guaranteed wage employment per household per year (valid until 30 June 2026). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0089",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "BENEFITS",
+    "page_numbers": [
+      13
+    ],
+    "text": "Benefit for SCH_MGNREGA: Type: UNEMPLOYMENT_ALLOWANCE. Unemployment allowance payable if employment not provided within 15 days. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0090",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "BENEFITS",
+    "page_numbers": [
+      15
+    ],
+    "text": "Benefit for SCH_MGNREGA: Type: EX_GRATIA. Ex gratia of Rs 25,000 for death/permanent disability at worksite. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0091",
+    "scheme_id": "SCH_VBG_RAMG",
+    "scheme_name": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+    "section": "BENEFITS",
+    "page_numbers": [
+      21
+    ],
+    "text": "Benefit for SCH_VBG_RAMG: Type: WAGE_EMPLOYMENT. 125 days guaranteed wage employment per rural household per year (from 1 July 2026). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0092",
+    "scheme_id": "SCH_VBG_RAMG",
+    "scheme_name": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+    "section": "BENEFITS",
+    "page_numbers": [
+      22
+    ],
+    "text": "Benefit for SCH_VBG_RAMG: Type: UNEMPLOYMENT_ALLOWANCE. Unemployment allowance payable if eligible employment not provided under the Act. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0093",
+    "scheme_id": "SCH_PMAYG",
+    "scheme_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "section": "BENEFITS",
+    "page_numbers": [
+      56
+    ],
+    "text": "Benefit for SCH_PMAYG: Type: CONSTRUCTION_ASSISTANCE. Rs 1.20 lakh unit assistance for house construction in plain areas. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0094",
+    "scheme_id": "SCH_PMAYG",
+    "scheme_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "section": "BENEFITS",
+    "page_numbers": [
+      56
+    ],
+    "text": "Benefit for SCH_PMAYG: Type: CONSTRUCTION_ASSISTANCE. Rs 1.30 lakh unit assistance for house construction in hilly/NE/difficult areas. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0095",
+    "scheme_id": "SCH_PMAYG",
+    "scheme_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "section": "BENEFITS",
+    "page_numbers": [
+      56
+    ],
+    "text": "Benefit for SCH_PMAYG: Type: TOILET_ASSISTANCE. Rs 12,000 for toilet construction through SBM-G convergence. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0096",
+    "scheme_id": "SCH_PMAYG",
+    "scheme_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "section": "BENEFITS",
+    "page_numbers": [
+      56
+    ],
+    "text": "Benefit for SCH_PMAYG: Type: WAGE_LABOUR. 90/95 person-days unskilled wage labour through MGNREGS convergence. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0097",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: OLD_AGE_PENSION. Rs 200/month old age pension for persons aged 60-79 (Central share). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0098",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: OLD_AGE_PENSION. Rs 500/month old age pension for persons aged 80+ (Central share). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0099",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: WIDOW_PENSION. Rs 300/month widow pension (Central share). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0100",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: WIDOW_PENSION. Rs 500/month widow pension for 80+ (Central share). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0101",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: DISABILITY_PENSION. Rs 300/month disability pension (Central share). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0102",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: DISABILITY_PENSION. Rs 500/month disability pension for 80+ (Central share). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0103",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: DEATH_ASSISTANCE. Rs 20,000 one-time assistance on death of breadwinner. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0104",
+    "scheme_id": "SCH_NSAP",
+    "scheme_name": "National Social Assistance Programme",
+    "section": "BENEFITS",
+    "page_numbers": [
+      65
+    ],
+    "text": "Benefit for SCH_NSAP: Type: FOOD_GRAIN. 10 kg food grains per month free for eligible elderly not receiving IGNOAPS. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0105",
+    "scheme_id": "SCH_ABPMJAY",
+    "scheme_name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      68,
+      69
+    ],
+    "text": "Benefit for SCH_ABPMJAY: Type: HEALTH_INSURANCE. Cashless health insurance cover of Rs 5 lakh per family per year. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0106",
+    "scheme_id": "SCH_PMMY",
+    "scheme_name": "Pradhan Mantri Mudra Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      42
+    ],
+    "text": "Benefit for SCH_PMMY: Type: MICRO_ENTERPRISE_LOAN. Shishu: Loans up to Rs 50,000. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0107",
+    "scheme_id": "SCH_PMMY",
+    "scheme_name": "Pradhan Mantri Mudra Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      42
+    ],
+    "text": "Benefit for SCH_PMMY: Type: MICRO_ENTERPRISE_LOAN. Kishor: Loans above Rs 50,000 and up to Rs 5 lakh. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0108",
+    "scheme_id": "SCH_PMMY",
+    "scheme_name": "Pradhan Mantri Mudra Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      42
+    ],
+    "text": "Benefit for SCH_PMMY: Type: MICRO_ENTERPRISE_LOAN. Tarun: Loans above Rs 5 lakh and up to Rs 10 lakh. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0109",
+    "scheme_id": "SCH_PMMY",
+    "scheme_name": "Pradhan Mantri Mudra Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      42
+    ],
+    "text": "Benefit for SCH_PMMY: Type: MICRO_ENTERPRISE_LOAN. Tarun Plus: Loans above Rs 10 lakh and up to Rs 20 lakh. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0110",
+    "scheme_id": "SCH_PMFBY",
+    "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      44,
+      45
+    ],
+    "text": "Benefit for SCH_PMFBY: Type: CROP_INSURANCE. Comprehensive crop insurance from pre-sowing to post-harvest against natural risks. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0111",
+    "scheme_id": "SCH_PMFBY",
+    "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      45
+    ],
+    "text": "Benefit for SCH_PMFBY: Type: POST_HARVEST_COVERAGE. Post-harvest loss coverage for up to 2 weeks after harvest for crops left in field for drying. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0112",
+    "scheme_id": "SCH_DDUGKY",
+    "scheme_name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      4
+    ],
+    "text": "Benefit for SCH_DDUGKY: Type: PLACEMENT_LINKED_SKILL_TRAINING. Free skill training with placement assistance for rural poor youth aged 15-35 (45 for women/PwD). Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0113",
+    "scheme_id": "SCH_PMJKMY",
+    "scheme_name": "Pradhan Mantri Kisan Mandhan Yojana",
+    "section": "BENEFITS",
+    "page_numbers": [
+      7,
+      8
+    ],
+    "text": "Benefit for SCH_PMJKMY: Type: MONTHLY_PENSION. Monthly pension of Rs 3,000 for small and marginal farmers after age 60. Quantified value:  ."
+  },
+  {
+    "chunk_id": "CHK_0114",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      1
+    ],
+    "text": "Eligibility rule for SCH_ONORC: Eligible for One Nation One Ration Card. Conditions: Must be a ration cardholder covered under NFSA 2013; Aadhaar number must be seeded in ration card"
+  },
+  {
+    "chunk_id": "CHK_0115",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      3
+    ],
+    "text": "Eligibility rule for SCH_PMSYM: Eligible for PM Shram Yogi Maan-Dhan. Conditions: Must be an Indian Citizen; Age must be 18 years or above; Age must not exceed 40 years; Monthly income must be below Rs 15,000; Must be an unorganised worker"
+  },
+  {
+    "chunk_id": "CHK_0116",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      3
+    ],
+    "text": "Eligibility rule for SCH_PMSYM: Excluded from PM Shram Yogi Maan-Dhan. Conditions: EPFO member is excluded; ESIC member is excluded; Government-funded NPS member is excluded; Income tax payer is excluded"
+  },
+  {
+    "chunk_id": "CHK_0117",
+    "scheme_id": "SCH_NPST",
+    "scheme_name": "National Pension Scheme for Traders and Self-Employed Persons",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      3
+    ],
+    "text": "Eligibility rule for SCH_NPST: Eligible for NPS Traders Scheme. Conditions: Must be Indian Citizen; Age must be 18 or above; Age must not exceed 40; Must be a shopkeeper, petty/small shop owner (restaurants, hotels, real estate brokers etc.); Annual turnover must not exceed Rs 1.5 Crore"
+  },
+  {
+    "chunk_id": "CHK_0118",
+    "scheme_id": "SCH_NPST",
+    "scheme_name": "National Pension Scheme for Traders and Self-Employed Persons",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      3
+    ],
+    "text": "Eligibility rule for SCH_NPST: Excluded from NPS Traders. Conditions: EPFO member excluded; ESIC member excluded; Already enrolled in PM-SYM excluded"
+  },
+  {
+    "chunk_id": "CHK_0119",
+    "scheme_id": "SCH_PMJJBY",
+    "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      5,
+      6,
+      7
+    ],
+    "text": "Eligibility rule for SCH_PMJJBY: Eligible for PM Jeevan Jyoti Bima Yojana. Conditions: Age must be 18 years (completed) or above; Age must not exceed 50 years (age nearer birthday); Must have a bank or post office savings account; Aadhaar is primary KYC for bank account"
+  },
+  {
+    "chunk_id": "CHK_0120",
+    "scheme_id": "SCH_PMJJBY",
+    "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      7
+    ],
+    "text": "Eligibility rule for SCH_PMJJBY: 30-day lien period for non-accidental death (new/rejoining subscribers from 1 June 2021). Conditions: Death within first 30 days from enrollment; Non-accidental death during lien period is not covered"
+  },
+  {
+    "chunk_id": "CHK_0121",
+    "scheme_id": "SCH_PMSBY",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      5,
+      6
+    ],
+    "text": "Eligibility rule for SCH_PMSBY: Eligible for PM Suraksha Bima Yojana. Conditions: Age 18 or above; Age 70 or below; Must have Jan Dhan or savings bank account with Aadhaar"
+  },
+  {
+    "chunk_id": "CHK_0122",
+    "scheme_id": "SCH_APY",
+    "scheme_name": "Atal Pension Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "text": "Eligibility rule for SCH_APY: Eligible for Atal Pension Yojana. Conditions: Minimum age 18 years; Maximum entry age 40 years; Must have a savings bank account"
+  },
+  {
+    "chunk_id": "CHK_0123",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      10,
+      11,
+      12,
+      13
+    ],
+    "text": "Eligibility rule for SCH_PMKISAN: Eligible for PM-KISAN income support. Conditions: Must be a landholding farmer family with cultivable land in their name (any size from 01.06.2019); Cultivable land must be in the name of the farmer family"
+  },
+  {
+    "chunk_id": "CHK_0124",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      13
+    ],
+    "text": "Eligibility rule for SCH_PMKISAN: HISTORICAL: Initial PM-KISAN eligibility (land up to 2 hectares only). Conditions: Must own cultivable land; HISTORICAL: Land must be up to 2 hectares (pre-01.06.2019)"
+  },
+  {
+    "chunk_id": "CHK_0125",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      10,
+      11
+    ],
+    "text": "Eligibility rule for SCH_PMKISAN: Excluded from PM-KISAN. Conditions: Institutional landholders (companies, trusts etc.) excluded; Former/current MP, MLA, Ministers, Mayors excluded; Central/State Government employees (except MTS/Group D) excluded; Persons getting pension of Rs 10,000 or more per month excluded; Income tax payers excluded; Doctors, engineers, lawyers, CAs and other registered professionals excluded"
+  },
+  {
+    "chunk_id": "CHK_0126",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      18,
+      19,
+      20
+    ],
+    "text": "Eligibility rule for SCH_PMSURYA: Eligible for PM Surya Ghar rooftop solar subsidy. Conditions: Must have registered DISCOM electricity connection; Roof must be feasible for solar installation (DISCOM approval)"
+  },
+  {
+    "chunk_id": "CHK_0127",
+    "scheme_id": "SCH_SVANIDHI",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      22,
+      23
+    ],
+    "text": "Eligibility rule for SCH_SVANIDHI: Eligible for PM SVANidhi working capital loan. Conditions: Must be Indian Citizen; Must be a street vendor/hawker; Must have been vending in urban areas as on or before March 24, 2020; "
+  },
+  {
+    "chunk_id": "CHK_0128",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "text": "Eligibility rule for SCH_VISHWA: Eligible for PM Vishwakarma scheme. Conditions: Must be 18 years or above; Must work in one of the 18 approved traditional artisan trades"
+  },
+  {
+    "chunk_id": "CHK_0129",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      31
+    ],
+    "text": "Eligibility rule for SCH_VISHWA: Excluded from PM Vishwakarma. Conditions: Government employee and their family members not eligible; Only one member per family (husband, wife, unmarried children) can apply; PMEGP loan availed - not eligible; ; "
+  },
+  {
+    "chunk_id": "CHK_0130",
+    "scheme_id": "SCH_PMUY",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      32,
+      33
+    ],
+    "text": "Eligibility rule for SCH_PMUY: Eligible for PM Ujjwala Yojana LPG connection. Conditions: Applicant must be a woman; Must have attained 18 years of age; No other LPG connection from any OMC should exist in the same household; Must belong to a poor household (deprivation declaration required)"
+  },
+  {
+    "chunk_id": "CHK_0131",
+    "scheme_id": "SCH_PMAYG",
+    "scheme_name": "Pradhan Mantri Awaas Yojana \u2013 Gramin",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      55,
+      56
+    ],
+    "text": "Eligibility rule for SCH_PMAYG: Eligible for PMAY-G rural housing assistance. Conditions: Must be a rural household; "
+  },
+  {
+    "chunk_id": "CHK_0132",
+    "scheme_id": "SCH_BOCW",
+    "scheme_name": "Building and Other Construction Workers Welfare Framework",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      57
+    ],
+    "text": "Eligibility rule for SCH_BOCW: Eligible for BOCW worker registration. Conditions: Must be 18 years or above; Must not have completed 60 years; Must have worked in construction for at least 90 days in the preceding 12 months"
+  },
+  {
+    "chunk_id": "CHK_0133",
+    "scheme_id": "SCH_SSY",
+    "scheme_name": "Sukanya Samriddhi Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      51,
+      52
+    ],
+    "text": "Eligibility rule for SCH_SSY: Eligible for Sukanya Samriddhi Yojana account. Conditions: Account is for girl child only; Girl child must be below 10 years at time of account opening; Must be resident Indian (NRI not eligible)"
+  },
+  {
+    "chunk_id": "CHK_0134",
+    "scheme_id": "SCH_SSY",
+    "scheme_name": "Sukanya Samriddhi Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      51
+    ],
+    "text": "Eligibility rule for SCH_SSY: SSY family limit: maximum 2 girls per family. Conditions: Maximum 2 SSY accounts per family (exception for twins/triplets)"
+  },
+  {
+    "chunk_id": "CHK_0135",
+    "scheme_id": "SCH_ABPMJAY",
+    "scheme_name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      68,
+      69
+    ],
+    "text": "Eligibility rule for SCH_ABPMJAY: Eligible for AB PM-JAY MMSBY (Punjab). Conditions: Must be a resident of Punjab; "
+  },
+  {
+    "chunk_id": "CHK_0136",
+    "scheme_id": "SCH_PMJKMY",
+    "scheme_name": "Pradhan Mantri Kisan Mandhan Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      7,
+      8
+    ],
+    "text": "Eligibility rule for SCH_PMJKMY: Eligible for PM Kisan Mandhan Yojana (farmer pension). Conditions: Must be a small and marginal farmer; Cultivable land must be up to 2 hectares; Age 18 or above; Age 40 or below"
+  },
+  {
+    "chunk_id": "CHK_0137",
+    "scheme_id": "SCH_PMFBY",
+    "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      44,
+      45
+    ],
+    "text": "Eligibility rule for SCH_PMFBY: Eligible for PMFBY crop insurance. Conditions: ; Must have an insurable interest in the insured crop; Must be growing notified crops in notified areas"
+  },
+  {
+    "chunk_id": "CHK_0138",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      12,
+      13
+    ],
+    "text": "Eligibility rule for SCH_MGNREGA: HISTORICAL: Eligible for MGNREGA (valid until 30 June 2026). Conditions: Must be an adult member (18+); Must reside in rural area; Must be willing to do unskilled manual work"
+  },
+  {
+    "chunk_id": "CHK_0139",
+    "scheme_id": "SCH_VBG_RAMG",
+    "scheme_name": "Viksit Bharat \u2013 Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+    "section": "ELIGIBILITY_RULES",
+    "page_numbers": [
+      21,
+      22,
+      23
+    ],
+    "text": "Eligibility rule for SCH_VBG_RAMG: Eligible for VB-G RAM G Act 2025 employment (from 1 July 2026). Conditions: Must be an adult member (18+); Must reside in rural area; Must volunteer to undertake unskilled manual work"
+  },
+  {
+    "chunk_id": "CHK_0140",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      1,
+      2
+    ],
+    "text": "Application Procedure for SCH_ONORC: Mode: HYBRID. Online: Download and open 'MERA RATION' mobile application (available in 13 languages). Enter Aadhaar number or Ration Card number to check active entitlement and nearest Fair Price Shop (FPS). Use the app to locate POS-enabled Fair Price Shops in the destination state/district.. Offline: Visit any Fair Price Shop (FPS) with ePoS device anywhere in India. Quote Aadhaar number or Ration Card number to the FPS dealer. Perform biometric (fingerprint or iris) authentication on the ePoS device. Collect entitled full or partial food grains at central issue prices.. Fees: Zero application or registration fees."
+  },
+  {
+    "chunk_id": "CHK_0141",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      3
+    ],
+    "text": "Application Procedure for SCH_PMSYM: Mode: OFFLINE_AND_ONLINE. Online: Visit the official portal maandhan.in or self-enrollment section on e-Shram portal. Enter Aadhaar number and verify using OTP sent to registered mobile. Fill applicant details, unorganised worker occupation, and bank IFSC. Set up bank auto-debit mandate and make the initial monthly contribution online.. Offline: Visit the nearest Common Services Centre (CSC) along with Aadhaar card and Savings Bank Passbook. VLE (Village Level Entrepreneur) enters details and takes biometric authentication. System calculates monthly contribution (Rs 55 to Rs 200 based on age). Pay the first installment in cash at CSC; system generates PMSYM Card immediately.. Fees: Free enrollment (Govt pays CSC fee)."
+  },
+  {
+    "chunk_id": "CHK_0142",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      5
+    ],
+    "text": "Application Procedure for SCH_PMKISAN: Mode: ONLINE_AND_OFFLINE. Online: Visit official PM-KISAN portal (pmkisan.gov.in) -> Farmers Corner -> 'New Farmer Registration'. Select Rural Farmer Registration or Urban Farmer Registration. Enter Aadhaar Number and Mobile Number, select State, and verify OTP. Fill personal, bank, and land details (survey/khata number, dag/khasra number, land size in hectares). Complete mandatory e-KYC using Aadhaar OTP or facial recognition via PM-KISAN Mobile App.. Offline: Visit the nearest Common Service Centre (CSC) or local Patwari / Revenue Officer / Nodal Agriculture Officer. Submit land records, Aadhaar, and bank passbook for verification.. Fees: Free on portal; standard CSC assistance charges apply for CSC visits."
+  },
+  {
+    "chunk_id": "CHK_0143",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      6
+    ],
+    "text": "Application Procedure for SCH_PMSURYA: Mode: ONLINE. Online: Register on National Portal for PM Surya Ghar (pmsuryaghar.gov.in) by selecting State, Distribution Company (DISCOM), and Consumer Account Number. Apply for Rooftop Solar installation by submitting roof area and sanctioned load details. Wait for DISCOM feasibility approval online. Select a registered vendor and get the rooftop solar plant installed. Submit plant details and apply for net meter inspection. Upon DISCOM inspection and commissioning certificate generation, submit bank account details for direct subsidy disbursement.. Offline: Net meter physical inspection and installation by DISCOM field team.. Fees: Application online is free; plant cost net of subsidy payable to vendor."
+  },
+  {
+    "chunk_id": "CHK_0144",
+    "scheme_id": "SCH_SVANIDHI",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      6
+    ],
+    "text": "Application Procedure for SCH_SVANIDHI: Mode: ONLINE_AND_OFFLINE. Online: Access PM SVANidhi portal (pmsvanidhi.mohua.gov.in) or PM SVANidhi mobile app. Enter mobile number and verify via OTP. Select vendor category: (A) Vendors with Vending Card/LoR, (B) Vendors left out of survey, (C) Surrounding rural vendors. Upload KYC documents and select preferred lending institution / bank. Submit loan application for 1st tranche (up to Rs 10,000).. Offline: Visit nearest CSC, Municipal Corporation office, or bank branch for application submission. Collect Letter of Recommendation (LoR) from Town Vending Committee (TVC) if not possessing ID card.. Fees: No collateral or processing charges."
+  },
+  {
+    "chunk_id": "CHK_0145",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      7
+    ],
+    "text": "Application Procedure for SCH_VISHWA: Mode: ONLINE_VIA_CSC. Online: Artisan visits nearest CSC for Aadhaar-based biometric registration on PM Vishwakarma Portal. Three-tier verification: Stage 1 Gram Panchayat / ULB verification; Stage 2 District Implementation Committee; Stage 3 Screening Committee. Upon approval, download PM Vishwakarma Certificate and ID Card. Undergo 5-7 days basic skill training (Rs 500/day stipend). Receive Rs 15,000 toolkit digital e-voucher and apply for Enterprise Development Loan (Tranche 1: Rs 1 Lakh at 5% interest).. Offline: Physical biometric verification and hands-on skill training at designated training centers.. Fees: Free registration at CSC."
+  },
+  {
+    "chunk_id": "CHK_0146",
+    "scheme_id": "SCH_PMUY",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      8
+    ],
+    "text": "Application Procedure for SCH_PMUY: Mode: ONLINE_AND_OFFLINE. Online: Visit pmuy.gov.in portal, select LPG distributor (Indane, Bharatgas, or HP Gas). Submit online application form with Aadhaar and family ration card details.. Offline: Visit nearest LPG distributor showroom. Submit filled application form along with Aadhaar, ration card, bank passbook, and 14-point declaration. Distributor verifies eligibility against OMC de-duplication database. Receive LPG cylinder, pressure regulator, hose pipe, and stove.. Fees: Free security deposit, free first cylinder and stove assistance."
+  },
+  {
+    "chunk_id": "CHK_0147",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "PROCEDURE",
+    "page_numbers": [
+      14,
+      17,
+      18
+    ],
+    "text": "Application Procedure for SCH_MGNREGA: Mode: OFFLINE. Online: Check Job Card status and muster roll payment on nrega.nic.in portal.. Offline: Adult members of rural household submit application (oral or written) for registration to Gram Panchayat. Gram Panchayat verifies local residence and household adulthood within 14 days. Gram Panchayat issues Job Card bearing photographs of all adult members free of cost. Worker submits written application demanding employment specifying dates and duration. Gram Panchayat / Block Programme Officer allots wage employment within 15 days, or pays statutory unemployment allowance.. Fees: Free of cost."
+  },
+  {
+    "chunk_id": "CHK_0148",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "FAQ",
+    "page_numbers": [
+      2
+    ],
+    "text": "FAQ for SCH_ONORC: Question: I live in Mumbai but my family lives in Rajasthan, Can my family receive the ration at Rajasthan? Answer: Yes, the ONORC scheme allows your family to claim their part of ration on the same Ration Card in Rajasthan while you can claim your share in Mumbai."
+  },
+  {
+    "chunk_id": "CHK_0149",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "FAQ",
+    "page_numbers": [
+      2
+    ],
+    "text": "FAQ for SCH_ONORC: Question: My allotted Fair Price Shop (FPS) does not give me the ration. Can I claim ration from any other FPS? Answer: Yes, the scheme allows you to claim ration from any other Fair Price Shop (FPS) in the area or across the nation if your Aadhaar is seeded to your Ration Card."
+  },
+  {
+    "chunk_id": "CHK_0150",
+    "scheme_id": "SCH_ONORC",
+    "scheme_name": "One Nation One Ration Card",
+    "section": "FAQ",
+    "page_numbers": [
+      2
+    ],
+    "text": "FAQ for SCH_ONORC: Question: Who are eligible for the One Nation One Ration Card scheme? Answer: This scheme can be availed by all eligible ration cardholders or beneficiaries covered under the National Food Security Act (NFSA), 2013 with Aadhaar numbers seeded."
+  },
+  {
+    "chunk_id": "CHK_0151",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      13
+    ],
+    "text": "FAQ for SCH_PMSYM: Question: Are gig and platform workers covered under e-Shram? Answer: Yes, gig and platform workers are included in the e-Shram database and eligible for social security welfare schemes."
+  },
+  {
+    "chunk_id": "CHK_0152",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      3
+    ],
+    "text": "FAQ for SCH_PMSYM: Question: What is the minimum assured pension under PM-SYM? Answer: Beneficiaries receive an assured minimum monthly pension of Rs. 3,000 per month after attaining the age of 60 years."
+  },
+  {
+    "chunk_id": "CHK_0153",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      3
+    ],
+    "text": "FAQ for SCH_PMSYM: Question: What happens if a PM-SYM subscriber dies before reaching 60 years of age? Answer: If a subscriber dies before 60, their spouse can continue the scheme by paying regular contributions, or exit the scheme and receive the subscriber's accumulated contribution along with interest."
+  },
+  {
+    "chunk_id": "CHK_0154",
+    "scheme_id": "SCH_PMSYM",
+    "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      3
+    ],
+    "text": "FAQ for SCH_PMSYM: Question: What is the family pension after the demise of the PM-SYM pensioner? Answer: During receipt of pension after age 60, if the pensioner dies, the spouse is entitled to receive 50% of the pension (i.e. Rs. 1,500 per month) as family pension. This is applicable only to spouse."
+  },
+  {
+    "chunk_id": "CHK_0155",
+    "scheme_id": "SCH_PMJJBY",
+    "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      4
+    ],
+    "text": "FAQ for SCH_PMJJBY: Question: What is the premium and life insurance coverage under PMJJBY? Answer: PMJJBY provides life insurance cover of Rs. 2,00,000 in case of death due to any reason. The annual premium is Rs. 436 per annum, auto-debited from the subscriber's bank account in May/June."
+  },
+  {
+    "chunk_id": "CHK_0156",
+    "scheme_id": "SCH_PMSBY",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      4
+    ],
+    "text": "FAQ for SCH_PMSBY: Question: What is the risk coverage and annual premium under PMSBY? Answer: PMSBY offers accidental death and full disability cover of Rs. 2,00,000, and partial permanent disability cover of Rs. 1,00,000. The premium is only Rs. 20 per annum, auto-debited from the bank account."
+  },
+  {
+    "chunk_id": "CHK_0157",
+    "scheme_id": "SCH_APY",
+    "scheme_name": "Atal Pension Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      5
+    ],
+    "text": "FAQ for SCH_APY: Question: What pension amounts can one choose under Atal Pension Yojana? Answer: Under APY, subscribers can choose a guaranteed monthly pension of Rs. 1,000, Rs. 2,000, Rs. 3,000, Rs. 4,000, or Rs. 5,000 starting from age 60, based on monthly contribution."
+  },
+  {
+    "chunk_id": "CHK_0158",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "FAQ",
+    "page_numbers": [
+      5
+    ],
+    "text": "FAQ for SCH_PMKISAN: Question: How much financial benefit is given under PM-KISAN every year? Answer: Under PM-KISAN, eligible farmer families receive Rs. 6,000 per year transferred directly into their Aadhaar-linked bank accounts in three equal 4-monthly installments of Rs. 2,000 each."
+  },
+  {
+    "chunk_id": "CHK_0159",
+    "scheme_id": "SCH_PMKISAN",
+    "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+    "section": "FAQ",
+    "page_numbers": [
+      5
+    ],
+    "text": "FAQ for SCH_PMKISAN: Question: Is eKYC mandatory for PM-KISAN beneficiaries? Answer: Yes, eKYC is mandatory for all PM-KISAN registered farmers. It can be done through OTP on the portal or biometric verification at CSC or facial recognition on the PM-KISAN App."
+  },
+  {
+    "chunk_id": "CHK_0160",
+    "scheme_id": "SCH_PMSURYA",
+    "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      6
+    ],
+    "text": "FAQ for SCH_PMSURYA: Question: How much subsidy is provided under PM Surya Ghar Muft Bijli Yojana? Answer: The scheme provides subsidy of Rs. 30,000 for 1 kW systems, Rs. 60,000 for 2 kW systems, and Rs. 78,000 for 3 kW or higher systems, providing up to 300 units of free electricity monthly."
+  },
+  {
+    "chunk_id": "CHK_0161",
+    "scheme_id": "SCH_SVANIDHI",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+    "section": "FAQ",
+    "page_numbers": [
+      6
+    ],
+    "text": "FAQ for SCH_SVANIDHI: Question: What are the loan amounts and interest subsidy available under PM SVANidhi? Answer: PM SVANidhi offers working capital loans: 1st tranche up to Rs. 10,000 (1-year tenure); 2nd tranche up to Rs. 20,000; and 3rd tranche up to Rs. 50,000 upon timely repayment, with 7% interest subsidy per annum and up to Rs. 1,200 annual cashback on digital transactions."
+  },
+  {
+    "chunk_id": "CHK_0162",
+    "scheme_id": "SCH_VISHWA",
+    "scheme_name": "PM Vishwakarma Scheme",
+    "section": "FAQ",
+    "page_numbers": [
+      7
+    ],
+    "text": "FAQ for SCH_VISHWA: Question: What trades and benefits are covered under PM Vishwakarma? Answer: Covers 18 traditional trades (carpenters, blacksmiths, potters, weavers, etc.). Benefits include PM Vishwakarma Certificate & ID, basic skill training with Rs 500/day stipend, Rs 15,000 toolkit incentive, and collateral-free enterprise loans up to Rs 3 Lakh (Rs 1 Lakh tranche 1, Rs 2 Lakh tranche 2) at a concessional 5% interest rate."
+  },
+  {
+    "chunk_id": "CHK_0163",
+    "scheme_id": "SCH_SSY",
+    "scheme_name": "Sukanya Samriddhi Yojana",
+    "section": "FAQ",
+    "page_numbers": [
+      10
+    ],
+    "text": "FAQ for SCH_SSY: Question: When does a Sukanya Samriddhi Yojana (SSY) account mature? Answer: An SSY account matures 21 years from the date of its opening or upon marriage of the girl child after attaining 18 years of age. Partial withdrawal up to 50% is allowed for higher education after age 18."
+  },
+  {
+    "chunk_id": "CHK_0164",
+    "scheme_id": "SCH_MGNREGA",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act 2005",
+    "section": "FAQ",
+    "page_numbers": [
+      14,
+      18
+    ],
+    "text": "FAQ for SCH_MGNREGA: Question: Within how many days must employment be provided under MGNREGA? Answer: Employment must be provided within 15 days of receiving the application for work. If employment is not provided within 15 days, the applicant is legally entitled to daily unemployment allowance."
+  }
+]

@@ -1,0 +1,31 @@
+{
+  "scheme_id": "SCH_PMJKMY",
+  "official_name": "Pradhan Mantri Kisan Mandhan Yojana",
+  "abbreviation": "PM-KMY",
+  "aliases": [
+    "kisan maandhan",
+    "farmer pension",
+    "pm kisan mandhan"
+  ],
+  "category": "Agriculture",
+  "subcategory": "Farmer Pension",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide old-age pension to small and marginal farmers.",
+  "description": "Voluntary contributory pension scheme for small and marginal farmers with cultivable land up to 2 hectares. Entry age 18-40. Monthly pension Rs 3,000 at age 60. Monthly contribution Rs 55 to Rs 200 (equal matching by Central Government).",
+  "ministry": "Ministry of Agriculture and Farmers Welfare",
+  "department": null,
+  "implementing_agency": "Common Service Centres (CSCs)",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    7,
+    8
+  ],
+  "source_sections": [
+    "Pradhan Mantri Kisan Mandhan Yojana"
+  ]
+}

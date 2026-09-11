@@ -1,0 +1,58 @@
+[
+  {
+    "relationship_id": "REL_ESHRAM_PMSYM",
+    "source_scheme_id": "SCH_PMSYM",
+    "target_scheme_id": "SCH_ESHRAM",
+    "relationship_type": "INTEGRATED_PORTAL",
+    "description": "e-Shram acts as the national registry and single-window onboarding database for PM-SYM unorganised workers.",
+    "shared_fields": [
+      "demographics.aadhaar_number",
+      "employment.unorganised_worker"
+    ]
+  },
+  {
+    "relationship_id": "REL_PMJDY_PMKISAN",
+    "source_scheme_id": "SCH_PMKISAN",
+    "target_scheme_id": "SCH_PMJDY",
+    "relationship_type": "PREREQUISITE_RAIL",
+    "description": "PM Jan Dhan Yojana bank accounts provide the financial inclusion rail for DBT transfer of PM-KISAN installments.",
+    "shared_fields": [
+      "banking.account_number",
+      "banking.ifsc",
+      "demographics.aadhaar_number"
+    ]
+  },
+  {
+    "relationship_id": "REL_PMSBY_PMJJBY",
+    "source_scheme_id": "SCH_PMSBY",
+    "target_scheme_id": "SCH_PMJJBY",
+    "relationship_type": "COMPLEMENTARY",
+    "description": "PMJJBY covers natural and accidental death (life insurance), while PMSBY specifically covers accidental death and disability. Both share bank auto-debit mechanisms.",
+    "shared_fields": [
+      "banking.account_number",
+      "demographics.aadhaar_number"
+    ]
+  },
+  {
+    "relationship_id": "REL_MGNREGA_PMAYG",
+    "source_scheme_id": "SCH_PMAYG",
+    "target_scheme_id": "SCH_MGNREGA",
+    "relationship_type": "SUBSIDIARY_CONVERGENCE",
+    "description": "Beneficiaries constructing houses under PMAY-G are entitled to up to 90/95 person-days of unskilled labor wages under MGNREGA.",
+    "shared_fields": [
+      "housing.beneficiary_id",
+      "demographics.job_card_number"
+    ]
+  },
+  {
+    "relationship_id": "REL_ONORC_NFSA",
+    "source_scheme_id": "SCH_ONORC",
+    "target_scheme_id": "SCH_NFSA",
+    "relationship_type": "DEPENDENCY",
+    "description": "ONORC operates strictly on top of the National Food Security Act (NFSA) 2013 entitlements.",
+    "shared_fields": [
+      "institutional.ration_card_number",
+      "demographics.aadhaar_number"
+    ]
+  }
+]

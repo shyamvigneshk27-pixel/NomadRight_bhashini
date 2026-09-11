@@ -1,0 +1,32 @@
+{
+  "scheme_id": "SCH_PMSBY",
+  "official_name": "Pradhan Mantri Suraksha Bima Yojana",
+  "abbreviation": "PMSBY",
+  "aliases": [
+    "suraksha bima",
+    "accident insurance",
+    "PMSBY"
+  ],
+  "category": "Financial Inclusion",
+  "subcategory": "Accident Insurance",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide affordable personal accident insurance cover.",
+  "description": "One-year renewable personal accident insurance scheme. Premium Rs 20 per annum. Cover period 1 June to 31 May. Entry age 18-70 years. Rs 2 lakh for accidental death or total disability; Rs 1 lakh for partial disability.",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "Banks, Post Offices",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2022-06-01",
+  "effective_until": null,
+  "version": "Revised Rules effective 1 June 2022",
+  "source_pages": [
+    5,
+    6
+  ],
+  "source_sections": [
+    "e-Shram Social Security Welfare Schemes",
+    "PMSBY eligibility"
+  ]
+}

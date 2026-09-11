@@ -1,0 +1,45 @@
+{
+  "scheme_id": "SCH_PMKISAN",
+  "official_name": "Pradhan Mantri Kisan Samman Nidhi",
+  "abbreviation": "PM-KISAN",
+  "aliases": [
+    "PM Kisan",
+    "kisan samman nidhi",
+    "pm-kisan",
+    "farmer income support"
+  ],
+  "category": "Agriculture",
+  "subcategory": "Farmer Income Support",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide income support of Rs 6000 per year to landholding farmer families.",
+  "description": "Direct income support of Rs 6000 per year paid in 3 equal installments of Rs 2000 every four months via DBT. All landholding farmer families irrespective of land size eligible (revised from initial 2 ha limit on 01.06.2019). Land cut-off date: 01.02.2019 for determining landholding eligibility. Aadhaar mandatory. Bank account with IFSC mandatory.",
+  "ministry": "Ministry of Agriculture and Farmers Welfare",
+  "department": null,
+  "implementing_agency": "State/UT Governments, Patwari/Revenue Officers, pmkisan.gov.in",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2018-12-01",
+  "effective_until": null,
+  "version": "current (land-size restriction removed from 01.06.2019)",
+  "special_notes": [
+    "CONFLICT: Earlier FAQs mention 2-hectare cap. Revised: all farmer families eligible from 01.06.2019 irrespective of land size.",
+    "Land cut-off date for eligibility determination: 01.02.2019",
+    "J&K, Assam, Meghalaya: Aadhaar not mandatory for first installment only"
+  ],
+  "source_pages": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+  ],
+  "source_sections": [
+    "PM-KISAN FAQs Set 1",
+    "PM-KISAN FAQs Set 2"
+  ]
+}

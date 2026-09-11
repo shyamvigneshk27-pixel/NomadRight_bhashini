@@ -1,0 +1,36 @@
+{
+  "scheme_id": "SCH_PMJDY",
+  "official_name": "Pradhan Mantri Jan Dhan Yojana",
+  "abbreviation": "PMJDY",
+  "aliases": [
+    "jan dhan",
+    "PMJDY",
+    "jan dhan yojana",
+    "basic bank account"
+  ],
+  "category": "Financial Inclusion",
+  "subcategory": "Universal Banking",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Ensure access to financial services including savings, credit, insurance, and pension for excluded sections.",
+  "description": "Launched 28.8.2014. Provides Basic Savings Bank Deposit (BSBD) account with no minimum balance. Free RuPay debit card with accident insurance Rs 2 lakh (Rs 1 lakh for pre-28.8.2018 accounts). Overdraft up to Rs 10,000. Financial literacy programs. As of 28.02.2025: 54.97 crore accounts; Rs 2,52,750 crore deposits; 30.60 crore women accounts (55.7%); 36.59 crore rural/semi-urban (66.6%); 37.60 crore RuPay cards. Extended beyond 14.8.2018 with focus shifting to every unbanked adult.",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "Banks, Bank Mitras (Business Correspondents)",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2014-08-28",
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    24,
+    25,
+    26,
+    27
+  ],
+  "source_sections": [
+    "PMJDY description",
+    "PMJDY benefits",
+    "PMJDY FAQs"
+  ]
+}

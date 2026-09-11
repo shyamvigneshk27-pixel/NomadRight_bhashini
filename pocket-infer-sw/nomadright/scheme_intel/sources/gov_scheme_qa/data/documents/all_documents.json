@@ -1,0 +1,586 @@
+[
+  {
+    "document_id": "DOC_ONORC_001",
+    "scheme_id": "SCH_ONORC",
+    "mandatory": [
+      {
+        "name": "Ration Card",
+        "description": "Active NFSA ration card with seeded family details",
+        "purpose": "Identity and entitlement verification"
+      },
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card of beneficiary or family member",
+        "purpose": "Biometric / iris authentication on ePoS device"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      2
+    ]
+  },
+  {
+    "document_id": "DOC_PMSYM_001",
+    "scheme_id": "SCH_PMSYM",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card of unorganised worker",
+        "purpose": "Identity and KYC verification"
+      },
+      {
+        "name": "Savings Bank Account / Jan Dhan Account",
+        "description": "Bank passbook or cheque leaf with IFSC",
+        "purpose": "Auto-debit of monthly pension contribution"
+      },
+      {
+        "name": "Mobile Number",
+        "description": "Active mobile number linked to Aadhaar",
+        "purpose": "SMS alerts and verification"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "document_id": "DOC_NPST_001",
+    "scheme_id": "SCH_NPST",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card of trader/retailer",
+        "purpose": "Identity verification"
+      },
+      {
+        "name": "Savings Bank Account / Jan Dhan Passbook",
+        "description": "Bank account details with IFSC",
+        "purpose": "Auto-debit for pension contribution"
+      },
+      {
+        "name": "Self-Declaration of Turnover",
+        "description": "Self-certification that annual turnover is Rs 1.5 Cr or below",
+        "purpose": "Turnover eligibility proof"
+      }
+    ],
+    "optional": [
+      {
+        "name": "GSTIN",
+        "description": "GST Identification Number if registered",
+        "purpose": "Business verification"
+      }
+    ],
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "document_id": "DOC_PMJJBY_001",
+    "scheme_id": "SCH_PMJJBY",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card of account holder",
+        "purpose": "Primary KYC"
+      },
+      {
+        "name": "Savings Bank Account Details",
+        "description": "Operative bank account in participating bank",
+        "purpose": "Auto-debit of annual premium Rs 436"
+      },
+      {
+        "name": "Consent cum Auto-Debit Mandate Form",
+        "description": "Signed auto-debit consent form",
+        "purpose": "Enabling automatic premium deduction"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "document_id": "DOC_PMSBY_001",
+    "scheme_id": "SCH_PMSBY",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card",
+        "purpose": "Primary KYC"
+      },
+      {
+        "name": "Savings Bank Account Details",
+        "description": "Operative bank or post office account",
+        "purpose": "Auto-debit of annual premium Rs 20"
+      },
+      {
+        "name": "Auto-Debit Consent Form",
+        "description": "Signed auto-debit mandate",
+        "purpose": "Annual premium deduction authorization"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      4
+    ]
+  },
+  {
+    "document_id": "DOC_APY_001",
+    "scheme_id": "SCH_APY",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar number",
+        "purpose": "Primary identification and spouse details"
+      },
+      {
+        "name": "Savings Bank Account / Post Office Account",
+        "description": "Active savings account",
+        "purpose": "Monthly/Quarterly/Half-yearly auto-debit"
+      },
+      {
+        "name": "Mobile Number",
+        "description": "Registered mobile number",
+        "purpose": "Account alerts"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "document_id": "DOC_PMKISAN_001",
+    "scheme_id": "SCH_PMKISAN",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Mandatory Aadhaar card of landholder farmer",
+        "purpose": "Aadhaar-based payment via PFMS"
+      },
+      {
+        "name": "Land Record Documents (Khatauni / Jamabandi)",
+        "description": "Proof of cultivable land ownership in land records",
+        "purpose": "Farmer qualification"
+      },
+      {
+        "name": "Aadhaar-Seeded Bank Account",
+        "description": "Bank account linked with NPCI / Aadhaar",
+        "purpose": "Direct Benefit Transfer (DBT) credit"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      5
+    ]
+  },
+  {
+    "document_id": "DOC_PMSURYA_001",
+    "scheme_id": "SCH_PMSURYA",
+    "mandatory": [
+      {
+        "name": "Electricity Bill",
+        "description": "Recent electricity bill showing consumer number",
+        "purpose": "DISCOM consumer mapping and rooftop verification"
+      },
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card of household head / applicant",
+        "purpose": "Identity verification"
+      },
+      {
+        "name": "Bank Account Passbook / Cancelled Cheque",
+        "description": "Account details of electricity consumer",
+        "purpose": "Direct subsidy transfer credit"
+      },
+      {
+        "name": "Proof of Roof Ownership / Electricity Connection",
+        "description": "Electricity connection in name of applicant",
+        "purpose": "Eligibility confirmation"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "document_id": "DOC_SVANIDHI_001",
+    "scheme_id": "SCH_SVANIDHI",
+    "mandatory": [
+      {
+        "name": "Vending Certificate / Identity Card",
+        "description": "Certificate of Vending or ID card issued by Urban Local Body (ULB)",
+        "purpose": "Street vendor identification"
+      },
+      {
+        "name": "Letter of Recommendation (LoR)",
+        "description": "LoR from ULB / Town Vending Committee if ID card not issued",
+        "purpose": "Eligibility for non-card vendors"
+      },
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card",
+        "purpose": "KYC"
+      },
+      {
+        "name": "Bank Account Details",
+        "description": "Savings account details",
+        "purpose": "Working capital loan disbursement"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "document_id": "DOC_VISHWA_001",
+    "scheme_id": "SCH_VISHWA",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card of artisan/craftsperson",
+        "purpose": "Biometric verification"
+      },
+      {
+        "name": "Mobile Number linked to Aadhaar",
+        "description": "Mobile number",
+        "purpose": "OTP verification"
+      },
+      {
+        "name": "Bank Account Details",
+        "description": "Operative bank account with IFSC",
+        "purpose": "Stipend, toolkit incentive, and collateral-free loan"
+      },
+      {
+        "name": "Ration Card",
+        "description": "Family ration card",
+        "purpose": "Ensuring one benefit per family"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      7
+    ]
+  },
+  {
+    "document_id": "DOC_PMUY_001",
+    "scheme_id": "SCH_PMUY",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card of Adult Woman Applicant",
+        "description": "Aadhaar card",
+        "purpose": "Proof of identity and age (18+)"
+      },
+      {
+        "name": "Ration Card / Family Composition Document",
+        "description": "Ration card showing family members",
+        "purpose": "Confirming single connection per household"
+      },
+      {
+        "name": "Bank Account Details",
+        "description": "Aadhaar linked bank account of the woman",
+        "purpose": "LPG subsidy credit"
+      },
+      {
+        "name": "14-Point Declaration",
+        "description": "Self-declaration of not having existing LPG",
+        "purpose": "Exclusion check"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      8
+    ]
+  },
+  {
+    "document_id": "DOC_PMMY_001",
+    "scheme_id": "SCH_PMMY",
+    "mandatory": [
+      {
+        "name": "Identity Proof",
+        "description": "Aadhaar Card, Voter ID, PAN Card, or Passport",
+        "purpose": "Identity verification"
+      },
+      {
+        "name": "Residence Proof",
+        "description": "Electricity bill, ration card, or Aadhaar",
+        "purpose": "Address verification"
+      },
+      {
+        "name": "Business Proposal / Quotation for Machinery",
+        "description": "Quotation of machinery/items to be purchased",
+        "purpose": "Loan appraisal"
+      }
+    ],
+    "optional": [
+      {
+        "name": "Last 6 Months Bank Statement",
+        "description": "Bank statement of current or savings account",
+        "purpose": "Credit assessment"
+      }
+    ],
+    "source_pages": [
+      9
+    ]
+  },
+  {
+    "document_id": "DOC_SSY_001",
+    "scheme_id": "SCH_SSY",
+    "mandatory": [
+      {
+        "name": "Birth Certificate of Girl Child",
+        "description": "Birth certificate issued by municipal or hospital authority",
+        "purpose": "Proof of age (<= 10 years) and parentage"
+      },
+      {
+        "name": "Aadhaar / ID Proof of Parent / Legal Guardian",
+        "description": "Aadhaar, Passport, or PAN card of parent",
+        "purpose": "Guardian KYC"
+      },
+      {
+        "name": "Address Proof of Parent / Guardian",
+        "description": "Aadhaar, Utility Bill, or Passport",
+        "purpose": "Address verification"
+      },
+      {
+        "name": "Medical Certificate (in case of twins/triplets)",
+        "description": "Medical certificate from authorized doctor",
+        "purpose": "Third girl child exception proof"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      10
+    ]
+  },
+  {
+    "document_id": "DOC_PMJDY_001",
+    "scheme_id": "SCH_PMJDY",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar card (if address changed, self-attestation sufficient)",
+        "purpose": "Single KYC document for opening zero balance account"
+      }
+    ],
+    "optional": [
+      {
+        "name": "Other Officially Valid Documents (OVD)",
+        "description": "Voter ID, Driving License, Passport, NREGA Job Card (if Aadhaar unavailable)",
+        "purpose": "Alternative KYC"
+      }
+    ],
+    "source_pages": [
+      11
+    ]
+  },
+  {
+    "document_id": "DOC_MGNREGA_001",
+    "scheme_id": "SCH_MGNREGA",
+    "mandatory": [
+      {
+        "name": "Application for Job Card",
+        "description": "Written or oral application to Gram Panchayat by adult members",
+        "purpose": "Household registration"
+      },
+      {
+        "name": "Proof of Age and Residence",
+        "description": "Aadhaar, Voter ID, or local verification",
+        "purpose": "Adult resident status"
+      },
+      {
+        "name": "Photographs of Adult Members",
+        "description": "Passport-size photos of all adult members",
+        "purpose": "Job card affixation"
+      }
+    ],
+    "optional": [],
+    "source_pages": [
+      14,
+      17
+    ]
+  },
+  {
+    "document_id": "DOC_NSAP_OA_001",
+    "scheme_id": "SCH_NSAP_OA",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar number or enrollment slip for identity verification",
+        "purpose": "Identity and DBT Aadhaar-based disbursement"
+      },
+      {
+        "name": "Proof of Age (60+ years)",
+        "description": "Birth certificate, school certificate, electoral photo identity card (EPIC), or medical officer age certificate",
+        "purpose": "Verification of age threshold (60+ years for IGNOAPS)"
+      },
+      {
+        "name": "BPL Card / Certificate",
+        "description": "BPL ration card or certificate issued by designated Gram Panchayat / Municipal authority",
+        "purpose": "Proof of Below Poverty Line household status"
+      },
+      {
+        "name": "Bank / Post Office Passbook",
+        "description": "Active single bank or post office savings account passbook with IFSC/branch code",
+        "purpose": "Direct monthly pension credit"
+      }
+    ],
+    "optional": [
+      {
+        "name": "Domicile Certificate",
+        "purpose": "Proof of residence within State/UT"
+      }
+    ],
+    "source_pages": [65, 66]
+  },
+  {
+    "document_id": "DOC_NSAP_W_001",
+    "scheme_id": "SCH_NSAP_W",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar number or enrollment slip for identity verification",
+        "purpose": "Identity and DBT Aadhaar-based disbursement"
+      },
+      {
+        "name": "Proof of Age (40+ years)",
+        "description": "Birth certificate, school certificate, EPIC, or medical officer age certificate",
+        "purpose": "Verification of age threshold (40+ years for IGNWPS)"
+      },
+      {
+        "name": "Widow Certificate / Death Certificate of Spouse",
+        "description": "Certificate confirming widow status issued by competent authority, or death certificate of spouse",
+        "purpose": "Proof of widow status"
+      },
+      {
+        "name": "BPL Card / Certificate",
+        "description": "BPL ration card or certificate issued by designated authority",
+        "purpose": "Proof of Below Poverty Line household status"
+      },
+      {
+        "name": "Bank / Post Office Passbook",
+        "description": "Active bank or post office savings account passbook with IFSC/branch code",
+        "purpose": "Direct monthly pension credit"
+      }
+    ],
+    "optional": [
+      {
+        "name": "Domicile Certificate",
+        "purpose": "Proof of residence within State/UT"
+      }
+    ],
+    "source_pages": [65, 66]
+  },
+  {
+    "document_id": "DOC_NSAP_D_001",
+    "scheme_id": "SCH_NSAP_D",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar number or enrollment slip for identity verification",
+        "purpose": "Identity and DBT Aadhaar-based disbursement"
+      },
+      {
+        "name": "Proof of Age (18+ years)",
+        "description": "Birth certificate, school certificate, EPIC, or medical officer age certificate",
+        "purpose": "Verification of age threshold (18+ years for IGNDPS)"
+      },
+      {
+        "name": "Disability Certificate (80%+ disability)",
+        "description": "Disability certificate issued by competent medical authority certifying 80% or more disability",
+        "purpose": "Proof of severe/multiple disability"
+      },
+      {
+        "name": "BPL Card / Certificate",
+        "description": "BPL ration card or certificate issued by designated authority",
+        "purpose": "Proof of Below Poverty Line household status"
+      },
+      {
+        "name": "Bank / Post Office Passbook",
+        "description": "Active bank or post office savings account passbook with IFSC/branch code",
+        "purpose": "Direct monthly pension credit"
+      }
+    ],
+    "optional": [
+      {
+        "name": "Domicile Certificate",
+        "purpose": "Proof of residence within State/UT"
+      }
+    ],
+    "source_pages": [65, 66]
+  },
+  {
+    "document_id": "DOC_NSAP_FB_001",
+    "scheme_id": "SCH_NSAP_FB",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar number of the claimant (surviving head of household)",
+        "purpose": "Identity and DBT Aadhaar-based disbursement"
+      },
+      {
+        "name": "Death Certificate of Breadwinner",
+        "description": "Death certificate of the deceased primary breadwinner",
+        "purpose": "Proof of death of breadwinner"
+      },
+      {
+        "name": "Proof of Age of Deceased (18-59 years)",
+        "description": "Age proof of the deceased breadwinner showing age between 18-59 at time of death",
+        "purpose": "Verification of age eligibility of deceased breadwinner"
+      },
+      {
+        "name": "BPL Card / Certificate",
+        "description": "BPL ration card or certificate issued by designated authority",
+        "purpose": "Proof of Below Poverty Line household status"
+      },
+      {
+        "name": "Bank / Post Office Passbook",
+        "description": "Active bank or post office account of the claimant",
+        "purpose": "One-time lump sum disbursement of Rs 20,000"
+      }
+    ],
+    "optional": [
+      {
+        "name": "FIR / Postmortem Report (if applicable)",
+        "purpose": "In case of unnatural death for additional verification"
+      }
+    ],
+    "source_pages": [65, 66]
+  },
+  {
+    "document_id": "DOC_NSAP_AP_001",
+    "scheme_id": "SCH_NSAP_AP",
+    "mandatory": [
+      {
+        "name": "Aadhaar Card",
+        "description": "Aadhaar number or enrollment slip for identity verification",
+        "purpose": "Identity verification"
+      },
+      {
+        "name": "Proof of Age (60+ years)",
+        "description": "Birth certificate, school certificate, EPIC, or medical officer age certificate",
+        "purpose": "Verification of age threshold (60+ years for Annapurna)"
+      },
+      {
+        "name": "BPL Card / Certificate",
+        "description": "BPL ration card or certificate issued by designated authority",
+        "purpose": "Proof of Below Poverty Line household status"
+      },
+      {
+        "name": "Declaration of Non-Receipt of IGNOAPS",
+        "description": "Self-declaration or verification that the applicant is not receiving pension under IGNOAPS",
+        "purpose": "Confirm non-enrollment in IGNOAPS old age pension"
+      }
+    ],
+    "optional": [
+      {
+        "name": "Domicile Certificate",
+        "purpose": "Proof of residence within State/UT"
+      }
+    ],
+    "source_pages": [65, 66]
+  }
+]

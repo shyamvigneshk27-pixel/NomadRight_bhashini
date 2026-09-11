@@ -1,0 +1,36 @@
+{
+  "scheme_id": "SCH_PMJJBY",
+  "official_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+  "abbreviation": "PMJJBY",
+  "aliases": [
+    "jeevan jyoti",
+    "life insurance scheme",
+    "PMJJBY"
+  ],
+  "category": "Financial Inclusion",
+  "subcategory": "Life Insurance",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide affordable life insurance cover for death due to any cause.",
+  "description": "One-year renewable term life insurance offering Rs 2 lakh cover for death due to any reason. Annual premium Rs 436/-. Cover period 1 June to 31 May. Entry age 18-50 years, cover continues up to age 55. Lien period of 30 days for non-accidental deaths for new/rejoining subscribers. Administered through LIC and other life insurance companies via participating Banks/Post Offices.",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "Banks, Post Offices, LIC and other life insurance companies",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": "2022-06-01",
+  "effective_until": null,
+  "version": "Revised Rules effective 1 June 2022",
+  "source_pages": [
+    5,
+    6,
+    7,
+    8
+  ],
+  "source_sections": [
+    "PMJJBY eligibility",
+    "PMJJBY benefits",
+    "PMJJBY FAQs",
+    "Revised Rules PMJJBY"
+  ]
+}

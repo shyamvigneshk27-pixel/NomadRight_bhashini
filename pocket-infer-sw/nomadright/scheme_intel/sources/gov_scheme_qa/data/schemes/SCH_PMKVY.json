@@ -1,0 +1,32 @@
+{
+  "scheme_id": "SCH_PMKVY",
+  "official_name": "Pradhan Mantri Kaushal Vikas Yojana",
+  "abbreviation": "PMKVY",
+  "aliases": [
+    "PMKVY",
+    "kaushal vikas",
+    "skill india",
+    "skill training scheme"
+  ],
+  "category": "Skill Development",
+  "subcategory": "Youth Skilling",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRALLY_SPONSORED",
+  "objective": "Create ecosystem for youth to get skill training and certification.",
+  "description": "For Indian nationals aged 18-45. 12th class dropouts or 10th pass students can enroll. Provides skill training and certification. Targets 8 lakh youth over scheme period 2020-21. Promotes sustainable Skill Centres and private sector participation.",
+  "ministry": "Ministry of Skill Development and Entrepreneurship",
+  "department": null,
+  "implementing_agency": "NSDC Training Partners, Skill India Centres",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    4,
+    5
+  ],
+  "source_sections": [
+    "e-Shram - PMKVY"
+  ]
+}

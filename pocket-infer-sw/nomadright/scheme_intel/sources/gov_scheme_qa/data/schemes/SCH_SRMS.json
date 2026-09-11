@@ -1,0 +1,29 @@
+{
+  "scheme_id": "SCH_SRMS",
+  "official_name": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+  "abbreviation": "SRMS",
+  "aliases": [
+    "manual scavenger rehabilitation",
+    "SRMS"
+  ],
+  "category": "Social Justice",
+  "subcategory": "Rehabilitation",
+  "entity_type": "SCHEME",
+  "scheme_type": "CENTRAL_SECTOR",
+  "objective": "Provide cash assistance and skill training for rehabilitation of manual scavengers.",
+  "description": "One-time cash assistance of Rs 40,000 and free skill training with stipend Rs 3,000/month for identified manual scavengers.",
+  "ministry": "Ministry of Social Justice and Empowerment",
+  "department": null,
+  "implementing_agency": "NSKFDC",
+  "geographic_scope": "NATIONAL",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "version": "current",
+  "source_pages": [
+    7
+  ],
+  "source_sections": [
+    "e-Shram Social Security Welfare Schemes - SRMS"
+  ]
+}

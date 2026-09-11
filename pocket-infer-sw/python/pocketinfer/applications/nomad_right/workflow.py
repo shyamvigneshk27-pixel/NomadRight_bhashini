@@ -5,6 +5,8 @@ Orchestrates the complete post-ASR / pre-TTS Decision Layer pipeline:
 
   English query text (post BHASHINI ASR + NMT-to-English)
     │
+    ├─ 0. SchemeIntelligence    → answer from the structured scheme KB
+    │                              (scheme_intel/), or decline -> steps 1-8
     ├─ 1. IntentRecognizer      → IntentResult
     ├─ 2. EntityExtractor       → EntityMap
     ├─ 3. QueryClassifier       → ClassificationResult (route decision)
@@ -59,7 +61,7 @@ from pocketinfer.applications.nomad_right.entities import EntityExtractor, Entit
 from pocketinfer.applications.nomad_right.classifier import QueryClassifier, ClassificationResult
 from pocketinfer.applications.nomad_right.rules import RulesEngine, RuleEvaluationResult
 from pocketinfer.applications.nomad_right.database import SQLiteAccessLayer, CitizenQueryLogDTO, PortabilityRecord
-from pocketinfer.applications.nomad_right.response import ResponseGenerator, StructuredResponsePackage
+from pocketinfer.applications.nomad_right.response import ResponseGenerator, SeverityLevel, StructuredResponsePackage
 from pocketinfer.applications.nomad_right.rag_pipeline import RAGRetriever, RetrievedChunk
 from pocketinfer.applications.nomad_right.qwen_client import QwenClient
 
@@ -118,12 +120,34 @@ class WorkflowController(IWorkflowController):
         else:
             self.logger.warning("RAG engine unavailable after startup warm-up attempt.")
 
+        # Scheme-intelligence layer (scheme_intel/): intent + scenario +
+        # deterministic rules + metadata-filtered vector search over a
+        # structured scheme knowledge base. process() asks it first and falls
+        # back to the legacy steps below whenever it declines or fails. It
+        # reuses the e5 embedder loaded just above and this QwenClient, so no
+        # model is loaded twice (its own index is ~2 MB). Switch it off with
+        # scheme_intel/si_constants.SCHEME_INTEL_ENABLED or the environment
+        # variable NOMADRIGHT_SCHEME_INTEL=0 - the legacy pipeline then runs
+        # exactly as before.
+        self.scheme_intel = None
+        try:
+            from pocketinfer.applications.nomad_right.scheme_intel import create_scheme_intelligence
+            self.scheme_intel = create_scheme_intelligence(
+                embedder_provider=self._shared_embedder, qwen_client=self.qwen_client
+            )
+        except Exception as exc:
+            self.logger.warning(f"Scheme intelligence layer unavailable - legacy pipeline only: {exc}")
+
     # ──────────────────────────────────────────────────────────────────────
     # Main pipeline
     # ──────────────────────────────────────────────────────────────────────
 
     def process(
-        self, transcribed_text: str, context_scheme_code: Optional[str] = None
+        self,
+        transcribed_text: str,
+        context_scheme_code: Optional[str] = None,
+        original_query: Optional[str] = None,
+        response_language: Optional[str] = None,
     ) -> StructuredResponsePackage:
         """
         Runs the full Decision Layer pipeline for one citizen query.
@@ -136,12 +160,23 @@ class WorkflowController(IWorkflowController):
                                lets generic follow-ups ("what documents do I
                                need?") resolve without repeating the scheme
                                name. See EntityExtractor.extract().
+            original_query:    The worker's own words before NMT (optional,
+                               passed through for tracing; not logged).
+            response_language: Language the answer will be spoken in
+                               (optional, e.g. "hi"/"ta").
 
         Returns:
             StructuredResponsePackage ready for BHASHINI TTS + LCD display.
         """
         session_id = str(uuid.uuid4())[:8]
         self.logger.info(f"[{session_id}] Pipeline start — text='{transcribed_text}'")
+
+        # ── Step 0: Scheme intelligence (structured knowledge base first) ──
+        si_pkg = self._scheme_intel_answer(
+            transcribed_text, context_scheme_code, original_query, response_language, session_id
+        )
+        if si_pkg is not None:
+            return si_pkg
 
         # ── Step 1: Intent Recognition ─────────────────────────────────────
         intent_res: IntentResult = self.intent_recognizer.recognize(transcribed_text)
@@ -307,6 +342,113 @@ class WorkflowController(IWorkflowController):
             self.logger.debug(f"GPU cache clear skipped: {exc}")
 
     # ──────────────────────────────────────────────────────────────────────
+    # Scheme-intelligence layer (Step 0) - see scheme_intel/__init__.py
+    # ──────────────────────────────────────────────────────────────────────
+
+    def _shared_embedder(self):
+        """The multilingual-e5-small instance RAGRetriever already holds - never a second copy."""
+        embedder = getattr(self.rag_retriever, "_embedder", None)
+        if embedder is None and self.rag_retriever.is_available():
+            embedder = getattr(self.rag_retriever, "_embedder", None)
+        return embedder
+
+    def _si_package(self, ans) -> StructuredResponsePackage:
+        """SIAnswer -> the same StructuredResponsePackage the app already speaks/displays."""
+        return StructuredResponsePackage(
+            voice_text=ans.voice,
+            display_top_text=ans.top[:constants.DISPLAY_HEADER_MAX_LEN],
+            display_bottom_text=ans.bottom[:constants.DISPLAY_BODY_MAX_LEN],
+            qr_payload=self.response_generator._qr_payload(
+                f"SI_{ans.intent.value}", ans.status or ans.route.value, ans.voice
+            ),
+            severity=SeverityLevel.WARNING if ans.severity == "WARNING" else SeverityLevel.INFO,
+            # Legacy code ("PDS", "BOCW", ...) where one exists, so a later
+            # legacy-routed follow-up still finds its KB record.
+            scheme_code=ans.legacy_code or ans.scheme_id,
+        )
+
+    def _scheme_intel_answer(
+        self, text: str, context_scheme_code: Optional[str], original_query: Optional[str],
+        response_language: Optional[str], session_id: str,
+    ) -> Optional[StructuredResponsePackage]:
+        if self.scheme_intel is None:
+            return None
+        try:
+            ans = self.scheme_intel.handle(
+                text, context_scheme_code=context_scheme_code,
+                original_query=original_query, response_language=response_language,
+            )
+        except Exception as exc:
+            self.logger.warning(f"[{session_id}] Scheme intelligence failed - legacy pipeline used: {exc}",
+                                exc_info=True)
+            return None
+        if ans is None:
+            return None
+        pkg = self._si_package(ans)
+        self.logger.info(
+            f"[{session_id}] SCHEME_INTEL → intent={ans.intent.value} route={ans.route.value} "
+            f"scheme={pkg.scheme_code or '-'} status={ans.status or '-'} llm={'yes' if ans.used_llm else 'no'}"
+        )
+        self.db_access.insert_query_log(CitizenQueryLogDTO(
+            session_id=session_id,
+            intent=f"SI_{ans.intent.value}",
+            scheme_code=pkg.scheme_code or "GENERAL",
+            transcribed_text=text,
+            response_summary=pkg.voice_text[:120],
+            language=response_language or "en",
+            status=pkg.severity.value,
+        ))
+        return pkg
+
+    def _prepare_vision_frame(self, image_jpg: bytes, session_id: str) -> bytes:
+        """
+        Keeps camera frames within Qwen's context: a 1920x1080 frame is 2230
+        prompt tokens, more than num_ctx 2048, and Ollama rejects the request
+        (HTTP 400, measured 2026-09-11) - so it is downscaled to <= 1024 px
+        (scheme_intel/vision.py). Undecodable input passes through untouched.
+        """
+        try:
+            from pocketinfer.applications.nomad_right.scheme_intel.vision import downscale_jpeg
+            small, info = downscale_jpeg(image_jpg)
+            if info.get("out_w"):
+                self.logger.info(
+                    f"[{session_id}] Vision frame {info['in_w']}x{info['in_h']} -> "
+                    f"{info['out_w']}x{info['out_h']} ({info['in_bytes'] // 1024} -> {info['out_bytes'] // 1024} KB)"
+                )
+            return small
+        except Exception as exc:
+            self.logger.debug(f"Vision frame downscale skipped: {exc}")
+            return image_jpg
+
+    def _scheme_intel_vision_question(self, query_text: str) -> Optional[str]:
+        if self.scheme_intel is None:
+            return None
+        try:
+            return self.scheme_intel.vision_question(query_text)
+        except Exception as exc:
+            self.logger.debug(f"Scheme intelligence vision question skipped: {exc}")
+            return None
+
+    def _scheme_intel_vision(
+        self, query_text: str, answer: str, context_scheme_code: Optional[str], session_id: str,
+    ) -> Optional[StructuredResponsePackage]:
+        """Camera -> Qwen3-VL -> structured facts -> scheme answer (only for scheme questions)."""
+        if self.scheme_intel is None:
+            return None
+        try:
+            ans = self.scheme_intel.handle_vision(query_text, answer, context_scheme_code)
+        except Exception as exc:
+            self.logger.warning(f"[{session_id}] Scheme intelligence (vision) failed: {exc}", exc_info=True)
+            return None
+        if ans is None:
+            return None
+        self.logger.info(
+            f"[{session_id}] SCHEME_INTEL (vision) → intent={ans.intent.value} "
+            f"scheme={ans.legacy_code or ans.scheme_id or '-'} status={ans.status or '-'}"
+        )
+        return self._si_package(ans)
+
+    # ──────────────────────────────────────────────────────────────────────
     # LLM fallback for queries strict RAG and RulesEngine both missed
     # ──────────────────────────────────────────────────────────────────────
 
@@ -385,13 +527,31 @@ class WorkflowController(IWorkflowController):
         # CAMERA_FORM never touches RAG/ChromaDB/the scheme database - the
         # image itself is the only source of truth Qwen is grounded against
         # here (see qwen_client.answer_vision's system prompt).
-        answer = self.qwen_client.answer_vision(query_text, image_jpg, context_snippets=None)
+        image_jpg = self._prepare_vision_frame(image_jpg, session_id)
+        # For a scheme question about the photo Qwen describes the document
+        # and the knowledge base answers the scheme part (see
+        # SchemeIntelligence.vision_question); any other question is sent
+        # unchanged.
+        vision_question = self._scheme_intel_vision_question(query_text)
+        answer = self.qwen_client.answer_vision(vision_question or query_text, image_jpg, context_snippets=None)
+        # A scheme question about the photo ("can I use this card here?") is
+        # answered from the knowledge base using what Qwen read off the image.
+        response_pkg = (
+            self._scheme_intel_vision(query_text, answer, context_scheme_code, session_id)
+            if answer else None
+        )
+        if response_pkg is None and vision_question:
+            # The description could not be used: ask Qwen the person's own
+            # question, exactly as before (Ollama caches the image encoding).
+            answer = self.qwen_client.answer_vision(query_text, image_jpg, context_snippets=None)
         self.logger.info(
             f"[QWEN_VISION] [{session_id}] VISION_FORM_QUERY → "
             f"{'answered' if answer else 'no answer (sentinel/error)'}"
         )
 
-        if answer:
+        if response_pkg is not None:
+            pass
+        elif answer:
             response_pkg = self.response_generator.generate_vision_response(
                 answer, scheme_code=entities.scheme_code
             )
