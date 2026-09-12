@@ -1,0 +1,240 @@
+<title>NomadRight Operator Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ground:#F4F5F2;--surface:#FFFFFF;--ink:#16232B;--muted:#5B6B74;--accent:#2F3E9E;--pass:#2E7D4F;--warn:#A8691C;--fail:#B0413E;--rule:#D8DDD9;--tint:#E9ECF7;--code:#EEF0EC;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#12191E;--surface:#1A242B;--ink:#E6EBEA;--muted:#9AA7AE;--accent:#8FA0FF;--pass:#6FCF97;--warn:#E0A84A;--fail:#F07A76;--rule:#2C3841;--tint:#1F2A45;--code:#141C22;}}
+:root[data-theme="dark"]{--ground:#12191E;--surface:#1A242B;--ink:#E6EBEA;--muted:#9AA7AE;--accent:#8FA0FF;--pass:#6FCF97;--warn:#E0A84A;--fail:#F07A76;--rule:#2C3841;--tint:#1F2A45;--code:#141C22;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15.5px;line-height:1.55;margin:0;padding-block:32px 64px;padding-inline:clamp(16px,4vw,40px)}
+main{max-width:82ch;margin:0 auto}
+h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:2.1rem;letter-spacing:-.01em}
+h2{font-size:1.35rem;margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+h3{font-size:1.05rem;margin-top:1.5rem}
+p{margin:.7rem 0;max-width:70ch}
+.eyebrow{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;color:var(--muted)}
+.lede{color:var(--muted);font-size:1.02rem;margin-top:.5rem}
+code,pre,td.n,th.n,.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+code{font-size:.88em;background:var(--code);padding:.05em .35em;border-radius:3px}
+pre{background:var(--code);padding:.8rem 1rem;border-radius:4px;overflow-x:auto;font-size:.84rem;line-height:1.5;margin:.6rem 0}
+pre code{background:none;padding:0;font-size:inherit}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.6rem;margin:1.4rem 0 0;align-items:start}
+.map div{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:.7rem .85rem;font-size:.9rem}
+.map b{display:block;font-family:"IBM Plex Sans Condensed",sans-serif;font-size:1rem;margin-bottom:.25rem}
+.map code{font-size:.82em}
+ol.steps{list-style:none;padding:0;margin:.8rem 0;counter-reset:step}
+ol.steps li{counter-increment:step;display:grid;grid-template-columns:2.2rem 1fr;gap:.6rem;padding:.6rem 0;border-top:1px solid var(--rule);align-items:start}
+ol.steps li:first-child{border-top:0}
+ol.steps li::before{content:counter(step);font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:1.1rem;color:var(--accent);line-height:1.4}
+ol.steps li p{margin:.25rem 0}
+ol.steps li pre{margin:.4rem 0}
+.tbl{overflow-x:auto;margin:.9rem 0;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.86rem}th,td{padding:.45rem .65rem;border-top:1px solid var(--rule);text-align:left;vertical-align:top}
+thead th{border-top:0;background:var(--tint);font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.03em;white-space:nowrap}
+td.n,th.n{text-align:right;white-space:nowrap}
+td code{white-space:nowrap}
+.note{border-left:3px solid var(--accent);padding:.5rem .9rem;margin:1rem 0;background:var(--surface);border-radius:0 4px 4px 0}
+.note.warn{border-left-color:var(--warn)}.note.fail{border-left-color:var(--fail)}.note.pass{border-left-color:var(--pass)}
+.chip{display:inline-block;font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.12em .5em;border-radius:3px;border:1px solid currentColor;margin-left:.4rem;vertical-align:middle}
+.chip.pass{color:var(--pass)}.chip.warn{color:var(--warn)}.chip.ask{color:var(--accent)}
+ul,ol.plain{padding-left:1.2rem;margin:.5rem 0}li{margin:.25rem 0}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;margin:.6rem 0}dt{font-weight:600}dd{margin:0}
+.say{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.5rem;margin:.8rem 0}
+.say div{background:var(--surface);border:1px solid var(--rule);border-radius:4px;padding:.5rem .7rem;font-size:.88rem}
+.say b{display:block;font-family:"IBM Plex Sans Condensed",sans-serif}
+footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--rule);padding-top:1rem}
+a{color:var(--accent)}
+@media (max-width:480px){h1{font-size:1.7rem}dl{grid-template-columns:1fr}ol.steps li{grid-template-columns:1.6rem 1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<main>
+<header>
+<div class="eyebrow">NomadRight kiosk · Jetson Orin Nano 8 GB · as built on 13 September 2026</div>
+<h1>NomadRight Operator Guide</h1>
+<p class="lede">How to run the kiosk, the speech service and the office receiver; every switch you can change, the exact file and line it lives on, and what happens when you change it.</p>
+</header>
+
+<div class="map">
+<div><b>Jetson kiosk</b>Started by hand in a terminal with <code>pocketinfer-retro</code>. Code: <code>~/Retro/NOMADRIGHT/pocket-infer-sw</code>. Switches: <code>python/pocketinfer/applications/nomad_right/constants.py</code>. Forms and questions: <code>nomadright/forms/build_forms.py</code> → <code>forms.json</code>.</div>
+<div><b>Speech service</b><code>bhashini_models.service</code> (systemd, starts at boot). Hindi Conformer and Tamil Whisper ASR, TTS, on port 11400. Which ASR engine serves which language: <code>~/bhashini_models/asr/asr_config.json</code>.</div>
+<div><b>Office laptop</b><code>receiver.py</code> from the pairing bundle. Accepts sealed forms on port 8443 (mutual TLS, kiosk certificate only), officer dashboard at <code>http://localhost:8080/</code>, files under <code>received/</code>. Paired today with 172.16.104.198.</div>
+</div>
+
+<h2>1 · Run it</h2>
+<h3>A. On the Jetson, every day</h3>
+<ol class="steps">
+<li><div><p><strong>Check the speech service.</strong> It starts at boot and warms the Tamil model itself.</p><pre><code>systemctl is-active bhashini_models.service     # expect: active
+sudo systemctl restart bhashini_models.service  # only if it is not</code></pre></div></li>
+<li><div><p><strong>Start the kiosk</strong> in a terminal and leave that terminal open; the log stays in it.</p><pre><code>pocketinfer-retro</code></pre><p>Wait for two lines, about 50 s after start: <code>RECEIVER  paired</code> and <code>READY - hold button to speak</code>. If the first says <code>not paired</code>, see section 3.</p></div></li>
+<li><div><p><strong>Stop it</strong> with Ctrl-C in that terminal. Sealed forms that were not yet acknowledged stay on disk and are sent the next time the kiosk runs.</p></div></li>
+</ol>
+
+<h3>B. On the laptop, whenever forms are expected</h3>
+<ol class="steps">
+<li><div><p><strong>Start the receiver</strong> in PowerShell, inside the bundle folder, and keep that window open. It prints every arrival.</p><pre><code>cd nomadright-receiver-bundle
+python receiver.py</code></pre><p>First line: <code>receiving on port 8443 (mTLS, kiosk certificate required); officer dashboard: http://localhost:8080/</code>.</p></div></li>
+<li><div><p><strong>Open the dashboard</strong> at <code>http://localhost:8080/</code> in the laptop's browser. It refreshes every 10 s and shows: last contact from the kiosk, how many forms are still waiting on the kiosk and how many failed, the last error, and one row per received form with its file name and how many fields were left for the officer.</p></div></li>
+<li><div><p><strong>Find the files.</strong> Each form is one JSON file: <code>received/&lt;date&gt;/&lt;form&gt;_&lt;session&gt;.json</code>, inside the bundle folder. <code>received/index.json</code> is the running log. A form sent twice is stored once; the second copy is answered as a duplicate.</p></div></li>
+</ol>
+
+<h3>C. On the laptop, the first time only</h3>
+<ol class="steps">
+<li><div><p><strong>Copy the bundle from the Jetson</strong> (the Jetson is 172.16.104.200 on the office Wi-Fi):</p><pre><code>scp -r stark-x@172.16.104.200:nomadright-receiver-bundle .</code></pre><p>The folder holds the receiver script, its private key and certificate, the CA certificate and the kiosk's public key. Keep it private.</p></div></li>
+<li><div><p><strong>Install the one dependency</strong> (Python 3.8 or newer):</p><pre><code>pip install pynacl</code></pre></div></li>
+<li><div><p><strong>Allow the port.</strong> When Windows asks, allow Python on private networks. Otherwise add an inbound rule for TCP 8443 limited to the kiosk's address 172.16.104.200. Ping stays blocked; that is fine.</p></div></li>
+<li><div><p><strong>Keep the laptop's address fixed</strong> at 172.16.104.198 (a DHCP reservation on the router, or a static address). The kiosk holds that address and the certificate is bound to it; if it changes, re-pair (section 3).</p></div></li>
+</ol>
+
+<h3>D. A citizen's session, what the operator does</h3>
+<ol class="steps">
+<li><div><p><strong>Choose Hindi or Tamil</strong> on the screen. That one choice sets the screen, the spoken questions and the speech recogniser. English shows on the screen but the form flow needs Hindi or Tamil; pressing Camera in English says so.</p></div></li>
+<li><div><p><strong>Press Camera</strong> with the paper form held flat, close and in the light. The kiosk reads the title and says which form it thinks it is; the person answers yes or no. Two similar forms: it asks "this one or that one". Nothing readable: it asks which scheme the form is for. A form it does not know: it lists the ones it can fill.</p></div></li>
+<li><div><p><strong>Answer each question</strong> in the form's own order: hold the big button, speak, release. Risky answers are read back for a yes or no. Three failed tries on a required answer leave it for the officer and move on.</p></div></li>
+<li><div><p><strong>Show documents when asked.</strong> For the account number and IFSC the kiosk asks for the passbook; for the Aadhaar number, the Aadhaar card. Hold it steady, press the button, and confirm what it read. A required value it cannot read is asked by voice; the IFSC and other optional values are left for the officer.</p></div></li>
+<li><div><p><strong>Review and send.</strong> The kiosk reads every answer back. "Yes" seals and sends; "change" then the answer's number re-asks that one. The person hears either "sent" or "saved, will be sent automatically".</p></div></li>
+</ol>
+<p>The four on-screen buttons work at any question, and so do the spoken words:</p>
+<div class="say">
+<div><b>Repeat</b>दोबारा · फिर से<br>மீண்டும் · திரும்ப</div>
+<div><b>Change</b>बदलो · वापस<br>மாற்று · திருத்து</div>
+<div><b>Skip</b>छोड़ो · पता नहीं<br>தவிர் · தெரியாது</div>
+<div><b>Cancel</b>रद्द · बंद करो<br>ரத்து · நிறுத்து</div>
+</div>
+<p>Home, a language change, Cancel, or 90 s without the button all end the session and wipe its answers. <strong>Ask Chatbot</strong>, the corner button on the Document page, is the earlier photo-and-question flow with the vision model; it is unchanged.</p>
+
+<h2>2 · Unsent forms: the outbox</h2>
+<p>A completed form is sealed the moment the person confirms it and is written to <code>~/.local/state/nomadright/outbox/</code> as <code>&lt;session&gt;.sealed</code> plus a small <code>.sealed.meta</code> file with the attempt count. The plain answers exist only in memory and are dropped right there. The kiosk then tries the laptop once; on failure a background thread retries every 30 s, waiting 10 s, 20 s, 40 s … up to 5 min between attempts. Only the laptop's acknowledgement (the SHA-256 of the sealed blob) deletes the local copy.</p>
+<p><strong>After 24 h unsent</strong> the pair of files is moved to <code>outbox/failed/</code>, still sealed and still unreadable on the kiosk, and the kiosk log says so. Nothing is ever purged automatically from <code>failed/</code>.</p>
+<p><strong>What people see.</strong> The citizen hears "saved, will be sent automatically". The officer's dashboard shows, with every attempt, "N waiting on the kiosk, M failed" and the last error. On the kiosk screen itself there is no counter; the terminal prints <code>OUTBOX sent … expired …</code> when something moves, and the shell shows the counts at any time:</p>
+<pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw/python
+venv/bin/python -c "from pocketinfer.applications.nomad_right.formfill.outbox import PairingConfig; print(PairingConfig().outbox().status())"</code></pre>
+<p><strong>Re-send a failed form</strong> once the laptop is back: move it out of <code>failed/</code>, drop its old meta and refresh its timestamp so it does not expire again; the next 30-s cycle sends it.</p>
+<pre><code>cd ~/.local/state/nomadright/outbox
+mv failed/&lt;session&gt;.sealed . &amp;&amp; rm -f failed/&lt;session&gt;.sealed.meta &amp;&amp; touch &lt;session&gt;.sealed</code></pre>
+<div class="tbl"><table><thead><tr><th>Change</th><th>Where</th><th>Now</th><th>Effect</th></tr></thead><tbody>
+<tr><td>How long an unsent form waits before it is marked failed</td><td><code>constants.py</code> · <code>FORM_OUTBOX_MAX_AGE_S</code></td><td class="n">24 × 3600</td><td>Seconds. <code>72 * 3600.0</code> keeps forms three days; there is no upper limit, but a form nobody can open is worth nothing after the person has left, so keep it in days, not weeks.</td></tr>
+<tr><td>First retry delay, and the cap</td><td><code>FORM_OUTBOX_RETRY_BASE_S</code>, <code>FORM_OUTBOX_RETRY_MAX_S</code></td><td class="n">10 · 300</td><td>Doubling from the base to the cap. Lower the cap to 60 if the laptop is usually only briefly away.</td></tr>
+<tr><td>How often the outbox is checked and the officer's counts are refreshed</td><td><code>FORM_OUTBOX_FLUSH_INTERVAL_S</code></td><td class="n">30</td><td>Seconds between background passes.</td></tr>
+<tr><td>How long one send may take</td><td><code>FORM_SEND_TIMEOUT_S</code></td><td class="n">15</td><td>Connect + upload + acknowledgement. Raise on a slow Wi-Fi; the person is not kept waiting beyond the first try.</td></tr>
+<tr><td>Where the outbox lives</td><td><code>FORM_OUTBOX_DIR</code></td><td><code>~/.local/state/nomadright/outbox</code></td><td>Any folder the kiosk user can create; created with mode 0700.</td></tr>
+</tbody></table></div>
+
+<h2>3 · Pairing and re-pairing</h2>
+<p>Pairing runs once on the Jetson and creates everything both sides need: a private certificate authority, a certificate for each side, a NaCl key pair for each side, the kiosk's config and the laptop's bundle. Nothing about it is in the source tree.</p>
+<pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw
+python3 tools/pair_receiver.py --receiver-ip 172.16.104.198 --device-id kiosk-01</code></pre>
+<dl>
+<dt><code>--receiver-ip</code></dt><dd>The laptop's fixed address. Required. The receiver certificate is bound to it.</dd>
+<dt><code>--port</code></dt><dd>Receiver port, default 8443. The kiosk config and the bundle's <code>receiver.json</code> both get it.</dd>
+<dt><code>--device-id</code></dt><dd>Name in the kiosk certificate and in the officer's log, default <code>kiosk-01</code>. Use a different id per kiosk if there are several.</dd>
+<dt><code>--days</code></dt><dd>Certificate validity, default 3650 (ten years).</dd>
+</dl>
+<p><strong>Re-run pairing</strong> when the laptop's address changes, when the receiver moves to another PC, or when the bundle was lost. It overwrites <code>~/.config/nomadright/receiver.json</code> and deletes and recreates <code>~/nomadright-receiver-bundle/</code>; the previous bundle on the laptop stops being accepted, so copy the new one over (section 1C) and restart <code>receiver.py</code>. Restart the kiosk afterwards; it reads the pairing at start.</p>
+<p><strong>Check the link</strong> from the Jetson while the receiver is running; <code>True</code> means the certificate handshake and the fingerprint check passed:</p>
+<pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw/python
+venv/bin/python -c "from pocketinfer.applications.nomad_right.formfill.outbox import PairingConfig; print(PairingConfig().outbox().transport.reachable())"</code></pre>
+<p>On the laptop, <code>receiver.json</code> in the bundle has two keys you may edit: <code>dashboard_port</code> (add it; default 8080) and <code>store_dir</code> (default <code>received</code>). Do not edit <code>port</code> there alone; it must match the kiosk's pairing, so change it with <code>--port</code> and re-pair.</p>
+
+<h2>4 · The review step</h2>
+<p>With the review on, the kiosk reads every answer back before sealing and the person can fix one by saying "change" and its number. With it off, the form is sealed and sent the moment the last field is answered; the person can still say "change" during the questions, but not after the last one.</p>
+<div class="tbl"><table><thead><tr><th>Change</th><th>Where</th><th>Now</th><th>Effect</th></tr></thead><tbody>
+<tr><td>Read all answers back before sending</td><td><code>constants.py</code> · <code>FORM_REVIEW_ENABLED</code></td><td><code>True</code></td><td><code>False</code> skips the read-back. Recommended on: it is the only moment an illiterate person hears the whole form.</td></tr>
+</tbody></table></div>
+
+<h2>5 · Every other switch</h2>
+<p>All of these are plain Python constants. Edit the file, save, and restart the kiosk (Ctrl-C, then <code>pocketinfer-retro</code>). Nothing else needs rebuilding.</p>
+<h3>Form flow · <code>python/pocketinfer/applications/nomad_right/constants.py</code></h3>
+<div class="tbl"><table><thead><tr><th>Name</th><th>Now</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>FORM_FILLING_ENABLED</code></td><td><code>True</code></td><td>Master switch. <code>False</code> makes the Camera button behave exactly as before: photo, spoken question, vision-model answer. The form code stays installed but idle.</td></tr>
+<tr><td><code>FORM_REVIEW_ENABLED</code></td><td><code>True</code></td><td>Section 4.</td></tr>
+<tr><td><code>FORM_ANSWER_TIMEOUT_S</code></td><td class="n">90</td><td>Seconds the kiosk waits for the button after asking a question. When it runs out the session is cancelled and its answers wiped. This is the walk-away timer; the conversation's own idle expiry is separate (below).</td></tr>
+<tr><td><code>FORM_LANGUAGES</code></td><td><code>("hi", "ta")</code></td><td>Languages the flow accepts. Adding <code>"en"</code> needs an English speech recogniser, which the device does not have; the questions exist in English already.</td></tr>
+<tr><td><code>FORM_DOC_OCR_LANG</code></td><td><code>"en"</code></td><td>OCR language for passbooks and Aadhaar cards. Numbers are printed in Latin digits, so English is fastest; <code>"hi"</code> or <code>"ta"</code> is slower and gains nothing for numbers.</td></tr>
+<tr><td><code>FORM_RECEIVER_CONFIG</code></td><td><code>~/.config/nomadright/receiver.json</code></td><td>Where pairing writes the kiosk's half. Move it only together with pairing.</td></tr>
+<tr><td><code>FORM_OUTBOX_*</code>, <code>FORM_SEND_TIMEOUT_S</code></td><td></td><td>Section 2.</td></tr>
+</tbody></table></div>
+
+<h3>Questions, attempts and identification · <code>python/pocketinfer/applications/nomad_right/formfill/</code></h3>
+<div class="tbl"><table><thead><tr><th>Name</th><th>File</th><th>Now</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>MAX_ATTEMPTS</code></td><td><code>session.py</code></td><td class="n">3</td><td>Failed tries per field before an optional field is skipped and a required one is left for the officer (listed under <code>unanswered_required</code> in the file the officer gets).</td></tr>
+<tr><td><code>ACCEPT_MIN</code></td><td><code>identifier.py</code></td><td class="n">0.72</td><td>Score a form needs to be accepted without asking. Raise it to ask "is this the X form?" more often; lower it only with a new benchmark run (section 7), because a wrong accept is the one failure the design forbids.</td></tr>
+<tr><td><code>CONFIRM_MIN</code></td><td><code>identifier.py</code></td><td class="n">0.45</td><td>Score below which the kiosk does not even ask, and instead says it could not read the form or does not know it.</td></tr>
+<tr><td><code>MARGIN_MIN</code></td><td><code>identifier.py</code></td><td class="n">0.15</td><td>Lead the best form needs over the runner-up; closer than this means "this one or that one?".</td></tr>
+<tr><td><code>MIN_WORDS</code></td><td><code>identifier.py</code></td><td class="n">6</td><td>Fewer OCR words than this with a weak score is treated as "not readable" (asks which scheme) rather than "unknown form".</td></tr>
+<tr><td><code>PRIOR_BONUS</code></td><td><code>identifier.py</code></td><td class="n">0.08</td><td>Small bonus for the scheme the conversation already settled on. It never decides on its own.</td></tr>
+<tr><td><code>KW_FULL</code>, <code>KW_STRONG</code></td><td><code>identifier.py</code></td><td class="n">6 · 8</td><td>Keyword weight that counts as full support, and the weight that lets keywords alone reach a confirmation when the title was not read.</td></tr>
+<tr><td><code>SHORT_PATTERN</code>, <code>FUZZY_MIN</code></td><td><code>identifier.py</code></td><td class="n">14 · 0.80 / 0.86</td><td>Title patterns shorter than 14 characters must appear verbatim; longer ones may match fuzzily above the ratio (0.80 for patterns of 24+ characters, 0.86 otherwise).</td></tr>
+<tr><td><code>NR_OCR_THREADS</code></td><td>environment</td><td class="n">4</td><td>CPU threads tesseract may use. Set it in the terminal before <code>pocketinfer-retro</code>: <code>export NR_OCR_THREADS=2</code> to leave more CPU for speech, at the cost of slower identification.</td></tr>
+<tr><td>OCR passes</td><td><code>flow.py</code>, <code>identify()</code></td><td></td><td>English header band first; the selected script's band only if English is not conclusive; then one wider English pass (top 70 % of the page at 1400 px). Change the order there if a Hindi-only pilot should try Hindi first.</td></tr>
+</tbody></table></div>
+
+<h3>Voice, sessions and the chatbot · <code>constants.py</code> unless noted</h3>
+<div class="tbl"><table><thead><tr><th>Name</th><th>Now</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>MAX_VOICE_WORDS</code></td><td class="n">45</td><td>Longest spoken answer in the question-answering flow (about 15 s of speech). Not used for form questions, which are read as written.</td></tr>
+<tr><td><code>SESSION_TTL_S</code> in <code>scheme_intel/si_constants.py</code></td><td class="n">300</td><td>Idle seconds after which the conversation is treated as a new person (5 min). Home and a language change reset immediately.</td></tr>
+<tr><td><code>LLM_BACKEND</code></td><td><code>"llama-server"</code></td><td>How the chatbot's vision model is served: the kiosk's own on-demand <code>llama-server</code> (2.6 s per photo, 1.2 GB less RAM) or <code>"ollama"</code> as before. The form flow never starts either.</td></tr>
+<tr><td><code>LLAMA_SERVER_IDLE_STOP_S</code></td><td class="n">300</td><td>Seconds after the last chatbot answer before the model is unloaded to free memory. Lower it on a busy kiosk; raise it if the cold start after Ask Chatbot annoys.</td></tr>
+<tr><td><code>LLAMA_SERVER_IMAGE_MIN_TOKENS</code>, <code>_MAX_TOKENS</code></td><td class="n">256 · 512</td><td>How much of a photo the vision model sees. More tokens: more detail, slower, more memory.</td></tr>
+<tr><td><code>LLAMA_SERVER_KV_TYPE</code></td><td><code>"q8_0"</code></td><td>Cache precision; <code>"f16"</code> uses more memory for no visible gain.</td></tr>
+<tr><td><code>LLM_KEEP_ALIVE</code></td><td><code>"5m"</code></td><td>Same idea for the Ollama backend.</td></tr>
+<tr><td><code>LLM_FALLBACK_ENABLED</code></td><td><code>True</code></td><td>Let the vision model answer general questions the scheme database cannot. <code>False</code> keeps every answer on the database.</td></tr>
+<tr><td><code>LLM_REQUEST_TIMEOUT_S</code></td><td class="n">90</td><td>Longest wait for a chatbot answer.</td></tr>
+</tbody></table></div>
+
+<h3>Speech recognition · <code>~/bhashini_models/asr/asr_config.json</code></h3>
+<pre><code>"backends": { "hi": "conformer", "ta": "whisper-ct2" }</code></pre>
+<p>Tamil options: <code>whisper-ct2</code> (in use: CTranslate2 int8, word error 12 % on FLEURS and 7 % on kiosk phrases, 2.6 s, 0.7 GB less memory) or <code>whisper</code> (TensorRT, 12 % / 5 %, 1.6 s, more memory). <code>conformer</code> for Tamil is broken (75 % errors) and is only there for Hindi. After editing: <code>sudo systemctl restart bhashini_models.service</code>.</p>
+
+<h2>6 · Forms, questions and words</h2>
+<p>Everything the kiosk says in the form flow is a string in <code>nomadright/forms/build_forms.py</code>; nothing is translated at run time. After any edit, rebuild the catalogue and restart the kiosk:</p>
+<pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw/nomadright/forms
+python3 build_forms.py            # writes forms.json; prints "8 forms, 166 fields, 24 prompts"</code></pre>
+<dl>
+<dt><code>PROMPTS</code></dt><dd>The 24 shared sentences (confirm the form, "you said X, correct?", "show your passbook", "sent", "saved, will be sent", the review sentences) in <code>en</code>, <code>hi</code>, <code>ta</code>. Keep the <code>{placeholders}</code>.</dd>
+<dt><code>WORDS</code></dt><dd>What counts as yes, no, repeat, change, skip and cancel, per language. Add regional variants here; the recogniser's exact spelling matters, so take them from the kiosk log when a person's word was not understood.</dd>
+<dt><code>Q</code></dt><dd>The question bank: one entry per field key with its three questions. Reworded questions go here.</dd>
+<dt><code>CHOICES</code></dt><dd>Spoken synonyms for choice fields (gender, relation, yes/no, KYC document …).</dd>
+<dt><code>FORMS</code></dt><dd>The eight forms, each with its title in three languages, the title patterns and keywords the OCR matcher uses, look-alike discriminators, and the field list in the form's printed order.</dd>
+</dl>
+<h3>Adding a form</h3>
+<ol class="steps">
+<li><div><p>Save the official PDF under <code>nomadright/forms/sources/</code> and note its title as printed, in every script it comes in.</p></div></li>
+<li><div><p>Append a dict to <code>FORMS</code> copying the PMSBY entry: <code>form_id</code>, <code>scheme_id</code> (one of the kiosk's schemes), <code>title</code> and <code>spoken_name</code> in three languages, <code>title_patterns</code> (exact printed title words), <code>keywords</code> with weights (words that appear only on this form score 3.0), <code>discriminators</code> against any look-alike form, <code>supported_languages</code>, and <code>fields</code>.</p></div></li>
+<li><div><p>Build <code>fields</code> in the printed order with the helpers: <code>field(key, type)</code>, <code>doc_field(key, type, document, spoken_question)</code> for values read from a document, <code>choice(key, name)</code> for fixed options. Types: <code>name</code>, <code>text</code>, <code>address</code>, <code>integer</code>, <code>number</code>, <code>amount</code>, <code>phone</code>, <code>pincode</code>, <code>date</code>, <code>email</code>, <code>aadhaar</code>, <code>account_number</code>, <code>ifsc</code>, <code>choice</code>, <code>group</code>. Add <code>required=False</code> for optional fields, <code>condition={"field": …, "equals": …}</code> or <code>{"field": …, "minor": True}</code> for fields that only apply sometimes, and a <code>group</code> with <code>count_from</code> and <code>max_items</code> for repeated rows such as household members. New field keys need a question in <code>Q</code>.</p></div></li>
+<li><div><p>Rebuild, then prove the matcher on synthetic photos before trusting it:</p><pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw/python
+venv/bin/python pocketinfer/applications/nomad_right/benchmarks/make_form_photos.py
+venv/bin/python pocketinfer/applications/nomad_right/benchmarks/form_id_benchmark.py --json /tmp/form_id.json</code></pre><p>Accept the change only with zero <code>WRONG</code> rows. Then photograph the printed form with the kiosk's own webcam and press Camera.</p></div></li>
+</ol>
+
+<h2>7 · Checks, tests and rollback</h2>
+<h3>Quick checks</h3>
+<div class="tbl"><table><thead><tr><th>Symptom</th><th>Meaning</th><th>Do</th></tr></thead><tbody>
+<tr><td><code>RECEIVER  not paired</code> at kiosk start</td><td>No <code>~/.config/nomadright/receiver.json</code></td><td>Run pairing (section 3). Forms are still filled and sealed; they wait in the outbox.</td></tr>
+<tr><td>"saved, will be sent automatically" every time</td><td>Laptop not reachable: receiver not running, firewall, or a different address</td><td>Start <code>receiver.py</code>; run the link check in section 3; compare the laptop's current address with 172.16.104.198.</td></tr>
+<tr><td>Dashboard shows "Rejected"</td><td>A blob the laptop could not open or verify</td><td>Almost always a re-pair on one side only. Copy the current bundle to the laptop and restart it.</td></tr>
+<tr><td>Kiosk says "choose Hindi or Tamil" on Camera</td><td>English selected</td><td>Select Hindi or Tamil.</td></tr>
+<tr><td>Kiosk lists the supported forms (26 s)</td><td>The camera saw no known form, often a desk or a blank page</td><td>Hold the form's title in view, flat, closer.</td></tr>
+<tr><td>Identification takes over 10 s</td><td>Blurred or dark photo needing all three OCR passes, or another process using the CPU</td><td>More light, steadier hold; check <code>top</code> for update-manager or a benchmark.</td></tr>
+</tbody></table></div>
+<p>Logs: the kiosk prints to its terminal; the chatbot's server writes <code>/tmp/nomad_right_logs/llama_server.log</code>; the receiver prints to its PowerShell window. No answer, name or number is ever written to a log.</p>
+<h3>Tests to run after any change</h3>
+<pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw/python
+venv/bin/python -m pytest -q pocketinfer/applications/nomad_right/formfill/formfill_test.py     # 18 · parsing, sessions, IFSC/Aadhaar reading
+venv/bin/python -m pytest -q pocketinfer/applications/nomad_right/formfill/transport_test.py    # 4  · seal → send → ACK, duplicate, rogue certificate
+venv/bin/python -m pytest -q -s pocketinfer/applications/nomad_right/formfill/flow_test.py      # 6  · full Hindi session on a synthetic photo, ~2 min
+venv/bin/python pocketinfer/applications/nomad_right/benchmarks/form_session_benchmark.py --sessions 10 --json /tmp/s10.json   # memory over sessions</code></pre>
+<h3>Rollback, smallest first</h3>
+<div class="tbl"><table><thead><tr><th>Undo</th><th>How</th></tr></thead><tbody>
+<tr><td>Form filling on the Camera button</td><td><code>FORM_FILLING_ENABLED = False</code> in <code>constants.py</code>, restart the kiosk. Everything else stays in place.</td></tr>
+<tr><td>The chatbot's serving switch</td><td><code>LLM_BACKEND = "ollama"</code>, restart the kiosk (Ollama must be running, as before).</td></tr>
+<tr><td>Tamil speech model</td><td><code>"ta": "whisper"</code> in <code>asr_config.json</code>, restart <code>bhashini_models.service</code>.</td></tr>
+<tr><td>The whole form-filling change set</td><td><code>git revert 6ae73b5</code> in <code>~/Retro/NOMADRIGHT</code> and <code>git revert 7e90af1</code> in <code>~/UI</code>, then rebuild the UI (below).</td></tr>
+</tbody></table></div>
+<h3>Rebuilding the screen</h3>
+<pre><code>cd ~/UI &amp;&amp; npm run build                       # writes ~/UI/dist
+rm -rf ~/Retro/NOMADRIGHT/pocket-infer-sw/webui_dist/assets
+cp -r ~/UI/dist/* ~/Retro/NOMADRIGHT/pocket-infer-sw/webui_dist/</code></pre>
+
+<div class="note warn"><strong>Still open:</strong> a native speaker's pass over the Hindi and Tamil strings in <code>build_forms.py</code>; the eight forms printed and photographed with the kiosk webcam; the first real send to the laptop once <code>receiver.py</code> is running there.</div>
+<footer>Written 13 September 2026 from the code as committed (NOMADRIGHT 6ae73b5, UI 7e90af1). Companion reports: <em>NomadRight Form Filling</em> (measurements and design) and <em>NomadRight Orin Tune-Up</em> (speech, chatbot and memory work).</footer>
+</main>
