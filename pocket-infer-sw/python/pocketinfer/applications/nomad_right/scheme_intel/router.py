@@ -23,6 +23,12 @@ _NEEDS_SCHEME = {Intent.GENERAL_SCHEME_INFORMATION, Intent.REQUIRED_DOCUMENTS,
                  Intent.APPLICATION_STATUS, Intent.GRIEVANCE}
 # Wage theft / unpaid wages / worksite injury: the legacy RulesEngine has
 # dedicated, sourced OSH-Code answers for these (ESHRAM_WAGE_RIGHTS).
+# One-word / bare-need inputs that name no scheme and no topic worth guessing at.
+_CARD_ONLY_RE = re.compile(r"^(?:(?:the|my|a|our) )?cards?(?: please)?\.?$")
+_VAGUE_NEED_RE = re.compile(
+    r"^(?:(?:i|we) (?:need|want|require|am looking for|are looking for)(?: some| more| a| any)? "
+    r"(?:money|help|support|benefits?|cash|assistance|scheme|schemes|yojana|a scheme|government help|financial help)"
+    r"(?: please)?|(?:money|help|benefits?|scheme|schemes|yojana|apply|application|form|forms|please help|help me|assistance))\.?$")
 _WAGE_RIGHTS_RE = re.compile(
     r"\b(?:wages?|salary|payment|pay|paid|contractor|employer|minimum wage|form ?11|labou?r office|injur\w*|accident)\b")
 
@@ -35,6 +41,13 @@ class QueryRouter:
               context_sid: Optional[str]) -> RouteDecision:
         intent = ir.intent
         if intent == Intent.OTHER:
+            # Too little to answer, but clearly about the kiosk's topics: ask a
+            # short clarifying question instead of guessing a scheme or leaving it
+            # to the general language model.
+            if _CARD_ONLY_RE.match(text_norm) and not ir.scheme_ids:
+                return RouteDecision(Route.CLARIFY, reason="which card")
+            if _VAGUE_NEED_RE.match(text_norm) and not ir.scheme_ids:
+                return RouteDecision(Route.CLARIFY, reason="topic")
             return RouteDecision(Route.DEFER, reason="not a scheme question")
 
         sid = ir.scheme_ids[0] if ir.scheme_ids else None

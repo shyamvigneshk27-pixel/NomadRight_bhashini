@@ -1,0 +1,1931 @@
+{
+ "en": [
+  {
+   "id": "SCH_PMKISAN",
+   "short_name": "PM-KISAN",
+   "name": "Pradhan Mantri Kisan Samman Nidhi",
+   "spoken_name": "PM-KISAN",
+   "category": "Agriculture",
+   "summary": "PM-KISAN gives land-holding farmer families 6000 rupees a year, paid in three instalments of 2000 rupees directly into their bank account.",
+   "benefits": [
+    "Rs 6000 per year income support to farmer families"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Land Record Documents (Khatauni / Jamabandi)",
+    "Aadhaar-Seeded Bank Account"
+   ],
+   "helpline": "155261",
+   "url": "https://pmkisan.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_PMJKMY",
+   "short_name": "PM-KMY",
+   "name": "Pradhan Mantri Kisan Mandhan Yojana",
+   "spoken_name": "PM Kisan Mandhan pension",
+   "category": "Agriculture",
+   "summary": "PM Kisan Mandhan Yojana is a pension scheme for small and marginal farmers aged 18 to 40. It pays 3000 rupees a month after age 60.",
+   "benefits": [
+    "Monthly pension of Rs 3,000 for small and marginal farmers after age 60"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMFBY",
+   "short_name": "PMFBY",
+   "name": "Pradhan Mantri Fasal Bima Yojana",
+   "spoken_name": "PM Fasal Bima crop insurance",
+   "category": "Agriculture",
+   "summary": "PM Fasal Bima Yojana is crop insurance for farmers, including tenant farmers and sharecroppers, against crop loss from drought, flood, pests, storms and other natural risks.",
+   "benefits": [
+    "Comprehensive crop insurance from pre-sowing to post-harvest against natural risks",
+    "Post-harvest loss coverage for up to 2 weeks after harvest for crops left in field for drying"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "pmfby.gov.in",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMMY",
+   "short_name": "MUDRA",
+   "name": "Pradhan Mantri Mudra Yojana",
+   "spoken_name": "MUDRA loans",
+   "category": "Financial Inclusion",
+   "summary": "PM MUDRA Yojana gives loans without collateral to small and micro businesses: Shishu up to 50000 rupees, Kishor up to 5 lakh, Tarun up to 10 lakh and Tarun Plus up to 20 lakh.",
+   "benefits": [
+    "Shishu: Loans up to Rs 50,000",
+    "Kishor: Loans above Rs 50,000 and up to Rs 5 lakh",
+    "Tarun: Loans above Rs 5 lakh and up to Rs 10 lakh"
+   ],
+   "documents": [
+    "Identity Proof",
+    "Residence Proof",
+    "Business Proposal / Quotation for Machinery",
+    "Last 6 Months Bank Statement (optional)"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJDY",
+   "short_name": "PMJDY",
+   "name": "Pradhan Mantri Jan Dhan Yojana",
+   "spoken_name": "Jan Dhan bank account",
+   "category": "Financial Inclusion",
+   "summary": "PM Jan Dhan Yojana gives a basic bank account with no minimum balance, a free RuPay debit card with 2 lakh rupees accident insurance, and an overdraft of up to 10000 rupees.",
+   "benefits": [
+    "Basic Savings Bank Deposit (BSBD) account with no minimum balance requirement",
+    "Free RuPay debit card with accident insurance cover of Rs 2 lakh (for post-28.8.2018 accounts; Rs 1 lakh for older accounts)",
+    "Overdraft facility up to Rs 10,000 for eligible account holders"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Other Officially Valid Documents (OVD) (optional)"
+   ],
+   "helpline": "",
+   "url": "https://pmjdy.gov.in/scheme",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJJBY",
+   "short_name": "PMJJBY",
+   "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+   "spoken_name": "PM Jeevan Jyoti life insurance",
+   "category": "Financial Inclusion",
+   "summary": "PM Jeevan Jyoti Bima Yojana is life insurance of 2 lakh rupees for people aged 18 to 50 with a bank account. The premium is 436 rupees a year.",
+   "benefits": [
+    "Rs 2 lakh on death due to any reason"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Savings Bank Account Details",
+    "Consent cum Auto-Debit Mandate Form"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/pmjjby",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMSBY",
+   "short_name": "PMSBY",
+   "name": "Pradhan Mantri Suraksha Bima Yojana",
+   "spoken_name": "PM Suraksha accident insurance",
+   "category": "Financial Inclusion",
+   "summary": "PM Suraksha Bima Yojana is accident insurance for people aged 18 to 70 with a bank account. It pays up to 2 lakh rupees, for a premium of 20 rupees a year.",
+   "benefits": [
+    "Rs 2 lakh for accidental death or total permanent disability",
+    "Rs 1 lakh for partial permanent disability"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Savings Bank Account Details",
+    "Auto-Debit Consent Form"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/index.php/pradhan-mantri-suraksha-bima-yojana-pmsby",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_ONORC",
+   "short_name": "ONORC",
+   "name": "Public Distribution System - One Nation One Ration Card (PDS / ONORC)",
+   "spoken_name": "One Nation One Ration Card",
+   "category": "Food Security",
+   "summary": "One Nation One Ration Card lets ration card holders under the National Food Security Act collect their ration from any Fair Price Shop in India, with Aadhaar verification. No separate application is needed.",
+   "benefits": [
+    "Seamless access to subsidised food grains from any ePoS-enabled Fair Price Shop across all 36 States/UTs in India.",
+    "Inter-state and intra-state portability of ration card entitlements.",
+    "Flexible distribution: if a beneficiary collects part of their ration in one location, family members can collect the remaining balance at their home location..."
+   ],
+   "documents": [
+    "Ration Card",
+    "Aadhaar Card"
+   ],
+   "helpline": "14445",
+   "url": "https://nfsa.gov.in",
+   "application_mode": "HYBRID"
+  },
+  {
+   "id": "SCH_HIS_WEAVERS",
+   "short_name": "HIS Weavers",
+   "name": "Health Insurance Scheme for Weavers",
+   "spoken_name": "health insurance for weavers",
+   "category": "Health",
+   "summary": "The Health Insurance Scheme for Weavers gives health insurance to handloom weavers who earn at least half of their income from weaving.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJAY",
+   "short_name": "PM-JAY",
+   "name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (AB PM-JAY)",
+   "spoken_name": "Ayushman Bharat PM-JAY",
+   "category": "Health",
+   "summary": "Ayushman Bharat PM-JAY gives eligible poor and vulnerable families cashless hospital treatment up to 5 lakh rupees per family per year, at empanelled hospitals anywhere in India.",
+   "benefits": [
+    "Health coverage of up to Rs.",
+    "Cashless and paperless treatment at any empanelled public or private hospital across India (portability).",
+    "All pre-existing conditions are covered from day one of enrolment."
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Ration Card (optional)",
+    "PM-JAY E-Card / Ayushman Card",
+    "Any valid Government-issued Photo ID (optional)"
+   ],
+   "helpline": "14555",
+   "url": "https://pmjay.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_ABPMJAY",
+   "short_name": "Punjab MMSBY",
+   "name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+   "spoken_name": "Punjab Mukh Mantri Sehat Bima Yojana",
+   "category": "Health",
+   "summary": "In Punjab, the Mukh Mantri Sehat Bima Yojana gives eligible families cashless hospital treatment of up to 5 lakh rupees per family per year.",
+   "benefits": [
+    "Cashless health insurance cover of Rs 5 lakh per family per year"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_BOCW",
+   "short_name": "BOCW",
+   "name": "Building and Other Construction Workers (BOCW) Welfare Scheme",
+   "spoken_name": "the construction workers welfare board",
+   "category": "Labour & Employment",
+   "summary": "The construction workers welfare board registers construction workers aged 18 to 60 who worked at least 90 days in construction in the last 12 months. Benefits include accident cover, pension and education help, and vary by state.",
+   "benefits": [
+    "Accident insurance — compensation for accidental death, permanent/partial disability at the worksite.",
+    "Medical assistance — financial support for hospitalization of worker and immediate family.",
+    "Maternity benefit — financial assistance to female construction workers for delivery and post-natal care."
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "90-Day Work Certificate",
+    "Bank Passbook / Bank Account Details",
+    "Passport-size Photographs"
+   ],
+   "helpline": "1800-891-8888",
+   "url": "https://labour.gov.in/bocw",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_ESHRAM",
+   "short_name": "e-Shram",
+   "name": "e-Shram Portal + OSH Code 2020 — Unorganised Worker Registration & Interstate Migrant Rights",
+   "spoken_name": "e-Shram registration",
+   "category": "Labour & Employment",
+   "summary": "e-Shram is a free national registration for unorganised workers aged 16 to 59. You get a card with a Universal Account Number that is valid across India.",
+   "benefits": [
+    "Universal Account Number (UAN) e-Shram Card — a pan-India valid digital identity for unorganised workers.",
+    "Access to 50+ linked government welfare schemes through the single e-Shram UAN.",
+    "Pan-India portability of welfare benefits — worker can access benefits in any state using their UAN."
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Aadhaar-linked Mobile Number",
+    "Bank Account Details (IFSC + Account Number)",
+    "Occupation/Work Proof (optional) (optional)"
+   ],
+   "helpline": "14434",
+   "url": "https://eshram.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_DAY",
+   "short_name": "DAY",
+   "name": "Deen Dayal Upadhyaya Antyodaya Yojana",
+   "spoken_name": "Deen Dayal Antyodaya Yojana",
+   "category": "Livelihoods",
+   "summary": "Deen Dayal Antyodaya Yojana helps the urban and rural poor with skill training and financing to start their own business.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_VISHWA",
+   "short_name": "PM Vishwakarma",
+   "name": "PM Vishwakarma Scheme",
+   "spoken_name": "PM Vishwakarma",
+   "category": "MSME",
+   "summary": "PM Vishwakarma supports artisans in 18 traditional trades with a certificate, training with a stipend, a 15000 rupee toolkit incentive, and loans at 5 percent interest.",
+   "benefits": [
+    "First tranche: collateral-free loan up to Rs 1 lakh at 5% interest for 18 months",
+    "Second tranche: up to Rs 2 lakh for 30 months after repayment of first tranche",
+    "One-time toolkit incentive of Rs 15,000 after skill assessment"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Mobile Number linked to Aadhaar",
+    "Bank Account Details",
+    "Ration Card"
+   ],
+   "helpline": "1800 267 7777",
+   "url": "https://pmvishwakarma.gov.in",
+   "application_mode": "ONLINE_VIA_CSC"
+  },
+  {
+   "id": "SCH_APY",
+   "short_name": "APY",
+   "name": "Atal Pension Yojana",
+   "spoken_name": "Atal Pension Yojana",
+   "category": "Pension & Social Security",
+   "summary": "Atal Pension Yojana gives a guaranteed pension of 1000 to 5000 rupees a month after age 60. People aged 18 to 40 with a savings bank account can join.",
+   "benefits": [
+    "Guaranteed minimum monthly pension of Rs 1000 to Rs 5000 at age 60, depending on contribution amount and entry age",
+    "On subscriber death, spouse receives same pension amount",
+    "On death of both subscriber and spouse, accumulated pension corpus returned to nominee"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Savings Bank Account / Post Office Account",
+    "Mobile Number"
+   ],
+   "helpline": "",
+   "url": "https://www.pfrda.org.in/web/pfrda/schemes/atal-pension-yojana-apy",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_NPST",
+   "short_name": "NPS-Traders",
+   "name": "National Pension Scheme for Traders and Self-Employed Persons",
+   "spoken_name": "the pension scheme for traders",
+   "category": "Pension & Social Security",
+   "summary": "The National Pension Scheme for Traders is for shopkeepers, small traders and self-employed people aged 18 to 40. It pays 3000 rupees a month after age 60.",
+   "benefits": [
+    "Monthly assured pension of Rs 3000 after age 60"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Savings Bank Account / Jan Dhan Passbook",
+    "Self-Declaration of Turnover",
+    "GSTIN (optional)"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMSYM",
+   "short_name": "PM-SYM",
+   "name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+   "spoken_name": "PM Shram Yogi Maan-dhan pension",
+   "category": "Pension & Social Security",
+   "summary": "PM Shram Yogi Maan-dhan is a pension scheme for unorganised workers aged 18 to 40 who earn up to 15000 rupees a month. It pays 3000 rupees a month after age 60.",
+   "benefits": [
+    "Monthly assured pension of Rs 3000 after age 60",
+    "Spouse eligible for 50% of monthly pension on death of beneficiary",
+    "If husband and wife both join, jointly eligible for Rs 6000/month"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Savings Bank Account / Jan Dhan Account",
+    "Mobile Number"
+   ],
+   "helpline": "1800 267 6888",
+   "url": "https://maandhan.in",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_PMUY",
+   "short_name": "PMUY",
+   "name": "Pradhan Mantri Ujjwala Yojana",
+   "spoken_name": "Ujjwala gas connection",
+   "category": "Petroleum & Natural Gas",
+   "summary": "Pradhan Mantri Ujjwala Yojana gives a deposit-free LPG gas connection to adult women from poor households, with the first refill and a stove free.",
+   "benefits": [
+    "Cash assistance of Rs 2050 for 14.2 kg cylinder deposit-free connection",
+    "Cash assistance of Rs 1300 for 5 kg cylinder connection",
+    "First LPG refill free + Stove (hotplate) free from OMCs"
+   ],
+   "documents": [
+    "Aadhaar Card of Adult Woman Applicant",
+    "Ration Card / Family Composition Document",
+    "Bank Account Details",
+    "14-Point Declaration"
+   ],
+   "helpline": "1800 233 3555",
+   "url": "https://pmuy.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_PMSURYA",
+   "short_name": "PM Surya Ghar",
+   "name": "PM Surya Ghar: Muft Bijli Yojana",
+   "spoken_name": "PM Surya Ghar rooftop solar",
+   "category": "Renewable Energy",
+   "summary": "PM Surya Ghar gives households a subsidy of up to 78000 rupees for rooftop solar panels, and up to 300 units of free electricity a month.",
+   "benefits": [
+    "Rs 30,000 per kW subsidy for residential households (up to 2 kW)",
+    "Rs 18,000 per kW for additional capacity between 2-3 kW",
+    "Total subsidy capped at Rs 78,000 for systems larger than 3 kW"
+   ],
+   "documents": [
+    "Electricity Bill",
+    "Aadhaar Card",
+    "Bank Account Passbook / Cancelled Cheque",
+    "Proof of Roof Ownership / Electricity Connection"
+   ],
+   "helpline": "15555",
+   "url": "https://pmsuryaghar.gov.in",
+   "application_mode": "ONLINE"
+  },
+  {
+   "id": "SCH_GKRY",
+   "short_name": "GKRY",
+   "name": "Garib Kalyan Rozgar Yojana",
+   "spoken_name": "Garib Kalyan Rozgar Yojana",
+   "category": "Rural Development",
+   "summary": "Garib Kalyan Rozgar Yojana provides 125 days of employment in 25 types of work.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_MGNREGA",
+   "short_name": "MGNREGA",
+   "name": "Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGS)",
+   "spoken_name": "MGNREGA",
+   "category": "Rural Development",
+   "summary": "MGNREGA guaranteed 100 days of paid manual work a year to rural households. It was replaced from 1 July 2026 by the VB-G RAM G Act, which guarantees 125 days.",
+   "benefits": [
+    "Legal guarantee of at least 100 days of wage employment per household per financial year (expanded to 125 days under VB-G RAM G Act...",
+    "Right to unemployment allowance: If work is not provided within 15 days of a formal application, the applicant is entitled to an unemployment allowance...",
+    "Wages paid directly to the worker's bank or post office account through Direct Benefit Transfer (DBT)."
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Passport-sized Photographs",
+    "Proof of Residence",
+    "Bank / Post Office Account Details"
+   ],
+   "helpline": "1800 110 707",
+   "url": "https://nrega.nic.in",
+   "application_mode": "OFFLINE"
+  },
+  {
+   "id": "SCH_VBG_RAMG",
+   "short_name": "VB-G RAM G",
+   "name": "Viksit Bharat – Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+   "spoken_name": "the VB-G RAM G rural jobs guarantee",
+   "category": "Rural Development",
+   "summary": "The VB-G RAM G Act, in force from 1 July 2026, guarantees 125 days of paid work a year to rural households whose adults volunteer for unskilled manual work.",
+   "benefits": [
+    "125 days guaranteed wage employment per rural household per year (from 1 July 2026)",
+    "Unemployment allowance payable if eligible employment not provided under the Act"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMAYG",
+   "short_name": "PMAY-G",
+   "name": "Pradhan Mantri Awaas Yojana – Gramin",
+   "spoken_name": "PM Awaas Yojana Gramin housing",
+   "category": "Rural Housing",
+   "summary": "PM Awaas Yojana Gramin helps houseless and poor rural families build a pucca house, with 1.2 lakh rupees in plain areas and 1.3 lakh in hilly areas.",
+   "benefits": [
+    "Rs 1.20 lakh unit assistance for house construction in plain areas",
+    "Rs 1.30 lakh unit assistance for house construction in hilly/NE/difficult areas",
+    "Rs 12,000 for toilet construction through SBM-G convergence"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "https://rural.gov.in/sites/default/files/PMAY-G_Suo_moto_disclosure_27012022_0.pdf",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_DDUGKY",
+   "short_name": "DDU-GKY",
+   "name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+   "spoken_name": "Grameen Kaushalya skill training",
+   "category": "Skill Development",
+   "summary": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana gives free skill training with job placement to rural poor youth aged 15 to 35, and up to 45 for women.",
+   "benefits": [
+    "Free skill training with placement assistance for rural poor youth aged 15-35 (45 for women/PwD)"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMKVY",
+   "short_name": "PMKVY",
+   "name": "Pradhan Mantri Kaushal Vikas Yojana",
+   "spoken_name": "PM Kaushal Vikas skill training",
+   "category": "Skill Development",
+   "summary": "PM Kaushal Vikas Yojana gives skill training and certification to Indian youth aged 18 to 45.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_SSY",
+   "short_name": "SSY",
+   "name": "Sukanya Samriddhi Yojana",
+   "spoken_name": "Sukanya Samriddhi savings account",
+   "category": "Small Savings",
+   "summary": "Sukanya Samriddhi Yojana is a savings account for a girl child below 10 years, opened by a parent or guardian at a post office or bank.",
+   "benefits": [],
+   "documents": [
+    "Birth Certificate of Girl Child",
+    "Aadhaar / ID Proof of Parent / Legal Guardian",
+    "Address Proof of Parent / Guardian",
+    "Medical Certificate (in case of twins/triplets)"
+   ],
+   "helpline": "",
+   "url": "https://www.indiapost.gov.in/VAS/pages/pmodashboard/sukanyasamriddhiaccount.aspx",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_NSAP_AP",
+   "short_name": "Annapurna",
+   "name": "Annapurna Scheme",
+   "spoken_name": "the Annapurna food grain scheme",
+   "category": "Social Justice",
+   "summary": "The Annapurna scheme gives 10 kilos of free food grains a month to poor elderly people aged 60 or above who do not get the old age pension.",
+   "benefits": [
+    "10 kg food grains per month free for eligible elderly not receiving IGNOAPS"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Proof of Age (60+ years)",
+    "BPL Card / Certificate",
+    "Declaration of Non-Receipt of IGNOAPS"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_D",
+   "short_name": "IGNDPS",
+   "name": "Indira Gandhi National Disability Pension Scheme",
+   "spoken_name": "the disability pension",
+   "category": "Social Justice",
+   "summary": "The disability pension is for people aged 18 to 79 with 80 percent or more disability, from below poverty line families. The central share is 300 rupees a month.",
+   "benefits": [
+    "Rs 300/month disability pension (Central share)",
+    "Rs 500/month disability pension for 80+ (Central share)"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Proof of Age (18+ years)",
+    "Disability Certificate (80%+ disability)",
+    "BPL Card / Certificate"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_OA",
+   "short_name": "IGNOAPS",
+   "name": "Indira Gandhi National Old Age Pension Scheme",
+   "spoken_name": "the old age pension",
+   "category": "Social Justice",
+   "summary": "The old age pension is for people aged 60 or above from below poverty line families. The central share is 200 rupees a month, and 500 rupees from age 80.",
+   "benefits": [
+    "Rs 200/month old age pension for persons aged 60-79 (Central share)",
+    "Rs 500/month old age pension for persons aged 80+ (Central share)"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Proof of Age (60+ years)",
+    "BPL Card / Certificate",
+    "Bank / Post Office Passbook"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_W",
+   "short_name": "IGNWPS",
+   "name": "Indira Gandhi National Widow Pension Scheme",
+   "spoken_name": "the widow pension",
+   "category": "Social Justice",
+   "summary": "The widow pension is for widows aged 40 to 79 from below poverty line families. The central share is 300 rupees a month.",
+   "benefits": [
+    "Rs 300/month widow pension (Central share)",
+    "Rs 500/month widow pension for 80+ (Central share)"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Proof of Age (40+ years)",
+    "Widow Certificate / Death Certificate of Spouse",
+    "BPL Card / Certificate"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_FB",
+   "short_name": "NFBS",
+   "name": "National Family Benefit Scheme",
+   "spoken_name": "the National Family Benefit Scheme",
+   "category": "Social Justice",
+   "summary": "The National Family Benefit Scheme gives 20000 rupees once to a below poverty line family when its main earner, aged 18 to 59, dies.",
+   "benefits": [
+    "Rs 20,000 one-time assistance on death of breadwinner"
+   ],
+   "documents": [
+    "Aadhaar Card",
+    "Death Certificate of Breadwinner",
+    "Proof of Age of Deceased (18-59 years)",
+    "BPL Card / Certificate"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_SRMS",
+   "short_name": "SRMS",
+   "name": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+   "spoken_name": "the rehabilitation scheme for manual scavengers",
+   "category": "Social Justice",
+   "summary": "The rehabilitation scheme for manual scavengers gives identified manual scavengers 40000 rupees of one-time help and free skill training with a stipend.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_SVANIDHI",
+   "short_name": "PM SVANidhi",
+   "name": "PM Street Vendor's AtmaNirbhar Nidhi",
+   "spoken_name": "PM SVANidhi street vendor loans",
+   "category": "Urban Livelihoods",
+   "summary": "PM SVANidhi gives street vendors working capital loans without collateral, starting at up to 10000 rupees, with a 7 percent interest subsidy and cashback on digital payments.",
+   "benefits": [
+    "First tranche working capital loan up to Rs 10,000 with 1-year repayment tenure",
+    "Second tranche enhanced working capital loan up to Rs 20,000 upon timely or early repayment of first tranche",
+    "Third tranche working capital loan up to Rs 50,000 upon timely repayment of second tranche"
+   ],
+   "documents": [
+    "Vending Certificate / Identity Card",
+    "Letter of Recommendation (LoR)",
+    "Aadhaar Card",
+    "Bank Account Details"
+   ],
+   "helpline": "1800 11 1979",
+   "url": "https://pmsvanidhi.mohua.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  }
+ ],
+ "hi": [
+  {
+   "id": "SCH_PMKISAN",
+   "short_name": "PM-KISAN",
+   "name": "प्रधानमंत्री किसान सम्मान निधि",
+   "spoken_name": "PM-KISAN",
+   "category": "कृषि",
+   "summary": "पीएम-किसान भूमि धारक किसान परिवारों को प्रति वर्ष 6000 रुपये देता है, जिसका भुगतान 2000 रुपये की तीन किश्तों में सीधे उनके बैंक खाते में किया जाता है।",
+   "benefits": [
+    "किसान परिवारों को प्रति वर्ष 6000 रुपये की आय सहायता"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "भूमि अभिलेख दस्तावेज (खतौनी/जमाबंदी)",
+    "आधार-सीडेड बैंक खाता"
+   ],
+   "helpline": "155261",
+   "url": "https://pmkisan.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_PMJKMY",
+   "short_name": "PM-KMY",
+   "name": "प्रधानमंत्री किसान मानधन योजना",
+   "spoken_name": "PM Kisan Mandhan pension",
+   "category": "कृषि",
+   "summary": "पीएम किसान मानधन योजना 18 से 40 वर्ष की आयु के छोटे और सीमांत किसानों के लिए एक पेंशन योजना है। यह 60 वर्ष की आयु के बाद प्रति माह 3000 रुपये का भुगतान करता है।",
+   "benefits": [
+    "60 वर्ष की आयु के बाद छोटे और सीमांत किसानों के लिए 3,000 रुपये की मासिक पेंशन"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMFBY",
+   "short_name": "PMFBY",
+   "name": "प्रधानमंत्री फसल बीमा योजना",
+   "spoken_name": "PM Fasal Bima crop insurance",
+   "category": "कृषि",
+   "summary": "प्रधानमंत्री फसल बीमा योजना किसानों के लिए फसल बीमा है, जिसमें किरायेदार किसान और बटाईदार शामिल हैं, सूखे, बाढ़, कीटों, तूफान और अन्य प्राकृतिक जोखिमों से फसल के नुकसान के खिलाफ।",
+   "benefits": [
+    "प्राकृतिक जोखिमों के खिलाफ बुवाई से पहले से लेकर कटाई के बाद तक व्यापक फसल बीमा",
+    "फसल कटाई के बाद 2 सप्ताह तक फसल के बाद फसल के नुकसान का कवरेज।"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "pmfby.gov.in",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMMY",
+   "short_name": "MUDRA",
+   "name": "प्रधानमंत्री मुद्रा योजना",
+   "spoken_name": "MUDRA loans",
+   "category": "वित्तीय समावेशन",
+   "summary": "पीएम मुद्रा योजना छोटे और सूक्ष्म व्यवसायों को बिना किसी संपार्श्विक के ऋण देती हैः शिशु 50,000 रुपये तक, किशोर 5 लाख रुपये तक, तरुण 10 लाख रुपये तक और तरुण प्लस 20 लाख रुपये तक।",
+   "benefits": [
+    "शिशुः 50,000 रुपये तक का ऋण",
+    "किशोरः 50,000 रुपये से अधिक और 5 लाख रुपये तक का ऋण",
+    "तरुणः 5 लाख रुपये से अधिक और 10 लाख रुपये तक का ऋण"
+   ],
+   "documents": [
+    "पहचान का प्रमाण",
+    "निवास प्रमाण",
+    "मशीनरी के लिए व्यावसायिक प्रस्ताव/उद्धरण",
+    "पिछले 6 महीनों का बैंक विवरण (वैकल्पिक)"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJDY",
+   "short_name": "PMJDY",
+   "name": "प्रधानमंत्री जन धन योजना",
+   "spoken_name": "Jan Dhan bank account",
+   "category": "वित्तीय समावेशन",
+   "summary": "पीएम जन धन योजना बिना किसी न्यूनतम शेष राशि के एक बुनियादी बैंक खाता, 2 लाख रुपये के दुर्घटना बीमा के साथ एक मुफ्त रुपे डेबिट कार्ड और 10000 रुपये तक का ओवरड्राफ्ट प्रदान करती है।",
+   "benefits": [
+    "बुनियादी बचत बैंक जमा (बी. एस. बी. डी.) खाता जिसमें कोई न्यूनतम जमा राशि की आवश्यकता नहीं है।",
+    "2 लाख रुपये के दुर्घटना बीमा कवर के साथ मुफ्त रुपे डेबिट कार्ड (post-28.8.2018 खातों के लिए; पुराने खातों के लिए 1 लाख रुपये)",
+    "पात्र खाताधारकों के लिए 10,000 रुपये तक की ओवरड्राफ्ट सुविधा"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "अन्य आधिकारिक रूप से वैध दस्तावेज़ (ओ. वी. डी.) (वैकल्पिक)"
+   ],
+   "helpline": "",
+   "url": "https://pmjdy.gov.in/scheme",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJJBY",
+   "short_name": "PMJJBY",
+   "name": "प्रधानमंत्री जीवन ज्योति बीमा योजना",
+   "spoken_name": "PM Jeevan Jyoti life insurance",
+   "category": "वित्तीय समावेशन",
+   "summary": "प्रधानमंत्री जीवन ज्योति बीमा योजना 18 से 50 वर्ष की आयु के लोगों के लिए 2 लाख रुपये का जीवन बीमा है। प्रीमियम 436 रुपये प्रति वर्ष है।",
+   "benefits": [
+    "किसी भी कारण से मृत्यु पर 2 लाख रुपये"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "बचत बैंक खाते का विवरण",
+    "सहमति सह स्वतः-डेबिट अधिदेश प्रपत्र"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/pmjjby",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMSBY",
+   "short_name": "PMSBY",
+   "name": "प्रधानमंत्री सुरक्षा बीमा योजना",
+   "spoken_name": "PM Suraksha accident insurance",
+   "category": "वित्तीय समावेशन",
+   "summary": "पीएम सुरक्षा बीमा योजना 18 से 70 वर्ष की आयु के लोगों के लिए एक दुर्घटना बीमा है, जिसका बैंक खाता है। यह 20 रुपये प्रति वर्ष के प्रीमियम के लिए 2 लाख रुपये तक का भुगतान करता है।",
+   "benefits": [
+    "आकस्मिक मृत्यु या पूर्ण स्थायी अक्षमता के लिए 2 लाख रुपये",
+    "आंशिक स्थायी अक्षमता के लिए 1 लाख रुपये"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "बचत बैंक खाते का विवरण",
+    "सहमति प्रपत्र स्वतः-डेबिट करें"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/index.php/pradhan-mantri-suraksha-bima-yojana-pmsby",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_ONORC",
+   "short_name": "ONORC",
+   "name": "सार्वजनिक वितरण प्रणाली-एक राष्ट्र एक राशन कार्ड (पीडीएस/ओएनओआरसी)",
+   "spoken_name": "One Nation One Ration Card",
+   "category": "खाद्य सुरक्षा",
+   "summary": "वन नेशन वन राशन कार्ड राष्ट्रीय खाद्य सुरक्षा अधिनियम के तहत राशन कार्ड धारकों को आधार सत्यापन के साथ भारत में किसी भी उचित मूल्य की दुकान से अपना राशन एकत्र करने की अनुमति देता है। अलग से आवेदन करने की आवश्यकता नहीं है।",
+   "benefits": [
+    "भारत के सभी 36 राज्यों/केंद्र शासित प्रदेशों में किसी भी ई. पी. ओ. एस.-सक्षम उचित मूल्य की दुकान से सब्सिडी वाले खाद्यान्न तक निर्बाध पहुंच।",
+    "राशन कार्ड के अधिकारों की अंतर-राज्यीय और अंतर-राज्यीय सुवाह्यता।",
+    "लचीला वितरणः यदि कोई लाभार्थी अपने राशन का कुछ हिस्सा एक स्थान पर एकत्र करता है, तो परिवार के सदस्य शेष राशि अपने घर पर एकत्र कर सकते हैं।"
+   ],
+   "documents": [
+    "राशन कार्ड",
+    "आधार कार्ड"
+   ],
+   "helpline": "14445",
+   "url": "https://nfsa.gov.in",
+   "application_mode": "HYBRID"
+  },
+  {
+   "id": "SCH_HIS_WEAVERS",
+   "short_name": "HIS Weavers",
+   "name": "बुनकरों के लिए स्वास्थ्य बीमा योजना",
+   "spoken_name": "health insurance for weavers",
+   "category": "स्वास्थ्य",
+   "summary": "बुनकरों के लिए स्वास्थ्य बीमा योजना उन हथकरघा बुनकरों को स्वास्थ्य बीमा देती है जो अपनी आय का कम से कम आधा बुनाई से कमाते हैं।",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJAY",
+   "short_name": "PM-JAY",
+   "name": "आयुष्मान भारत-प्रधानमंत्री जन आरोग्य योजना (एबी पीएम-जेएवाई)",
+   "spoken_name": "Ayushman Bharat PM-JAY",
+   "category": "स्वास्थ्य",
+   "summary": "आयुष्मान भारत पीएम-जेएवाई भारत में कहीं भी सूचीबद्ध अस्पतालों में पात्र गरीब और कमजोर परिवारों को प्रति परिवार प्रति वर्ष 5 लाख रुपये तक कैशलेस अस्पताल में इलाज प्रदान करता है।",
+   "benefits": [
+    "रु. तक का स्वास्थ्य कवरेज।",
+    "पूरे भारत में किसी भी सूचीबद्ध सार्वजनिक या निजी अस्पताल में कैशलेस और पेपरलेस उपचार (पोर्टेबिलिटी)।",
+    "नामांकन के पहले दिन से सभी पहले से मौजूद शर्तें शामिल हैं।"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "राशन कार्ड (वैकल्पिक)",
+    "पीएम-जेएवाई ई-कार्ड/आयुष्मान कार्ड",
+    "सरकार द्वारा जारी कोई भी वैध फोटो आईडी (वैकल्पिक)"
+   ],
+   "helpline": "14555",
+   "url": "https://pmjay.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_ABPMJAY",
+   "short_name": "Punjab MMSBY",
+   "name": "आयुष्मान भारत पीएम-जेएवाई मुख्यमंत्री स्वास्थ्य बीमा योजना",
+   "spoken_name": "Punjab Mukh Mantri Sehat Bima Yojana",
+   "category": "स्वास्थ्य",
+   "summary": "पंजाब में, मुख्यमंत्री स्वास्थ्य बीमा योजना पात्र परिवारों को प्रति वर्ष 5 लाख रुपये तक का कैशलेस अस्पताल में इलाज प्रदान करती है।",
+   "benefits": [
+    "प्रति परिवार प्रति वर्ष 5 लाख रुपये का कैशलेस स्वास्थ्य बीमा"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_BOCW",
+   "short_name": "BOCW",
+   "name": "भवन और अन्य निर्माण श्रमिक (बी. ओ. सी. डब्ल्यू.) कल्याण योजना",
+   "spoken_name": "the construction workers welfare board",
+   "category": "श्रम और रोजगार",
+   "summary": "निर्माण श्रमिक कल्याण बोर्ड 18 से 60 वर्ष की आयु के निर्माण श्रमिकों को पंजीकृत करता है जिन्होंने पिछले 12 महीनों में निर्माण में कम से कम 90 दिन काम किया है। लाभों में दुर्घटना सुरक्षा, पेंशन और शिक्षा सहायता शामिल हैं और राज्य के अनुसार अलग-अलग हैं।",
+   "benefits": [
+    "दुर्घटना बीमा-आकस्मिक मृत्यु, कार्यस्थल पर स्थायी/आंशिक अक्षमता के लिए मुआवजा।",
+    "चिकित्सा सहायता-कर्मचारी और निकट परिवार के अस्पताल में भर्ती होने के लिए वित्तीय सहायता।",
+    "प्रसूति लाभ-प्रसव और प्रसव के बाद की देखभाल के लिए महिला निर्माण श्रमिकों को वित्तीय सहायता।"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "90-दिवसीय कार्य प्रमाण पत्र",
+    "बैंक पासबुक/बैंक खाते का विवरण",
+    "पासपोर्ट आकार की तस्वीरें"
+   ],
+   "helpline": "1800-891-8888",
+   "url": "https://labour.gov.in/bocw",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_ESHRAM",
+   "short_name": "e-Shram",
+   "name": "ई-श्रम पोर्टल + ओएसएच कोड 2020-असंगठित श्रमिक पंजीकरण और अंतरराज्यीय प्रवासी अधिकार",
+   "spoken_name": "e-Shram registration",
+   "category": "श्रम और रोजगार",
+   "summary": "ई-श्रम 16 से 59 वर्ष की आयु के असंगठित श्रमिकों के लिए एक मुफ्त राष्ट्रीय पंजीकरण है। आपको एक सार्वभौमिक खाता संख्या वाला कार्ड मिलता है जो पूरे भारत में मान्य है।",
+   "benefits": [
+    "सार्वभौमिक खाता संख्या (यू. ए. एन.) ई-श्रम कार्ड-असंगठित श्रमिकों के लिए एक अखिल भारतीय वैध डिजिटल पहचान।",
+    "एकल ई-श्रम यू. ए. एन. के माध्यम से 50 से अधिक संबद्ध सरकारी कल्याणकारी योजनाओं तक पहुंच।",
+    "कल्याणकारी लाभों की अखिल भारतीय सुवाह्यता-कर्मचारी अपने यू. ए. एन. का उपयोग करके किसी भी राज्य में लाभ प्राप्त कर सकते हैं।"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "आधार से जुड़ा मोबाइल नंबर",
+    "बैंक खाते का विवरण (आईएफएससी + खाता संख्या)",
+    "व्यवसाय/कार्य प्रमाण (वैकल्पिक) (वैकल्पिक)"
+   ],
+   "helpline": "14434",
+   "url": "https://eshram.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_DAY",
+   "short_name": "DAY",
+   "name": "दीन दयाल उपाध्याय अन्त्योदय योजना",
+   "spoken_name": "Deen Dayal Antyodaya Yojana",
+   "category": "आजीविका",
+   "summary": "दीन दयाल अन्त्योदय योजना शहरी और ग्रामीण गरीबों को कौशल प्रशिक्षण और वित्तपोषण के साथ अपना व्यवसाय शुरू करने में मदद करती है।",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_VISHWA",
+   "short_name": "PM Vishwakarma",
+   "name": "प्रधानमंत्री विश्वकर्मा योजना",
+   "spoken_name": "PM Vishwakarma",
+   "category": "एमएसएमई",
+   "summary": "प्रधानमंत्री विश्वकर्मा 18 पारंपरिक व्यवसायों में कारीगरों को एक प्रमाण पत्र, एक वजीफे के साथ प्रशिक्षण, 15000 रुपये के टूलकिट प्रोत्साहन और 5 प्रतिशत ब्याज पर ऋण के साथ सहायता प्रदान करते हैं।",
+   "benefits": [
+    "पहली किश्तः 18 महीनों के लिए 5 प्रतिशत ब्याज पर 1 लाख रुपये तक का संपार्श्विक मुक्त ऋण।",
+    "दूसरी किश्तः पहली किश्त के पुनर्भुगतान के बाद 30 महीनों के लिए 2 लाख रुपये तक",
+    "कौशल मूल्यांकन के बाद 15,000 रुपये का एकमुश्त टूलकिट प्रोत्साहन"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "आधार से जुड़ा मोबाइल नंबर",
+    "बैंक खाते का विवरण",
+    "राशन कार्ड"
+   ],
+   "helpline": "1800 267 7777",
+   "url": "https://pmvishwakarma.gov.in",
+   "application_mode": "ONLINE_VIA_CSC"
+  },
+  {
+   "id": "SCH_APY",
+   "short_name": "APY",
+   "name": "अटल पेंशन योजना",
+   "spoken_name": "Atal Pension Yojana",
+   "category": "पेंशन और सामाजिक सुरक्षा",
+   "summary": "अटल पेंशन योजना 60 वर्ष की आयु के बाद 1000 से 5000 रुपये प्रति माह की गारंटीकृत पेंशन देती है। 18 से 40 वर्ष की आयु के लोग जिनके पास बचत बैंक खाता है, वे इसमें शामिल हो सकते हैं।",
+   "benefits": [
+    "योगदान राशि और प्रवेश की आयु के आधार पर 60 वर्ष की आयु में 1000 रुपये से 5000 रुपये की न्यूनतम मासिक पेंशन की गारंटी।",
+    "अभिदाता की मृत्यु पर, पति या पत्नी को समान पेंशन राशि मिलती है।",
+    "अभिदाता और पति या पत्नी दोनों की मृत्यु पर संचित पेंशन कोष नामित व्यक्ति को वापस कर दिया गया"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "बचत बैंक खाता/डाकघर खाता",
+    "मोबाइल नंबर"
+   ],
+   "helpline": "",
+   "url": "https://www.pfrda.org.in/web/pfrda/schemes/atal-pension-yojana-apy",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_NPST",
+   "short_name": "NPS-Traders",
+   "name": "व्यापारियों और स्व-नियोजित व्यक्तियों के लिए राष्ट्रीय पेंशन योजना",
+   "spoken_name": "the pension scheme for traders",
+   "category": "पेंशन और सामाजिक सुरक्षा",
+   "summary": "व्यापारियों के लिए राष्ट्रीय पेंशन योजना दुकानदारों, छोटे व्यापारियों और 18 से 40 वर्ष की आयु के स्व-नियोजित लोगों के लिए है। यह 60 वर्ष की आयु के बाद प्रति माह 3000 रुपये का भुगतान करता है।",
+   "benefits": [
+    "60 वर्ष की आयु के बाद 3000 रुपये की मासिक पेंशन"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "बचत बैंक खाता/जन धन पासबुक",
+    "कारोबार की स्व-घोषणा",
+    "जी. एस. टी. आई. एन. (वैकल्पिक)"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMSYM",
+   "short_name": "PM-SYM",
+   "name": "प्रधानमंत्री श्रम योगी मान-धन योजना",
+   "spoken_name": "PM Shram Yogi Maan-dhan pension",
+   "category": "पेंशन और सामाजिक सुरक्षा",
+   "summary": "पीएम श्रम योगी मान-धन 18 से 40 वर्ष की आयु के असंगठित श्रमिकों के लिए एक पेंशन योजना है जो प्रति माह 15000 रुपये तक कमाते हैं। यह 60 वर्ष की आयु के बाद प्रति माह 3000 रुपये का भुगतान करता है।",
+   "benefits": [
+    "60 वर्ष की आयु के बाद 3000 रुपये की मासिक पेंशन",
+    "लाभार्थी की मृत्यु पर जीवनसाथी मासिक पेंशन का 50 प्रतिशत पाने के पात्र हैं।",
+    "यदि पति और पत्नी दोनों शामिल होते हैं, तो संयुक्त रूप से 6000 रुपये प्रति माह के लिए पात्र हैं।"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "बचत बैंक खाता/जन धन खाता",
+    "मोबाइल नंबर"
+   ],
+   "helpline": "1800 267 6888",
+   "url": "https://maandhan.in",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_PMUY",
+   "short_name": "PMUY",
+   "name": "प्रधानमंत्री उज्ज्वला योजना",
+   "spoken_name": "Ujjwala gas connection",
+   "category": "पेट्रोलियम और प्राकृतिक गैस",
+   "summary": "प्रधानमंत्री उज्ज्वला योजना गरीब परिवारों की वयस्क महिलाओं को जमा-मुक्त एलपीजी गैस कनेक्शन देती है, जिसमें पहला रिफिल और एक चूल्हा मुफ्त होता है।",
+   "benefits": [
+    "14. 2 किलोग्राम सिलेंडर जमा-मुक्त कनेक्शन के लिए 2050 रुपये की नकद सहायता",
+    "5 किलोग्राम सिलेंडर कनेक्शन के लिए 1300 रुपये की नकद सहायता",
+    "पहला एलपीजी रिफिल फ्री + स्टोव (हॉटप्लेट) ओएमसी से मुक्त"
+   ],
+   "documents": [
+    "वयस्क महिला आवेदक का आधार कार्ड",
+    "राशन कार्ड/परिवार रचना दस्तावेज़",
+    "बैंक खाते का विवरण",
+    "14-सूत्री घोषणा"
+   ],
+   "helpline": "1800 233 3555",
+   "url": "https://pmuy.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_PMSURYA",
+   "short_name": "PM Surya Ghar",
+   "name": "पीएम सूर्य घरः मुफ्त बिजली योजना",
+   "spoken_name": "PM Surya Ghar rooftop solar",
+   "category": "अक्षय ऊर्जा",
+   "summary": "पीएम सूर्य घर घरों को छत पर सौर पैनलों के लिए 78000 रुपये तक की सब्सिडी देता है, और एक महीने में 300 यूनिट तक मुफ्त बिजली देता है।",
+   "benefits": [
+    "आवासीय परिवारों के लिए 30,000 रुपये प्रति किलोवाट सब्सिडी (2 किलोवाट तक)",
+    "2 से 3 किलोवाट के बीच अतिरिक्त क्षमता के लिए 18,000 रुपये प्रति किलोवाट",
+    "3 किलोवाट से बड़ी प्रणालियों के लिए कुल सब्सिडी 78,000 रुपये की सीमा तय की गई है।"
+   ],
+   "documents": [
+    "बिजली बिल",
+    "आधार कार्ड",
+    "बैंक खाता पासबुक/रद्द किया गया चेक",
+    "छत स्वामित्व/बिजली कनेक्शन का प्रमाण"
+   ],
+   "helpline": "15555",
+   "url": "https://pmsuryaghar.gov.in",
+   "application_mode": "ONLINE"
+  },
+  {
+   "id": "SCH_GKRY",
+   "short_name": "GKRY",
+   "name": "गरीब कल्याण रोजगार योजना",
+   "spoken_name": "Garib Kalyan Rozgar Yojana",
+   "category": "ग्रामीण विकास",
+   "summary": "गरीब कल्याण रोजगार योजना 25 प्रकार के कार्यों में 125 दिनों का रोजगार प्रदान करती है।",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_MGNREGA",
+   "short_name": "MGNREGA",
+   "name": "महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी योजना (मनरेगा)",
+   "spoken_name": "MGNREGA",
+   "category": "ग्रामीण विकास",
+   "summary": "मनरेगा ने ग्रामीण परिवारों को वर्ष में 100 दिनों के लिए भुगतान किए जाने वाले शारीरिक कार्य की गारंटी दी। इसे 1 जुलाई 2026 से वी. बी.-जी. रैम जी. अधिनियम द्वारा प्रतिस्थापित किया गया था, जो 125 दिनों की गारंटी देता है।",
+   "benefits": [
+    "प्रति वित्तीय वर्ष प्रति परिवार कम से कम 100 दिनों के वेतन रोजगार की कानूनी गारंटी (वी. बी.-जी. आर. ए. एम. जी. अधिनियम के तहत 125 दिनों तक बढ़ाया गया।",
+    "बेरोजगारी भत्ते का अधिकारः यदि औपचारिक आवेदन के 15 दिनों के भीतर काम प्रदान नहीं किया जाता है, तो आवेदक बेरोजगारी भत्ते का हकदार है।",
+    "प्रत्यक्ष लाभ अंतरण (डी. बी. टी.) के माध्यम से सीधे कर्मचारी के बैंक या डाकघर खाते में भुगतान किया गया वेतन।"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "पासपोर्ट आकार की तस्वीरें",
+    "निवास का प्रमाण",
+    "बैंक/डाकघर खाते का विवरण"
+   ],
+   "helpline": "1800 110 707",
+   "url": "https://nrega.nic.in",
+   "application_mode": "OFFLINE"
+  },
+  {
+   "id": "SCH_VBG_RAMG",
+   "short_name": "VB-G RAM G",
+   "name": "विकास भारत-रोजगार और आजीविका मिशन (ग्रामीण) अधिनियम, 2025 के लिए गारंटी",
+   "spoken_name": "the VB-G RAM G rural jobs guarantee",
+   "category": "ग्रामीण विकास",
+   "summary": "1 जुलाई 2026 से लागू वी. बी.-जी. रैम जी. अधिनियम ग्रामीण परिवारों को वर्ष में 125 दिनों के वेतन वाले काम की गारंटी देता है, जिनके वयस्क अकुशल शारीरिक काम के लिए स्वेच्छा से काम करते हैं।",
+   "benefits": [
+    "प्रति वर्ष प्रति ग्रामीण परिवार 125 दिनों के लिए निश्चित मजदूरी रोजगार (1 जुलाई 2026 से)",
+    "यदि अधिनियम के तहत योग्य रोजगार प्रदान नहीं किया गया है तो देय बेरोजगारी भत्ता"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMAYG",
+   "short_name": "PMAY-G",
+   "name": "प्रधानमंत्री आवास योजना-ग्रामीण",
+   "spoken_name": "PM Awaas Yojana Gramin housing",
+   "category": "ग्रामीण आवास",
+   "summary": "पीएम आवास योजना ग्रामीण बेघर और गरीब ग्रामीण परिवारों को एक पक्का घर बनाने में मदद करती है, जिसमें मैदानी क्षेत्रों में 1.2 लाख रुपये और पहाड़ी क्षेत्रों में 1.3 लाख रुपये शामिल हैं।",
+   "benefits": [
+    "मैदानी इलाकों में घर निर्माण के लिए 1.20 लाख रुपये की इकाई सहायता",
+    "पहाड़ी/पूर्वोत्तर/कठिन क्षेत्रों में घर निर्माण के लिए 1 लाख 30 हजार रुपये की इकाई सहायता",
+    "एस. बी. एम.-जी. अभिसरण के माध्यम से शौचालय निर्माण के लिए 12,000 रुपये"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "https://rural.gov.in/sites/default/files/PMAY-G_Suo_moto_disclosure_27012022_0.pdf",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_DDUGKY",
+   "short_name": "DDU-GKY",
+   "name": "दीन दयाल उपाध्याय ग्रामीण कौशल योजना",
+   "spoken_name": "Grameen Kaushalya skill training",
+   "category": "कौशल विकास",
+   "summary": "दीन दयाल उपाध्याय ग्रामीण कौशल योजना 15 से 35 वर्ष की आयु के ग्रामीण गरीब युवाओं को नौकरी देने के साथ-साथ महिलाओं के लिए 45 तक मुफ्त कौशल प्रशिक्षण प्रदान करती है।",
+   "benefits": [
+    "ग्रामीण गरीब युवाओं के लिए नियुक्ति सहायता के साथ मुफ्त कौशल प्रशिक्षण (महिलाओं/दिव्यांगजनों के लिए 45 वर्ष)"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMKVY",
+   "short_name": "PMKVY",
+   "name": "प्रधानमंत्री कौशल विकास योजना",
+   "spoken_name": "PM Kaushal Vikas skill training",
+   "category": "कौशल विकास",
+   "summary": "प्रधानमंत्री कौशल विकास योजना 18 से 45 वर्ष की आयु के भारतीय युवाओं को कौशल प्रशिक्षण और प्रमाणन प्रदान करती है।",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_SSY",
+   "short_name": "SSY",
+   "name": "सुकन्या समृद्धि योजना",
+   "spoken_name": "Sukanya Samriddhi savings account",
+   "category": "छोटी बचत",
+   "summary": "सुकन्या समृद्धि योजना 10 वर्ष से कम आयु की बालिकाओं के लिए एक बचत खाता है, जिसे माता-पिता या अभिभावक द्वारा डाकघर या बैंक में खोला जाता है।",
+   "benefits": [],
+   "documents": [
+    "बालिका का जन्म प्रमाण पत्र",
+    "माता-पिता/कानूनी अभिभावक का आधार/पहचान पत्र प्रमाण",
+    "माता-पिता/अभिभावक के पते का प्रमाण",
+    "चिकित्सा प्रमाण पत्र (जुड़वां/तीन बच्चों के मामले में)"
+   ],
+   "helpline": "",
+   "url": "https://www.indiapost.gov.in/VAS/pages/pmodashboard/sukanyasamriddhiaccount.aspx",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_NSAP_AP",
+   "short_name": "Annapurna",
+   "name": "अन्नपूर्णा योजना",
+   "spoken_name": "the Annapurna food grain scheme",
+   "category": "सामाजिक न्याय",
+   "summary": "अन्नपूर्णा योजना 60 वर्ष या उससे अधिक आयु के गरीब बुजुर्गों को प्रति माह 10 किलो मुफ्त खाद्यान्न देती है, जिन्हें वृद्धावस्था पेंशन नहीं मिलती है।",
+   "benefits": [
+    "इग्नॉअप्स प्राप्त न करने वाले पात्र बुजुर्गों के लिए प्रति माह 10 किलोग्राम मुफ्त खाद्यान्न"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "आयु का प्रमाण (60 + वर्ष)",
+    "बी. पी. एल. कार्ड/प्रमाणपत्र",
+    "इग्नॉएपीएस की गैर-प्राप्ति की घोषणा"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_D",
+   "short_name": "IGNDPS",
+   "name": "इंदिरा गांधी राष्ट्रीय दिव्यांगता पेंशन योजना",
+   "spoken_name": "the disability pension",
+   "category": "सामाजिक न्याय",
+   "summary": "दिव्यांगता पेंशन गरीबी रेखा से नीचे के परिवारों के 80 प्रतिशत या उससे अधिक विकलांग लोगों के लिए है। केंद्रीय हिस्सा 300 रुपये प्रति माह है।",
+   "benefits": [
+    "300 रुपये प्रति माह की दिव्यांगता पेंशन (केंद्रीय हिस्सा)",
+    "80 + के लिए 500 रुपये प्रति माह की विकलांगता पेंशन (केंद्रीय हिस्सा)"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "आयु का प्रमाण (18 + वर्ष)",
+    "दिव्यांगता प्रमाण पत्र (80 प्रतिशत + विकलांग)",
+    "बी. पी. एल. कार्ड/प्रमाणपत्र"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_OA",
+   "short_name": "IGNOAPS",
+   "name": "इंदिरा गांधी राष्ट्रीय वृद्धावस्था पेंशन योजना",
+   "spoken_name": "the old age pension",
+   "category": "सामाजिक न्याय",
+   "summary": "वृद्धावस्था पेंशन गरीबी रेखा से नीचे के परिवारों के 60 वर्ष या उससे अधिक आयु के लोगों के लिए है। केंद्रीय हिस्सा 200 रुपये प्रति माह है, और 80 वर्ष की आयु से 500 रुपये है।",
+   "benefits": [
+    "आई. डी. 1. से कम आयु के व्यक्तियों के लिए 200 रुपये/माह वृद्धावस्था पेंशन (केंद्रीय हिस्सा)",
+    "80 वर्ष से अधिक आयु के व्यक्तियों के लिए 500 रुपये/माह वृद्धावस्था पेंशन (केंद्रीय हिस्सा)"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "आयु का प्रमाण (60 + वर्ष)",
+    "बी. पी. एल. कार्ड/प्रमाणपत्र",
+    "बैंक/डाकघर की पासबुक"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_W",
+   "short_name": "IGNWPS",
+   "name": "इंदिरा गांधी राष्ट्रीय विधवा पेंशन योजना",
+   "spoken_name": "the widow pension",
+   "category": "सामाजिक न्याय",
+   "summary": "विधवा पेंशन गरीबी रेखा से नीचे के परिवारों की 40 से 79 वर्ष की विधवाओं के लिए है। केंद्रीय हिस्सा 300 रुपये प्रति माह है।",
+   "benefits": [
+    "300 रुपये प्रति माह विधवा पेंशन (केंद्रीय हिस्सा)",
+    "80 + (केंद्रीय हिस्सा) के लिए 500 रुपये प्रति माह विधवा पेंशन"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "आयु का प्रमाण (40 + वर्ष)",
+    "पत्नी का विधवा प्रमाण पत्र/मृत्यु प्रमाण पत्र",
+    "बी. पी. एल. कार्ड/प्रमाणपत्र"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_FB",
+   "short_name": "NFBS",
+   "name": "राष्ट्रीय परिवार लाभ योजना",
+   "spoken_name": "the National Family Benefit Scheme",
+   "category": "सामाजिक न्याय",
+   "summary": "राष्ट्रीय परिवार लाभ योजना गरीबी रेखा से नीचे के परिवार को एक बार 20,000 रुपये देती है जब इसके मुख्य कमाने वाले 18 से 59 वर्ष की आयु के परिवार की मृत्यु हो जाती है।",
+   "benefits": [
+    "कमाने वाले की मौत पर 20,000 रुपये की एकमुश्त सहायता"
+   ],
+   "documents": [
+    "आधार कार्ड",
+    "रोटी कमाने वाले का मृत्यु प्रमाण पत्र",
+    "मृतक की आयु का प्रमाण (18-59 वर्ष)",
+    "बी. पी. एल. कार्ड/प्रमाणपत्र"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_SRMS",
+   "short_name": "SRMS",
+   "name": "हाथ से सफाई करने वालों के पुनर्वास के लिए स्व-रोजगार योजना",
+   "spoken_name": "the rehabilitation scheme for manual scavengers",
+   "category": "सामाजिक न्याय",
+   "summary": "हाथ से सफाई करने वालों के लिए पुनर्वास योजना चिन्हित हाथ से सफाई करने वालों को 40,000 रुपये एक बार की सहायता और वजीफे के साथ मुफ्त कौशल प्रशिक्षण देती है।",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_SVANIDHI",
+   "short_name": "PM SVANidhi",
+   "name": "पीएम स्ट्रीट वेंडर की आत्मनिर्भर निधि",
+   "spoken_name": "PM SVANidhi street vendor loans",
+   "category": "शहरी आजीविका",
+   "summary": "पीएम स्वनिधि सड़क विक्रेताओं को बिना किसी संपार्श्विक के 10,000 रुपये तक का कार्यशील पूंजी ऋण देता है, जिसमें 7 प्रतिशत ब्याज सब्सिडी और डिजिटल भुगतान पर कैशबैक दिया जाता है।",
+   "benefits": [
+    "पहली किश्त में 10,000 रुपये तक का कार्यशील पूंजी ऋण और 1 साल की पुनर्भुगतान अवधि",
+    "पहली किश्त के समय पर या जल्दी भुगतान पर दूसरी किश्त में 20,000 रुपये तक का कार्यशील पूंजी ऋण बढ़ाया गया।",
+    "दूसरी किश्त के समय पर भुगतान पर 50,000 रुपये तक का तीसरी किश्त कार्यशील पूंजी ऋण"
+   ],
+   "documents": [
+    "वेंडिंग सर्टिफिकेट/पहचान पत्र",
+    "अनुशंसा पत्र (एल. ओ. आर.)",
+    "आधार कार्ड",
+    "बैंक खाते का विवरण"
+   ],
+   "helpline": "1800 11 1979",
+   "url": "https://pmsvanidhi.mohua.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  }
+ ],
+ "ta": [
+  {
+   "id": "SCH_PMKISAN",
+   "short_name": "PM-KISAN",
+   "name": "பிரதான் மந்திரி கிசான் சம்மன் நிதி",
+   "spoken_name": "PM-KISAN",
+   "category": "விவசாயம்",
+   "summary": "பிஎம்-கிசான் நிறுவனம் விவசாயக் குடும்பங்களுக்கு ஆண்டுக்கு 6000 ரூபாய் வழங்குகிறது, 2000 ரூபாய் என்ற மூன்று தவணைகளில் அவர்களின் வங்கிக் கணக்கில் நேரடியாக செலுத்தப்படுகிறது.",
+   "benefits": [
+    "விவசாயிகளின் குடும்பங்களுக்கு ஆண்டுக்கு ரூ. 6000 வருமானம்"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "நில ஆவணங்கள் (கட்டௌனி/ஜமாபாண்டி)",
+    "ஆதார் அட்டை கொண்ட வங்கிக் கணக்கு"
+   ],
+   "helpline": "155261",
+   "url": "https://pmkisan.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_PMJKMY",
+   "short_name": "PM-KMY",
+   "name": "பிரதான் மந்திரி கிசான் மந்தன் யோஜனா",
+   "spoken_name": "PM Kisan Mandhan pension",
+   "category": "விவசாயம்",
+   "summary": "பி. எம். கிசான் மந்தன் யோஜனா என்பது 18 முதல் 40 வயதுக்குட்பட்ட சிறு மற்றும் குறு விவசாயிகளுக்கான ஓய்வூதியத் திட்டமாகும். 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 3000 ரூபாய் செலுத்துகிறது.",
+   "benefits": [
+    "60 வயதிற்குப் பிறகு சிறு மற்றும் குறு விவசாயிகளுக்கு மாதாந்திர ஓய்வூதியம் ரூ. 3,000"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMFBY",
+   "short_name": "PMFBY",
+   "name": "பிரதான் மந்திரி பசல் பீமா யோஜனா",
+   "spoken_name": "PM Fasal Bima crop insurance",
+   "category": "விவசாயம்",
+   "summary": "பிரதமர் பயிர்க் காப்பீட்டுத் திட்டம் என்பது வறட்சி, வெள்ளம், பூச்சிகள், புயல்கள் மற்றும் பிற இயற்கை அபாயங்களால் பயிர் இழப்புக்கு எதிராக குத்தகைதாரர்கள் மற்றும் பங்குதாரர்கள் உள்ளிட்ட விவசாயிகளுக்கான பயிர்க் காப்பீட்டுத் திட்டமாகும்.",
+   "benefits": [
+    "இயற்கை அபாயங்களுக்கு எதிராக விதைப்பதற்கு முன் முதல் அறுவடைக்குப் பிந்தைய விரிவான பயிர்க் காப்பீடு",
+    "அறுவடைக்குப் பிறகு 2 வாரங்கள் வரை அறுவடைக்குப் பிறகு உலர்த்துவதற்காக வயலில் எஞ்சியிருக்கும் பயிர்களுக்கு அறுவடைக்குப் பிந்தைய இழப்பு காப்பீடு"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "pmfby.gov.in",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMMY",
+   "short_name": "MUDRA",
+   "name": "பிரதான் மந்திரி முத்ரா யோஜனா",
+   "spoken_name": "MUDRA loans",
+   "category": "நிதி உள்ளடக்கம்",
+   "summary": "சிறு மற்றும் குறு வணிகங்களுக்கு பிணையமில்லாமல் கடன் வழங்கும் பிரதமர் முத்ரா யோஜனா திட்டம்ஃ சிஷு 50000 ரூபாய் வரையிலும், கிஷோர் 5 லட்சம் ரூபாய் வரையிலும், தருண் 10 லட்சம் ரூபாய் வரையிலும், தருண் பிளஸ் 20 லட்சம் ரூபாய் வரையிலும் கடன் வழங்குகிறது.",
+   "benefits": [
+    "சிஷுஃ ரூ. 50,000 வரை கடன்",
+    "கிஷோர்ஃ ரூ. 50,000க்கும் மேல் மற்றும் ரூ. 5 லட்சம் வரை கடன்",
+    "தருண்ஃ ரூ. 5 லட்சத்திற்கு மேல் மற்றும் ரூ. 10 லட்சம் வரை கடன்"
+   ],
+   "documents": [
+    "அடையாளச் சான்று",
+    "குடியிருப்புச் சான்று",
+    "இயந்திரங்களுக்கான வணிக முன்மொழிவு/மேற்கோள்",
+    "கடந்த 6 மாத வங்கிக் கணக்கு (விருப்பப்படி)"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJDY",
+   "short_name": "PMJDY",
+   "name": "பிரதான் மந்திரி ஜன் தன் யோஜனா",
+   "spoken_name": "Jan Dhan bank account",
+   "category": "நிதி உள்ளடக்கம்",
+   "summary": "பிஎம் ஜன் தன் யோஜனா குறைந்தபட்ச இருப்பு இல்லாத அடிப்படை வங்கிக் கணக்கு, 2 லட்சம் ரூபாய் விபத்துக் காப்பீட்டுடன் கூடிய இலவச ரூபே டெபிட் கார்டு மற்றும் 10000 ரூபாய் வரை ஓவர் டிராஃப்ட் வழங்குகிறது.",
+   "benefits": [
+    "குறைந்தபட்ச இருப்பு தேவை இல்லாத அடிப்படை சேமிப்பு வங்கி வைப்பு (பி. எஸ். பி. டி) கணக்கு",
+    "2 லட்சம் விபத்து காப்பீட்டு காப்பீட்டுடன் கூடிய இலவச ரூபே டெபிட் கார்டு (ஐடி1 கணக்குகளுக்கு ரூ. 1 லட்சம்)",
+    "தகுதியான கணக்கு வைத்திருப்பவர்களுக்கு ரூ. 10,000 வரை ஓவர் டிராஃப்ட் வசதி"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "பிற அதிகாரப்பூர்வமாக செல்லுபடியாகும் ஆவணங்கள் (OVD) (விருப்பப்படி)"
+   ],
+   "helpline": "",
+   "url": "https://pmjdy.gov.in/scheme",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJJBY",
+   "short_name": "PMJJBY",
+   "name": "பிரதான் மந்திரி ஜீவன் ஜோதி பீமா யோஜனா",
+   "spoken_name": "PM Jeevan Jyoti life insurance",
+   "category": "நிதி உள்ளடக்கம்",
+   "summary": "பிஎம் ஜீவன் ஜோதி பீமா யோஜனா என்பது வங்கிக் கணக்கு வைத்திருக்கும் 18 முதல் 50 வயதுக்குட்பட்டவர்களுக்கு 2 லட்சம் ரூபாய் ஆயுள் காப்பீட்டு திட்டமாகும். பிரீமியம் தொகை ஆண்டுக்கு 436 ரூபாய் ஆகும்.",
+   "benefits": [
+    "ஏதேனும் காரணத்தால் இறந்தால் ரூ. 2 லட்சம் அபராதம்"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "சேமிப்புக் கணக்கு விவரங்கள்",
+    "சம்மதம் மற்றும் தானாக-டெபிட் கட்டளை படிவம்"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/pmjjby",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMSBY",
+   "short_name": "PMSBY",
+   "name": "பிரதான் மந்திரி சுரக்ஷா பீமா யோஜனா",
+   "spoken_name": "PM Suraksha accident insurance",
+   "category": "நிதி உள்ளடக்கம்",
+   "summary": "பிஎம் சுரக்ஷா பீமா யோஜனா என்பது 18 முதல் 70 வயதுக்குட்பட்டவர்களுக்கு வங்கிக் கணக்கு வைத்திருக்கும் விபத்துக் காப்பீட்டு திட்டமாகும். இது ஆண்டுக்கு 20 ரூபாய் பிரீமியத்திற்கு 2 லட்சம் ரூபாய் வரை செலுத்துகிறது.",
+   "benefits": [
+    "தற்செயலான மரணம் அல்லது மொத்த நிரந்தர ஊனமுற்றவர்களுக்கு ரூ. 2 லட்சம்",
+    "நிரந்தர ஊனமுற்றவர்களுக்கு ரூ. 1 லட்சம்"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "சேமிப்புக் கணக்கு விவரங்கள்",
+    "தானாகவே பணம் செலுத்தும் சம்மதப் படிவம்"
+   ],
+   "helpline": "",
+   "url": "https://www.financialservices.gov.in/index.php/pradhan-mantri-suraksha-bima-yojana-pmsby",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_ONORC",
+   "short_name": "ONORC",
+   "name": "பொது விநியோக முறை-ஒரே நாடு ஒரே ரேஷன் அட்டை (பி. டி. எஸ்/ஓ. என். ஓ. ஆர். சி)",
+   "spoken_name": "One Nation One Ration Card",
+   "category": "உணவுப் பாதுகாப்பு",
+   "summary": "ஒரே நாடு ஒரே ரேஷன் கார்டு என்பது தேசிய உணவு பாதுகாப்புச் சட்டத்தின் கீழ் ரேஷன் கார்டு வைத்திருப்பவர்கள் இந்தியாவில் உள்ள எந்த நியாயமான விலைக் கடையிலிருந்தும் தங்கள் ரேஷன் பொருட்களை ஆதார் சரிபார்ப்புடன் சேகரிக்க அனுமதிக்கிறது. இதற்குத் தனி விண்ணப்பம் தேவையில்லை.",
+   "benefits": [
+    "இந்தியாவில் உள்ள 36 மாநிலங்கள்/யூனியன் பிரதேசங்களில் உள்ள எந்தவொரு ஈ. பி. ஓ. எஸ்-இயக்கப்பட்ட நியாய விலைக் கடையிலிருந்தும் மானிய விலையில் உணவு தானியங்கள் தடையின்றி அணுகப்படுகின்றன.",
+    "ரேஷன் கார்டு உரிமைகளின் மாநிலங்களுக்கு இடையேயான மற்றும் மாநிலங்களுக்கு இடையேயான பெயர்வுத்திறனை.",
+    "நெகிழ்வான விநியோகம்ஃ ஒரு பயனாளி தனது ரேஷனில் ஒரு பகுதியை ஒரே இடத்தில் சேகரித்தால், குடும்ப உறுப்பினர்கள் மீதமுள்ள நிலுவைத் தொகையை தங்கள் வீட்டில் வசூலிக்கலாம்."
+   ],
+   "documents": [
+    "ரேஷன் கார்டு",
+    "ஆதார் அட்டை"
+   ],
+   "helpline": "14445",
+   "url": "https://nfsa.gov.in",
+   "application_mode": "HYBRID"
+  },
+  {
+   "id": "SCH_HIS_WEAVERS",
+   "short_name": "HIS Weavers",
+   "name": "நெசவாளர்களுக்கான சுகாதாரக் காப்பீட்டுத் திட்டம்",
+   "spoken_name": "health insurance for weavers",
+   "category": "ஆரோக்கியம்.",
+   "summary": "நெசவாளர்களுக்கான சுகாதாரக் காப்பீட்டுத் திட்டம், நெசவுத் தொழிலில் இருந்து தங்கள் வருமானத்தில் பாதியாவது சம்பாதிக்கும் கைத்தறி நெசவாளர்களுக்கு சுகாதாரக் காப்பீட்டை வழங்குகிறது.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMJAY",
+   "short_name": "PM-JAY",
+   "name": "ஆயுஷ்மான் பாரத்-பிரதான் மந்திரி ஜன ஆரோக்யா யோஜனா (ஏபி பிஎம்-ஜேஏவை)",
+   "spoken_name": "Ayushman Bharat PM-JAY",
+   "category": "ஆரோக்கியம்.",
+   "summary": "ஆயுஷ்மான் பாரத் பிஎம்-ஜேஏவை திட்டத்தின் கீழ் தகுதியான ஏழை மற்றும் பாதிக்கப்படக்கூடிய குடும்பங்களுக்கு இந்தியாவில் எங்கும் உள்ள பட்டியலிடப்பட்ட மருத்துவமனைகளில் ஆண்டுக்கு ஒரு குடும்பத்திற்கு 5 லட்சம் ரூபாய் வரை பணமில்லா மருத்துவமனை சிகிச்சையை வழங்குகிறது.",
+   "benefits": [
+    "சுகாதாரப் பாதுகாப்பு ரூ.",
+    "இந்தியா முழுவதும் பட்டியலிடப்பட்ட எந்தவொரு பொது அல்லது தனியார் மருத்துவமனையிலும் பணமில்லா மற்றும் காகிதமற்ற சிகிச்சை (பெயர்வுத்திறன்).",
+    "முன்பிருந்தே உள்ள அனைத்து நிபந்தனைகளும் பதிவு செய்யப்பட்ட முதல் நாளிலிருந்து உள்ளடக்கப்பட்டுள்ளன."
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "ரேஷன் கார்டு (விருப்பப்படி)",
+    "பிஎம்-ஜேஏவை மின் அட்டை/ஆயுஷ்மான் அட்டை",
+    "அரசாங்கத்தால் வழங்கப்பட்ட ஏதேனும் செல்லுபடியாகும் புகைப்பட ஐடி (விருப்பப்படி)"
+   ],
+   "helpline": "14555",
+   "url": "https://pmjay.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_ABPMJAY",
+   "short_name": "Punjab MMSBY",
+   "name": "ஆயுஷ்மான் பாரத் பிஎம்-ஜேஏவை முகமந்திரி செஹத் பீமா யோஜனா",
+   "spoken_name": "Punjab Mukh Mantri Sehat Bima Yojana",
+   "category": "ஆரோக்கியம்.",
+   "summary": "பஞ்சாபில், முக்மந்தி செஹத் பீமா யோஜனா, தகுதியான குடும்பங்களுக்கு ஆண்டுக்கு ஒரு குடும்பத்திற்கு 5 லட்சம் ரூபாய் வரை பணமில்லா மருத்துவமனையில் சிகிச்சை அளிக்கிறது.",
+   "benefits": [
+    "பணமில்லா சுகாதாரக் காப்பீடுஃ ஒரு குடும்பத்திற்கு ஆண்டுக்கு ரூ. 5 லட்சம்"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_BOCW",
+   "short_name": "BOCW",
+   "name": "கட்டிடம் மற்றும் பிற கட்டுமானத் தொழிலாளர்கள் நலத் திட்டம் (பி. ஓ. சி. டபிள்யூ)",
+   "spoken_name": "the construction workers welfare board",
+   "category": "உழைப்பு மற்றும் வேலைவாய்ப்பு",
+   "summary": "கட்டுமானத் தொழிலாளர்கள் நல வாரியம் கடந்த 12 மாதங்களில் குறைந்தது 90 நாட்கள் கட்டுமானப் பணிகளில் ஈடுபட்ட 18 முதல் 60 வயதுடைய கட்டுமானத் தொழிலாளர்களைப் பதிவு செய்கிறது. விபத்துக் காப்பீடு, ஓய்வூதியம் மற்றும் கல்வி உதவி ஆகியவை மாநிலத்திற்கு மாநிலம் வேறுபடும்.",
+   "benefits": [
+    "விபத்துக் காப்பீடு-தற்செயலான மரணம், பணி இடத்தில் நிரந்தர/பகுதி இயலாமை ஆகியவற்றிற்கான இழப்பீடு.",
+    "மருத்துவ உதவி-ஊழியர் மற்றும் உடனடி குடும்பத்தை மருத்துவமனையில் அனுமதிப்பதற்கான நிதி உதவி.",
+    "மகப்பேறு நலன்-பெண் கட்டுமானத் தொழிலாளர்களுக்கு பிரசவம் மற்றும் பிரசவத்திற்குப் பிந்தைய பராமரிப்புக்கான நிதி உதவி."
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "90 நாள் பணிச் சான்றிதழ்",
+    "வங்கிக் கணக்கு விவரம்/வங்கிக் கணக்கு விவரம்",
+    "பாஸ்போர்ட் அளவு புகைப்படங்கள்"
+   ],
+   "helpline": "1800-891-8888",
+   "url": "https://labour.gov.in/bocw",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_ESHRAM",
+   "short_name": "e-Shram",
+   "name": "மின்-ஷ்ராம் இணையதளம் + ஓ. எஸ். எச் குறியீடு 2020-அமைப்புசாரா தொழிலாளர் பதிவு மற்றும் மாநிலங்களுக்கு இடையேயான புலம்பெயர்ந்தோர் உரிமைகள்",
+   "spoken_name": "e-Shram registration",
+   "category": "உழைப்பு மற்றும் வேலைவாய்ப்பு",
+   "summary": "இ-ஷ்ரம் என்பது 16 முதல் 59 வயது வரையிலான அமைப்புசாரா தொழிலாளர்களுக்கான இலவச தேசிய பதிவு ஆகும். இந்தியா முழுவதும் செல்லுபடியாகும் யுனிவர்சல் அக்கவுண்ட் எண்ணுடன் கூடிய அட்டையைப் பெறுவீர்கள்.",
+   "benefits": [
+    "யுனிவர்சல் அக்கவுண்ட் நம்பர் (யுஏஎன்) இ-ஷ்ரம் கார்டு-அமைப்புசாரா தொழிலாளர்களுக்கான ஒரு பான்-இந்தியா செல்லுபடியாகும் டிஜிட்டல் அடையாளம்.",
+    "ஒற்றை மின்-ஷ்ரம் யுஏஎன் மூலம் 50க்கும் மேற்பட்ட இணைக்கப்பட்ட அரசு நலத்திட்டங்களுக்கான அணுகல்.",
+    "நலன்புரி நலன்களின் பான்-இந்தியா பெயர்வுத்திறன்-தொழிலாளர்கள் தங்கள் யுஏஎன்-ஐப் பயன்படுத்தி எந்த மாநிலத்திலும் பலன்களைப் பெறலாம்."
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "ஆதார் இணைக்கப்பட்ட மொபைல் எண்",
+    "வங்கிக் கணக்கு விவரங்கள் (ஐ. எஃப். எஸ். சி + கணக்கு எண்)",
+    "தொழில்/பணிச் சான்று (விருப்பப்படி) (விருப்பப்படி)"
+   ],
+   "helpline": "14434",
+   "url": "https://eshram.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_DAY",
+   "short_name": "DAY",
+   "name": "தீன் தயாள் உபாத்யாயா அந்தியோதயா யோஜனா",
+   "spoken_name": "Deen Dayal Antyodaya Yojana",
+   "category": "வாழ்வாதாரம்",
+   "summary": "தீன் தயாள் அந்தியோதயா யோஜனா நகர்ப்புற மற்றும் கிராமப்புற ஏழைகளுக்கு திறன் பயிற்சி மற்றும் நிதியுதவி மூலம் தங்கள் சொந்த வணிகத்தைத் தொடங்க உதவுகிறது.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_VISHWA",
+   "short_name": "PM Vishwakarma",
+   "name": "பிரதமர் விஸ்வகர்மா திட்டம்",
+   "spoken_name": "PM Vishwakarma",
+   "category": "எம். எஸ். எம். இ.",
+   "summary": "பிரதமர் விஸ்வகர்மா 18 பாரம்பரிய தொழில்களில் கைவினைஞர்களுக்கு சான்றிதழ், உதவித்தொகை பயிற்சி, 15000 ரூபாய் கருவித்தொகுப்பு ஊக்கத்தொகை மற்றும் 5 சதவீத வட்டியில் கடன் வழங்குகிறார்.",
+   "benefits": [
+    "முதல் தவணைஃ ஒரு லட்சம் ரூபாய் வரை பிணையில்லா கடன், 5 சதவீத வட்டியில் 18 மாதங்களுக்கு",
+    "இரண்டாவது தவணைஃ முதல் தவணையை திருப்பிச் செலுத்திய பிறகு 30 மாதங்களுக்கு ரூ. 2 லட்சம் வரை",
+    "திறன் மதிப்பீட்டிற்குப் பிறகு ஒரு முறை கருவித்தொகுப்பு ஊக்கத்தொகை ரூ. 15,000"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "ஆதார் எண்ணுடன் இணைக்கப்பட்ட மொபைல் எண்",
+    "வங்கிக் கணக்கு விவரங்கள்",
+    "ரேஷன் கார்டு"
+   ],
+   "helpline": "1800 267 7777",
+   "url": "https://pmvishwakarma.gov.in",
+   "application_mode": "ONLINE_VIA_CSC"
+  },
+  {
+   "id": "SCH_APY",
+   "short_name": "APY",
+   "name": "அடல் ஓய்வூதியத் திட்டம்",
+   "spoken_name": "Atal Pension Yojana",
+   "category": "ஓய்வூதியம் மற்றும் சமூகப் பாதுகாப்பு",
+   "summary": "அடல் ஓய்வூதியத் திட்டம் 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 1000 முதல் 5000 ரூபாய் வரை உத்தரவாத ஓய்வூதியத்தை வழங்குகிறது. சேமிப்புக் கணக்கு வைத்திருக்கும் 18 முதல் 40 வயதுக்குட்பட்டவர்கள் இதில் சேரலாம்.",
+   "benefits": [
+    "பங்களிப்புத் தொகை மற்றும் நுழைவு வயதைப் பொறுத்து 60 வயதில் குறைந்தபட்ச மாதாந்திர ஓய்வூதியம் ரூ. 1000 முதல் ரூ. 5000 வரை உத்தரவாதம் அளிக்கப்பட்டுள்ளது.",
+    "சந்தாதாரர் இறந்தால், வாழ்க்கைத் துணைக்கு அதே ஓய்வூதியத் தொகை கிடைக்கும்.",
+    "சந்தாதாரர் மற்றும் வாழ்க்கைத் துணை இருவரும் இறந்ததும், திரட்டப்பட்ட ஓய்வூதியக் காப்பீடு நியமனதாரரிடம் திரும்பியது."
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "சேமிப்புக் கணக்கு/அஞ்சல் அலுவலகக் கணக்கு",
+    "மொபைல் எண்"
+   ],
+   "helpline": "",
+   "url": "https://www.pfrda.org.in/web/pfrda/schemes/atal-pension-yojana-apy",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_NPST",
+   "short_name": "NPS-Traders",
+   "name": "வணிகர்கள் மற்றும் சுயதொழில் செய்பவர்களுக்கான தேசிய ஓய்வூதியத் திட்டம்",
+   "spoken_name": "the pension scheme for traders",
+   "category": "ஓய்வூதியம் மற்றும் சமூகப் பாதுகாப்பு",
+   "summary": "வணிகர்களுக்கான தேசிய ஓய்வூதியத் திட்டம் கடைக்காரர்கள், சிறு வணிகர்கள் மற்றும் 18 முதல் 40 வயதுக்குட்பட்ட சுயதொழில் செய்பவர்களுக்கானது. 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 3000 ரூபாய் செலுத்துகிறது.",
+   "benefits": [
+    "60 வயதிற்குப் பிறகு மாதாந்திர ஓய்வூதியம் ரூ. 3000"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "சேமிப்புக் கணக்கு/ஜன் தன் கடவுச்சீட்டு",
+    "விற்றுமுதல் சுய அறிவிப்பு",
+    "ஜி. எஸ். டி. ஐ. என் (விருப்பப்படி)"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMSYM",
+   "short_name": "PM-SYM",
+   "name": "பிரதான் மந்திரி ஷ்ரம் யோகி மான்-தன் யோஜனா",
+   "spoken_name": "PM Shram Yogi Maan-dhan pension",
+   "category": "ஓய்வூதியம் மற்றும் சமூகப் பாதுகாப்பு",
+   "summary": "பி. எம். ஷ்ரம் யோகி மான்-தன் என்பது 18 முதல் 40 வயது வரையிலான அமைப்புசாரா தொழிலாளர்களுக்கான ஓய்வூதியத் திட்டமாகும், அவர்கள் மாதத்திற்கு 15000 ரூபாய் வரை சம்பாதிக்கிறார்கள். 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 3000 ரூபாய் செலுத்துகிறது.",
+   "benefits": [
+    "60 வயதிற்குப் பிறகு மாதாந்திர ஓய்வூதியம் ரூ. 3000",
+    "பயனாளி இறந்தால் மாதாந்திர ஓய்வூதியத்தில் 50 சதவீதம் பெற வாழ்க்கைத் துணை தகுதியுடையவர்.",
+    "கணவரும் மனைவியும் இணைந்தால், மாதத்திற்கு ரூ. 6000 கூட்டாக பெறலாம்."
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "சேமிப்புக் கணக்கு/ஜன் தன் கணக்கு",
+    "மொபைல் எண்"
+   ],
+   "helpline": "1800 267 6888",
+   "url": "https://maandhan.in",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_PMUY",
+   "short_name": "PMUY",
+   "name": "பிரதான் மந்திரி உஜ்வாலா யோஜனா",
+   "spoken_name": "Ujjwala gas connection",
+   "category": "பெட்ரோலியம் மற்றும் இயற்கை எரிவாயு",
+   "summary": "பிரதம மந்திரி உஜ்வாலா யோஜனா ஏழைக் குடும்பங்களைச் சேர்ந்த வயது வந்த பெண்களுக்கு வைப்புத்தொகை இல்லாத எல்பிஜி எரிவாயு இணைப்பை வழங்குகிறது, இதில் முதல் முறையாக எரிவாயு நிரப்புதல் மற்றும் அடுப்பு இலவசமாக வழங்கப்படுகிறது.",
+   "benefits": [
+    "14. 2 கிலோ சிலிண்டர் வைப்புத்தொகை இல்லாத இணைப்புக்கு ரூ. 2050 ரொக்க உதவி",
+    "5 கிலோ சிலிண்டர் இணைப்புக்கு ரூ. 1300 ரொக்க உதவி",
+    "முதல் சமையல் எரிவாயு இலவசமாக நிரப்பப்படுகிறது + அடுப்பு (ஹாட் பிளேட்) எண்ணெய் நிறுவனங்களில் இருந்து இலவசமாக"
+   ],
+   "documents": [
+    "வயது வந்த பெண் விண்ணப்பதாரரின் ஆதார் அட்டை",
+    "ரேஷன் கார்டு/குடும்ப கலவை ஆவணம்",
+    "வங்கிக் கணக்கு விவரங்கள்",
+    "14-அம்ச பிரகடனம்"
+   ],
+   "helpline": "1800 233 3555",
+   "url": "https://pmuy.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  },
+  {
+   "id": "SCH_PMSURYA",
+   "short_name": "PM Surya Ghar",
+   "name": "பிரதமர் சூர்யா கர்ஃ முஃப்ட் பிஜ்லி யோஜனா",
+   "spoken_name": "PM Surya Ghar rooftop solar",
+   "category": "புதுப்பிக்கத்தக்க எரிசக்தி",
+   "summary": "பிரதமர் சூர்யா கர், வீடுகளுக்கு ரூஃபோப் சோலார் பேனல்களுக்கு 78000 ரூபாய் வரை மானியமும், மாதத்திற்கு 300 யூனிட் வரை இலவச மின்சாரமும் வழங்குகிறது.",
+   "benefits": [
+    "குடியிருப்பு வீடுகளுக்கு கிலோவாட் மானியத்திற்கு ரூ. 30,000 (2 கிலோவாட் வரை)",
+    "2 முதல் 3 கிலோவாட் வரை கூடுதல் திறனுக்கு கிலோவாட் ஒன்றுக்கு ரூ. 18,000",
+    "3 கிலோவாட்டுக்கும் அதிகமான மின் உற்பத்தி சாதனங்களுக்கு மொத்த மானியம் ரூ. 78,000 ஆக நிர்ணயிக்கப்பட்டுள்ளது."
+   ],
+   "documents": [
+    "மின்சார மசோதா",
+    "ஆதார் அட்டை",
+    "வங்கிக் கணக்கு கடவுச்சீட்டு/ரத்து செய்யப்பட்ட காசோலை",
+    "கூரை உரிமை/மின்சார இணைப்புச் சான்று"
+   ],
+   "helpline": "15555",
+   "url": "https://pmsuryaghar.gov.in",
+   "application_mode": "ONLINE"
+  },
+  {
+   "id": "SCH_GKRY",
+   "short_name": "GKRY",
+   "name": "கரீப் கல்யாண் ரோஜ்கர் யோஜனா",
+   "spoken_name": "Garib Kalyan Rozgar Yojana",
+   "category": "கிராமப்புற வளர்ச்சி",
+   "summary": "கரீப் கல்யாண் ரோஜ்கர் யோஜனா 25 வகையான வேலைகளில் 125 நாட்கள் வேலைவாய்ப்பை வழங்குகிறது.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_MGNREGA",
+   "short_name": "MGNREGA",
+   "name": "மகாத்மா காந்தி தேசிய கிராமப்புற வேலைவாய்ப்பு உத்தரவாதத் திட்டம் (எம். ஜி. என். ஆர். இ. ஜி. ஏ)",
+   "spoken_name": "MGNREGA",
+   "category": "கிராமப்புற வளர்ச்சி",
+   "summary": "எம். ஜி. என். ஆர். இ. ஜி. ஏ. கிராமப்புற குடும்பங்களுக்கு ஆண்டுக்கு 100 நாட்கள் ஊதியம் பெறும் கை வேலை உத்தரவாதம் அளித்தது. இது ஜூலை 1,2026 முதல் வி. பி-ஜி. ரேம் ஜி சட்டத்தால் மாற்றப்பட்டது, இது 125 நாட்களுக்கு உத்தரவாதம் அளிக்கிறது.",
+   "benefits": [
+    "ஒரு நிதியாண்டிற்கு ஒரு குடும்பத்திற்கு குறைந்தபட்சம் 100 நாட்கள் ஊதிய வேலைவாய்ப்பு (வி. பி.-ஜி. ராம் ஜி சட்டத்தின் கீழ் 125 நாட்களாகக் நீட்டிக்கப்பட்டது) சட்ட உத்தரவாதம்.",
+    "வேலையின்மை கொடுப்பனவுக்கான உரிமைஃ முறையான விண்ணப்பத்தின் 15 நாட்களுக்குள் வேலை வழங்கப்படாவிட்டால், விண்ணப்பதாரர் வேலையின்மை கொடுப்பனவுக்கு உரிமை உண்டு.",
+    "நேரடி பயன்கள் பரிமாற்றம் (டிபிடி) மூலம் தொழிலாளியின் வங்கி அல்லது தபால் அலுவலகக் கணக்கில் நேரடியாக ஊதியம் செலுத்தப்படுகிறது."
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "பாஸ்போர்ட் அளவு புகைப்படங்கள்",
+    "வசிப்பிடச் சான்று",
+    "வங்கி/தபால் அலுவலகக் கணக்கு விவரங்கள்"
+   ],
+   "helpline": "1800 110 707",
+   "url": "https://nrega.nic.in",
+   "application_mode": "OFFLINE"
+  },
+  {
+   "id": "SCH_VBG_RAMG",
+   "short_name": "VB-G RAM G",
+   "name": "விகாஸித் பாரத்-ரோஜ்கர் மற்றும் அஜிவிகா மிஷன் (கிராமின்) சட்டம், 2025க்கான உத்தரவாதம்",
+   "spoken_name": "the VB-G RAM G rural jobs guarantee",
+   "category": "கிராமப்புற வளர்ச்சி",
+   "summary": "2026 ஜூலை 1 முதல் அமலில் உள்ள வி. பி-ஜி. ரேம் ஜி சட்டம், திறமையற்ற கை வேலை செய்வதற்காக தன்னார்வத் தொண்டு செய்யும் கிராமப்புற குடும்பங்களுக்கு ஆண்டுக்கு 125 நாட்கள் ஊதியத்துடன் வேலை செய்வதற்கான உத்தரவாதத்தை அளிக்கிறது.",
+   "benefits": [
+    "ஒரு கிராமப்புற குடும்பத்திற்கு ஆண்டுக்கு 125 நாட்கள் உத்தரவாத ஊதிய வேலைவாய்ப்பு (ஜூலை 1,2026 முதல்)",
+    "இந்தச் சட்டத்தின் கீழ் தகுதியான வேலைவாய்ப்பு வழங்கப்படாவிட்டால் செலுத்த வேண்டிய வேலையின்மை கொடுப்பனவு"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMAYG",
+   "short_name": "PMAY-G",
+   "name": "பிரதான் மந்திரி ஆவாஸ் யோஜனா-கிராமின்",
+   "spoken_name": "PM Awaas Yojana Gramin housing",
+   "category": "கிராமப்புற வீட்டுவசதி",
+   "summary": "கிராமப்புறங்களில் உள்ள வீடற்ற மற்றும் ஏழை கிராமப்புற குடும்பங்களுக்கு ஒரு பக்கா வீட்டைக் கட்டுவதற்கு பி. எம். ஆவாஸ் யோஜனா கிராமின் உதவுகிறது, இதில் சமவெளிப் பகுதிகளில் ரூ. 1.20 லட்சம் மற்றும் மலைப்பகுதிகளில் ரூ. 1.30 லட்சம் ஆகும்.",
+   "benefits": [
+    "சமவெளிப் பகுதிகளில் வீடு கட்ட ரூ. 1.2 லட்சம் உதவி",
+    "மலைப்பாங்கான/வடகிழக்கு/கடினமான பகுதிகளில் வீடு கட்ட ரூ. 1.",
+    "எஸ். பி. எம்-ஜி ஒருங்கிணைப்பு மூலம் கழிப்பறை கட்ட ரூ. 12,000"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "https://rural.gov.in/sites/default/files/PMAY-G_Suo_moto_disclosure_27012022_0.pdf",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_DDUGKY",
+   "short_name": "DDU-GKY",
+   "name": "தீன் தயாள் உபாத்யாய் கிராமீன் கௌஷல்யா யோஜனா",
+   "spoken_name": "Grameen Kaushalya skill training",
+   "category": "திறன் மேம்பாடு",
+   "summary": "தீன் தயாள் உபாத்யாயா கிராமீன் கௌஷல்யா யோஜனா 15 முதல் 35 வயது வரையிலான கிராமப்புற ஏழை இளைஞர்களுக்கு வேலை வாய்ப்புடன் இலவச திறன் பயிற்சியையும், 45 வயது வரையிலான பெண்களுக்கு வேலைவாய்ப்பையும் வழங்குகிறது.",
+   "benefits": [
+    "கிராமப்புற ஏழை இளைஞர்களுக்கு வேலைவாய்ப்பு உதவியோடு இலவச திறன் பயிற்சி (45 வயது பெண்கள்/மாற்றுத்திறனாளிகளுக்கு)"
+   ],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_PMKVY",
+   "short_name": "PMKVY",
+   "name": "பிரதான் மந்திரி கௌஷல் விகாஸ் யோஜனா",
+   "spoken_name": "PM Kaushal Vikas skill training",
+   "category": "திறன் மேம்பாடு",
+   "summary": "பிஎம் கௌஷல் விகாஸ் யோஜனா 18 முதல் 45 வயது வரையிலான இந்திய இளைஞர்களுக்கு திறன் பயிற்சி மற்றும் சான்றிதழை வழங்குகிறது.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_SSY",
+   "short_name": "SSY",
+   "name": "சுகன்யா சம்ரிதி யோஜனா",
+   "spoken_name": "Sukanya Samriddhi savings account",
+   "category": "சிறு சேமிப்புகள்",
+   "summary": "சுகன்யா சம்ரிதி யோஜனா என்பது 10 வயதிற்குட்பட்ட பெண் குழந்தைகளுக்கான சேமிப்புக் கணக்கு ஆகும், இது ஒரு தபால் அலுவலகம் அல்லது வங்கியில் பெற்றோர் அல்லது பாதுகாவலரால் திறக்கப்படுகிறது.",
+   "benefits": [],
+   "documents": [
+    "பெண் குழந்தைகளின் பிறப்புச் சான்றிதழ்",
+    "பெற்றோர்/சட்டப்பூர்வ பாதுகாவலரின் ஆதார்/அடையாளச் சான்று",
+    "பெற்றோர்/பாதுகாவலரின் முகவரிச் சான்று",
+    "மருத்துவச் சான்றிதழ் (இரட்டை/மூன்று குழந்தைகள் இருந்தால்)"
+   ],
+   "helpline": "",
+   "url": "https://www.indiapost.gov.in/VAS/pages/pmodashboard/sukanyasamriddhiaccount.aspx",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_NSAP_AP",
+   "short_name": "Annapurna",
+   "name": "அன்னபூர்ணா திட்டம்",
+   "spoken_name": "the Annapurna food grain scheme",
+   "category": "சமூக நீதி",
+   "summary": "அன்னபூர்ணா திட்டம் முதியோர் ஓய்வூதியம் பெறாத 60 வயது அல்லது அதற்கு மேற்பட்ட ஏழை முதியவர்களுக்கு மாதத்திற்கு 10 கிலோ இலவச உணவு தானியங்களை வழங்குகிறது.",
+   "benefits": [
+    "இக்னோஆப்ஸ் பெறாத தகுதியான முதியவர்களுக்கு மாதத்திற்கு 10 கிலோ உணவு தானியங்கள் இலவசம்"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "வயதுச் சான்று (60 + ஆண்டுகள்)",
+    "பிபிஎல் அட்டை/சான்றிதழ்",
+    "இக்னோஆப்எஸ் பெறப்படாத அறிவிப்பு"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_D",
+   "short_name": "IGNDPS",
+   "name": "இந்திரா காந்தி தேசிய மாற்றுத்திறனாளி ஓய்வூதியத் திட்டம்",
+   "spoken_name": "the disability pension",
+   "category": "சமூக நீதி",
+   "summary": "18 முதல் 79 வயதுக்குட்பட்ட 80 சதவீதம் அல்லது அதற்கு மேற்பட்ட ஊனமுற்றோர், வறுமைக் கோட்டிற்குக் கீழே உள்ள குடும்பங்களைச் சேர்ந்தவர்களுக்கு ஊனமுற்றோர் ஓய்வூதியம் வழங்கப்படுகிறது. மத்திய அரசின் பங்கு மாதத்திற்கு 300 ரூபாய் ஆகும்.",
+   "benefits": [
+    "ரூ. 300/மாதம் ஊனமுற்றோர் ஓய்வூதியம் (மத்திய அரசின் பங்கு)",
+    "80 + வயதுடையவர்களுக்கு மாதத்திற்கு ரூ. 500 (மத்திய அரசின் பங்கு) ஊனமுற்றோர் ஓய்வூதியம்"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "வயதுச் சான்று (18 + ஆண்டுகள்)",
+    "ஊனமுற்றோர் சான்றிதழ் (80 சதவீதம் + ஊனமுற்றோர்)",
+    "பிபிஎல் அட்டை/சான்றிதழ்"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_OA",
+   "short_name": "IGNOAPS",
+   "name": "இந்திரா காந்தி தேசிய முதியோர் ஓய்வூதியத் திட்டம்",
+   "spoken_name": "the old age pension",
+   "category": "சமூக நீதி",
+   "summary": "முதியோர் ஓய்வூதியம் என்பது வறுமைக் கோட்டிற்குக் கீழே உள்ள குடும்பங்களைச் சேர்ந்த 60 வயது அல்லது அதற்கு மேற்பட்டவர்களுக்கு வழங்கப்படுகிறது. மத்தியப் பங்கு மாதத்திற்கு 200 ரூபாயாகவும், 80 வயதிலிருந்தே 500 ரூபாயாகவும் உள்ளது.",
+   "benefits": [
+    "ஐடி1 வயதுக்கு உட்பட்டவர்களுக்கு மாதத்திற்கு ரூ. 200 முதியோர் ஓய்வூதியம் (மத்திய பங்கு)",
+    "80 வயதுக்கு மேற்பட்டவர்களுக்கு மாதத்திற்கு 500 ரூபாய் ஓய்வூதியம் (மத்திய அரசின் பங்கு)"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "வயதுச் சான்று (60 + ஆண்டுகள்)",
+    "பிபிஎல் அட்டை/சான்றிதழ்",
+    "வங்கி/தபால் அலுவலக கடவுச்சீட்டு"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_W",
+   "short_name": "IGNWPS",
+   "name": "இந்திரா காந்தி தேசிய விதவை ஓய்வூதியத் திட்டம்",
+   "spoken_name": "the widow pension",
+   "category": "சமூக நீதி",
+   "summary": "விதவை ஓய்வூதியம் வறுமைக் கோட்டிற்குக் கீழே உள்ள குடும்பங்களைச் சேர்ந்த 40 முதல் 79 வயது வரையிலான விதவைகளுக்கு வழங்கப்படுகிறது. மத்திய அரசின் பங்கு மாதத்திற்கு 300 ரூபாய் ஆகும்.",
+   "benefits": [
+    "விதவை ஓய்வூதியம் மாதத்திற்கு ரூ. 300 (மத்திய அரசின் பங்கு)",
+    "விதவை ஓய்வூதியம் 80 + (மத்திய பங்கு)-க்கு மாதத்திற்கு ரூ. 500"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "வயதுச் சான்று (40 + ஆண்டுகள்)",
+    "மனைவி/மனைவிக்கு விதவைச் சான்றிதழ்/இறப்புச் சான்றிதழ்",
+    "பிபிஎல் அட்டை/சான்றிதழ்"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_NSAP_FB",
+   "short_name": "NFBS",
+   "name": "தேசிய குடும்ப நலத் திட்டம்",
+   "spoken_name": "the National Family Benefit Scheme",
+   "category": "சமூக நீதி",
+   "summary": "தேசிய குடும்ப நலத் திட்டம், வறுமைக் கோட்டிற்குக் கீழே உள்ள ஒரு குடும்பத்தின் முக்கிய வருவாய் ஈட்டும் 18 முதல் 59 வயதுடையவர் இறந்தால், ஒரு முறை 20,000 ரூபாய் வழங்குகிறது.",
+   "benefits": [
+    "வருமானம் ஈட்டுபவர் இறந்தால் ஒரு முறை ரூ. 20,000 உதவி"
+   ],
+   "documents": [
+    "ஆதார் அட்டை",
+    "ரொட்டி வென்றவரின் இறப்புச் சான்றிதழ்",
+    "இறந்தவரின் வயதுச் சான்று (18-59 ஆண்டுகள்)",
+    "பிபிஎல் அட்டை/சான்றிதழ்"
+   ],
+   "helpline": "",
+   "url": "",
+   "application_mode": "OFFLINE_AND_ONLINE"
+  },
+  {
+   "id": "SCH_SRMS",
+   "short_name": "SRMS",
+   "name": "கையால் தோட்டி செய்யும் தொழிலாளர்களின் புனர்வாழ்வுக்கான சுய வேலைவாய்ப்பு திட்டம்",
+   "spoken_name": "the rehabilitation scheme for manual scavengers",
+   "category": "சமூக நீதி",
+   "summary": "கையால் தோட்டி செய்யும் தொழிலாளர்களுக்கான மறுவாழ்வுத் திட்டம், அடையாளம் காணப்பட்ட கையால் தோட்டி செய்யும் தொழிலாளர்களுக்கு 40,000 ரூபாய் ஒரு முறை உதவியும், இலவச திறன் பயிற்சியும் உதவித்தொகையுடன் வழங்குகிறது.",
+   "benefits": [],
+   "documents": [],
+   "helpline": "",
+   "url": "",
+   "application_mode": ""
+  },
+  {
+   "id": "SCH_SVANIDHI",
+   "short_name": "PM SVANidhi",
+   "name": "பிரதமரின் தெரு விற்பனையாளர்களின் தற்சார்பு நிதி",
+   "spoken_name": "PM SVANidhi street vendor loans",
+   "category": "நகர்ப்புற வாழ்வாதாரங்கள்",
+   "summary": "பிரதமர் ஸ்வநிதி தெரு வியாபாரிகளுக்கு பிணையமில்லாத மூலதனக் கடன்களை வழங்குகிறது, இது 10000 ரூபாய் வரை தொடங்குகிறது, 7 சதவீத வட்டி மானியம் மற்றும் டிஜிட்டல் கொடுப்பனவுகளுக்கு கேஷ்பேக் வழங்குகிறது.",
+   "benefits": [
+    "முதல் தவணை செயல்பாட்டு மூலதனக் கடன் ரூ. 10,000 வரை 1 ஆண்டு திருப்பிச் செலுத்தும் காலத்துடன்",
+    "இரண்டாவது தவணை முதல் தவணையை சரியான நேரத்தில் அல்லது முன்கூட்டியே திருப்பிச் செலுத்தும் போது 20,000 ரூபாய் வரை செயல்பாட்டு மூலதனக் கடன் அதிகரிக்கப்பட்டது.",
+    "இரண்டாவது தவணையை சரியான நேரத்தில் திருப்பிச் செலுத்திய பிறகு, 50,000 ரூபாய் வரையிலான மூன்றாம் தவணை செயல்பாட்டு மூலதனக் கடன்"
+   ],
+   "documents": [
+    "விற்பனைச் சான்றிதழ்/அடையாள அட்டை",
+    "பரிந்துரை கடிதம் (எல்ஓஆர்)",
+    "ஆதார் அட்டை",
+    "வங்கிக் கணக்கு விவரங்கள்"
+   ],
+   "helpline": "1800 11 1979",
+   "url": "https://pmsvanidhi.mohua.gov.in",
+   "application_mode": "ONLINE_AND_OFFLINE"
+  }
+ ],
+ "_meta": {
+  "built_at": "2026-09-12T10:59:18+0530",
+  "schemes": 34,
+  "languages": [
+   "en",
+   "hi",
+   "ta"
+  ]
+ }
+}

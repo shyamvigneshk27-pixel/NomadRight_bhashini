@@ -49,6 +49,7 @@ RULES_ENGINE-routed queries (statutory eligibility/registration/benefit
 determinations) never touch Qwen - those stay 100% deterministic.
 """
 
+import re
 import uuid
 import logging
 from abc import ABC, abstractmethod
@@ -64,6 +65,19 @@ from pocketinfer.applications.nomad_right.database import SQLiteAccessLayer, Cit
 from pocketinfer.applications.nomad_right.response import ResponseGenerator, SeverityLevel, StructuredResponsePackage
 from pocketinfer.applications.nomad_right.rag_pipeline import RAGRetriever, RetrievedChunk
 from pocketinfer.applications.nomad_right.qwen_client import QwenClient
+
+# A question with none of these words is not about the kiosk's subject (welfare
+# schemes, documents, work, money, health, housing, government processes) and is
+# declined without a language-model call - see _llm_fallback_answer().
+_WELFARE_TOPIC_RE = re.compile(
+    r"\b(?:scheme|schemes|yojana|yojna|card|cards|ration|pension|aadha?ar|document|documents|apply|application|form|forms"
+    r"|benefit|benefits|eligib\w*|subsid\w*|government|sarkar\w*|worker|workers|labou?r|wage|wages|salary|health|hospital"
+    r"|insurance|bima|loan|loans|bank|account|gas|lpg|house|housing|home|awas|job|jobs|employment|work|migrant|state"
+    r"|portab\w*|register|registration|certificate|money|cash|scholarship|school|disab\w*|widow|old age|farmer|kisan"
+    r"|shram|nrega|office|helpline|complaint|grievance|welfare|free|treatment|maternity|pregnan\w*|child|daughter|girl"
+    r"|pan card|voter|passport|birth|death|marriage|income|caste|domicile|bpl|apl|poor|poverty|rent|electricity|water"
+    r"|toilet|food|grain|rice|wheat|nutrition|anganwadi|midday|medicine|doctor|accident|death|funeral|fee|fees|tax)\b",
+    re.I)
 
 logger = logging.getLogger(__name__)
 
@@ -225,6 +239,12 @@ class WorkflowController(IWorkflowController):
         if classification.requires_rag:
             rag_chunks = self.rag_retriever.retrieve(transcribed_text)
             self.logger.info(f"[RAG] [{session_id}] {len(rag_chunks)} chunks retrieved")
+            if rag_chunks and not entities.scheme_code and not _WELFARE_TOPIC_RE.search(transcribed_text):
+                # "Who is the prime minister?" pulls in "Pradhan Mantri ..." chunks by
+                # similarity alone, and Qwen then answers from general knowledge
+                # instead of declining. A question with no welfare topic keeps no chunks.
+                self.logger.info(f"[RAG] [{session_id}] chunks discarded - no welfare topic in question")
+                rag_chunks = []
 
         # ── Step 6.5a: RAG retrieve-then-GENERATE (qwen, grounded) ─────────
         # Every RAG_PIPELINE hit gets its final answer synthesized by Qwen
@@ -481,6 +501,13 @@ class WorkflowController(IWorkflowController):
             context = self._gather_kb_context(entities.scheme_code)
             answer = self.qwen_client.answer_text(query_text, context)
             kind = "scheme-grounded (KB)"
+        elif not _WELFARE_TOPIC_RE.search(query_text):
+            # Nothing in the question is about welfare, documents, work or money:
+            # the general prompt asks Qwen to decline these, but it does not always
+            # ("Who is the prime minister?" was answered, 17 s), so they never reach
+            # it - the standard not-found reply is spoken instead.
+            self.logger.info(f"[QWEN] [{session_id}] LLM_FALLBACK skipped - no welfare topic in question")
+            return None
         else:
             answer = self.qwen_client.answer_general(query_text)
             kind = "general"

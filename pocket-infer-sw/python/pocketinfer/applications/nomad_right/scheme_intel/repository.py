@@ -25,6 +25,31 @@ class KnowledgeBaseMissing(RuntimeError):
     """The scheme-intelligence DB has not been built (run build_kb)."""
 
 
+# Letters ASR spells out ("pee em kisan", "p m kisan") and the odd fixed mishearing
+# that no phonetic rule catches ("ration cart" - "cart" is a real word, so the
+# general rule leaves it alone).
+_SPELLED_OUT = [(re.compile(p), w) for p, w in (
+    (r"\b(?:pee|pi|p) (?:em|m)\b", "pm"),
+    (r"\b(?:ee|e|i) (?:shram|sharam|shraam|sram)\b", "e-shram"),
+)]
+_MANUAL_FIXES = {"cart": "card", "kard": "card", "yojna": "yojana", "yojanaa": "yojana"}
+_PHONETIC_SUBS = (("ph", "f"), ("sh", "s"), ("ch", "c"), ("th", "t"), ("dh", "d"), ("bh", "b"), ("kh", "k"),
+                  ("gh", "g"), ("jh", "j"), ("ck", "k"), ("q", "k"), ("w", "v"), ("z", "j"), ("x", "ks"),
+                  ("tio", "so"), ("aa", "a"), ("ee", "i"), ("oo", "u"))
+
+
+def _phonetic_key(tok: str) -> str:
+    """Indian-English sound key: 'rashan'/'ration' -> 'rsn', 'kissan'/'kisan' -> 'ksn', 'ujwala'/'ujjwala' -> 'ujvl'."""
+    t = re.sub(r"[^a-z]", "", tok.lower())
+    for a, b in _PHONETIC_SUBS:
+        t = t.replace(a, b)
+    t = re.sub(r"c(?=[eiy])", "s", t).replace("c", "k")
+    t = re.sub(r"(.)\1+", r"\1", t)
+    if len(t) > 1:
+        t = t[0] + re.sub(r"[aeiouy]", "", t[1:])
+    return t
+
+
 class SchemeRepository:
     def __init__(self, db_path: str = C.DB_PATH):
         if not os.path.exists(db_path):
@@ -96,7 +121,19 @@ class SchemeRepository:
             prev = self._alias_map.get(r["alias"])
             if prev is None or r["strength"] > prev[1]:
                 self._alias_map[r["alias"]] = (r["scheme_id"], float(r["strength"]))
+        # "e-shram" is also heard as "e shram" / "eshram"; "pm-jay" as "pm jay" / "pmjay".
+        for alias, val in list(self._alias_map.items()):
+            if "-" in alias:
+                for variant in (alias.replace("-", " "), alias.replace("-", "")):
+                    self._alias_map.setdefault(variant, val)
         self._alias_re = self._build_alias_re(self._alias_map.keys())
+        # Vocabulary for snapping ASR/typing distortions onto real alias words (see correct()).
+        self._vocab = sorted({w for a in self._alias_map for w in re.split(r"[\s-]+", a) if len(w) >= 4 and w.isalpha()})
+        self._vocab_by_key: Dict[str, List[str]] = defaultdict(list)
+        for w in self._vocab:
+            self._vocab_by_key[_phonetic_key(w)].append(w)
+        self._token_cache: Dict[str, str] = {}
+        self._english: Optional[set] = None
 
         self._unverified: Dict[str, str] = self.meta.get("unverified_schemes", {}) or {}
         self._unverified_re = self._build_alias_re(self._unverified.keys()) if self._unverified else None
@@ -112,6 +149,75 @@ class SchemeRepository:
         if not items:
             return None
         return re.compile(r"(?<![a-z0-9])(" + "|".join(re.escape(a) for a in items) + r")(?![a-z0-9])")
+
+    # ── ASR / typing distortions ──────────────────────────────────────────
+    def correct(self, text_norm: str) -> str:
+        """
+        Snap misheard scheme words onto the alias vocabulary the way a listener
+        would: "pee em kisan yojna" -> "pm kisan yojana", "e sharam" -> "e shram",
+        "rashan cart" -> "ration card", "ujwala" -> "ujjwala". A word is replaced
+        only when it is not itself a known word and either sounds the same as
+        exactly one vocabulary word (phonetic key) or is a near-identical
+        spelling of one; ordinary English words are never touched unless they
+        sound identical (so "state", "money", "minister" stay as they are).
+        """
+        if not text_norm:
+            return text_norm
+        t = text_norm
+        for spelled, word in _SPELLED_OUT:
+            t = re.sub(spelled, word, t)
+        out = []
+        for tok in t.split(" "):
+            out.append(self._correct_token(tok))
+        return " ".join(out)
+
+    def _correct_token(self, tok: str) -> str:
+        if len(tok) < 4 or not tok.isalpha():
+            return _MANUAL_FIXES.get(tok, tok)
+        cached = self._token_cache.get(tok)
+        if cached is not None:
+            return cached
+        fixed = tok
+        if tok in _MANUAL_FIXES:
+            fixed = _MANUAL_FIXES[tok]
+        elif tok not in self._vocab_set and not self._is_english(tok):
+            # Only words that are neither known scheme words nor plain English
+            # ("much" must not become "mukh", "minister" not "mantri").
+            import difflib
+            same_sound = self._vocab_by_key.get(_phonetic_key(tok), [])
+            best, best_ratio = None, 0.0
+            for w in same_sound:
+                r = difflib.SequenceMatcher(None, tok, w).ratio()
+                if r > best_ratio:
+                    best, best_ratio = w, r
+            if best is not None and best_ratio >= 0.5:
+                fixed = best
+            else:
+                cands = difflib.get_close_matches(tok, self._vocab, n=1, cutoff=0.84)
+                if cands and len(tok) >= 5:
+                    fixed = cands[0]
+        self._token_cache[tok] = fixed
+        return fixed
+
+    @property
+    def _vocab_set(self) -> set:
+        s = getattr(self, "_vocab_set_cache", None)
+        if s is None:
+            s = self._vocab_set_cache = set(self._vocab)
+        return s
+
+    def _is_english(self, tok: str) -> bool:
+        if self._english is None:
+            words: set = set()
+            for path in ("/usr/share/dict/words", "/usr/share/dict/american-english"):
+                try:
+                    with open(path, encoding="utf-8", errors="ignore") as f:
+                        words = {ln.strip().lower() for ln in f if ln.strip().isalpha()}
+                    break
+                except OSError:
+                    continue
+            self._english = words
+        return tok in self._english
 
     # ── scheme records ────────────────────────────────────────────────────
     def has(self, sid: Optional[str]) -> bool:

@@ -38,7 +38,7 @@ from pathlib import Path
 from typing import Callable, Dict, Optional, Set
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 
@@ -59,6 +59,13 @@ and copy/symlink its <code>dist/</code> directory to
 output directory.</p>
 <p>The backend API (WebSocket at <code>/ws/ui</code>) is running
 normally.</p></body></html>"""
+
+
+def _catalog_path() -> Path:
+    env = os.environ.get("POCKETINFER_SCHEME_CATALOG")
+    if env:
+        return Path(env).expanduser()
+    return Path(__file__).resolve().parents[4] / "nomadright" / "scheme_intel" / "scheme_catalog.json"
 
 
 def _resolve_static_dir() -> Optional[Path]:
@@ -226,6 +233,22 @@ class HDMIBridgeServer:
         async def ws_terminal(websocket: WebSocket) -> None:
             await websocket.accept()
             await self._run_terminal_session(websocket)
+
+        catalog_cache: dict = {}
+
+        @app.get("/api/schemes")
+        async def api_schemes() -> JSONResponse:
+            # Static, generated file (build_catalog.py) - read once, then served
+            # from memory; the Schemes page fetches it a single time per load.
+            path = _catalog_path()
+            try:
+                mtime = path.stat().st_mtime
+                if catalog_cache.get("mtime") != mtime:
+                    with open(path, encoding="utf-8") as f:
+                        catalog_cache.update({"mtime": mtime, "data": json.load(f)})
+                return JSONResponse(catalog_cache["data"], headers={"Cache-Control": "max-age=3600"})
+            except FileNotFoundError:
+                return JSONResponse({"error": "scheme catalogue not built", "path": str(path)}, status_code=404)
 
         static_dir = _resolve_static_dir()
         if static_dir is not None:

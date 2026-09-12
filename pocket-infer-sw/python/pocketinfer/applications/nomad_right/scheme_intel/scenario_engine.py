@@ -158,7 +158,9 @@ _OCCUPATIONS: List[Tuple[str, str]] = [
      r"|zepto|blinkit|dunzo|rapido"),
     ("TRANSPORT_WORKER",
      r"(?:auto|rickshaw|e-rickshaw|taxi|cab|truck|lorry|bus|tempo|tractor) ?(?:driver|puller|wala)"
-     r"|rickshaw puller|\bdriver\b|\bconductor\b"),
+     r"|rickshaw puller|\bdriver\b|\bconductor\b"
+     # "I drive an auto", "driving a taxi in Mumbai"
+     r"|\b(?:drive|drives|driving) (?:an? |the |my |our )?(?:auto|rickshaw|e-rickshaw|taxi|cab|truck|lorry|bus|tempo|tractor|ola|uber)\b"),
     ("HEAD_LOADER", r"head ?loader|\bporter\b|\bcoolie\b|\bhamal\b|loading (?:and )?unloading|\bloader\b"),
     ("BRICK_KILN_WORKER", r"brick kiln|\bbhatta\b"),
     ("RAG_PICKER", r"rag ?picker|waste picker|kabadi|scrap (?:collector|picker)"),
@@ -307,7 +309,10 @@ class ScenarioEngine:
 
     _FEMALE_RE = re.compile(r"\b(?:i am|i'm|im)\s+(?:a\s+|an\s+)?(?:[\w-]+\s+){0,3}(woman|lady|female|girl|mother|widow|housewife|homemaker)\b")
     _MALE_RE = re.compile(r"\b(?:i am|i'm|im)\s+(?:a\s+|an\s+)?(?:[\w-]+\s+){0,3}(man|male|boy|father|widower)\b")
-    _WIDOW_RE = re.compile(r"\b(?:i am|i'm|im)\s+(?:a\s+)?widow(?:ed)?\b|\bmy husband (?:has )?(?:died|passed away|expired|is dead|is no more)\b")
+    # "I am a widow", "a 62 year old widow from Bihar", "widow, 62, no income".
+    _WIDOW_RE = re.compile(r"\b(?:i am|i'm|im)\s+(?:an?\s+)?(?:\d+\s*(?:years?|yrs?)?\s*old\s+)?widow(?:ed)?\b"
+                           r"|\bmy husband (?:has )?(?:died|passed away|expired|is dead|is no more)\b"
+                           r"|(?:^|[,.]\s*)(?:an?\s+)?\d+\s*(?:years?|yrs?)?\s*old\s+widow\b")
     _WIDOWER_RE = re.compile(r"\b(?:i am|i'm|im)\s+(?:a\s+)?widower\b|\bmy wife (?:has )?(?:died|passed away|expired|is dead|is no more)\b")
 
     def _gender_marital(self, t: str, p: Profile) -> None:
@@ -443,7 +448,9 @@ class ScenarioEngine:
 
     _OTHER_SUBJECT_RE = re.compile(
         r"\bmy (?:husband|wife|son|daughter|father|mother|brother|sister|child|children|kid|kids|parents?)\b"
-        r"(?:\s+\w+){0,2}\s+(?:is|was|works|worked|does|did)\b")
+        r"(?:\s+\w+){0,2}\s+(?:is|was|works|worked|does|did)\b"
+        # "my husband drives an auto" - the verb is part of the occupation match itself
+        r"|\bmy (?:husband|wife|son|daughter|father|mother|brother|sister|child|children|kid|kids|parents?)\s*$")
 
     # Subject pronouns only: "give me details" / "tell us" say nothing about the speaker's job.
     _FIRST_PERSON_RE = re.compile(r"\b(?:i|i'm|im|my|myself|we|we're|our|mine)\b")

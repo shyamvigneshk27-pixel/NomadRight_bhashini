@@ -33,6 +33,14 @@ class UIState:
     button_led_on: bool = False
     system_status: Dict[str, str] = field(default_factory=dict)
     log_lines: deque = field(default_factory=lambda: deque(maxlen=LOG_MAX_LINES))
+    # The last answer in the worker's own language (what TTS speaks) plus its
+    # English text and the short scheme label - the React UI shows `native`
+    # so a Hindi/Tamil screen never falls back to the English LCD line.
+    answer: Optional[dict] = None
+    # Codes the device can actually recognise speech in (constants.py's
+    # ASR_SUPPORTED_LANGUAGES, pushed by app.py) - the UI enables its
+    # language choices from this instead of a hard-coded copy.
+    asr_languages: list = field(default_factory=list)
 
     def __post_init__(self) -> None:
         self._lock = threading.RLock()
@@ -50,6 +58,8 @@ class UIState:
                 "button_led_on": self.button_led_on,
                 "system_status": dict(self.system_status),
                 "log_lines": list(self.log_lines),
+                "answer": dict(self.answer) if self.answer else None,
+                "asr_languages": list(self.asr_languages),
             }
 
     def update_screen(self, mode: Optional[str] = None, top: Optional[str] = None,
@@ -100,3 +110,11 @@ class UIState:
     def set_system_status(self, status: Dict[str, str]) -> None:
         with self._lock:
             self.system_status = dict(status)
+
+    def set_answer(self, answer: Optional[dict]) -> None:
+        with self._lock:
+            self.answer = dict(answer) if answer else None
+
+    def set_asr_languages(self, codes) -> None:
+        with self._lock:
+            self.asr_languages = list(codes)

@@ -152,6 +152,26 @@ class QwenClient:
             f"Answer:"
         )
 
+    def prewarm(self) -> float:
+        """
+        Load the model into RAM now (an empty prompt makes Ollama load without
+        generating), so a camera question asked a few seconds later finds it warm.
+        Returns the seconds the load took (~0 when it was already resident);
+        raises QwenClientError when Ollama is unreachable.
+        """
+        payload = {"model": self.model, "prompt": "", "stream": False, "keep_alive": constants.LLM_KEEP_ALIVE,
+                   "options": {"num_gpu": constants.LLM_NUM_GPU, "num_thread": constants.LLM_NUM_THREAD,
+                               "num_ctx": constants.LLM_NUM_CTX}}
+        start = time.monotonic()
+        try:
+            resp = requests.post(_OLLAMA_GENERATE_URL, json=payload, timeout=constants.LLM_REQUEST_TIMEOUT_S)
+            resp.raise_for_status()
+        except Exception as exc:
+            raise QwenClientError(str(exc)) from exc
+        elapsed = time.monotonic() - start
+        self.logger.info(f"qwen prewarm: model resident after {elapsed:.1f}s (keep_alive {constants.LLM_KEEP_ALIVE})")
+        return elapsed
+
     def _build_vision_prompt(self, query: str) -> str:
         return f"{_VISION_SYSTEM_PROMPT}\n\nQuestion: {query}\nAnswer:"
 

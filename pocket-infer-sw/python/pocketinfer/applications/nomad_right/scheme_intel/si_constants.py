@@ -79,7 +79,7 @@ DISPLAY_BOTTOM_MAX = nr_constants.DISPLAY_BODY_MAX_LEN
 
 # A kiosk serves one person after another. Facts are forgotten after this
 # much inactivity so the next visitor never inherits the last one's profile.
-SESSION_TTL_S = 600.0
+SESSION_TTL_S = 300.0  # 5 min idle at a kiosk = a different person; Home / language change reset immediately
 
 
 # ============================================================================

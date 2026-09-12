@@ -408,6 +408,15 @@ class Board:
         ''' Blank the on-screen pipeline log. No-op without a display. '''
         return True
 
+    def answer_text(self, native, en="", label="") -> bool:
+        """The last answer in the worker's own language (HDMI UI only; the
+        LCD keeps showing update_screen()'s bottom line). No-op by default."""
+        return True
+
+    def set_asr_languages(self, codes) -> bool:
+        """Languages the device can recognise speech in (HDMI UI only)."""
+        return True
+
     def select_radio(self, prefix, name) -> bool:
         ''' Highlight `name` within the Settings page radio group `prefix`,
         so the page agrees with the setting the application is really using.

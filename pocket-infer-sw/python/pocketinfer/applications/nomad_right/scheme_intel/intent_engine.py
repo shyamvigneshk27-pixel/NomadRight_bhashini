@@ -116,6 +116,15 @@ _SCHEME_CARD_RE = re.compile(r"\b(?:labou?r|bocw|construction worker'?s?|job|e-s
 _ORDINALS = {"first": 0, "1st": 0, "second": 1, "2nd": 1, "third": 2, "3rd": 2, "last": -1}
 
 
+def _possessed(t: str, alias: str) -> bool:
+    """True when the alias is something the person says they already hold ("I have an e-shram card")."""
+    a = re.escape(alias)
+    return bool(re.search(
+        r"\b(?:i|we) (?:already )?(?:have|hold|got|possess|carry|am holding|have got)(?: an?| my| our| the)? (?:[\w-]+ ){0,2}" + a + r"\b"
+        r"|\b(?:my|our) " + a + r"\b(?! (?:is|was|got|has been) (?:rejected|cancelled|blocked|lost|stolen|not working|expired))",
+        t))
+
+
 class IntentEngine:
     def __init__(self, repo, embed_fn: Optional[Callable[[str], object]] = None,
                  prototypes_path: str = C.INTENT_PROTOTYPES_PATH):
@@ -139,11 +148,18 @@ class IntentEngine:
     # ── public ────────────────────────────────────────────────────────────
     def detect(self, text: str, facts: Profile, active_scheme_id: Optional[str] = None,
                last_candidates: Optional[List[str]] = None) -> IntentResult:
-        t = normalize(text)
+        t = self.repo.correct(normalize(text))
         res = IntentResult(intent=Intent.OTHER, confidence=0.0, source="none")
         if not t:
             return res
         found = self.repo.find_schemes(t)
+        if len(found) > 1:
+            # "I have an e-shram card, can I get BOCW benefits?" is about BOCW: a
+            # scheme the person already holds ranks after the one being asked about.
+            owned = [f for f in found if _possessed(t, f[2])]
+            if owned and len(owned) < len(found):
+                found = [f for f in found if f not in owned] + owned
+                res.matched.append("owned:" + ",".join(f[0] for f in owned))
         res.scheme_ids = [sid for sid, strength, _a, _p in found if strength >= 0.8]
         res.scheme_hints = [sid for sid, strength, _a, _p in found if strength < 0.8]
         res.unverified_name = self.repo.find_unverified(t)
@@ -260,7 +276,8 @@ class IntentEngine:
             return None
         if res.unverified_name:
             return Intent.GENERAL_SCHEME_INFORMATION
-        if domain and (res.has_question or bool(facts)):
+        # A bare topic word ("pension", "gas connection") is a request for that topic's schemes.
+        if domain and (res.has_question or bool(facts) or len(t.split()) <= 2):
             return INTENT_OF_DOMAIN[domain]
         if res.scheme_ids:
             res.qtype = QType.OVERVIEW

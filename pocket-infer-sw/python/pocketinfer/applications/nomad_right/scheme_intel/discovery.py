@@ -16,7 +16,7 @@ from typing import Dict, List, Optional
 from pocketinfer.applications.nomad_right.scheme_intel.models import (
     Intent, Profile, SchemeEvaluation, Status,
 )
-from pocketinfer.applications.nomad_right.scheme_intel.rules_engine import GATE_FIELDS
+from pocketinfer.applications.nomad_right.scheme_intel.rules_engine import GATE_FIELDS, IDENTITY_FIELDS
 
 STATUS_WEIGHT = {
     Status.ELIGIBLE: 1.0,
@@ -95,6 +95,11 @@ def rank(evals: List[SchemeEvaluation], repo, rules, d: Profile, domains: List[s
     rag_scores = rag_scores or {}
     for ev in evals:
         ev.relevance = relevance(repo, rules, ev.scheme_id, d, domains, rag_scores.get(ev.scheme_id))
+        # Stated life situation that a scheme is built around (widow, disabled,
+        # 60 or older ...) outranks a scheme that merely does not exclude the person.
+        ident = sum(1 for c in ev.passed for f in c.field.split("|")
+                    if f in IDENTITY_FIELDS or (f == "age" and c.op == ">=" and (c.expected or 0) >= 60))
+        ev.relevance = round(ev.relevance + min(0.6, 0.3 * ident), 3)
         score = STATUS_WEIGHT[ev.status] * (0.5 + ev.relevance) + 0.05 * len(ev.passed)
         if "VALIDITY_CHECK" in ev.notes:
             score *= 0.7

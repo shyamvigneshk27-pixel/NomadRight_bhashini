@@ -50,6 +50,8 @@ DEFAULT_ADMIN_PIN = "1234"
 # a "line the document up" live view without competing for camera/CPU
 # bandwidth with an actual capture.
 _PREVIEW_INTERVAL_S = 0.2  # ~5 fps
+_PREVIEW_WIDTH = 640
+_PREVIEW_JPEG_QUALITY = 70
 
 # Kiosk browser crash watchdog tuning - see _kiosk_watchdog_loop().
 _WATCHDOG_POLL_INTERVAL_S = 3.0
@@ -140,6 +142,17 @@ class PocketInferHDMIBoard(PocketInferDevboard):
     def clear_log(self) -> bool:
         self.state.clear_log()
         self.bridge.broadcast_log_clear()
+        return True
+
+    def answer_text(self, native, en="", label="") -> bool:
+        answer = {"native": native or "", "en": en or "", "label": label or ""} if native or en else None
+        self.state.set_answer(answer)
+        self.bridge.broadcast_state_patch({"answer": answer})
+        return True
+
+    def set_asr_languages(self, codes) -> bool:
+        self.state.set_asr_languages(codes)
+        self.bridge.broadcast_state_patch({"asr_languages": list(codes)})
         return True
 
     def select_radio(self, prefix, name) -> bool:
@@ -281,12 +294,29 @@ class PocketInferHDMIBoard(PocketInferDevboard):
         else:
             self._preview_stop.set()
 
+    def _preview_jpeg(self) -> Optional[bytes]:
+        """A 640-px-wide, quality-70 JPEG of the latest frame for the live
+        preview: the full 1920x1080 frame was ~250 KB per frame, five times a
+        second, for a 700-px-wide preview box - decode + draw cost on the
+        WebKit kiosk, and JSON/WebSocket cost on both sides, for nothing.
+        The capture itself (camera_frame()/camera_frame_jpg()) is unchanged."""
+        frame = self.camera_frame()
+        if frame is None:
+            return None
+        import cv2
+        h, w = frame.shape[:2]
+        if w > _PREVIEW_WIDTH:
+            frame = cv2.resize(frame, (_PREVIEW_WIDTH, max(1, int(h * _PREVIEW_WIDTH / w))),
+                               interpolation=cv2.INTER_AREA)
+        ok, buf = cv2.imencode(".jpg", frame, [cv2.IMWRITE_JPEG_QUALITY, _PREVIEW_JPEG_QUALITY])
+        return buf.tobytes() if ok else None
+
     def _preview_loop(self) -> None:
         while not self._preview_stop.is_set():
             try:
-                jpg = self.camera_frame_jpg()
+                jpg = self._preview_jpeg()
                 if jpg:
-                    self.bridge.broadcast_camera_frame(base64.b64encode(bytes(jpg)).decode("ascii"))
+                    self.bridge.broadcast_camera_frame(base64.b64encode(jpg).decode("ascii"))
             except Exception:
                 self.logger.debug("HDMI board: camera preview frame failed", exc_info=True)
             self._preview_stop.wait(timeout=_PREVIEW_INTERVAL_S)

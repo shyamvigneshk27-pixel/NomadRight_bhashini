@@ -32,7 +32,7 @@ from pocketinfer.applications.nomad_right.scheme_intel.qwen_adapter import QwenA
 from pocketinfer.applications.nomad_right.scheme_intel.rag_engine import RAGEngine
 from pocketinfer.applications.nomad_right.scheme_intel.repository import KnowledgeBaseMissing, SchemeRepository
 from pocketinfer.applications.nomad_right.scheme_intel.router import QueryRouter
-from pocketinfer.applications.nomad_right.scheme_intel.rules_engine import RulesEngine, derive
+from pocketinfer.applications.nomad_right.scheme_intel.rules_engine import IDENTITY_FIELDS, RulesEngine, derive
 from pocketinfer.applications.nomad_right.scheme_intel.scenario_engine import ScenarioEngine, normalize
 from pocketinfer.applications.nomad_right.scheme_intel.session import SessionState
 
@@ -125,7 +125,9 @@ class SchemeIntelligence:
         text = (query_en or "").strip()
         if not text:
             return None
-        t_norm = normalize(text)
+        t_norm = self.repo.correct(normalize(text))
+        if t_norm != normalize(text):
+            logger.info(f"[SI] heard as: '{t_norm}'")
 
         ts = time.perf_counter()
         facts = self.scenario.extract(text)
@@ -142,7 +144,7 @@ class SchemeIntelligence:
 
         context_sid = self.repo.sid_for_legacy(context_scheme_code)
         ti = time.perf_counter()
-        ir = self.intents.detect(text, facts, s.active_scheme_id or context_sid, s.last_candidates)
+        ir = self.intents.detect(t_norm, facts, s.active_scheme_id or context_sid, s.last_candidates)
         LATENCY.record("si_intent", _ms(ti))
         # A turn that only answers the pending question continues the previous intent.
         if ir.intent == Intent.OTHER and changed and s.current_intent and s.current_intent != Intent.OTHER:
@@ -182,6 +184,10 @@ class SchemeIntelligence:
         if decision.route == Route.CLARIFY:
             if decision.reason == "unverified":
                 return self.composer.unverified(ir.unverified_name, ir.intent)
+            if decision.reason == "which card":
+                return self.composer.clarify_card(ir.intent)
+            if decision.reason == "topic":
+                return self.composer.clarify_topic(ir.intent)
             return self.composer.clarify_scheme(self.session.last_candidates, ir.intent)
         if decision.route == Route.DIRECT_INFORMATION:
             return self._direct(decision, ir, text, t_norm)
@@ -306,9 +312,26 @@ class SchemeIntelligence:
         slot = pick_question(ranked, derived, self.session.asked_slots, ir.intent)
         if not top and domains:
             # Nothing matches yet: offer the topic's schemes that are open to this
-            # person (not ones targeted at a different occupation).
-            fitting = [ev for ev in ranked
-                       if not self.repo.scheme(ev.scheme_id).get("occupation") or self.rules.targets_person(ev.scheme_id, derived)]
+            # person - not ones targeted at a different occupation, and not ones
+            # built around a life situation the person has not mentioned (no
+            # disability stated -> no disability pension offered).
+            def fits(ev) -> bool:
+                targets = self.repo.scheme(ev.scheme_id).get("occupation")
+                if targets and derived.has("occupation") and not self.rules.targets_person(ev.scheme_id, derived):
+                    return False
+                return not any(f in IDENTITY_FIELDS for c in ev.unknown_core for f in c.field.split("|"))
+            fitting = [ev for ev in ranked if fits(ev)]
+            if not fitting:
+                # Every scheme of this topic is closed to the person by a stated fact
+                # (an auto driver of 45 and the 18-40 pension schemes): say why,
+                # for the scheme that was meant for people like them.
+                closed = [ev for ev in evals if ev.status == Status.INELIGIBLE and ev.failed
+                          and domains[0] in (self.repo.scheme(ev.scheme_id).get("domains") or [])]
+                closed.sort(key=lambda ev: (not self.rules.targets_person(ev.scheme_id, derived), ev.scheme_id))
+                if closed:
+                    ans = self.composer.eligibility(closed[0], d, ir.intent, None)
+                    ans.route = Route.SCHEME_DISCOVERY
+                    return ans
             if len(fitting) == 1:
                 one = fitting[0]
                 q = pick_question([one], derived, self.session.asked_slots, ir.intent, restrict=False)

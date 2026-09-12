@@ -49,6 +49,16 @@ GATE_FIELDS = frozenset({
     "ration_card", "breadwinner_age", "area_type", "tribal_forest_dweller", "community_land",
     "insurable_interest", "has_electricity_connection",
 })
+# Means tests: they decide the amount of help, not who a scheme is for. A widow of
+# 62 whose only open condition is "BPL household" fits the widow pension and should
+# be told so (and asked), not filed under "insufficient information".
+MEANS_FIELDS = frozenset({"is_bpl", "poor_household", "in_secc_2011", "monthly_income", "annual_income", "family_income"})
+# "Who this scheme is for" facts a person states about themselves; a scheme whose
+# rule on one of these is still unknown is not a fit yet (no disability stated ->
+# the disability pension is not suggested to a healthy 45-year-old).
+IDENTITY_FIELDS = frozenset({"marital_status", "disability_percentage", "girl_child_under_10", "pregnancy_status",
+                             "housing_deprivation", "tribal_forest_dweller", "small_marginal_farmer", "farmer_type",
+                             "owns_land"})
 
 _MEMBERSHIP_FIELDS = {
     "SCH_PMSYM": "pmsym_member", "SCH_BOCW": "bocw_member", "SCH_NSAP_OA": "ignoaps_member",
@@ -267,8 +277,10 @@ class RulesEngine:
         elif ev.unknown_core:
             # Unknown "who is this scheme for" facts (disability, widowhood, land,
             # construction work ...) mean nothing relevant is known yet.
-            gate_unknown = any(f in GATE_FIELDS for c in ev.unknown_core for f in c.field.split("|"))
-            relevant = targeted or (bool(ev.passed) and not gate_unknown)
+            unknown_fields = [f for c in ev.unknown_core for f in c.field.split("|")]
+            gate_unknown = any(f in GATE_FIELDS for f in unknown_fields)
+            means_only = bool(ev.passed) and all(f in MEANS_FIELDS for f in unknown_fields)
+            relevant = targeted or means_only or (bool(ev.passed) and not gate_unknown)
             ev.status = Status.POTENTIALLY_ELIGIBLE if relevant else Status.INSUFFICIENT_INFORMATION
         elif not ev.passed:
             # Nothing confirmed at all (e.g. only verification items exist) - never "likely".

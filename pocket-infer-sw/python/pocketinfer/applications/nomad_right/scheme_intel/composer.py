@@ -393,6 +393,9 @@ class ResponseComposer:
                     break
         if not text:
             return None
+        # A FAQ answer often starts with a bare "No." / "Yes." - the sentence after it
+        # is the one worth saying ("There is no enrolment fee or premium ...").
+        text = re.sub(r"^(?:no|yes|nope)[.,!]\s+(?=\S)", "", text.strip(), flags=re.I)
         voice = f"For {self.repo.spoken(sid)}: {self.first_clause(self.speakable(text), 30)}"
         return self._answer(voice, f"{self.repo.short(sid)}: FEES", text, Route.DIRECT_INFORMATION, intent, "FEES", sid)
 
@@ -445,6 +448,17 @@ class ResponseComposer:
                  "I can help with ration, health, pension, worker and housing schemes.")
         return self._answer(voice, "NOT IN VERIFIED DATA", f"No verified data for {name}",
                             Route.CLARIFY, intent, "UNVERIFIED", severity="WARNING")
+
+    def clarify_card(self, intent: Intent) -> SIAnswer:
+        voice = "Which card do you mean: ration card, Ayushman card, e-Shram card, job card, or labour card?"
+        return self._answer(voice, "WHICH CARD?", "Ration, Ayushman, e-Shram, job card or labour card",
+                            Route.CLARIFY, intent, "CLARIFY", asked="scheme")
+
+    def clarify_topic(self, intent: Intent) -> SIAnswer:
+        voice = ("Which of these do you need help with: ration, health, pension, work, housing, or a scheme name? "
+                 "Tell me your work and where you live and I will suggest schemes.")
+        return self._answer(voice, "WHAT DO YOU NEED?", "Ration, health, pension, work, housing, or a scheme name",
+                            Route.CLARIFY, intent, "CLARIFY", asked="topic")
 
     def clarify_scheme(self, options: List[str], intent: Intent) -> SIAnswer:
         opts = [self.repo.spoken(s) for s in options[:3] if self.repo.has(s)]

@@ -95,7 +95,10 @@ MAX_AUDIO_RECORD_SECONDS = 15
 DEFAULT_SAMPLE_RATE = 16000
 
 # Keep spoken answers short enough for comfortable listening.
-MAX_VOICE_WORDS = 60
+# 60 words came out as 21-23 s of flite speech in Hindi/Tamil (e2e_voice_test 2026-09-12);
+# 45 keeps a spoken answer under ~17 s. The scheme-intelligence layer clips its own
+# answers at LLM_SNIPPET_MAX_WORDS (45) already - this aligns the legacy path.
+MAX_VOICE_WORDS = 45
 
 
 # ============================================================================
@@ -274,7 +277,14 @@ LLM_FALLBACK_MODEL = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:Q4_K_M"
 # a real answer). 30 minutes covers realistic gaps between visitors
 # during operating hours while still releasing the ~2.4GB during a
 # genuinely idle stretch (overnight, etc).
-LLM_KEEP_ALIVE = "30m"
+# 2026-09-12: the Qwen runner is 2.3 GB resident (memwatch peak 2274 MB) and the whole
+# system - bhashini 4.2 GB + kiosk 0.85 GB + desktop/WebKit 0.7 GB - already fills the
+# 8 GB Jetson without it (swap grew 0.4-2 GB in every load test with it resident).
+# Qwen is needed for the camera flow and the rare text fallback only, so it now stays
+# resident for 5 minutes after use and is pre-loaded in the background the moment the
+# Camera button is pressed (app._prewarm_qwen) - the photo and the spoken question
+# take longer than the load, so the camera answer still comes from a warm model.
+LLM_KEEP_ALIVE = "5m"
 
 # Forced high on every call rather than left to Ollama's own auto-fit
 # heuristic: the Jetson's GPU/CPU share one physical RAM pool, and that

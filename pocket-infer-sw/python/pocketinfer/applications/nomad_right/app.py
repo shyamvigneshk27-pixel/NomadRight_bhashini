@@ -338,6 +338,10 @@ class NomadRightApplication(BaseApplication):
             os.makedirs(self.app_config.log_dir, exist_ok=True)
 
         self._sync_language_buttons()
+        try:
+            self.board.set_asr_languages(sorted(constants.ASR_SUPPORTED_LANGUAGES))
+        except Exception:
+            self.logger.debug("[NomadRight] ASR language list push skipped", exc_info=True)
         self._startup_selfcheck()
         self._prewarm_fastpath()
 
@@ -381,6 +385,9 @@ class NomadRightApplication(BaseApplication):
         if msg.startswith("ASR "):
             code = self._lang_name_to_code(msg[4:], constants.SOURCE_LANGUAGES)
             if code and code in constants.ASR_SUPPORTED_LANGUAGES:
+                if self.settings.get("input_language") != code:
+                    # A new language on the start page is a new person.
+                    self._reset_conversation("language change")
                 self.settings["input_language"] = code
                 self.logger.info(f"[NomadRight] Worker language set to {code}")
             elif code:
@@ -423,6 +430,17 @@ class NomadRightApplication(BaseApplication):
         self._text_query_pending = text
         self._text_query_event.set()
 
+    def _prewarm_qwen(self) -> None:
+        client = getattr(getattr(self, "workflow", None), "qwen_client", None)
+        if client is None or not hasattr(client, "prewarm"):
+            return
+        try:
+            secs = client.prewarm()
+            if secs > 1.0:
+                self._log(f"QWEN      loaded {secs:.1f}s")
+        except Exception as exc:
+            self.logger.debug(f"[NomadRight] Qwen pre-warm skipped: {exc}")
+
     def _on_camera_pressed(self) -> None:
         """
         Touchscreen Camera button handler: captures a form photo via the
@@ -447,6 +465,10 @@ class NomadRightApplication(BaseApplication):
         # behavior for the same reason (see _on_home_pressed).
         self._stop_audio()
         self._camera_busy.set()
+        # Qwen is only resident while someone is using the camera (LLM_KEEP_ALIVE):
+        # start loading it now, in the background - framing the document and asking
+        # the question takes longer than the load, so the answer still comes warm.
+        threading.Thread(target=self._prewarm_qwen, name="qwen-prewarm", daemon=True).start()
         try:
             self.board.update_screen(mode="DOCUMENT SCANNER", top="Capturing...",
                                       bottom="Hold camera steady", status="[CAPTURING]")
@@ -515,6 +537,18 @@ class NomadRightApplication(BaseApplication):
             # once this clears.
             self._camera_busy.clear()
 
+    def _reset_conversation(self, reason: str) -> None:
+        """Forget the previous person's facts and the scheme being discussed."""
+        self.last_scheme_code = None
+        self.last_answer_en = ""
+        si = getattr(self.workflow, "scheme_intel", None)
+        if si is not None:
+            try:
+                si.reset_session()
+            except Exception:
+                self.logger.debug("[NomadRight] scheme-intel session reset failed", exc_info=True)
+        self.logger.info(f"[NomadRight] Conversation reset ({reason}).")
+
     def _on_home_pressed(self) -> None:
         """
         Touchscreen Home button handler - the app's single, always-
@@ -544,6 +578,10 @@ class NomadRightApplication(BaseApplication):
         was_already_home = self._mode == "HOME"
         stopped_audio = self._stop_audio()
         self._home_requested.set()
+        # Home is the boundary between two people at the kiosk: nothing said so far
+        # (state, occupation, held cards, the scheme being discussed) may leak into
+        # the next person's answers.
+        self._reset_conversation("home")
         with self._image_lock:
             had_pending_photo = self.pending_form_image is not None
             self.pending_form_image = None
@@ -599,6 +637,25 @@ class NomadRightApplication(BaseApplication):
         self._audio_stop_requested.set()
         player.stop()
         return True
+
+    def _set_answer(self, native: Optional[str], en: str = "", label: str = "") -> None:
+        """Publishes the answer in the worker's own language for the HDMI UI
+        (boards/hdmi.py's answer_text()); None clears it at the start of a turn.
+        Boards without the method (LCD, the test boards) are unaffected."""
+        fn = getattr(self.board, "answer_text", None)
+        if fn is None:
+            return
+        try:
+            fn(native or "", en, label)
+        except Exception:
+            self.logger.debug("[NomadRight] answer publish failed", exc_info=True)
+
+    @staticmethod
+    def _looks_english(text: str) -> bool:
+        """True for text typed on the Latin on-screen keyboard: the NMT
+        indic->en model receives only Indic-script text; ASCII input is
+        already in the Decision Layer's language."""
+        return bool(text) and all(ord(ch) < 128 for ch in text)
 
     @staticmethod
     def _lang_name_to_code(name: str, table: Dict[str, str]) -> Optional[str]:
@@ -762,10 +819,12 @@ class NomadRightApplication(BaseApplication):
                         time.sleep(1.0)
                         continue
 
+                    self._set_answer(None)
                     self.board.top_text(f"You: {native_query}"[:80])
                     self.logger.info(f"[NomadRight] TEXT query: '{native_query}'")
                 else:
                     self.board.button_led(True)
+                    self._set_answer(None)
                     self.board.update_screen(status="[LISTENING]", top="", bottom="")
                     # Logged before audio.start() rather than after, so the log
                     # confirms the press registered even if opening the capture
@@ -812,9 +871,10 @@ class NomadRightApplication(BaseApplication):
                 # ── 2. NMT: native language -> English for the Decision Layer ─
                 self.board.statusbar("[TRANSLATING]")
                 stage_start = time.time()
-                query_en = self.bridge.to_pipeline_language(native_query, lang)
-                self._log(f"NMT {lang}->EN  {time.time() - stage_start:.1f}s")
-                self._latency(f"nmt_{lang}_en", stage_start)
+                query_lang = "en" if turn_kind == "text" and self._looks_english(native_query) else lang
+                query_en = self.bridge.to_pipeline_language(native_query, query_lang)
+                self._log(f"NMT {query_lang}->EN  {time.time() - stage_start:.1f}s")
+                self._latency(f"nmt_{query_lang}_en", stage_start)
 
                 # Cancelled during LISTENING/ASR/NMT (all fast/cheap stages,
                 # a few seconds at most) - skip the expensive Decision
@@ -881,6 +941,7 @@ class NomadRightApplication(BaseApplication):
 
                         self.board.update_screen(top="VOICE BRIDGE", bottom=bridged_text[:100],
                                                   status="[SPEAKING] Home=stop")
+                        self._set_answer(bridged_text, self.last_answer_en, f"VOICE BRIDGE ({target_name})")
                         played_fully = self._play(self.bridge.speak(bridged_text, target_lang))
                         if played_fully:
                             self.board.update_screen(status="[READY]", mode="HOME")
@@ -930,6 +991,7 @@ class NomadRightApplication(BaseApplication):
                 self._log(f"NMT EN->{lang}  {time.time() - stage_start:.1f}s")
                 self._latency(f"nmt_en_{lang}", stage_start)
                 self.logger.info(f"[TRANSLATION_OUTPUT] {lang}: '{answer_native}'")
+                self._set_answer(answer_native, response_pkg.voice_text, response_pkg.display_top_text)
 
                 # ── 6. Display + Speak — conversation view ────────────────────
                 # top_text keeps showing "You: <question>" from step 1 above
