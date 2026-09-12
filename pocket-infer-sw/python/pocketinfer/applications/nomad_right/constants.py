@@ -169,6 +169,12 @@ MAX_VOICE_WORDS = 45
 #   BHASHINI TTS → speaker
 #
 TTS_VOICE_STYLE_ENABLED = True
+# Per-language pitch shift in semitones, applied before the styling chain with
+# ffmpeg's rubberband (formants preserved, so the voice gets deeper without the
+# "Megatron" artefacts of the old asetrate trick). Empty = no shift anywhere.
+# Measured 2026-09-13: the Tamil flite voice sits at 121 Hz, the Hindi at 129 Hz;
+# {"ta": -5} takes Tamil to ~104 Hz.
+TTS_PITCH_SEMITONES = {}
 
 
 # ---------------------------------------------------------------------------

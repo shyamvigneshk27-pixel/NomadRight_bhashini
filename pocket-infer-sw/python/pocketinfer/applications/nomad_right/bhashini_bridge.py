@@ -34,7 +34,7 @@ from pocketinfer.models.tts import Tts
 logger = logging.getLogger(__name__)
 
 
-def _apply_voice_style(wav_bytes: bytes) -> bytes:
+def _apply_voice_style(wav_bytes: bytes, lang: str = "") -> bytes:
     """
     Post-processes BHASHINI TTS WAV output via ffmpeg for clarity and
     consistent, comfortable volume — without changing the TTS model itself
@@ -64,7 +64,8 @@ def _apply_voice_style(wav_bytes: bytes) -> bytes:
     logs a warning and returns the original, unmodified audio so a styling
     problem can never break TTS playback.
     """
-    if not constants.TTS_VOICE_STYLE_ENABLED or not wav_bytes or not shutil.which("ffmpeg"):
+    semitones = float(getattr(constants, "TTS_PITCH_SEMITONES", {}).get(lang, 0) or 0)
+    if not wav_bytes or not shutil.which("ffmpeg") or (not constants.TTS_VOICE_STYLE_ENABLED and not semitones):
         return wav_bytes
     in_path = out_path = None
     try:
@@ -92,7 +93,11 @@ def _apply_voice_style(wav_bytes: bytes) -> bytes:
             f"LRA={constants.TTS_LOUDNESS_RANGE}"
         )
 
-        filter_chain = ",".join([stage1, stage2, stage3, stage4])
+        stages = [stage1, stage2, stage3, stage4] if constants.TTS_VOICE_STYLE_ENABLED else []
+        if semitones:
+            # rubberband keeps the formants where they are, so only the pitch moves
+            stages.insert(0, f"rubberband=pitch={2 ** (semitones / 12.0):.4f}:formant=preserved:pitchq=quality")
+        filter_chain = ",".join(stages)
 
         # Real files, not pipes: a WAV written to a pipe can't be seeked back
         # to patch in the true RIFF/data chunk sizes once streaming is done,
@@ -196,8 +201,8 @@ class BhashiniBridge:
             return b""
         result = self.tts.infer(text, lang)
         wav_bytes = Tts.decode(result.get("audio_base64", ""))
-        if self.config.voice_style_enabled:
-            wav_bytes = _apply_voice_style(wav_bytes)
+        if self.config.voice_style_enabled or getattr(constants, "TTS_PITCH_SEMITONES", {}).get(lang):
+            wav_bytes = _apply_voice_style(wav_bytes, lang)
         return wav_bytes
 
     def bridge_translate(self, text: str, src_lang: str, tgt_lang: str) -> str:
