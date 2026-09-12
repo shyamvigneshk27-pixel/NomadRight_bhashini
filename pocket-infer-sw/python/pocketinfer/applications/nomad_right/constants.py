@@ -174,7 +174,7 @@ TTS_VOICE_STYLE_ENABLED = True
 # "Megatron" artefacts of the old asetrate trick). Empty = no shift anywhere.
 # Measured 2026-09-13: the Tamil flite voice sits at 121 Hz, the Hindi at 129 Hz;
 # {"ta": -5} takes Tamil to ~104 Hz.
-TTS_PITCH_SEMITONES = {}
+TTS_PITCH_SEMITONES = {"ta": -5}
 
 
 # ---------------------------------------------------------------------------
