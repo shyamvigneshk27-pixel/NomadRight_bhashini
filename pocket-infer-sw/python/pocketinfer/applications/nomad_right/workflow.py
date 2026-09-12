@@ -147,7 +147,10 @@ class WorkflowController(IWorkflowController):
         try:
             from pocketinfer.applications.nomad_right.scheme_intel import create_scheme_intelligence
             self.scheme_intel = create_scheme_intelligence(
-                embedder_provider=self._shared_embedder, qwen_client=self.qwen_client
+                embedder_provider=self._shared_embedder,
+                # QUERY_FALLBACK = "sorry": the layer never sees the model, so its
+                # complex-scenario route answers from the KB or declines.
+                qwen_client=self.qwen_client if constants.qwen_answers_questions() else None,
             )
         except Exception as exc:
             self.logger.warning(f"Scheme intelligence layer unavailable - legacy pipeline only: {exc}")
@@ -261,7 +264,7 @@ class WorkflowController(IWorkflowController):
         # explicitly said it doesn't answer the question (see Priority 4's
         # own docstring for the reproduced case this guards against).
         rag_llm_declined = False
-        if constants.LLM_FALLBACK_ENABLED and rag_chunks:
+        if constants.qwen_answers_questions() and rag_chunks:
             rag_llm_answer, rag_llm_declined = self.qwen_client.answer_text_with_decline(
                 transcribed_text, [c.text for c in rag_chunks]
             )
@@ -299,8 +302,10 @@ class WorkflowController(IWorkflowController):
         # e-Shram chunk as fake context and qwen fabricated an answer from
         # it. Removed entirely.
         llm_answer: Optional[str] = None
-        if constants.LLM_FALLBACK_ENABLED and not rule_res and not rag_llm_answer and not kb_record:
+        if constants.qwen_answers_questions() and not rule_res and not rag_llm_answer and not kb_record:
             llm_answer = self._llm_fallback_answer(transcribed_text, entities, session_id)
+        elif not rule_res and not rag_llm_answer and not kb_record and not rag_chunks:
+            self.logger.info(f"[{session_id}] QUERY_FALLBACK={constants.QUERY_FALLBACK} - nothing found, apology spoken")
 
         # ── Step 7: Response Synthesis ──────────────────────────────────────
         response_pkg: StructuredResponsePackage = self.response_generator.generate(
@@ -312,7 +317,9 @@ class WorkflowController(IWorkflowController):
             entities=entities,
             llm_answer=llm_answer,
             rag_llm_answer=rag_llm_answer,
-            rag_llm_declined=rag_llm_declined,
+            # QUERY_FALLBACK = "sorry": never read a raw retrieved fragment aloud as a
+            # last resort (response.py Priority 4) - the apology is spoken instead.
+            rag_llm_declined=rag_llm_declined or not constants.qwen_answers_questions(),
         )
         self.logger.info(
             f"[{session_id}] RESPONSE → severity={response_pkg.severity.value}  "

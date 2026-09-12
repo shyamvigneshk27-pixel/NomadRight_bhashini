@@ -261,6 +261,30 @@ TTS_LOUDNESS_RANGE = 7
 # find nothing; never the primary answer path (see app.py's module
 # docstring).
 LLM_FALLBACK_ENABLED = True
+# What answers a QUESTION nobody's rule, KB record or retrieval could answer:
+#   "qwen"  - the vision-language model is loaded on demand (llama-server, see
+#             LLM_BACKEND) and asked, grounded in the retrieved text; if it too
+#             has nothing, the apology below is spoken.
+#   "sorry" - the model is never started for questions; the apology below is
+#             spoken at once, in the selected language (no translation step).
+# "sorry" also keeps scheme intelligence off its Qwen route for complex
+# scenarios. Ask Chatbot (the camera photo + question) still uses Qwen.
+# The environment variable NOMADRIGHT_QUERY_FALLBACK=sorry|qwen overrides this without editing.
+QUERY_FALLBACK = os.environ.get("NOMADRIGHT_QUERY_FALLBACK", "qwen").strip().lower() or "qwen"
+# The apology, spoken as written in the selected language.
+QUERY_SORRY_TEXT = {
+    "en": "I am sorry, I do not have information about that. Please ask me about a government scheme, "
+          "for example the ration card, Ayushman Bharat, e-Shram or PM-Kisan.",
+    "hi": "माफ़ कीजिए, इस बारे में मेरे पास जानकारी नहीं है। कृपया किसी सरकारी योजना के बारे में पूछिए, "
+          "जैसे राशन कार्ड, आयुष्मान भारत, ई-श्रम या पीएम-किसान।",
+    "ta": "மன்னிக்கவும், அதைப் பற்றி என்னிடம் தகவல் இல்லை. தயவுசெய்து ஒரு அரசுத் திட்டத்தைப் பற்றிக் கேளுங்கள், "
+          "உதாரணமாக ரேஷன் கார்டு, ஆயுஷ்மான் பாரத், இ-ஷ்ரம் அல்லது பிஎம்-கிசான்.",
+}
+
+
+def qwen_answers_questions() -> bool:
+    """True when questions may fall back to the language model (QUERY_FALLBACK)."""
+    return QUERY_FALLBACK == "qwen" and LLM_FALLBACK_ENABLED
 
 # Must match a model actually pulled in Ollama on this device (`ollama
 # list`) - matches master.py's --model default.

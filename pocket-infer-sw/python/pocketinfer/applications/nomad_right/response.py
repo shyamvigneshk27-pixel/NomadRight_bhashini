@@ -64,6 +64,9 @@ class StructuredResponsePackage:
     # follow-ups ("what documents do I need?") without repeating the scheme
     # name. See EntityExtractor._CONTEXT_INHERITABLE_INTENTS.
     scheme_code: Optional[str] = None
+    # True for the "I am sorry" answer (nothing found): the app speaks
+    # constants.QUERY_SORRY_TEXT in the selected language without translating.
+    is_fallback: bool = False
 
 
 class IResponseGenerator(ABC):
@@ -357,13 +360,10 @@ class ResponseGenerator(IResponseGenerator):
         self.logger.warning(
             f"No response data for intent={intent_code}. Returning fallback."
         )
-        fallback_voice = (
-            "I'm sorry, I could not find information for your query. "
-            "Please ask about the ration card, Ayushman Bharat, e-Shram, "
-            "or BOCW construction worker schemes."
-        )
+        fallback_voice = constants.QUERY_SORRY_TEXT["en"]
         return StructuredResponsePackage(
             voice_text=fallback_voice,
+            is_fallback=True,
             display_top_text=self._trunc("QUERY NOT FOUND", constants.DISPLAY_HEADER_MAX_LEN),
             display_bottom_text=self._trunc(
                 "Ask about PDS, PMJAY, e-Shram, BOCW", constants.DISPLAY_BODY_MAX_LEN

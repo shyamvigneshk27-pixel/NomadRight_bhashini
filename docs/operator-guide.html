@@ -141,6 +141,28 @@ venv/bin/python -c "from pocketinfer.applications.nomad_right.formfill.outbox im
 <tr><td>Read all answers back before sending</td><td><code>constants.py</code> · <code>FORM_REVIEW_ENABLED</code></td><td><code>True</code></td><td><code>False</code> skips the read-back. Recommended on: it is the only moment an illiterate person hears the whole form.</td></tr>
 </tbody></table></div>
 
+
+<h2>4b · Questions nobody's rule can answer: the model, or an apology</h2>
+<p>A question goes through scheme intelligence, the intent rules, the scheme database and the retrieved scheme text first. What happens when all of those come up empty is one switch, <code>QUERY_FALLBACK</code> in <code>constants.py</code>. It has two positions and nothing in between:</p>
+<div class="tbl"><table><thead><tr><th>Position</th><th>What the citizen gets</th><th>What runs</th></tr></thead><tbody>
+<tr><td><code>"qwen"</code> (as shipped)</td><td>The vision-language model is asked, grounded in the retrieved scheme text or the named scheme's record; if it has nothing either, the apology below.</td><td><code>llama-server</code> starts on the first such question (about 20 s the first time, then answers in 2–4 s) and unloads after 5 minutes idle. Memory: about 2.4 GB while loaded, which on this device means some swap.</td></tr>
+<tr><td><code>"sorry"</code></td><td>The apology, at once, in the selected language: <em>“I am sorry, I do not have information about that. Please ask me about a government scheme …”</em></td><td>No model is ever started for questions. Scheme intelligence keeps its rule-based routes but not its model-backed complex-scenario route, and no raw retrieved fragment is read aloud as a last resort either. Ask Chatbot (camera photo + question) still uses the model.</td></tr>
+</tbody></table></div>
+<h3>Make the model load on fallback (the shipped position)</h3>
+<ol class="steps">
+<li><div><p>In <code>python/pocketinfer/applications/nomad_right/constants.py</code> set <code>QUERY_FALLBACK = "qwen"</code> and keep <code>LLM_FALLBACK_ENABLED = True</code> (both must be on).</p></div></li>
+<li><div><p>Keep <code>LLM_BACKEND = "llama-server"</code> so the model is loaded on demand; with <code>"ollama"</code> the Ollama service must be running.</p></div></li>
+<li><div><p>Restart the kiosk. Proof in the terminal on the first unanswered welfare question: a <code>[QWEN] … LLM_FALLBACK</code> or <code>RAG-grounded generation</code> line, and <code>llama_server.log</code> grows under <code>/tmp/nomad_right_logs/</code>.</p></div></li>
+</ol>
+<h3>Remove the model from questions completely</h3>
+<ol class="steps">
+<li><div><p>In the same file set <code>QUERY_FALLBACK = "sorry"</code>. Nothing else needs to change; <code>LLM_FALLBACK_ENABLED</code> is ignored in this position.</p></div></li>
+<li><div><p>Optionally reword the apology in <code>QUERY_SORRY_TEXT</code> right below it. It has an English, a Hindi and a Tamil version and is spoken as written, without the translation step, so keep all three in step.</p></div></li>
+<li><div><p>Restart the kiosk. Proof in the terminal: <code>QUERY_FALLBACK=sorry - nothing found, apology spoken</code> and <code>APOLOGY ta (predefined …)</code> on an unanswered question, and no <code>llama-server</code> process appears (<code>pgrep -a llama-server</code> stays empty).</p></div></li>
+</ol>
+<p><strong>Try it without editing:</strong> the environment variable wins for one run, so <code>NOMADRIGHT_QUERY_FALLBACK=sorry pocketinfer-retro</code> starts the kiosk in apology mode and the next plain <code>pocketinfer-retro</code> is back on the file's setting.</p>
+<p>Measured on 13 September 2026 with the model stubbed: over twelve varied questions, only one (“my employer has not paid my wages”) reached the model in the <code>"qwen"</code> position; the scheme questions were answered identically in both positions, and the off-topic ones got the apology in both. Live in <code>"sorry"</code> mode the apology arrived 0.6 s after a typed question, in Tamil after selecting Tamil and in Hindi after selecting Hindi, with no model process.</p>
+
 <h2>5 · Every other switch</h2>
 <p>All of these are plain Python constants. Edit the file, save, and restart the kiosk (Ctrl-C, then <code>pocketinfer-retro</code>). Nothing else needs rebuilding.</p>
 <h3>Form flow · <code>python/pocketinfer/applications/nomad_right/constants.py</code></h3>
@@ -178,7 +200,9 @@ venv/bin/python -c "from pocketinfer.applications.nomad_right.formfill.outbox im
 <tr><td><code>LLAMA_SERVER_IMAGE_MIN_TOKENS</code>, <code>_MAX_TOKENS</code></td><td class="n">256 · 512</td><td>How much of a photo the vision model sees. More tokens: more detail, slower, more memory.</td></tr>
 <tr><td><code>LLAMA_SERVER_KV_TYPE</code></td><td><code>"q8_0"</code></td><td>Cache precision; <code>"f16"</code> uses more memory for no visible gain.</td></tr>
 <tr><td><code>LLM_KEEP_ALIVE</code></td><td><code>"5m"</code></td><td>Same idea for the Ollama backend.</td></tr>
-<tr><td><code>LLM_FALLBACK_ENABLED</code></td><td><code>True</code></td><td>Let the vision model answer general questions the scheme database cannot. <code>False</code> keeps every answer on the database.</td></tr>
+<tr><td><code>QUERY_FALLBACK</code></td><td><code>"qwen"</code></td><td>Section 4b: <code>"qwen"</code> asks the model when nothing else answers, <code>"sorry"</code> speaks the apology instead and never starts the model for questions. Environment override <code>NOMADRIGHT_QUERY_FALLBACK</code>.</td></tr>
+<tr><td><code>QUERY_SORRY_TEXT</code></td><td>en · hi · ta</td><td>The apology, spoken as written in the selected language.</td></tr>
+<tr><td><code>LLM_FALLBACK_ENABLED</code></td><td><code>True</code></td><td>Older switch for the same model fallback; only matters in the <code>"qwen"</code> position, where it must stay <code>True</code>.</td></tr>
 <tr><td><code>LLM_REQUEST_TIMEOUT_S</code></td><td class="n">90</td><td>Longest wait for a chatbot answer.</td></tr>
 </tbody></table></div>
 

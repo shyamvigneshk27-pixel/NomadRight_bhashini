@@ -1193,8 +1193,14 @@ class NomadRightApplication(BaseApplication):
                 # ── 5. NMT: English answer -> worker's own language ─────────
                 self.board.statusbar("[TRANSLATING]")
                 stage_start = time.time()
-                answer_native = self.bridge.from_pipeline_language(response_pkg.voice_text, lang)
-                self._log(f"NMT EN->{lang}  {time.time() - stage_start:.1f}s")
+                sorry_native = constants.QUERY_SORRY_TEXT.get(lang) if getattr(response_pkg, "is_fallback", False) else None
+                if sorry_native:
+                    # the apology is predefined in every kiosk language - no translation
+                    answer_native = sorry_native
+                    self._log(f"APOLOGY   {lang} (predefined, QUERY_FALLBACK={constants.QUERY_FALLBACK})")
+                else:
+                    answer_native = self.bridge.from_pipeline_language(response_pkg.voice_text, lang)
+                    self._log(f"NMT EN->{lang}  {time.time() - stage_start:.1f}s")
                 self._latency(f"nmt_en_{lang}", stage_start)
                 self.logger.info(f"[TRANSLATION_OUTPUT] {lang}: '{answer_native}'")
                 self._set_answer(answer_native, response_pkg.voice_text, response_pkg.display_top_text)
