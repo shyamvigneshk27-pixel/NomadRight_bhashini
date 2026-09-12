@@ -413,6 +413,10 @@ class Board:
         LCD keeps showing update_screen()'s bottom line). No-op by default."""
         return True
 
+    def set_form_state(self, form) -> None:
+        """Assisted form-filling panel state for the screen (the HDMI board broadcasts it)."""
+        return None
+
     def set_asr_languages(self, codes) -> bool:
         """Languages the device can recognise speech in (HDMI UI only)."""
         return True

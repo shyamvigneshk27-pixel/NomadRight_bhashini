@@ -42,6 +42,7 @@ from pocketinfer.applications.nomad_right.response import StructuredResponsePack
 from pocketinfer.applications.nomad_right.bhashini_bridge import BhashiniBridge
 from pocketinfer.applications.nomad_right.intent import IntentType
 from pocketinfer.applications.nomad_right.scheme_intel.metrics import LATENCY
+from pocketinfer.applications.nomad_right.formfill.flow import FormFlow, FlowIO, HOME as FORM_HOME, TIMEOUT as FORM_TIMEOUT
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +56,9 @@ logger = logging.getLogger(__name__)
         "asr": {},
         "nmt": {},
         "tts": {},
-        "ollama": {"model_name": constants.LLM_FALLBACK_MODEL},
+        # Only when Ollama serves Qwen: with the on-demand llama-server backend
+        # (constants.LLM_BACKEND) master.py must neither start nor pre-warm Ollama.
+        **({"ollama": {"model_name": constants.LLM_FALLBACK_MODEL}} if constants.LLM_BACKEND == "ollama" else {}),
     },
     "default_settings": {
         "input_language": constants.DEFAULT_SOURCE_LANGUAGE,
@@ -136,6 +139,15 @@ class NomadRightApplication(BaseApplication):
         # skipping the mic/ASR stage entirely.
         self._text_query_pending: Optional[str] = None
         self._text_query_event = threading.Event()
+        # Assisted form filling (formfill/): the Camera button captures the form and
+        # hands it to run() through this event; the flow itself runs on the turn
+        # thread so hold-to-talk, Home and the language setting behave as in a
+        # normal turn. "Ask Chatbot" keeps the previous photo+question flow.
+        self._form_image: Optional[Any] = None
+        self._form_event = threading.Event()
+        self._form_cmd: Optional[str] = None          # on-screen Repeat/Change/Skip/Cancel while a form runs
+        self._form_catalog = None
+        self.form_outbox = None
 
         # ── Mode / navigation state (Home <-> Voice Translation <-> ────────
         # Document Scanner) - see module docstring's "UI modes" section.
@@ -344,6 +356,8 @@ class NomadRightApplication(BaseApplication):
             self.logger.debug("[NomadRight] ASR language list push skipped", exc_info=True)
         self._startup_selfcheck()
         self._prewarm_fastpath()
+        if constants.FORM_FILLING_ENABLED:
+            self._start_outbox()
 
         # Pre-warm the camera (device open + first-frame negotiation) at
         # startup rather than leaving it lazy until the worker's first
@@ -388,6 +402,7 @@ class NomadRightApplication(BaseApplication):
                 if self.settings.get("input_language") != code:
                     # A new language on the start page is a new person.
                     self._reset_conversation("language change")
+                    self._home_requested.set()            # also ends a form in progress (answers wiped)
                 self.settings["input_language"] = code
                 self.logger.info(f"[NomadRight] Worker language set to {code}")
             elif code:
@@ -412,6 +427,10 @@ class NomadRightApplication(BaseApplication):
                 self.logger.info(f"[NomadRight] Voice bridge language set to {code}")
         elif msg == "Camera":
             self._on_camera_pressed()
+        elif msg == "Chatbot":
+            self._on_chatbot_pressed()
+        elif msg.startswith("FormCmd "):
+            self._form_cmd = msg[8:].strip().lower()
         elif msg == "Home":
             self._on_home_pressed()
         elif msg.startswith("DocText "):
@@ -442,6 +461,44 @@ class NomadRightApplication(BaseApplication):
             self.logger.debug(f"[NomadRight] Qwen pre-warm skipped: {exc}")
 
     def _on_camera_pressed(self) -> None:
+        """
+        Camera button = assisted form filling (constants.FORM_FILLING_ENABLED):
+        capture the form the person is holding up and let run() drive the flow
+        (formfill/flow.py). Falls back to the chatbot flow when the feature is
+        off. Runs on the UI callback thread.
+        """
+        if not constants.FORM_FILLING_ENABLED:
+            return self._on_chatbot_pressed()
+        lang = self.settings.get("input_language", constants.DEFAULT_SOURCE_LANGUAGE)
+        if lang not in constants.FORM_LANGUAGES:
+            cat = self._catalog()
+            msg = cat.prompt("need_language", lang) if cat else "Please choose Hindi or Tamil to fill a form by voice."
+            self.board.update_screen(mode="FORM FILLING", top="Choose Hindi or Tamil", bottom=msg, status="[FORM] Language not supported")
+            self._log("FORM: language not supported")
+            return
+        self._stop_audio()
+        self._camera_busy.set()
+        try:
+            self.board.update_screen(mode="FORM FILLING", top="Capturing...", bottom="Hold the form flat and steady", status="[CAPTURING]")
+            self._log("CAMERA pressed - form capture")
+            try:
+                frame = self.board.camera_frame() if hasattr(self.board, "camera_frame") else None
+            except Exception as exc:
+                self.logger.error(f"[NomadRight] Camera capture failed: {exc}")
+                frame = None
+            if frame is None:
+                self.board.update_screen(top="CAMERA ERROR", bottom="No frame captured. Camera=retry, Home=cancel", status="[ERROR] Camera unavailable")
+                self._mode = "HOME"
+                return
+            with self._image_lock:
+                self._form_image = frame
+            self._form_event.set()
+            self._mode = "FORM FILLING"
+            self.board.update_screen(top="FORM CAPTURED", bottom="Reading the form...", status="[FORM] Reading")
+        finally:
+            self._camera_busy.clear()
+
+    def _on_chatbot_pressed(self) -> None:
         """
         Touchscreen Camera button handler: captures a form photo via the
         board's existing camera_frame_jpg() (boards/base.py - USB webcam,
@@ -598,6 +655,150 @@ class NomadRightApplication(BaseApplication):
         else:
             self.logger.info("[NomadRight] Home pressed - already at Home.")
 
+    # ── Assisted form filling ────────────────────────────────────────────────
+
+    def _catalog(self):
+        if self._form_catalog is None:
+            try:
+                from pocketinfer.applications.nomad_right.formfill.catalog import FormCatalog
+                self._form_catalog = FormCatalog()
+            except Exception as exc:
+                self.logger.error(f"[NomadRight] form catalogue unavailable: {exc}")
+        return self._form_catalog
+
+    def _start_outbox(self) -> None:
+        """Sealed forms waiting for the office PC: retried in the background; the
+        officer's screen gets the pending/failed counts with every attempt."""
+        try:
+            from pocketinfer.applications.nomad_right.formfill.outbox import PairingConfig
+            cfg = PairingConfig()
+            self.form_outbox = cfg.outbox()
+            self._log("RECEIVER  paired" if cfg.ready else "RECEIVER  not paired (forms stay sealed locally)")
+        except Exception as exc:
+            self.logger.error(f"[NomadRight] outbox unavailable: {exc}")
+            return
+
+        def _flusher() -> None:
+            while self.running:
+                time.sleep(constants.FORM_OUTBOX_FLUSH_INTERVAL_S)
+                try:
+                    if self.form_outbox.entries():
+                        r = self.form_outbox.flush()
+                        if r.get("sent") or r.get("expired"):
+                            self._log(f"OUTBOX    sent {r['sent']} expired {r['expired']}")
+                    if self.form_outbox.transport is not None:
+                        self.form_outbox.transport.send_status(self.form_outbox.status())
+                except Exception:
+                    self.logger.debug("[NomadRight] outbox flush failed", exc_info=True)
+        threading.Thread(target=_flusher, name="form-outbox", daemon=True).start()
+
+    def _form_prior_scheme(self) -> Optional[str]:
+        """The scheme the conversation settled on (a prior for identification, never a decision)."""
+        code = self.last_scheme_code
+        if not code:
+            return None
+        if code.startswith("SCH_"):
+            return code
+        si = getattr(self.workflow, "scheme_intel", None)
+        try:
+            return si.repo.sid_for_legacy(code) if si is not None else None
+        except Exception:
+            return None
+
+    def _form_listen(self, lang: str, timeout: float) -> str:
+        """Hold-to-talk answer for the form flow: on-screen command buttons count as
+        spoken command words; Home ends the session."""
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            if self._home_requested.is_set():
+                return FORM_HOME
+            if self._form_cmd:
+                cmd, self._form_cmd = self._form_cmd, None
+                cat = self._catalog()
+                words = (cat.words.get(cmd, {}).get(lang) if cat else None) or [cmd]
+                self._log(f"FORM cmd {cmd}")
+                return words[0]
+            self.board.wait_for_trigger_button_down(timeout=0.2)
+            if self.board.trigger_button:
+                self.board.button_led(True)
+                self.board.statusbar("[LISTENING]")
+                self.board.audio.start(max_seconds=constants.MAX_AUDIO_RECORD_SECONDS)
+                self.board.wait_for_trigger_button_up()
+                self.board.button_led(False)
+                self.board.audio.stop()
+                self.board.statusbar("[PROCESSING] Recognizing speech")
+                t0 = time.time()
+                text = self.bridge.listen(self.board.audio.to_audio_data().get_wav_data(), lang)
+                self._latency(f"form_asr_{lang}", t0)
+                self._log(f"FORM ASR {len(text)} chars {time.time() - t0:.1f}s")
+                return text
+        return FORM_TIMEOUT
+
+    def _form_capture(self, timeout: float):
+        """The person shows a document and presses the button: one frame, cropped."""
+        deadline = time.time() + timeout
+        while time.time() < deadline:
+            if self._home_requested.is_set():
+                return None
+            if self._form_cmd:
+                self._form_cmd = None          # a command while waiting for a document is ignored
+            self.board.wait_for_trigger_button_down(timeout=0.2)
+            if self.board.trigger_button:
+                self.board.wait_for_trigger_button_up()
+                try:
+                    frame = self.board.camera_frame()
+                    return document_crop.auto_crop_document(frame) if frame is not None else None
+                except Exception as exc:
+                    self.logger.error(f"[NomadRight] document capture failed: {exc}")
+                    return None
+        return None
+
+    def _form_speak(self, lang: str, text: str) -> bool:
+        if self._home_requested.is_set():
+            return False
+        t0 = time.time()
+        wav = self.bridge.speak(text, lang)
+        self._latency(f"form_tts_{lang}", t0)
+        return self._play(wav)
+
+    def _run_form_flow(self, lang: str) -> None:
+        with self._image_lock:
+            image, self._form_image = self._form_image, None
+        self._form_event.clear()
+        self._form_cmd = None
+        cat = self._catalog()
+        if image is None or cat is None:
+            self.board.update_screen(mode="HOME", status="[READY]")
+            return
+        self._mode = "FORM FILLING"
+        self._set_answer(None)
+        io = FlowIO(speak=lambda text: self._form_speak(lang, text),
+                    listen=lambda timeout: self._form_listen(lang, timeout),
+                    capture=self._form_capture,
+                    ui=self.board.set_form_state,
+                    status=self.board.statusbar)
+        flow = FormFlow(cat, io, lang, outbox=self.form_outbox)
+        t0 = time.time()
+        self._log(f"FORM flow start ({lang})")
+        try:
+            result = flow.run(image, prior_scheme_id=self._form_prior_scheme())
+        except Exception as exc:
+            self.logger.error(f"[NomadRight] form flow failed: {exc}", exc_info=True)
+            result = None
+        finally:
+            del image
+            try:
+                self.board.set_form_state(None)
+            except Exception:
+                pass
+        if result is not None:
+            self._latency("form_total", t0)
+            self._log(f"FORM {result.outcome} {result.form_id or '-'} {time.time() - t0:.0f}s")
+            self.logger.info(f"[FORM] outcome={result.outcome} form={result.form_id} timings={result.timings}")
+        self._home_requested.clear()
+        self._mode = "HOME"
+        self.board.update_screen(mode="HOME", status="[READY]", top="NomadRight", bottom=self.HOME_HINT)
+
     def _wait_for_next_turn(self) -> str:
         """
         Blocks until either the physical trigger button is pressed or a
@@ -614,6 +815,8 @@ class NomadRightApplication(BaseApplication):
         polling race-free (see its own docstring).
         """
         while self.running:
+            if self._form_event.is_set():
+                return "form"
             if self._text_query_event.is_set():
                 return "text"
             self.board.wait_for_trigger_button_down(timeout=0.2)
@@ -789,6 +992,9 @@ class NomadRightApplication(BaseApplication):
             # "PROCESSING" for however long the abandoned ASR/NMT/RAG/Qwen
             # call took to finish on its own, looking exactly like Cancel
             # did nothing.
+            if turn_kind == "form":
+                self._run_form_flow(lang)
+                continue
             if not scanner_pending:
                 self._mode = "VOICE TRANSLATION"
 

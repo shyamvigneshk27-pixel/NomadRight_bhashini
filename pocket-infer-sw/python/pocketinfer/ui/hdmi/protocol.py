@@ -106,6 +106,16 @@ CMD_CAMERA_PREVIEW = "camera_preview"
 # button and speaking it (see app.py's pending_form_image flow).
 CMD_ASK_DOCUMENT_TEXT = "ask_document_text"
 
+# Assisted form filling (the camera's primary use, see applications/nomad_right/formfill):
+#   client -> server {type: "ask_chatbot"}              the corner button: the previous photo+question
+#                                                        flow with the vision model (Qwen) instead
+#   client -> server {type: "form_command", cmd}         on-screen Repeat / Change / Skip / Cancel,
+#                                                        the same words the person could say
+#   server -> client state patch {"form": {...}}          panel state: active, title, state, field_index,
+#                                                        field_count, question, pending_value, review, ...
+CMD_ASK_CHATBOT = "ask_chatbot"
+CMD_FORM_COMMAND = "form_command"
+
 # ---- /ws/terminal ----------------------------------------------------------
 # Framed JSON (not raw PTY bytes) so the PIN handshake and resize events
 # can share the one socket with the actual shell I/O.

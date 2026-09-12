@@ -150,6 +150,10 @@ class PocketInferHDMIBoard(PocketInferDevboard):
         self.bridge.broadcast_state_patch({"answer": answer})
         return True
 
+    def set_form_state(self, form) -> None:
+        self.state.set_form(form)
+        self.bridge.broadcast_state_patch({"form": dict(form) if form else None})
+
     def set_asr_languages(self, codes) -> bool:
         self.state.set_asr_languages(codes)
         self.bridge.broadcast_state_patch({"asr_languages": list(codes)})
@@ -265,9 +269,7 @@ class PocketInferHDMIBoard(PocketInferDevboard):
         _check("bhashini", "BHASHINI Models", "AI Engine", lambda: (
             requests.get("http://localhost:11400/health", timeout=1.5).status_code == 200,
             "localhost:11400/health"))
-        _check("ollama", "Ollama / Qwen-VL", "AI Engine", lambda: (
-            requests.get("http://localhost:11434/api/tags", timeout=1.5).status_code == 200,
-            "localhost:11434"))
+        _check("ollama", "Qwen-VL (llama-server / Ollama)", "AI Engine", self._check_qwen_serving)
         _check("mic", "Microphone", "Audio", lambda: (
             self.alsa_capture_card is not None,
             f"card {self.alsa_capture_card}" if self.alsa_capture_card is not None else "not found"))
@@ -281,6 +283,25 @@ class PocketInferHDMIBoard(PocketInferDevboard):
         self.bridge.broadcast_diagnostics_result(results)
         self.bridge.broadcast_system_status(self.state.system_status)
         return results
+
+    @staticmethod
+    def _check_qwen_serving():
+        """Qwen is served either by the kiosk's own on-demand llama-server (up only
+        while the camera is in use - so 'not running' is normal) or by Ollama."""
+        import os
+        try:
+            if requests.get("http://127.0.0.1:11435/health", timeout=1.0).status_code == 200:
+                return True, "llama-server running (port 11435)"
+        except Exception:
+            pass
+        try:
+            if requests.get("http://localhost:11434/api/tags", timeout=1.5).status_code == 200:
+                return True, "Ollama on localhost:11434"
+        except Exception:
+            pass
+        if os.path.exists("/usr/local/lib/ollama/llama-server"):
+            return True, "llama-server available (starts on demand)"
+        return False, "no Qwen serving found"
 
     # ---- Document Scanner live camera preview -----------------------------
 
@@ -352,6 +373,8 @@ class PocketInferHDMIBoard(PocketInferDevboard):
                      lambda msg: threading.Thread(target=self.run_diagnostics, daemon=True).start())
         b.on_command(protocol.CMD_CAMERA_PREVIEW, lambda msg: self._set_camera_preview(bool(msg.get("enabled"))))
         b.on_command(protocol.CMD_ASK_DOCUMENT_TEXT, lambda msg: self._dispatch_ui_cb(f"DocText {msg.get('text', '')}"))
+        b.on_command(protocol.CMD_ASK_CHATBOT, lambda msg: self._dispatch_ui_cb("Chatbot"))
+        b.on_command(protocol.CMD_FORM_COMMAND, lambda msg: self._dispatch_ui_cb(f"FormCmd {msg.get('cmd', '')}"))
         b.on_command(protocol.CMD_EXIT_APP, lambda msg: self.exit_app())
 
     # ---- Exit portal (Settings > Admin > Exit Application) ----------------

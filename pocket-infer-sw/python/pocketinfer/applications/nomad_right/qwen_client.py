@@ -128,7 +128,9 @@ class QwenClientError(RuntimeError):
 
 class QwenClient:
     """
-    Thin, lazy client for qwen2.5vl:3b via Ollama's /api/generate. Nothing
+    Thin, lazy client for Qwen3-VL - via the kiosk's own on-demand llama-server
+    (constants.LLM_BACKEND = "llama-server", see llama_server.py) or, for
+    rollback, Ollama's /api/generate ("ollama"). Nothing
     is loaded or warmed at construction time - the first real answer_text()/
     answer_vision() call is what triggers Ollama to load the model, and it
     stays resident only for constants.LLM_KEEP_ALIVE afterward.
@@ -137,6 +139,11 @@ class QwenClient:
     def __init__(self, model: str = constants.LLM_FALLBACK_MODEL):
         self.model = model
         self.logger = logging.getLogger(self.__class__.__name__)
+        self.backend = constants.LLM_BACKEND
+        self._llama = None
+        if self.backend == "llama-server":
+            from pocketinfer.applications.nomad_right.llama_server import LlamaServerManager
+            self._llama = LlamaServerManager.shared()
 
     # ── Shared request plumbing ─────────────────────────────────────────────
 
@@ -159,6 +166,15 @@ class QwenClient:
         Returns the seconds the load took (~0 when it was already resident);
         raises QwenClientError when Ollama is unreachable.
         """
+        if self._llama is not None:
+            try:
+                elapsed = self._llama.ensure_running()
+            except Exception as exc:
+                raise QwenClientError(str(exc)) from exc
+            if elapsed:
+                self.logger.info(f"qwen prewarm: llama-server up after {elapsed:.1f}s "
+                                 f"(stops after {constants.LLAMA_SERVER_IDLE_STOP_S}s idle)")
+            return elapsed
         payload = {"model": self.model, "prompt": "", "stream": False, "keep_alive": constants.LLM_KEEP_ALIVE,
                    "options": {"num_gpu": constants.LLM_NUM_GPU, "num_thread": constants.LLM_NUM_THREAD,
                                "num_ctx": constants.LLM_NUM_CTX}}
@@ -181,6 +197,8 @@ class QwenClient:
     def _call(
         self, prompt: str, images: Optional[List[bytes]], num_predict: int
     ) -> QwenAnswer:
+        if self._llama is not None:
+            return self._call_llama(prompt, images, num_predict)
         payload = {
             "model": self.model,
             "prompt": prompt,
@@ -223,6 +241,29 @@ class QwenClient:
             f"qwen answered in {elapsed:.1f}s (found={found}, "
             f"eval_count={data.get('eval_count')}, "
             f"load_ms={data.get('load_duration', 0) / 1e6:.0f})"
+        )
+        return QwenAnswer(text=text, elapsed_s=elapsed, found=found)
+
+    def _call_llama(self, prompt: str, images: Optional[List[bytes]], num_predict: int) -> QwenAnswer:
+        """The same prompt through the on-demand llama-server (OpenAI-style chat
+        endpoint, image as a data URL). Same sentinel contract as the Ollama path."""
+        images_b64 = [base64.b64encode(bytes(img) if isinstance(img, (bytearray, memoryview)) else img).decode("ascii")
+                      for img in (images or [])]
+        start = time.monotonic()
+        try:
+            data = self._llama.chat(prompt, images_b64, num_predict, constants.LLM_TEMPERATURE,
+                                    constants.LLM_REQUEST_TIMEOUT_S)
+        except Exception as exc:
+            elapsed = time.monotonic() - start
+            self.logger.error(f"qwen request failed after {elapsed:.1f}s: {exc}")
+            raise QwenClientError(str(exc)) from exc
+        elapsed = time.monotonic() - start
+        text = ((data.get("choices") or [{}])[0].get("message", {}).get("content") or "").strip()
+        found = bool(text) and constants.LLM_SENTINEL_NOT_FOUND not in text
+        tm = data.get("timings") or {}
+        self.logger.info(
+            f"qwen answered in {elapsed:.1f}s (found={found}, prompt_tokens={tm.get('prompt_n')}, "
+            f"gen_tokens={tm.get('predicted_n')}, prompt_ms={tm.get('prompt_ms', 0):.0f}, gen_ms={tm.get('predicted_ms', 0):.0f})"
         )
         return QwenAnswer(text=text, elapsed_s=elapsed, found=found)
 

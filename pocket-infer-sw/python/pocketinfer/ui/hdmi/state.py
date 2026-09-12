@@ -37,6 +37,8 @@ class UIState:
     # English text and the short scheme label - the React UI shows `native`
     # so a Hindi/Tamil screen never falls back to the English LCD line.
     answer: Optional[dict] = None
+    # Assisted form-filling panel state (see ui/hdmi/protocol.py) - None when no form is in progress.
+    form: Optional[dict] = None
     # Codes the device can actually recognise speech in (constants.py's
     # ASR_SUPPORTED_LANGUAGES, pushed by app.py) - the UI enables its
     # language choices from this instead of a hard-coded copy.
@@ -59,6 +61,7 @@ class UIState:
                 "system_status": dict(self.system_status),
                 "log_lines": list(self.log_lines),
                 "answer": dict(self.answer) if self.answer else None,
+                "form": dict(self.form) if self.form else None,
                 "asr_languages": list(self.asr_languages),
             }
 
@@ -110,6 +113,10 @@ class UIState:
     def set_system_status(self, status: Dict[str, str]) -> None:
         with self._lock:
             self.system_status = dict(status)
+
+    def set_form(self, form: Optional[dict]) -> None:
+        with self._lock:
+            self.form = dict(form) if form else None
 
     def set_answer(self, answer: Optional[dict]) -> None:
         with self._lock:

@@ -260,6 +260,34 @@ LLM_FALLBACK_ENABLED = True
 # list`) - matches master.py's --model default.
 LLM_FALLBACK_MODEL = "hf.co/Qwen/Qwen3-VL-2B-Instruct-GGUF:Q4_K_M"
 
+# ── Serving backend ────────────────────────────────────────────────────────
+# "llama-server": the llama.cpp server Ollama bundles, started by the kiosk on
+# demand (llama_server.py). Measured 2026-09-12 with the same model files: a fresh
+# photo answered in 2.6 s instead of 5.6 s, text in 1.7 s instead of 2.9 s, and
+# ~1.2 GB less runner memory with 512-token images and a q8 KV cache. "ollama":
+# the previous path through Ollama's /api/generate, kept for rollback.
+LLM_BACKEND = "llama-server"
+LLAMA_SERVER_BIN = "/usr/local/lib/ollama/llama-server"
+LLAMA_SERVER_LIB = "/usr/local/lib/ollama:/usr/local/lib/ollama/cuda_jetpack6"
+# ggml loads its CUDA backend only through this exact file path (a directory or
+# LD_LIBRARY_PATH alone leaves the server on the CPU at 10 tok/s - measured).
+LLAMA_SERVER_BACKEND = "/usr/local/lib/ollama/cuda_jetpack6/libggml-cuda.so"
+# Content-addressed blobs of LLM_FALLBACK_MODEL in Ollama's store; llama_server.py
+# re-resolves them from the manifest at start, these are the fallback.
+LLAMA_SERVER_GGUF = "/usr/share/ollama/.ollama/models/blobs/sha256-089d75c52f4b7ffc56ba998ffc50aae89fcafc755f9e7208aacca281dca6c2ae"
+LLAMA_SERVER_MMPROJ = "/usr/share/ollama/.ollama/models/blobs/sha256-f9a68fabba69c3b81e153367b2c7521030b0fa8bb0de400c9599c8e6725f9c82"
+LLAMA_SERVER_PORT = 11435
+# Vision token budget per photo: Ollama forced ~1,215; 512 measured as accurate on
+# the document images with the same answers, at a fifth of the prompt time.
+LLAMA_SERVER_IMAGE_MIN_TOKENS = 256
+LLAMA_SERVER_IMAGE_MAX_TOKENS = 512
+LLAMA_SERVER_KV_TYPE = "q8_0"
+# The 5-minute residency (LLM_KEEP_ALIVE) for this backend: the server is stopped
+# this many seconds after its last request and started again on the next use.
+LLAMA_SERVER_IDLE_STOP_S = 300
+LLAMA_SERVER_START_TIMEOUT_S = 240
+LLAMA_SERVER_LOG = os.path.join(DEFAULT_LOG_DIR, "llama_server.log")
+
 # How long Ollama keeps this model resident after the last call before
 # unloading it. Deliberately NOT -1 (permanently resident, which
 # pocketinfer.models.ollama.Ollama uses) - this module's own docstring
@@ -333,6 +361,39 @@ LLM_SENTINEL_NOT_FOUND = "[[NO_ANSWER_FOUND]]"
 # question, short enough that a much later unrelated question can't
 # accidentally attach to a stale photo.
 LLM_VISION_PENDING_TTL_S = 90.0
+
+# ============================================================================
+# Assisted form filling (formfill/): the camera's primary use
+# ============================================================================
+# Master switch: False restores the previous behaviour (Camera = photo + a question
+# for the vision model). With True the Camera button starts the deterministic
+# form-filling flow and the vision model sits behind "Ask Chatbot".
+FORM_FILLING_ENABLED = True
+# Read every answer back before sending (the citizen can still change one).
+# Set False to send as soon as the last field is answered.
+FORM_REVIEW_ENABLED = True
+# Seconds to wait for the button after a question before the session is
+# cancelled and its answers wiped (a walk-away). The scheme-intelligence idle
+# expiry (5 min) covers the conversation; a half-filled form waits at most this.
+FORM_ANSWER_TIMEOUT_S = 90.0
+# OCR language for documents shown for a value (passbook, Aadhaar card): the
+# numbers are printed in Latin digits, English is the fastest tesseract pass.
+FORM_DOC_OCR_LANG = "en"
+# Languages the form flow can run in by voice (needs ASR + predefined questions).
+FORM_LANGUAGES = ("hi", "ta")
+# Where sealed, not-yet-acknowledged forms wait (0700), and the pairing config
+# written by tools/pair_receiver.py (keys and certificate paths - never in code).
+FORM_OUTBOX_DIR = os.path.expanduser("~/.local/state/nomadright/outbox")
+FORM_RECEIVER_CONFIG = os.path.expanduser("~/.config/nomadright/receiver.json")
+# Retry policy for a form the office PC could not be reached for: 10 s, 20 s, 40 s ...
+# capped at 5 min between attempts; after 24 h the sealed copy is moved to
+# outbox/failed and shown as failed on the officer's screen. Change
+# FORM_OUTBOX_MAX_AGE_S to keep unsent forms longer or shorter.
+FORM_OUTBOX_RETRY_BASE_S = 10.0
+FORM_OUTBOX_RETRY_MAX_S = 300.0
+FORM_OUTBOX_MAX_AGE_S = 24 * 3600.0
+FORM_OUTBOX_FLUSH_INTERVAL_S = 30.0
+FORM_SEND_TIMEOUT_S = 15.0
 
 
 # ============================================================================
