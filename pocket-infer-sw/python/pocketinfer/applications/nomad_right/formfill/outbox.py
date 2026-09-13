@@ -37,7 +37,8 @@ class Outbox:
         os.makedirs(self.failed_dir, mode=0o700, exist_ok=True)
         self.transport = transport
         self.sealer = sealer
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
+        self.wake = threading.Event()          # set when something new is queued: the background sender goes at once
         self.last_sent_at: Optional[float] = None
         self.last_error: Optional[str] = None
         self.last_flush_at: Optional[float] = None
@@ -62,17 +63,38 @@ class Outbox:
         return path
 
     # ── submit / retry ─────────────────────────────────────────────────────
+    def _prepare(self, payload: Dict):
+        """Seal and store one payload. A numbered picture of a session (seq > 0) replaces
+        every older unsent picture of the same session: the newest carries everything."""
+        sid = payload.get("session_id") or hashlib.sha256(os.urandom(16)).hexdigest()[:12]
+        seq = int(payload.get("seq") or 0)
+        pid = f"{sid}-{seq:03d}" if seq else sid
+        blob = self.seal(payload)
+        meta = {"payload_id": pid, "session_id": sid, "seq": seq, "status": payload.get("status", "complete"),
+                "form_id": payload.get("form_id"), "created_at": _now(), "attempts": 0, "next_try": 0.0,
+                "sha256": hashlib.sha256(blob).hexdigest(), "bytes": len(blob)}
+        with self.lock:
+            if seq:
+                for old in self.entries():
+                    if old.get("session_id") == sid and int(old.get("seq") or 0) < seq:
+                        self._delete(old["path"])
+            path = self._write(blob, meta)
+        return path, blob, meta
+
     def submit(self, payload: Dict) -> str:
         """Seal, store, try once. Returns 'sent' or 'pending'. The caller must drop
         its own reference to the payload afterwards."""
-        pid = payload.get("session_id") or hashlib.sha256(os.urandom(16)).hexdigest()[:12]
-        blob = self.seal(payload)
-        meta = {"payload_id": pid, "form_id": payload.get("form_id"), "created_at": _now(), "attempts": 0, "next_try": 0.0,
-                "sha256": hashlib.sha256(blob).hexdigest(), "bytes": len(blob)}
-        with self.lock:
-            path = self._write(blob, meta)
-        logger.info(f"[OUTBOX] sealed {pid} form={meta['form_id']} {len(blob)} bytes")
+        path, blob, meta = self._prepare(payload)
+        logger.info(f"[OUTBOX] sealed {meta['payload_id']} form={meta['form_id']} {meta['status']} {len(blob)} bytes")
         return "sent" if self._try_send(path, blob, meta) else "pending"
+
+    def queue(self, payload: Dict) -> str:
+        """Seal and store now, send in the background: the session never waits for the
+        network. The kiosk's sender thread wakes up at once (see app._flusher)."""
+        path, blob, meta = self._prepare(payload)
+        logger.info(f"[OUTBOX] queued {meta['payload_id']} form={meta['form_id']} {meta['status']} {len(blob)} bytes")
+        self.wake.set()
+        return "queued"
 
     def _try_send(self, path: str, blob: bytes, meta: Dict) -> bool:
         if self.transport is None:

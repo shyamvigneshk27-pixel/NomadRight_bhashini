@@ -18,7 +18,7 @@ import logging
 import time
 import uuid
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple
+from typing import Callable, Dict, List, Optional, Tuple
 
 from pocketinfer.applications.nomad_right.formfill import validators as V
 from pocketinfer.applications.nomad_right.formfill.catalog import FormCatalog
@@ -64,6 +64,10 @@ class FormSession:
         self.pending: Optional[Tuple[FieldRef, V.Parsed]] = None   # value awaiting yes/no
         self.doc_failed = False           # document field fell back to voice
         self.last_done_pos: Optional[int] = None   # plan index of the field answered or skipped last (for 'change')
+        self.seq = 0                       # snapshot counter: every payload() carries the next number
+        self.unconfirmed = False           # the final review got no yes after MAX_ATTEMPTS tries (answers still go to the officer)
+        self.unrecognised = 0              # answers in a yes/no state that were neither yes, no nor a command
+        self.on_snapshot: Optional[Callable[[Dict], None]] = None   # set by the flow: receives payload(status) to seal and send
         self.created = time.monotonic()
         self.last_activity = self.created
         self._rebuild_plan()
@@ -158,6 +162,7 @@ class FormSession:
         return self._ask(prefix=self._p("start"))
 
     def _ask(self, prefix: Optional[str] = None, spoken_fallback: bool = False) -> Step:
+        self.unrecognised = 0
         ref = self._current()
         if ref is None:
             return self._to_review()
@@ -221,7 +226,11 @@ class FormSession:
             if yn is False:
                 self.state = "CANCELLED"
                 return Step(self._p("cancelled"), listen=False, done=True, ui=self._ui(reason="wrong_form"))
-            return Step(self._p("confirm_form", title=self.catalog.spoken_name(self.form_id, self.lang)), ui=self._ui())
+            self.unrecognised += 1
+            if self.unrecognised >= MAX_ATTEMPTS:            # never ask the same yes/no question forever
+                self.state = "CANCELLED"
+                return Step(self._p("cancelled"), listen=False, done=True, ui=self._ui(reason="unconfirmed_form"))
+            return Step(self._p("didnt_hear") + " " + self._p("confirm_form", title=self.catalog.spoken_name(self.form_id, self.lang)), ui=self._ui())
         if self.state == "REVIEW":
             return self._handle_review(text)
         if self.state == "CHANGE_WHICH":
@@ -239,7 +248,17 @@ class FormSession:
                 self.pending = None
                 self.attempts += 1
                 return self._ask(spoken_fallback=bool(ref.spec.get("source_document")))
-            return Step(self._p("confirm_value", value=self._spell(parsed.display)), ui=self._ui(pending_value=parsed.display))
+            # neither yes nor no: say so and ask once more; after MAX_ATTEMPTS such answers the value is
+            # dropped and the question itself is asked again (that counts as an attempt, so a field
+            # that never gets a clear answer ends with the officer instead of in a loop)
+            self.unrecognised += 1
+            if self.unrecognised >= MAX_ATTEMPTS:
+                self.pending, self.unrecognised = None, 0
+                self.attempts += 1
+                if self.attempts >= MAX_ATTEMPTS:
+                    return self._retry(ref, "retry")
+                return self._ask(prefix=self._p("didnt_hear"), spoken_fallback=bool(ref.spec.get("source_document")))
+            return Step(self._p("didnt_hear") + " " + self._p("confirm_value", value=self._spell(parsed.display)), ui=self._ui(pending_value=parsed.display))
         # ASKING (or DOC_WAIT with a spoken answer)
         ref = self._current()
         if ref is None:
@@ -326,6 +345,7 @@ class FormSession:
         if not self.review_enabled:
             return self._finish()
         self.state = "REVIEW"
+        self.unrecognised = 0
         lines = [self._p("review_intro")]
         n = 0
         for ref in self.plan:
@@ -350,8 +370,16 @@ class FormSession:
             return self._finish()
         if yn is False or cmd == "change":
             self.state = "CHANGE_WHICH"
+            self.unrecognised = 0
             return Step(self._p("which_field"), ui=self._ui(review=self.review_items()))
-        return Step(self._p("review_confirm"), ui=self._ui(review=self.review_items()))
+        # neither yes nor change (the recogniser heard nothing usable): never loop forever. After
+        # MAX_ATTEMPTS the session ends as complete but "not confirmed" - the answers have been going
+        # to the officer as they were given, and the officer's screen shows the missing confirmation.
+        self.unrecognised += 1
+        if self.unrecognised >= MAX_ATTEMPTS:
+            self.unconfirmed = True
+            return self._finish()
+        return Step(self._p("didnt_hear") + " " + self._p("review_confirm"), ui=self._ui(review=self.review_items()))
 
     def _handle_change_which(self, text: str) -> Step:
         items = self.review_items()
@@ -379,13 +407,28 @@ class FormSession:
 
     def cancel(self) -> Step:
         self.state = "CANCELLED"
+        had_answers = self.snapshot("cancelled")     # what was collected so far goes to the officer, marked as stopped
         self.clear()
-        return Step(self._p("cancelled"), listen=False, done=True, ui=self._ui(reason="cancelled"))
+        return Step(self._p("cancelled_saved" if had_answers else "cancelled"), listen=False, done=True, ui=self._ui(reason="cancelled"))
+
+    def snapshot(self, status: str) -> bool:
+        """Hand everything collected so far to the flow's outbox (sealed at once). True when
+        there was something to hand over."""
+        if not (self.values or self.skipped) or self.on_snapshot is None:
+            return False
+        try:
+            self.on_snapshot(self.payload(status))
+        except Exception:
+            logger.warning("[FORM] snapshot handler failed", exc_info=True)
+        return True
 
     # ── payload / lifecycle ────────────────────────────────────────────────
-    def payload(self) -> Dict:
-        """The completed form as one structured record (still plaintext - the caller
-        seals it immediately). Group answers become lists of dicts."""
+    def payload(self, status: str = "complete") -> Dict:
+        """The form as one structured record (still plaintext - the caller seals it
+        immediately). Group answers become lists of dicts. `status` is in_progress
+        while questions are still being asked, complete / complete_unconfirmed at the
+        end, cancelled or timeout when the person left; `seq` grows with every call so
+        the receiver keeps only the newest picture of a session."""
         fields: Dict[str, object] = {}
         groups: Dict[str, Dict[int, Dict[str, object]]] = {}
         for key, val in self.values.items():
@@ -396,8 +439,12 @@ class FormSession:
                 fields[key] = val
         for g, items in groups.items():
             fields[g] = [items[i] for i in sorted(items)]
-        return {"version": 1, "session_id": self.session_id, "form_id": self.form_id, "scheme_id": self.scheme_id, "language": self.lang,
-                "completed_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "fields": fields,
+        self.seq += 1
+        done, total = self.progress()
+        now = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+        return {"version": 2, "session_id": self.session_id, "form_id": self.form_id, "scheme_id": self.scheme_id, "language": self.lang,
+                "seq": self.seq, "status": status, "updated_at": now, "completed_at": now if status.startswith("complete") else None,
+                "answered": done, "total": total, "fields": fields,
                 "skipped": list(self.skipped), "unanswered_required": list(self.unanswered_required)}
 
     def touch(self) -> None:

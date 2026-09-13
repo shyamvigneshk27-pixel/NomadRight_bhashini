@@ -218,5 +218,80 @@ class TestSession(unittest.TestCase):
         self.assertTrue(step.done); self.assertEqual(s.state, "CANCELLED")
 
 
+class TestConfirmationRobustness(unittest.TestCase):
+    """The review and value confirmations must never repeat forever, must take touch
+    answers (the on-screen Yes/No arrive as the language's first yes/no word) and must
+    accept the ways people actually say yes."""
+
+    @staticmethod
+    def drive_to_review(s):
+        """Answer or skip everything until the read-back (any form, any language)."""
+        for _ in range(400):
+            if s.state in ("REVIEW", "DONE", "CANCELLED"):
+                return
+            if s.state == "DOC_WAIT":
+                s.handle_document("nothing readable")
+            elif s.state == "CONFIRMING":
+                s.handle_answer(CAT.words["yes"][s.lang][0])
+            else:
+                s.handle_answer(CAT.words["skip"][s.lang][0])
+        raise AssertionError("did not reach the review")
+
+    def test_review_never_loops_forever(self):
+        s = FormSession(CAT, "FORM_PMSBY_CONSENT", "en"); s.start(form_confirmed=True)
+        self.drive_to_review(s)
+        self.assertEqual(s.state, "REVIEW")
+        step = s.handle_answer("you")                      # what English Whisper writes for a near-empty clip
+        self.assertEqual(s.state, "REVIEW"); self.assertIn("did not catch", step.speak)
+        step = s.handle_answer("")
+        self.assertEqual(s.state, "REVIEW")
+        step = s.handle_answer("Thank you.")
+        self.assertTrue(step.done); self.assertEqual(s.state, "DONE"); self.assertTrue(s.unconfirmed)
+        p = s.payload("complete_unconfirmed" if s.unconfirmed else "complete")
+        self.assertEqual(p["status"], "complete_unconfirmed")
+
+    def test_review_touch_yes_and_change(self):
+        for lang in ("hi", "ta", "en"):
+            s = FormSession(CAT, "FORM_PMUY_KYC", lang); s.start(form_confirmed=True)
+            self.drive_to_review(s)
+            self.assertEqual(s.state, "REVIEW", lang)
+            step = s.handle_answer(CAT.words["change"][lang][0])      # on-screen Change
+            self.assertEqual(s.state, "CHANGE_WHICH", lang)
+            s = FormSession(CAT, "FORM_PMUY_KYC", lang); s.start(form_confirmed=True)
+            self.drive_to_review(s)
+            step = s.handle_answer(CAT.words["yes"][lang][0])         # on-screen Yes
+            self.assertTrue(step.done, lang); self.assertFalse(s.unconfirmed, lang)
+
+    def test_value_confirmation_never_loops_forever(self):
+        s = FormSession(CAT, "FORM_PMSBY_CONSENT", "hi"); s.start(form_confirmed=True)
+        for a in ["रवि कुमार", "श्याम कुमार", "मकान 12", "पटना", "पटना", "बिहार", "800001", "98765 43210"]:
+            s.handle_answer(a)
+        self.assertEqual(s.state, "CONFIRMING")                       # the mobile number is read back
+        for _ in range(3):
+            step = s.handle_answer("अरे बाबा क्या पता")                 # neither yes nor no, three times
+        self.assertEqual(s.state, "ASKING"); self.assertEqual(s._current().key, "mobile"); self.assertIn("सुनाई नहीं", step.speak)
+        s.handle_answer("98765 43210"); s.handle_answer("हाँ")
+        self.assertEqual(s.values["mobile"], "9876543210")
+
+    def test_ways_of_saying_yes_and_no(self):
+        for text, lang, want in [("Yep.", "en", True), ("yes please", "en", True), ("Send it", "en", True), ("not right", "en", False), ("nah", "en", False),
+                                 ("यस", "hi", True), ("हां जी", "hi", True), ("नो", "hi", False), ("गलत है", "hi", False),
+                                 ("எஸ்", "ta", True), ("ஆமாமா", "ta", True), ("நோ", "ta", False), ("you", "en", None), ("", "hi", None)]:
+            self.assertEqual(V.parse_yesno(text, lang, CAT.words), want, (text, lang))
+
+    def test_payload_pictures_are_numbered_and_cancel_hands_over(self):
+        s = FormSession(CAT, "FORM_PMUY_KYC", "ta"); s.start(form_confirmed=True)
+        got = []
+        s.on_snapshot = got.append
+        s.handle_answer("ஆம்"); s.handle_answer("என் பெயர் லட்சுமி")
+        p1 = s.payload("in_progress"); p2 = s.payload("in_progress")
+        self.assertEqual((p1["seq"], p2["seq"]), (1, 2)); self.assertEqual(p1["status"], "in_progress"); self.assertIsNone(p1["completed_at"])
+        self.assertEqual(p1["answered"], len(p1["fields"])); self.assertGreater(p1["total"], p1["answered"])
+        step = s.handle_answer("ரத்து")                                # spoken cancel
+        self.assertTrue(step.done); self.assertEqual(s.state, "CANCELLED"); self.assertEqual(s.values, {})
+        self.assertEqual(len(got), 1); self.assertEqual(got[0]["status"], "cancelled"); self.assertEqual(got[0]["seq"], 3)
+        self.assertIn("full_name", got[0]["fields"]); self.assertIn("சேமிக்கப்பட்டுள்ளன", step.speak)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

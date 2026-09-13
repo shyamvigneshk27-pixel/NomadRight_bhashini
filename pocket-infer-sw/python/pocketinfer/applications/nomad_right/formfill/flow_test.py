@@ -61,10 +61,14 @@ class FakeIO:
 
 class FakeOutbox:
     def __init__(self):
-        self.payloads = []
+        self.payloads = []           # final submissions
+        self.snapshots = []          # pictures queued while the session ran
 
     def submit(self, payload):
         self.payloads.append(payload); return "sent"
+
+    def queue(self, payload):
+        self.snapshots.append(payload); return "queued"
 
 
 PMSBY_ANSWERS_HI = ["हाँ",                     # confirm the form
@@ -105,21 +109,66 @@ class TestFlow(unittest.TestCase):
         self.assertTrue(all(any("ऀ" <= ch <= "ॿ" for ch in s) for s in io.spoken), [s for s in io.spoken if not any("ऀ" <= ch <= "ॿ" for ch in s)][:3])
         # the session's values are gone
         self.assertEqual(flow.session.values, {})
-        print(f"\n  full session: {len(io.spoken)} prompts, identify {res.timings.get('identify')}s, doc OCR {res.timings.get('doc_ocr')}s, total {time.time() - t0:.1f}s (fake TTS/ASR)")
+        # save as you go: a picture of the session went out after every stored/skipped answer,
+        # numbered, all in progress; the final submission is the newest picture, marked complete
+        snaps = ob.snapshots
+        self.assertGreaterEqual(len(snaps), 15, len(snaps))
+        self.assertTrue(all(x["status"] == "in_progress" for x in snaps))
+        self.assertEqual([x["seq"] for x in snaps], sorted(x["seq"] for x in snaps)); self.assertEqual(len({x["seq"] for x in snaps}), len(snaps))
+        self.assertEqual(p["status"], "complete"); self.assertGreater(p["seq"], snaps[-1]["seq"])
+        self.assertEqual(snaps[-1]["fields"], p["fields"]); self.assertEqual(snaps[0]["fields"], {"full_name": "रवि कुमार"})
+        self.assertTrue(all(x["session_id"] == p["session_id"] for x in snaps))
+        self.assertEqual(flow.snapshots, len(snaps))
+        print(f"\n  full session: {len(io.spoken)} prompts, {len(snaps)} pictures sent on the way, identify {res.timings.get('identify')}s, doc OCR {res.timings.get('doc_ocr')}s, total {time.time() - t0:.1f}s (fake TTS/ASR)")
 
     def test_home_midway_cancels_and_wipes(self):
         io = FakeIO(["हाँ", "मेरा नाम रवि कुमार है", HOME])
-        flow = FormFlow(self.cat, io.io(), "hi", outbox=FakeOutbox())
+        ob = FakeOutbox()
+        flow = FormFlow(self.cat, io.io(), "hi", outbox=ob)
         res = flow.run(self.photo)
         self.assertEqual(res.outcome, "cancelled")
         self.assertEqual(flow.session.values, {})
-        self.assertIn("रद्द", io.spoken[-1])
+        # the one answer given is with the officer, first as in progress, then marked as stopped
+        self.assertEqual([x["status"] for x in ob.snapshots], ["in_progress", "cancelled"])
+        self.assertEqual(ob.snapshots[-1]["fields"], {"full_name": "रवि कुमार"}); self.assertEqual(ob.payloads, [])
+        # Home: the app speaks nothing (its speak() returns False at once); the flow's last words were the name question
+        self.assertNotIn("रद्द", io.spoken[-1]) if io.spoken[-1].startswith("अब") else None
+
+    def test_spoken_cancel_hands_over_and_says_so(self):
+        io = FakeIO(["हाँ", "मेरा नाम रवि कुमार है", "रद्द"])
+        ob = FakeOutbox()
+        flow = FormFlow(self.cat, io.io(), "hi", outbox=ob)
+        res = flow.run(self.photo)
+        self.assertEqual(res.outcome, "cancelled")
+        self.assertEqual([x["status"] for x in ob.snapshots], ["in_progress", "cancelled"])
+        self.assertIn("सुरक्षित", io.spoken[-1])                 # "the answers so far have been saved for the officer"
+
+    def test_review_without_a_clear_yes_still_reaches_the_officer(self):
+        answers = PMSBY_ANSWERS_HI[:-1] + ["अरे बाबा", "", "कुछ भी"]   # the read-back gets three answers that are neither yes nor change
+        io = FakeIO(answers, documents=[PASSBOOK, PASSBOOK, AADHAAR_CARD])
+        ob = FakeOutbox()
+        flow = FormFlow(self.cat, io.io(), "hi", outbox=ob)
+        res = flow.run(self.photo, prior_scheme_id="SCH_PMSBY")
+        self.assertEqual(res.outcome, "sent")
+        self.assertEqual(ob.payloads[0]["status"], "complete_unconfirmed")
+        self.assertEqual(ob.payloads[0]["fields"]["full_name"], "रवि कुमार")
+        self.assertTrue(any("सुनाई नहीं दिया" in t for t in io.spoken))          # "I did not catch that"
+        self.assertTrue(any("अधिकारी" in t and "सुरक्षित" in t for t in io.spoken[-2:]))
+        self.assertEqual(io.answers, [])                                          # nothing asked beyond the third try
 
     def test_walk_away_timeout(self):
         io = FakeIO(["हाँ"])            # nobody answers the first question
-        flow = FormFlow(self.cat, io.io(), "hi", outbox=FakeOutbox())
+        ob = FakeOutbox()
+        flow = FormFlow(self.cat, io.io(), "hi", outbox=ob)
         res = flow.run(self.photo)
         self.assertEqual(res.outcome, "cancelled")
+        self.assertEqual(ob.snapshots, [])                                        # nothing was collected, nothing to hand over
+        io = FakeIO(["हाँ", "मेरा नाम रवि कुमार है"])   # one answer, then silence
+        ob = FakeOutbox()
+        flow = FormFlow(self.cat, io.io(), "hi", outbox=ob)
+        res = flow.run(self.photo)
+        self.assertEqual(res.outcome, "cancelled")
+        self.assertEqual([x["status"] for x in ob.snapshots], ["in_progress", "timeout"])
 
     def test_wrong_form_then_named(self):
         # the person says no to PMSBY and names the Jeevan Jyoti form

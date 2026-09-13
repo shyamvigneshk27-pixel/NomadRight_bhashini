@@ -415,7 +415,8 @@ FORM_LANGUAGES = ("hi", "ta", "en")
 # Where sealed, not-yet-acknowledged forms wait (0700), and the pairing config
 # written by tools/pair_receiver.py (keys and certificate paths - never in code).
 FORM_OUTBOX_DIR = os.path.expanduser("~/.local/state/nomadright/outbox")
-FORM_RECEIVER_CONFIG = os.path.expanduser("~/.config/nomadright/receiver.json")
+# NOMADRIGHT_RECEIVER_CONFIG in the environment points a test kiosk at another pairing file
+FORM_RECEIVER_CONFIG = os.environ.get("NOMADRIGHT_RECEIVER_CONFIG") or os.path.expanduser("~/.config/nomadright/receiver.json")
 # Retry policy for a form the office PC could not be reached for: 10 s, 20 s, 40 s ...
 # capped at 5 min between attempts; after 24 h the sealed copy is moved to
 # outbox/failed and shown as failed on the officer's screen. Change
@@ -424,6 +425,10 @@ FORM_OUTBOX_RETRY_BASE_S = 10.0
 FORM_OUTBOX_RETRY_MAX_S = 300.0
 FORM_OUTBOX_MAX_AGE_S = 24 * 3600.0
 FORM_OUTBOX_FLUSH_INTERVAL_S = 30.0
+# Every answer is sealed and sent to the office computer the moment it is given (the officer's copy
+# grows live; a session that stops half-way still leaves what was collected, marked as stopped).
+# False: only the finished form is sent, as before.
+FORM_SEND_AS_YOU_GO = True
 FORM_SEND_TIMEOUT_S = 15.0
 
 

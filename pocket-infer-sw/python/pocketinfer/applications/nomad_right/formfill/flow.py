@@ -11,6 +11,7 @@ All device I/O comes through a small adapter (FlowIO) so the flow can be driven
 by fakes in tests. Nothing here logs an answer. Home, a language change or
 idleness cancel the session and wipe its answers.
 """
+import json
 import logging
 import time
 from dataclasses import dataclass
@@ -55,6 +56,8 @@ class FormFlow:
         self.ident = FormIdentifier(catalog)
         self.session: Optional[FormSession] = None
         self.timings: Dict[str, float] = {}
+        self.snapshots = 0                 # how many partial pictures of the session were handed to the outbox
+        self._last_fp: Optional[str] = None
 
     # ── helpers ────────────────────────────────────────────────────────────
     def _p(self, key: str, **kw) -> str:
@@ -72,6 +75,27 @@ class FormFlow:
 
     def _t(self, key: str, t0: float) -> None:
         self.timings[key] = round(time.perf_counter() - t0, 3)
+
+    # ── save as you go ─────────────────────────────────────────────────────
+    def _queue_snapshot(self, payload: Dict) -> None:
+        """Seal a picture of the session and hand it to the outbox without waiting for
+        the network (the kiosk's background sender takes it from there)."""
+        q = getattr(self.outbox, "queue", None)
+        if self.outbox is None or q is None or not constants.FORM_SEND_AS_YOU_GO:
+            return
+        q(payload)
+        self.snapshots += 1
+
+    def _maybe_snapshot(self) -> None:
+        """After every step: if an answer was stored, skipped, replaced or left for the
+        officer since the last look, send the session as it stands now."""
+        se = self.session
+        if se is None or se.state in ("DONE", "CANCELLED") or not (se.values or se.skipped):
+            return
+        fp = json.dumps([se.values, se.skipped, se.unanswered_required], sort_keys=True, default=str, ensure_ascii=False)
+        if fp != self._last_fp:
+            self._last_fp = fp
+            se.snapshot("in_progress")
 
     # ── identification ─────────────────────────────────────────────────────
     def identify(self, image: np.ndarray, prior_scheme_id: Optional[str] = None) -> Identification:
@@ -197,9 +221,12 @@ class FormFlow:
             self._ui(active=False, state="IDLE")
             return FlowResult("cancelled" if reason == "cancelled" else reason, timings=self.timings, seconds=time.perf_counter() - t_all)
         self.session = FormSession(self.catalog, fid, self.lang, review=constants.FORM_REVIEW_ENABLED)
+        self.session.on_snapshot = self._queue_snapshot
+        self._last_fp = None
         step = self.session.start(form_confirmed=True)
         outcome = "cancelled"
         while True:
+            self._maybe_snapshot()
             if step.speak:
                 self._ui()
                 if not self.io.speak(step.speak):
@@ -222,7 +249,7 @@ class FormFlow:
                 step = self.session.handle_document(text)
                 continue
             if step.listen:
-                self.io.status("[FORM] Hold the button and answer")
+                self.io.status("[FORM] Tap the button and answer")
                 ans = self.io.listen(constants.FORM_ANSWER_TIMEOUT_S)
                 if ans == HOME:
                     outcome = "cancelled"; break
@@ -232,23 +259,29 @@ class FormFlow:
                 continue
             step = self.session.handle_answer("")
         if outcome != "done":
+            # Home, a walk-away or a spoken cancel: whatever was collected is already with the
+            # officer (or sealed on disk) marked as stopped; the plain answers are wiped here
+            handed_over = self.session.snapshot("cancelled" if outcome == "cancelled" else "timeout") if self.session.state != "CANCELLED" else False
             self.session.clear()
             self._ui(active=False, state="IDLE")
-            if outcome in ("cancelled", "timeout"):
-                self.io.speak(self._p("cancelled"))
+            if outcome in ("cancelled", "timeout") and self.session.state != "CANCELLED":
+                self.io.speak(self._p("cancelled_saved" if handed_over and self.outbox is not None else "cancelled"))
             return FlowResult("cancelled", fid, timings=self.timings, seconds=time.perf_counter() - t_all)
-        payload = self.session.payload()
+        unconfirmed = self.session.unconfirmed
+        payload = self.session.payload("complete_unconfirmed" if unconfirmed else "complete")
         self.session.clear()
         result = FlowResult("sent", fid, payload=None, timings=self.timings)
         if self.outbox is not None:
-            self.io.speak(self._p("sending"))
+            self.io.speak(self._p("saved_unconfirmed" if unconfirmed else "sending"))
             self._ui(state="SENDING")
             t0 = time.perf_counter()
             status = self.outbox.submit(payload)          # seals immediately, tries to send, keeps the sealed copy on failure
             self._t("send", t0)
             del payload
             if status == "sent":
-                self.io.speak(self._p("sent")); self._ui(state="SENT")
+                if not unconfirmed:
+                    self.io.speak(self._p("sent"))
+                self._ui(state="SENT")
             else:
                 self.io.speak(self._p("send_pending")); self._ui(state="PENDING"); result.outcome = "pending"
         else:

@@ -431,7 +431,9 @@ class NomadRightApplication(BaseApplication):
         elif msg == "Chatbot":
             self._on_chatbot_pressed()
         elif msg.startswith("FormCmd "):
-            self._form_cmd = msg[8:].strip().lower()
+            cmd = msg[8:].strip().lower()
+            if cmd in ("repeat", "change", "skip", "cancel", "yes", "no"):     # on-screen buttons only
+                self._form_cmd = cmd
         elif msg == "Replay":
             self._replay_last_answer()
         elif msg == "Home":
@@ -473,10 +475,13 @@ class NomadRightApplication(BaseApplication):
         self._publish_replay(False)
         self.logger.info(f"[NomadRight] Answer state cleared ({reason}).")
 
-    def _play_interruptible(self, wav: bytes, also_stop=None) -> str:
+    def _play_interruptible(self, wav: bytes, also_stop=None, record_on_button: bool = False) -> str:
         """Plays wav; stops at once when Home is pressed ("home"), when the speech
         button is pressed ("button") or when also_stop() says so ("button").
-        Returns "done" when it played to the end, "failed" on a playback error."""
+        Returns "done" when it played to the end, "failed" on a playback error.
+        With record_on_button the microphone opens the moment the speech button
+        interrupts the playback, so the first word of the answer is not lost while
+        the caller gets round to listening (the caller sees audio.recording set)."""
         if not wav:
             return "done"
         result = {"ok": True}
@@ -490,6 +495,13 @@ class NomadRightApplication(BaseApplication):
                 why = "button"
             if why:
                 self._stop_audio()
+                if why == "button" and record_on_button and self.board.trigger_button and not self.board.audio.recording:
+                    try:
+                        self.board.audio.start(max_seconds=constants.MAX_AUDIO_RECORD_SECONDS)
+                        self.board.button_led(True)
+                        self.board.statusbar("[LISTENING]")
+                    except Exception:
+                        self.logger.debug("[NomadRight] early recording start failed", exc_info=True)
             player.join(timeout=0.05)
         if why:
             return why
@@ -746,8 +758,18 @@ class NomadRightApplication(BaseApplication):
             return
 
         def _flusher() -> None:
-            while self.running:
-                time.sleep(constants.FORM_OUTBOX_FLUSH_INTERVAL_S)
+            # This thread is started from start(), before BaseApplication.start() sets
+            # self.running - so it must not test the flag before it has ever been True
+            # (with `while self.running` it ended at once and nothing was ever retried).
+            seen_running = False
+            while True:
+                if self.running:
+                    seen_running = True
+                elif seen_running:
+                    break
+                # every FORM_OUTBOX_FLUSH_INTERVAL_S, or at once when a session queues a new picture
+                self.form_outbox.wake.wait(constants.FORM_OUTBOX_FLUSH_INTERVAL_S)
+                self.form_outbox.wake.clear()
                 try:
                     if self.form_outbox.entries():
                         r = self.form_outbox.flush()
@@ -786,7 +808,8 @@ class NomadRightApplication(BaseApplication):
             if self.board.trigger_button:
                 self.board.button_led(True)
                 self.board.statusbar("[LISTENING]")
-                self.board.audio.start(max_seconds=constants.MAX_AUDIO_RECORD_SECONDS)
+                if not self.board.audio.recording:
+                    self.board.audio.start(max_seconds=constants.MAX_AUDIO_RECORD_SECONDS)
                 self.board.wait_for_trigger_button_up()
                 self.board.button_led(False)
                 self.board.audio.stop()
@@ -839,7 +862,7 @@ class NomadRightApplication(BaseApplication):
         t0 = time.time()
         wav = self.bridge.speak(text, lang)
         self._latency(f"form_tts_{lang}", t0)
-        outcome = self._play_interruptible(wav, also_stop=lambda: self._form_cmd is not None)
+        outcome = self._play_interruptible(wav, also_stop=lambda: self._form_cmd is not None, record_on_button=True)
         if outcome == "home" or self._home_requested.is_set():
             return False
         if outcome == "button":
@@ -1148,7 +1171,8 @@ class NomadRightApplication(BaseApplication):
                     # or the HDMI UI's on-screen "tap to speak" button (see
                     # boards/hdmi.py's virtual_trigger_down()/_up()).
                     record_start = time.time()
-                    self.board.audio.start(max_seconds=constants.MAX_AUDIO_RECORD_SECONDS)
+                    if not self.board.audio.recording:
+                        self.board.audio.start(max_seconds=constants.MAX_AUDIO_RECORD_SECONDS)
                     self.board.wait_for_trigger_button_up()
                     self.board.button_led(False)
                     self.board.audio.stop()
@@ -1347,7 +1371,7 @@ class NomadRightApplication(BaseApplication):
                 self._log(f"ANSWER after {time.time() - turn_start:.1f}s - speaking")
                 self._latency(f"tts_{lang}", stage_start)
                 self._latency("end_to_end", turn_start)
-                outcome = self._play_interruptible(tts_wav)      # the speech button stops it and starts listening
+                outcome = self._play_interruptible(tts_wav, record_on_button=True)      # the speech button stops it and starts listening
                 played_fully = outcome == "done"
                 self._answer_completed = played_fully
                 if played_fully:

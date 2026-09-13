@@ -111,5 +111,34 @@ class TestTransport(unittest.TestCase):
         self.assertIn("2 waiting on the kiosk", page)
 
 
+    def test_5_pictures_supersede_and_the_receiver_keeps_the_newest(self):
+        import urllib.request
+        ob = self.outbox()
+        base = {"version": 2, "session_id": "live0000pic1", "form_id": "FORM_PMUY_KYC", "scheme_id": "SCH_PMUY", "language": "ta", "skipped": [], "unanswered_required": [], "total": 5}
+        pic = lambda seq, status, fields: {**base, "seq": seq, "status": status, "answered": len(fields), "fields": fields}
+        # three pictures queued while the receiver is down: only the newest stays on disk
+        self.stop_receiver()
+        ob.queue(pic(1, "in_progress", {"full_name": "லட்சுமி"}))
+        ob.queue(pic(2, "in_progress", {"full_name": "லட்சுமி", "village": "மதுரை"}))
+        ob.queue(pic(3, "in_progress", {"full_name": "லட்சுமி", "village": "மதுரை", "mobile": "9876543210"}))
+        entries = ob.entries()
+        self.assertEqual([e["seq"] for e in entries], [3]); self.assertTrue(ob.wake.is_set()); ob.wake.clear()
+        self.start_receiver()
+        self.assertEqual(ob.flush()["sent"], 1)
+        # the finished form replaces the picture on the receiver; a late older picture is ignored
+        self.assertEqual(ob.submit(pic(4, "complete", {"full_name": "லட்சுமி", "village": "மதுரை", "mobile": "9876543210", "lpg_id": "12345"})), "sent")
+        ob.queue(pic(2, "in_progress", {"full_name": "லட்சுமி"})); self.assertEqual(ob.flush()["sent"], 1); self.assertEqual(ob.entries(), [])
+        index = json.load(open(os.path.join(self.bundle, "received", "index.json")))
+        recs = [r for r in index if r["session_id"] == "live0000pic1"]
+        self.assertEqual(len(recs), 1); self.assertEqual(recs[0]["status"], "complete"); self.assertEqual(recs[0]["seq"], 4); self.assertEqual(recs[0]["fields"], 4)
+        stored = json.load(open(os.path.join(self.bundle, recs[0]["file"])))
+        self.assertEqual(stored["seq"], 4); self.assertIn("lpg_id", stored["fields"])
+        page = urllib.request.urlopen("http://127.0.0.1:18080/", timeout=5).read().decode()
+        self.assertIn("complete", page); self.assertIn("Status", page)
+        # a session the citizen stopped half-way shows as partial
+        self.assertEqual(ob.submit({**base, "session_id": "live0000pic2", "seq": 2, "status": "cancelled", "answered": 1, "fields": {"full_name": "ரவி"}}), "sent")
+        page = urllib.request.urlopen("http://127.0.0.1:18080/", timeout=5).read().decode()
+        self.assertIn("stopped by the citizen - partial", page)
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)
