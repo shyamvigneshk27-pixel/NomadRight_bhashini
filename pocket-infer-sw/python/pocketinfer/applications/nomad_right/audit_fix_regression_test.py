@@ -347,7 +347,7 @@ class TestLLMFallbackAndVision(unittest.TestCase):
         with unittest.mock.patch.object(self.workflow.qwen_client, "answer_general", return_value=None):
             pkg = self.workflow.process(self.UNMATCHED_QUERY)
         self.assertEqual(pkg.qr_payload["status"], "FALLBACK")
-        self.assertIn("i'm sorry", pkg.voice_text.lower())
+        self.assertIn("sorry", pkg.voice_text.lower())     # wording changed 2026-09-13 (QUERY_SORRY_TEXT)
 
     def test_vision_query_uses_answer_when_qwen_reads_the_form(self):
         """A photographed-form question should get a FORM HELP / VISION_FORM_QUERY
@@ -367,7 +367,7 @@ class TestLLMFallbackAndVision(unittest.TestCase):
         with unittest.mock.patch.object(self.workflow.qwen_client, "answer_vision", return_value=None):
             pkg = self.workflow.process_vision_query("What does this field mean?", b"fake-jpeg-bytes")
         self.assertEqual(pkg.qr_payload["status"], "FALLBACK")
-        self.assertIn("i'm sorry", pkg.voice_text.lower())
+        self.assertIn("sorry", pkg.voice_text.lower())     # wording changed 2026-09-13 (QUERY_SORRY_TEXT)
 
 
 # ──────────────────────────────────────────────────────────────────────────────
