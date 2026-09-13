@@ -94,6 +94,7 @@ class FormFlow:
         screen showing it as the current question, then wait for the answer. A
         cancel word or the on-screen Cancel ends the session like Home."""
         self._ui(state="CONFIRM_FORM", question=prompt, listen=True)
+        self.io.status("[FORM] Say yes or no")
         for _ in range(4):                      # 'repeat' (or an unrelated command) asks the same question again
             if not self.io.speak(prompt):
                 return HOME

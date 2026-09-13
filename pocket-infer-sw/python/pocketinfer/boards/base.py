@@ -413,6 +413,9 @@ class Board:
         LCD keeps showing update_screen()'s bottom line). No-op by default."""
         return True
 
+    def set_replay_available(self, flag: bool) -> bool:
+        return False
+
     def set_form_state(self, form) -> None:
         """Assisted form-filling panel state for the screen (the HDMI board broadcasts it)."""
         return None

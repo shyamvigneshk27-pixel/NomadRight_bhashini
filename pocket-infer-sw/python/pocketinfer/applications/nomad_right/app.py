@@ -402,6 +402,7 @@ class NomadRightApplication(BaseApplication):
                 if self.settings.get("input_language") != code:
                     # A new language on the start page is a new person.
                     self._reset_conversation("language change")
+                    self._clear_answer_state("language change")
                     self._home_requested.set()            # also ends a form in progress (answers wiped)
                 self.settings["input_language"] = code
                 self.logger.info(f"[NomadRight] Worker language set to {code}")
@@ -451,17 +452,60 @@ class NomadRightApplication(BaseApplication):
         self._text_query_pending = text
         self._text_query_event.set()
 
+    def _publish_replay(self, available: bool) -> None:
+        """replay_available: the screen shows "Listen again" only from this flag,
+        never from text that happens to be on the screen."""
+        self._replay_available = bool(available)
+        fn = getattr(self.board, "set_replay_available", None)
+        if fn is not None:
+            try:
+                fn(bool(available))
+            except Exception:
+                self.logger.debug("[NomadRight] replay flag push failed", exc_info=True)
+
+    def _clear_answer_state(self, reason: str) -> None:
+        """A new person (Home, language change): nothing of the previous answer
+        survives - not the text, not the English, not the audio, not the flag."""
+        self._last_answer_wav = None
+        self.last_answer_en = ""
+        self._set_answer(None)
+        self._publish_replay(False)
+        self.logger.info(f"[NomadRight] Answer state cleared ({reason}).")
+
+    def _play_interruptible(self, wav: bytes, also_stop=None) -> str:
+        """Plays wav; stops at once when Home is pressed ("home"), when the speech
+        button is pressed ("button") or when also_stop() says so ("button").
+        Returns "done" when it played to the end, "failed" on a playback error."""
+        if not wav:
+            return "done"
+        result = {"ok": True}
+        player = threading.Thread(target=lambda: result.__setitem__("ok", self._play(wav)), daemon=True)
+        player.start()
+        why = None
+        while player.is_alive():
+            if self._home_requested.is_set():
+                why = "home"
+            elif self.board.trigger_button or (also_stop is not None and also_stop()):
+                why = "button"
+            if why:
+                self._stop_audio()
+            player.join(timeout=0.05)
+        if why:
+            return why
+        return "done" if result["ok"] else "failed"
+
     def _replay_last_answer(self) -> None:
-        """'Listen again' on the answer screen: plays the last spoken answer once
-        more from memory (no new synthesis), only while the kiosk is idle."""
+        """'Listen again': plays the latest COMPLETED answer once more from the stored
+        audio (no new synthesis, never from the screen text), only while idle."""
         wav = getattr(self, "_last_answer_wav", None)
-        if not wav or self._mode != "HOME" or self._camera_busy.is_set():
-            self.logger.info(f"[NomadRight] replay refused (answer={'yes' if wav else 'no'}, mode={self._mode})")
+        if not wav or not getattr(self, "_replay_available", False) or self._mode != "HOME" or self._camera_busy.is_set():
+            self.logger.info(f"[NomadRight] replay refused (answer={'yes' if wav else 'no'}, available={getattr(self, '_replay_available', False)}, mode={self._mode})")
             return
         self._log("REPLAY    last answer")
         self.board.statusbar("[SPEAKING] Home=stop")
-        self._play(wav)
-        self.board.statusbar("[READY]")
+        outcome = self._play_interruptible(wav)
+        if outcome in ("done", "failed"):
+            self.board.statusbar("[READY]")
 
     def _prewarm_qwen(self) -> None:
         client = getattr(getattr(self, "workflow", None), "qwen_client", None)
@@ -660,6 +704,7 @@ class NomadRightApplication(BaseApplication):
         # (state, occupation, held cards, the scheme being discussed) may leak into
         # the next person's answers.
         self._reset_conversation("home")
+        self._clear_answer_state("home")
         with self._image_lock:
             had_pending_photo = self.pending_form_image is not None
             self.pending_form_image = None
@@ -793,22 +838,12 @@ class NomadRightApplication(BaseApplication):
         t0 = time.time()
         wav = self.bridge.speak(text, lang)
         self._latency(f"form_tts_{lang}", t0)
-        result = {"ok": True}
-        player = threading.Thread(target=lambda: result.__setitem__("ok", self._play(wav)), daemon=True)
-        player.start()
-        interrupted = False
-        while player.is_alive():
-            if self._home_requested.is_set() or self.board.trigger_button or self._form_cmd:
-                # stop as soon as the player exists; keep polling until the playback
-                # thread has really ended so the next prompt never overlaps this one
-                if self._stop_audio():
-                    interrupted = True
-            player.join(timeout=0.05)
-        if self._home_requested.is_set():
+        outcome = self._play_interruptible(wav, also_stop=lambda: self._form_cmd is not None)
+        if outcome == "home" or self._home_requested.is_set():
             return False
-        if interrupted:
+        if outcome == "button":
             self._log("FORM speech interrupted by the button")
-        elif not result["ok"]:
+        elif outcome == "failed":
             # a playback hiccup must not end the session; the text is on the screen
             self.logger.warning("[NomadRight] form prompt playback failed - continuing")
         return True
@@ -1038,6 +1073,12 @@ class NomadRightApplication(BaseApplication):
             # self._home_requested check below.
             self._home_requested.clear()
 
+            # A new question: whatever answer was being replayed stops, and the
+            # previous answer is no longer the one "Listen again" would play.
+            self._stop_audio()
+            self._last_answer_wav = None
+            self._publish_replay(False)
+
             # Documented above (self._mode's own docstring) as switching to
             # "VOICE TRANSLATION" for the duration of one active turn, but
             # that assignment never actually existed - self._mode stayed
@@ -1138,6 +1179,16 @@ class NomadRightApplication(BaseApplication):
                 self.board.statusbar("[TRANSLATING]")
                 stage_start = time.time()
                 query_lang = "en" if turn_kind == "text" and self._looks_english(native_query) else lang
+                scheme_hint = None
+                try:
+                    from pocketinfer.applications.nomad_right import native_correct
+                    fixed, scheme_hint = native_correct.correct(native_query, query_lang)
+                    if fixed != native_query:
+                        self.logger.info(f"[ASRFIX] {query_lang}: '{native_query}' -> '{fixed}'")
+                        self._log("ASR fix   " + fixed[:40])
+                        native_query = fixed
+                except Exception:
+                    self.logger.debug("[NomadRight] native correction skipped", exc_info=True)
                 query_en = self.bridge.to_pipeline_language(native_query, query_lang)
                 self._log(f"NMT {query_lang}->EN  {time.time() - stage_start:.1f}s")
                 self._latency(f"nmt_{query_lang}_en", stage_start)
@@ -1223,7 +1274,7 @@ class NomadRightApplication(BaseApplication):
                     self.board.update_screen(mode="VOICE TRANSLATION", status="[PROCESSING] Finding your answer")
                     stage_start = time.time()
                     response_pkg = self.workflow.process(
-                        query_en, context_scheme_code=self.last_scheme_code,
+                        query_en, context_scheme_code=scheme_hint or self.last_scheme_code,
                         original_query=native_query, response_language=lang,
                     )
                     self._log(
@@ -1254,7 +1305,11 @@ class NomadRightApplication(BaseApplication):
                 self.board.statusbar("[TRANSLATING]")
                 stage_start = time.time()
                 sorry_native = constants.QUERY_SORRY_TEXT.get(lang) if getattr(response_pkg, "is_fallback", False) else None
-                if sorry_native:
+                native_text = getattr(response_pkg, "native_text", None)
+                if native_text:
+                    answer_native = native_text
+                    self._log(f"KIOSK     {getattr(response_pkg, 'kiosk_intent', '')} ({lang}, predefined)")
+                elif sorry_native:
                     # the apology is predefined in every kiosk language - no translation
                     answer_native = sorry_native
                     self._log(f"APOLOGY   {lang} (predefined, QUERY_FALLBACK={constants.QUERY_FALLBACK})")
@@ -1286,7 +1341,12 @@ class NomadRightApplication(BaseApplication):
                 self._log(f"ANSWER after {time.time() - turn_start:.1f}s - speaking")
                 self._latency(f"tts_{lang}", stage_start)
                 self._latency("end_to_end", turn_start)
-                played_fully = self._play(tts_wav)
+                outcome = self._play_interruptible(tts_wav)      # the speech button stops it and starts listening
+                played_fully = outcome == "done"
+                if played_fully:
+                    self._publish_replay(True)             # a completed answer: "Listen again" may now replay it
+                elif outcome == "button":
+                    self._log("ANSWER interrupted - listening")
 
                 if played_fully:
                     self.board.update_screen(status="[READY] Hold=ask  Camera=scan  Home=menu", mode="HOME")

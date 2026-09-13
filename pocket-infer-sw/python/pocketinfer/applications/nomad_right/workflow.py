@@ -188,6 +188,22 @@ class WorkflowController(IWorkflowController):
         session_id = str(uuid.uuid4())[:8]
         self.logger.info(f"[{session_id}] Pipeline start — text='{transcribed_text}'")
 
+        # ── Step -1: kiosk intents (greetings, thanks, "what can you do") ──────
+        # Predefined, in the person's language, no model and no translation;
+        # a sentence that names a scheme or a welfare topic never stops here.
+        try:
+            from pocketinfer.applications.nomad_right import kiosk_intents
+            hit = kiosk_intents.match(original_query or "", transcribed_text, response_language or "en", self._scheme_terms())
+        except Exception as exc:
+            self.logger.debug(f"[{session_id}] kiosk intents skipped: {exc}")
+            hit = None
+        if hit is not None:
+            self.logger.info(f"[{session_id}] KIOSK_INTENT {hit.intent} ({hit.score})")
+            return StructuredResponsePackage(
+                voice_text=hit.en, display_top_text="NOMADRIGHT", display_bottom_text=hit.en[:constants.DISPLAY_BODY_MAX_LEN],
+                qr_payload=None, severity=SeverityLevel.INFO, native_text=hit.native, kiosk_intent=hit.intent,
+            )
+
         # ── Step 0: Scheme intelligence (structured knowledge base first) ──
         si_pkg = self._scheme_intel_answer(
             transcribed_text, context_scheme_code, original_query, response_language, session_id
@@ -393,6 +409,24 @@ class WorkflowController(IWorkflowController):
             # legacy-routed follow-up still finds its KB record.
             scheme_code=ans.legacy_code or ans.scheme_id,
         )
+
+    def _scheme_terms(self):
+        """Alias words of every scheme the kiosk knows (English), so a sentence that
+        names one is never mistaken for small talk."""
+        cached = getattr(self, "_scheme_terms_cache", None)
+        if cached is not None:
+            return cached
+        terms = set()
+        repo = getattr(getattr(self, "scheme_intel", None), "repo", None)
+        for attr in ("_alias_map", "_vocab_set"):
+            src = getattr(repo, attr, None)
+            if src:
+                for a in (src.keys() if hasattr(src, "keys") else src):
+                    a = str(a).lower().strip()
+                    if len(a) >= 4:
+                        terms.add(a)
+        self._scheme_terms_cache = terms
+        return terms
 
     def _scheme_intel_answer(
         self, text: str, context_scheme_code: Optional[str], original_query: Optional[str],

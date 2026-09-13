@@ -43,6 +43,9 @@ class UIState:
     # ASR_SUPPORTED_LANGUAGES, pushed by app.py) - the UI enables its
     # language choices from this instead of a hard-coded copy.
     asr_languages: list = field(default_factory=list)
+    # True only after an answer's audio has been spoken to the end; false at the
+    # start of the next question and on Home ("Listen again" is shown from this).
+    replay_available: bool = False
 
     def __post_init__(self) -> None:
         self._lock = threading.RLock()
@@ -61,6 +64,7 @@ class UIState:
                 "system_status": dict(self.system_status),
                 "log_lines": list(self.log_lines),
                 "answer": dict(self.answer) if self.answer else None,
+                "replay_available": bool(self.replay_available),
                 "form": dict(self.form) if self.form else None,
                 "asr_languages": list(self.asr_languages),
             }
@@ -121,6 +125,10 @@ class UIState:
     def set_answer(self, answer: Optional[dict]) -> None:
         with self._lock:
             self.answer = dict(answer) if answer else None
+
+    def set_replay_available(self, flag: bool) -> None:
+        with self._lock:
+            self.replay_available = bool(flag)
 
     def set_asr_languages(self, codes) -> None:
         with self._lock:

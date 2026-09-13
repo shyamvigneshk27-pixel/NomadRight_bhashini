@@ -67,6 +67,10 @@ class StructuredResponsePackage:
     # True for the "I am sorry" answer (nothing found): the app speaks
     # constants.QUERY_SORRY_TEXT in the selected language without translating.
     is_fallback: bool = False
+    # A predefined answer in the selected language (kiosk intents): spoken as written,
+    # no translation. None for pipeline answers.
+    native_text: Optional[str] = None
+    kiosk_intent: Optional[str] = None
 
 
 class IResponseGenerator(ABC):

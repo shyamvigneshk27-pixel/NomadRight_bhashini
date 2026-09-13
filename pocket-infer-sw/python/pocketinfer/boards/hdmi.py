@@ -154,6 +154,11 @@ class PocketInferHDMIBoard(PocketInferDevboard):
         self.state.set_form(form)
         self.bridge.broadcast_state_patch({"form": dict(form) if form else None})
 
+    def set_replay_available(self, flag: bool) -> bool:
+        self.state.set_replay_available(flag)
+        self.bridge.broadcast_state_patch({"replay_available": bool(flag)})
+        return True
+
     def set_asr_languages(self, codes) -> bool:
         self.state.set_asr_languages(codes)
         self.bridge.broadcast_state_patch({"asr_languages": list(codes)})
