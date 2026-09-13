@@ -46,7 +46,7 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 <li><span class="k">Screens</span><span>Language page is Home; menu with Speak Your Question, Scan a Document, View All Schemes, Help; government header with the emblem, bilingual lockup, live clock and Home only; settings sidebar gone, admin panel behind PIN 9999 from a tiny corner control; large question and answer text; Listen again; thank-you screen. <span class="chip pass">built · 1024×600 checked</span></span></li>
 <li><span class="k">English</span><span>Whisper base.en through the CTranslate2 runtime already serving Tamil, loaded on the first English request; English TTS was already on the device; questions, prompts, scheme text and screen strings already existed in English. <span class='chip pass'>in service: +92 MB, 0.315 s</span></span></li>
 <li><span class="k">Memory</span><span>Kiosk process 1110 MB idle, 1142 MB during the form flow; free RAM stayed above 2287 MB in every scenario without the chatbot. The chatbot remains the one path that presses the device: the model server takes 1710 MB and free RAM drops to 1616 MB. The form flow never starts it. <span class='chip pass'>no swap growth outside the chatbot</span></span></li>
-<li><span class="k">Needs you</span><span>Restart the speech service to load English; the State Emblem authorisation question; a native speaker's pass over the new Hindi and Tamil strings; the power-cut clock test; printed forms under the real webcam. <span class="chip ask">section 8</span></span></li>
+<li><span class="k">Decisions taken</span><span>Speech service restarted with English (measured below); the generated emblem stays for now; base.en stays; a native speaker's pass over the new Hindi and Tamil strings, the power-cut clock test and the real-microphone, touch and printed-form checks are yours to run. <span class="chip ask">section 8</span></span></li>
 </ul>
 
 <h2>1 · What changed, file by file</h2>
@@ -107,7 +107,7 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 <ul>
 <li>Hindi full session (flow test): 6 of 6 tests, 29 prompts, identification 6.4 s. Covers Change (reopen and replace), Skip on optional and required fields, review and sealing.</li>
 <li>English full session: sent, 27 prompts, 4.5 s of processing, every field correct, optional fields skipped.</li>
-<li>Unit tests: form and transport suites: 23 passed in 4.85s; the application suite's 19 known failures (old LCD-era screen tests) are unchanged from before this work.</li>
+<li>Unit tests: form and transport suites: 23 passed in 4.80s; the application suite's 19 known failures (old LCD-era screen tests) are unchanged from before this work.</li>
 </ul>
 <h3>Not automatable here, for you at the kiosk</h3>
 <ul>
@@ -127,9 +127,8 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 
 <h2>8 · Remaining issues and your decisions</h2>
 <ul>
-<li><strong>Restart the speech service</strong> (<code>sudo systemctl restart bhashini_models.service</code>) to load the English recogniser configuration; until then the English tile works for typed and spoken flows except recognition.</li>
-<li><strong>Emblem authorisation</strong>, section 3.</li>
-<li><strong>small.en</strong> if you want fewer English errors at the cost noted above.</li>
+<li><strong>Emblem:</strong> kept as supplied for now, at your decision; the caveat in section 3 stands.</li>
+<li><strong>English model:</strong> base.en stays, at your decision; small.en remains available as a one-line config change.</li>
 <li><strong>Native review</strong> of the new Hindi and Tamil labels, Help steps and notices in <code>i18n/strings.ts</code>.</li>
 <li><strong>Language change race:</strong> a question typed within one second of switching the language was once answered in the previous language; a person tapping the microphone a few seconds later is not affected. Not fixed.</li>
 <li><strong>The power-cut clock test</strong>, section 7.</li>
@@ -137,7 +136,7 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 
 <h2>Files</h2>
 <dl>
-<dt>Commits</dt><dd>NOMADRIGHT 3105019 5edc7d8 54d38b6; UI c478ec4 2985aff; the speech service folder is not under git.</dd>
+<dt>Commits</dt><dd>NOMADRIGHT 4a75276 3105019 5edc7d8; UI c478ec4 2985aff; the speech service folder is not under git.</dd>
 <dt>Benchmarks</dt><dd><code>~/asr_english_candidates/</code> (bench.py, bench_domain.py, clips, results); <code>bhashini_models/benchmarks/results/other/</code></dd>
 <dt>Guide</dt><dd>The operator guide was updated for the new navigation, the admin PIN, English and the test hook.</dd>
 </dl>
