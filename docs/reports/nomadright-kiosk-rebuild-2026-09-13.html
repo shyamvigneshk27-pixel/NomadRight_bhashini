@@ -1,0 +1,145 @@
+<title>NomadRight Kiosk Rebuild</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--ground:#F4F5F2;--surface:#FFFFFF;--ink:#16232B;--muted:#5B6B74;--accent:#2F3E9E;--pass:#2E7D4F;--warn:#A8691C;--fail:#B0413E;--rule:#D8DDD9;--tint:#E9ECF7;--code:#EEF0EC;}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ground:#12191E;--surface:#1A242B;--ink:#E6EBEA;--muted:#9AA7AE;--accent:#8FA0FF;--pass:#6FCF97;--warn:#E0A84A;--fail:#F07A76;--rule:#2C3841;--tint:#1F2A45;--code:#141C22;}}
+:root[data-theme="dark"]{--ground:#12191E;--surface:#1A242B;--ink:#E6EBEA;--muted:#9AA7AE;--accent:#8FA0FF;--pass:#6FCF97;--warn:#E0A84A;--fail:#F07A76;--rule:#2C3841;--tint:#1F2A45;--code:#141C22;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15.5px;line-height:1.55;margin:0;padding-block:32px 64px;padding-inline:clamp(16px,4vw,40px)}
+main{max-width:82ch;margin:0 auto}
+h1,h2,h3{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",system-ui,sans-serif;font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:2.1rem;letter-spacing:-.01em}
+h2{font-size:1.35rem;margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+h3{font-size:1.05rem;margin-top:1.4rem}
+p{margin:.7rem 0;max-width:70ch}
+.eyebrow{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;color:var(--muted)}
+.lede{color:var(--muted);font-size:1.02rem;margin-top:.5rem}
+code,pre,td.n,th.n{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+code{font-size:.88em;background:var(--code);padding:.05em .35em;border-radius:3px}
+pre{background:var(--code);padding:.8rem 1rem;border-radius:4px;overflow-x:auto;font-size:.84rem;line-height:1.5;margin:.6rem 0}
+.verdicts{list-style:none;padding:0;margin:1.4rem 0 0;display:grid;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+.verdicts li{display:grid;grid-template-columns:9rem 1fr;gap:.6rem 1rem;padding:.7rem 1rem;border-top:1px solid var(--rule);align-items:start}
+.verdicts li:first-child{border-top:0}.verdicts .k{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600}
+.chip{display:inline-block;font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.12em .5em;border-radius:3px;border:1px solid currentColor;margin-left:.4rem;vertical-align:middle}
+.chip.pass{color:var(--pass)}.chip.warn{color:var(--warn)}.chip.fail{color:var(--fail)}.chip.ask{color:var(--accent)}
+.tbl{overflow-x:auto;margin:.9rem 0;border:1px solid var(--rule);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.86rem}th,td{padding:.45rem .65rem;border-top:1px solid var(--rule);text-align:left;vertical-align:top}
+thead th{border-top:0;background:var(--tint);font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.03em;white-space:nowrap}
+td.n,th.n{text-align:right;white-space:nowrap}
+.note{border-left:3px solid var(--accent);padding:.5rem .9rem;margin:1rem 0;background:var(--surface);border-radius:0 4px 4px 0}
+.note.warn{border-left-color:var(--warn)}.note.fail{border-left-color:var(--fail)}.note.pass{border-left-color:var(--pass)}
+ul,ol{padding-left:1.2rem;margin:.5rem 0}li{margin:.25rem 0}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;margin:.6rem 0}dt{font-weight:600}dd{margin:0}
+footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid var(--rule);padding-top:1rem}
+@media (max-width:480px){.verdicts li{grid-template-columns:1fr}h1{font-size:1.7rem}dl{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<main>
+<header>
+<div class="eyebrow">Jetson Orin Nano 8 GB · 7-inch kiosk, 1024 × 600 · 13 September 2026</div>
+<h1>NomadRight Kiosk Rebuild</h1>
+<p class="lede">The form-filling controls repaired, the screens rebuilt to the government-kiosk reference, English added as a third language, every number measured on the device.</p>
+</header>
+
+<ul class="verdicts">
+<li><span class="k">Form controls</span><span>Root cause found and fixed: the screen never left "Reading the form" during the confirmation questions, so Hold-and-speak and the commands were disabled exactly when the kiosk was waiting for an answer. Live on the kiosk: question appears, Repeat keeps it, Hold-and-speak records, Home cancels. <span class="chip pass">fixed · verified live</span></span></li>
+<li><span class="k">Screens</span><span>Language page is Home; menu with Speak Your Question, Scan a Document, View All Schemes, Help; government header with the emblem, bilingual lockup, live clock and Home only; settings sidebar gone, admin panel behind PIN 9999 from a tiny corner control; large question and answer text; Listen again; thank-you screen. <span class="chip pass">built · 1024×600 checked</span></span></li>
+<li><span class="k">English</span><span>Whisper base.en through the CTranslate2 runtime already serving Tamil, loaded on the first English request; English TTS was already on the device; questions, prompts, scheme text and screen strings already existed in English. <span class='chip warn'>awaiting service restart</span></span></li>
+<li><span class="k">Memory</span><span>Kiosk process 1110 MB idle, 1142 MB during the form flow; free RAM stayed above 2287 MB in every scenario without the chatbot. The chatbot remains the one path that presses the device: the model server takes 1710 MB and free RAM drops to 1616 MB. The form flow never starts it. <span class='chip pass'>no swap growth outside the chatbot</span></span></li>
+<li><span class="k">Needs you</span><span>Restart the speech service to load English; the State Emblem authorisation question; a native speaker's pass over the new Hindi and Tamil strings; the power-cut clock test; printed forms under the real webcam. <span class="chip ask">section 8</span></span></li>
+</ul>
+
+<h2>1 · What changed, file by file</h2>
+<div class="tbl"><table><thead><tr><th>Area</th><th>Files</th><th>Change</th></tr></thead><tbody>
+<tr><td>Form flow</td><td><code>nomad_right/formfill/flow.py</code></td><td><code>_ask_spoken()</code>: every pre-session question (confirm the form, choose between two, which scheme) now pushes the CONFIRM_FORM screen state with the question text, treats the cancel word as Home and Repeat as "ask again"; an on-screen command while a document is awaited is handled instead of dropped.</td></tr>
+<tr><td>Session machine</td><td><code>formfill/session.py</code></td><td>Change reopens only the field answered or skipped last (<code>last_done_pos</code>); a second Change re-asks the same field. Skip semantics unchanged.</td></tr>
+<tr><td>Kiosk app</td><td><code>nomad_right/app.py</code></td><td>Commands honoured while waiting for a document (<code>_take_form_cmd</code>); a press on Hold-and-speak or a command stops the prompt being spoken and is acted on at once; a playback hiccup no longer ends the session; <code>replay_answer</code> plays the last answer again; <code>NOMADRIGHT_FORM_TEST_IMAGE</code> test hook.</td></tr>
+<tr><td>Validators</td><td><code>formfill/validators.py</code></td><td>English dates: ordinals ("15th", "fifteenth") and spoken years ("nineteen eighty five", "twenty twenty").</td></tr>
+<tr><td>Language gates</td><td><code>nomad_right/constants.py</code>, <code>nomadright/forms/build_forms.py</code> → <code>forms.json</code></td><td>English in <code>ASR_SUPPORTED_LANGUAGES</code>, <code>SOURCE_LANGUAGES</code>, <code>FORM_LANGUAGES</code> and every form's <code>supported_languages</code>.</td></tr>
+<tr><td>Board and protocol</td><td><code>boards/hdmi.py</code>, <code>ui/hdmi/protocol.py</code></td><td><code>replay_answer</code> command; admin PIN default 9999 (<code>DEFAULT_ADMIN_PIN</code>, or <code>POCKETINFER_ADMIN_PIN</code>).</td></tr>
+<tr><td>Speech service</td><td><code>~/bhashini_models/asr/english.py</code> (new), <code>asr/infer.py</code>, <code>asr/asr_config.json</code>, <code>asr/english_models/</code></td><td>English backend with two engines (Whisper base.en via CTranslate2, Vosk small), loaded lazily on the first English request; models bundled locally.</td></tr>
+<tr><td>Screens</td><td><code>~/UI/src/pages/HomeScreen.tsx</code> (language page), <code>MenuScreen.tsx</code>, <code>HelpScreen.tsx</code>, <code>BootScreen.tsx</code>, <code>TranslationScreen.tsx</code>, <code>DocumentScreen.tsx</code>, <code>SettingsScreen.tsx</code></td><td>Navigation and layout per the reference; no language selectors outside Home; admin panel PIN-gated; large text; thank-you view.</td></tr>
+<tr><td>Components</td><td><code>components/common/HeaderBar.tsx</code>, <code>components/document/FormFillPanel.tsx</code>, <code>settings/SettingsNav.tsx</code></td><td>Government header with the live clock; the form panel with the question as the page, compact hold-and-speak with pointer capture, Repeat / Change / Skip; language tab removed from the admin panel.</td></tr>
+<tr><td>Strings and config</td><td><code>i18n/strings.ts</code>, <code>config/languages.ts</code>, <code>types/navigation.ts</code>, <code>state/SystemContext.tsx</code>, <code>state/adminSession.ts</code>, <code>services/backendClient.ts</code>, <code>App.tsx</code></td><td>"Speak Your Question" and the other labels in three languages, Help text, notices; language order Tamil, Hindi, English; MENU and HELP screens; replay command.</td></tr>
+<tr><td>Assets</td><td><code>src/assets/emblem.png</code>, <code>gov_lockup.png</code>, <code>hero_nomadright.jpg</code></td><td>Bundled locally from the two images you supplied (trimmed, resized, compressed to 50 KB and 115 KB). No external URL anywhere.</td></tr>
+</tbody></table></div>
+
+<h2>2 · The form controls: why they did not work, what was fixed</h2>
+<ol>
+<li><strong>The screen stayed on "Reading the form".</strong> After OCR the flow asked "Is this the X form?" or "which scheme is it for?" aloud but never changed the screen state, so the panel kept the IDENTIFYING state, in which Hold-and-speak, Repeat, Change and Skip are disabled. The person heard a question and could not answer it; after 90 s the session timed out. Fixed by pushing the CONFIRM_FORM state and the question text before every such listen.</li>
+<li><strong>Cancel and the commands were dropped or misread</strong> during identification and while a document was awaited. Fixed: the cancel word ends the session anywhere; Repeat, Change and Skip are handled while a document is awaited.</li>
+<li><strong>A press during the spoken question was lost.</strong> Fixed: a press on Hold-and-speak, or on any command, stops the speech immediately and is acted on; the playback thread is joined before the next prompt so prompts never overlap.</li>
+<li><strong>A playback hiccup cancelled the session.</strong> A failed or stopped playback used to be treated like Home. Fixed: only Home ends the session; a playback failure is logged and the text stays on screen.</li>
+<li><strong>Touch reliability.</strong> The hold button now captures the pointer, so a finger drifting off the button keeps recording until it lifts; long-press context menus are suppressed.</li>
+<li><strong>Change.</strong> Reopens only the answer just given (or the field just skipped), never further back, as you decided. Skip keeps the existing three re-asks on required fields, then <code>unanswered_required</code>.</li>
+</ol>
+
+<h2>3 · Screens, header, assets</h2>
+<p>Home is the language page. Every Home button calls the backend's Home (which cancels a form in progress and wipes its answers, leaving sealed forms in the outbox untouched) and returns there. The language is set once, there, and drives the screen strings, the recogniser, the spoken answers and the form questions; no other screen offers a language control. The menu page has Speak Your Question, Scan a Document, View All Schemes and Help (five numbered steps in the chosen language). The question page shows the answer at 30 px with <em>Listen again</em>, which replays the last spoken answer from memory. The form page shows the current question at 34 px with a compact hold button and three commands. After sending, the thank-you page stays until Home.</p>
+<p><strong>Header.</strong> Emblem, "भारत सरकार / GOVERNMENT OF INDIA", the live date and time from the Jetson's clock (updated every second, never from the network) and the Home button. No settings, microphone, brightness or language controls. A one-line notice appears under the header only while the on-device backend is unreachable; it names no address, port or certificate. The receiver side is covered by the form flow's own "saved, will be sent automatically" message.</p>
+<p><strong>Admin.</strong> The settings sidebar is gone from the user-facing screens. A tiny "Admin" text in the corner of the language page opens the PIN prompt (9999, verified on the device) and then the panel with audio, display, status, diagnostics, logs and the terminal, unchanged.</p>
+<div class="note warn"><strong>The emblem.</strong> You supplied a generated image of the State Emblem with the lockup and asked for it to be used; it is bundled as <code>emblem.png</code>, unmodified apart from cropping and scaling. Two things to know before this kiosk goes in front of the public: your own brief ruled out an AI-generated emblem in favour of an official asset, and the State Emblem of India (Prohibition of Improper Use) Act 2005 restricts the emblem and any imitation of it to authorised use. If the pilot has that authorisation, the official asset from india.gov.in can replace this file in one step; if it does not, the header works without the image.</div>
+<p><strong>Artwork.</strong> The loading screen and the thank-you screen use the NomadRight illustration you supplied, compressed to 115 KB. The other pages keep a faint monument-and-crane skyline drawn in code. No image-generation tool exists in this environment, so nothing else was generated; nothing is fetched at run time.</p>
+
+<h2>4 · English</h2>
+<h3>Recognition: what was measured</h3>
+<p>Three candidates were benchmarked on the device within the 30-minute budget: two English-only Whisper models in CTranslate2 format (the runtime already serving Tamil) and the small Vosk model on the CPU. Two clip sets: 72 synthetic kiosk sentences in three voices, clean and with added noise, and the 15-clip English domain set already on the device. Error rates count spoken digits and digit strings as equal, since the recogniser writes numbers as digits and the form parser accepts both.</p>
+<div class="tbl"><table><thead><tr><th>Candidate</th><th class="n">load</th><th class="n">memory, fresh process</th><th class="n">latency p50 / p95</th><th class="n">error rate, synthetic</th><th class="n">error rate, domain set</th></tr></thead><tbody>
+<tr><td>Vosk small en-us 0.15, CPU</td><td class="n">0.7 s</td><td class="n">+151 MB</td><td class="n">1.65 / 1.99 s</td><td class="n">15.7 %</td><td class="n">20.4 %</td></tr>
+<tr><td><strong>Whisper base.en, CTranslate2 int8, GPU</strong></td><td class="n">1.1 s</td><td class="n">+706 MB</td><td class="n">0.30 / 0.35 s</td><td class="n">10.4 %</td><td class="n">13.0 %</td></tr>
+<tr><td>Whisper small.en, CTranslate2 int8, GPU</td><td class="n">9.5 s</td><td class="n">+904 MB</td><td class="n">0.72 / 0.79 s</td><td class="n">6.0 %</td><td class="n">7.4 %</td></tr>
+</tbody></table></div>
+<p>The fresh-process memory figures include a CUDA context the speech service already holds for the Tamil model, so the cost inside the service is lower; that is the number that matters and it is measured below. Base.en is the default: five times faster than Vosk with fewer errors, at a memory cost the device can carry. Small.en halves the errors again for twice the latency and about 200 MB more; it stays on disk under <code>~/asr_english_candidates/</code> and is a one-line config change.</p>
+<h3>Inside the service</h3>
+<p>Pending: the speech service has not been restarted yet, so English could not be measured inside it. Standalone numbers are in the table above.</p>
+<h3>The rest of English</h3>
+<ul>
+<li><strong>Speech output:</strong> the flite voices already installed (<code>cmu_us_aew</code> is used); no new model.</li>
+<li><strong>Translation:</strong> none. The pipeline is English internally, so English questions skip the translation step both ways.</li>
+<li><strong>Predefined content:</strong> the scheme catalogue, the form questions, prompts and command words, and the screen strings already carried English; the new labels and Help text were added in all three languages.</li>
+<li><strong>Form filling:</strong> a full English PMSBY session with simulated speech and real OCR completed and sealed, 27 prompts, all fields correct, after fixing English dates in the parser.</li>
+</ul>
+
+<h2>5 · Tests</h2>
+<h3>On the live kiosk, over its own websocket, with a photo standing in for the webcam</h3>
+<div class='tbl'><table><thead><tr><th>Test</th><th>Result</th><th>Observed</th></tr></thead><tbody><tr><td>Camera → identification → question appears on screen (CONFIRM_FORM)</td><td><span class='chip pass'>pass</span></td><td>identification 7.4 s from the photo, then the confirm question</td></tr><tr><td>Repeat keeps the same question and speaks it again</td><td><span class='chip pass'>pass</span></td><td>state stayed CONFIRM_FORM</td></tr><tr><td>Hold-and-speak records and runs recognition</td><td><span class='chip pass'>pass</span></td><td>a silent press: recognition returned nothing, the question was asked again</td></tr><tr><td>Home cancels the form session</td><td><span class='chip pass'>pass</span></td><td>form state cleared, screen back to Home, answers wiped</td></tr><tr><td>Camera form flow does not start the model server</td><td><span class='chip pass'>pass</span></td><td>no llama-server process during the flow</td></tr><tr><td>Ask Chatbot starts the model server, and only there</td><td><span class='chip pass'>pass</span></td><td>llama-server up 20 s after the press</td></tr><tr><td>Listen again replays the last answer</td><td><span class='chip pass'>pass</span></td><td>status went to SPEAKING again without a new synthesis</td></tr></tbody></table></div>
+<h3>With the real state machine and OCR, simulated speech</h3>
+<ul>
+<li>Hindi full session (flow test): 6 of 6 tests, 29 prompts, identification 6.4 s. Covers Change (reopen and replace), Skip on optional and required fields, review and sealing.</li>
+<li>English full session: sent, 27 prompts, 4.5 s of processing, every field correct, optional fields skipped.</li>
+<li>Unit tests: form and transport suites: 23 passed in 9.67s; the application suite's 19 known failures (old LCD-era screen tests) are unchanged from before this work.</li>
+</ul>
+<h3>Not automatable here, for you at the kiosk</h3>
+<ul>
+<li>Speaking into the microphone in each language (the recogniser paths are verified with clips through the service).</li>
+<li>Touch feel of Hold-and-speak on the 7-inch panel.</li>
+<li>A printed form under the real webcam (identification was measured on synthetic photos).</li>
+</ul>
+
+<h2>6 · Memory and performance</h2>
+<p>Sampled on the running kiosk during the scenario run (kiosk process RSS, free RAM as MemAvailable, swap in use, the model server's RSS when present). The speech service holds 2.5 GB throughout.</p><div class='tbl'><table><thead><tr><th>Scenario</th><th class='n'>kiosk RSS MB</th><th class='n'>free MB</th><th class='n'>swap MB</th><th class='n'>llama-server MB</th><th>note</th></tr></thead><tbody><tr><td>Idle, kiosk just started</td><td class='n'>1110</td><td class='n'>2287</td><td class='n'>1898</td><td class='n'>-</td><td></td></tr><tr><td>Typed question, Hindi</td><td class='n'>1105</td><td class='n'>2424</td><td class='n'>1897</td><td class='n'>-</td><td>answer in 10.1 s</td></tr><tr><td>Typed question, Tamil</td><td class='n'>1104</td><td class='n'>2428</td><td class='n'>1896</td><td class='n'>-</td><td>answer in 7.1 s</td></tr><tr><td>Typed question, English</td><td class='n'>1104</td><td class='n'>2420</td><td class='n'>1896</td><td class='n'>-</td><td>answer in 6.7 s</td></tr><tr><td>After Listen again</td><td class='n'>1104</td><td class='n'>2423</td><td class='n'>1896</td><td class='n'>-</td><td></td></tr><tr><td>After switching Tamil → Hindi → English → Tamil</td><td class='n'>1104</td><td class='n'>2465</td><td class='n'>1895</td><td class='n'>-</td><td></td></tr><tr><td>Form flow: photo read, first question on screen</td><td class='n'>1142</td><td class='n'>2439</td><td class='n'>1895</td><td class='n'>-</td><td>7.0 s to the question</td></tr><tr><td>After Home from the form</td><td class='n'>1142</td><td class='n'>2442</td><td class='n'>1895</td><td class='n'>-</td><td></td></tr><tr><td>Ask Chatbot (model server loaded)</td><td class='n'>1056</td><td class='n'>1616</td><td class='n'>2019</td><td class='n'>1710</td><td></td></tr><tr><td>After Home from the chatbot</td><td class='n'>1006</td><td class='n'>1254</td><td class='n'>2100</td><td class='n'>2035</td><td></td></tr></tbody></table></div>
+<p>The per-language recognition run through the service is pending the service restart.</p>
+<p>Earlier measurements still hold: 50 consecutive form sessions kept the kiosk process flat at 151 to 158 MB in the benchmark harness, and the outbox, receiver and identification numbers are in the form-filling report.</p>
+
+<h2>7 · The clock without internet</h2>
+<p>The header uses the Jetson's system clock, timezone Asia/Kolkata. Today the clock was NTP-synchronised. The board has two real-time clocks; <code>rtc0</code> (the power-sequencer RTC) held the correct time and is the one the system reads at boot, <code>rtc1</code> reads 1970 and is unused. Whether <code>rtc0</code> survives a power cut depends on the coin cell on the carrier board's RTC header, which the developer kit ships without. Without it, an offline cold boot resumes from the time of the last shutdown and the header shows a stale date.</p>
+<p><strong>Power-cut test, to run once:</strong> disconnect Wi-Fi, note the time on the kiosk header, pull the power, wait ten minutes, power on still offline, and compare the header time with a watch. Right means the RTC is battery-backed; ten minutes behind means it is not, and a CR2032 on the RTC header fixes it. Nothing in the software will change either way.</p>
+
+<h2>8 · Remaining issues and your decisions</h2>
+<ul>
+<li><strong>Restart the speech service</strong> (<code>sudo systemctl restart bhashini_models.service</code>) to load the English recogniser configuration; until then the English tile works for typed and spoken flows except recognition.</li>
+<li><strong>Emblem authorisation</strong>, section 3.</li>
+<li><strong>small.en</strong> if you want fewer English errors at the cost noted above.</li>
+<li><strong>Native review</strong> of the new Hindi and Tamil labels, Help steps and notices in <code>i18n/strings.ts</code>.</li>
+<li><strong>Language change race:</strong> a question typed within one second of switching the language was once answered in the previous language; a person tapping the microphone a few seconds later is not affected. Not fixed.</li>
+<li><strong>The power-cut clock test</strong>, section 7.</li>
+</ul>
+
+<h2>Files</h2>
+<dl>
+<dt>Commits</dt><dd>NOMADRIGHT 54d38b6 7e80447 e83b31b; UI c478ec4 2985aff; the speech service folder is not under git.</dd>
+<dt>Benchmarks</dt><dd><code>~/asr_english_candidates/</code> (bench.py, bench_domain.py, clips, results); <code>bhashini_models/benchmarks/results/other/</code></dd>
+<dt>Guide</dt><dd>The operator guide was updated for the new navigation, the admin PIN, English and the test hook.</dd>
+</dl>
+<footer>Measured 13 September 2026 on the Jetson Orin Nano 8 GB at 1024 × 600. Companion reports: <em>NomadRight Form Filling</em>, <em>NomadRight Orin Tune-Up</em>, <em>NomadRight Operator Guide</em>.</footer>
+</main>

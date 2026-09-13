@@ -1017,6 +1017,14 @@ class NomadRightApplication(BaseApplication):
             if turn_kind == "stop" or not self.running:
                 break
 
+            # The language is read again HERE, after the wait: the person chooses it
+            # on the Home page while the kiosk is idle, i.e. exactly while this loop
+            # was waiting - the value captured before the wait is the previous
+            # person's (measured 2026-09-13: a Tamil question answered in Hindi,
+            # an English one in Tamil, a form started in the wrong language).
+            lang = self.settings.get("input_language", constants.DEFAULT_SOURCE_LANGUAGE)
+            bridge_lang = self.settings.get("bridge_language", constants.DEFAULT_BRIDGE_LANGUAGE)
+
             # Cleared here - right as a real turn actually begins - not
             # before the wait above. _on_home_pressed() sets this flag
             # unconditionally on every Home press, even a harmless one

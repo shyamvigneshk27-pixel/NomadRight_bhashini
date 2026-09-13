@@ -87,20 +87,16 @@ python receiver.py</code></pre><p>First line: <code>receiving on port 8443 (mTLS
 
 <h3>D. A citizen's session, what the operator does</h3>
 <ol class="steps">
-<li><div><p><strong>Choose Hindi or Tamil</strong> on the screen. That one choice sets the screen, the spoken questions and the speech recogniser. English shows on the screen but the form flow needs Hindi or Tamil; pressing Camera in English says so.</p></div></li>
-<li><div><p><strong>Press Camera</strong> with the paper form held flat, close and in the light. The kiosk reads the title and says which form it thinks it is; the person answers yes or no. Two similar forms: it asks "this one or that one". Nothing readable: it asks which scheme the form is for. A form it does not know: it lists the ones it can fill.</p></div></li>
-<li><div><p><strong>Answer each question</strong> in the form's own order: hold the big button, speak, release. Risky answers are read back for a yes or no. Three failed tries on a required answer leave it for the officer and move on.</p></div></li>
-<li><div><p><strong>Show documents when asked.</strong> For the account number and IFSC the kiosk asks for the passbook; for the Aadhaar number, the Aadhaar card. Hold it steady, press the button, and confirm what it read. A required value it cannot read is asked by voice; the IFSC and other optional values are left for the officer.</p></div></li>
-<li><div><p><strong>Review and send.</strong> The kiosk reads every answer back. "Yes" seals and sends; "change" then the answer's number re-asks that one. The person hears either "sent" or "saved, will be sent automatically".</p></div></li>
+<li><div><p><strong>The first screen is the language page and it is Home.</strong> Tamil, Hindi or English. That one tap sets the screen, the speech recogniser, the spoken answers and the form questions for the whole visit. Every Home button returns here, and it is the only place the language changes.</p></div></li>
+<li><div><p><strong>The menu</strong> offers Speak Your Question, Scan a Document, View All Schemes and Help. Help is five numbered steps in the chosen language. Back goes to the language page.</p></div></li>
+<li><div><p><strong>Speak Your Question:</strong> tap the microphone, ask, tap again to stop. The answer is read aloud and shown large; <em>Listen again</em> replays it, <em>Ask another question</em> starts over, Home ends the visit.</p></div></li>
+<li><div><p><strong>Scan a Document:</strong> hold the paper form flat and close, press the camera button. The kiosk reads the title and asks "Is this the X form?" on screen and aloud; hold the blue button and say yes or no. Then every question in the form's own order: hold the button while answering, release when done. Pressing the button while the kiosk is still speaking stops the speech and starts listening at once.</p></div></li>
+<li><div><p><strong>Repeat, Change, Skip.</strong> Repeat says the same question again. Change reopens the answer just given so it can be replaced; it never walks further back. Skip leaves an optional field at once; a required field is asked up to three times and then left for the officer under <code>unanswered_required</code>, never filled with a made-up value. Home cancels the whole form and wipes its answers; sealed forms already waiting for the office are not touched.</p></div></li>
+<li><div><p><strong>Documents:</strong> for the account number and IFSC the kiosk asks for the passbook, for the Aadhaar number the Aadhaar card. Hold it steady, press the button, confirm what it read. Repeat, Skip and Home work here too.</p></div></li>
+<li><div><p><strong>After sending</strong> the screen shows the thank-you page until Home is pressed. If the office computer is not reachable the person hears that the form is saved and will be sent automatically (section 2).</p></div></li>
 </ol>
-<p>The four on-screen buttons work at any question, and so do the spoken words:</p>
-<div class="say">
-<div><b>Repeat</b>दोबारा · फिर से<br>மீண்டும் · திரும்ப</div>
-<div><b>Change</b>बदलो · वापस<br>மாற்று · திருத்து</div>
-<div><b>Skip</b>छोड़ो · पता नहीं<br>தவிர் · தெரியாது</div>
-<div><b>Cancel</b>रद्द · बंद करो<br>ரத்து · நிறுத்து</div>
-</div>
-<p>Home, a language change, Cancel, or 90 s without the button all end the session and wipe its answers. <strong>Ask Chatbot</strong>, the corner button on the Document page, is the earlier photo-and-question flow with the vision model; it is unchanged.</p>
+<p><strong>Admin panel.</strong> The tiny "Admin" text in the bottom-right corner of the language page opens the PIN prompt (PIN 9999, checked on the device; change <code>DEFAULT_ADMIN_PIN</code> in <code>python/pocketinfer/boards/hdmi.py</code> or set <code>POCKETINFER_ADMIN_PIN</code> before starting the kiosk). Behind it: audio, display, device status, diagnostics, logs and the terminal. Nothing else on the screens is for the operator.</p>
+<p><strong>Clock.</strong> The date and time in the header come from the Jetson's own clock (timezone Asia/Kolkata), never from the network. The board's real-time clock keeps time only while the coin-cell battery on the carrier's RTC header is fitted; see the power-cut test in the rebuild report.</p>
 
 <h2>2 · Unsent forms: the outbox</h2>
 <p>A completed form is sealed the moment the person confirms it and is written to <code>~/.local/state/nomadright/outbox/</code> as <code>&lt;session&gt;.sealed</code> plus a small <code>.sealed.meta</code> file with the attempt count. The plain answers exist only in memory and are dropped right there. The kiosk then tries the laptop once; on failure a background thread retries every 30 s, waiting 10 s, 20 s, 40 s … up to 5 min between attempts. Only the laptop's acknowledgement (the SHA-256 of the sealed blob) deletes the local copy.</p>
@@ -170,7 +166,8 @@ venv/bin/python -c "from pocketinfer.applications.nomad_right.formfill.outbox im
 <tr><td><code>FORM_FILLING_ENABLED</code></td><td><code>True</code></td><td>Master switch. <code>False</code> makes the Camera button behave exactly as before: photo, spoken question, vision-model answer. The form code stays installed but idle.</td></tr>
 <tr><td><code>FORM_REVIEW_ENABLED</code></td><td><code>True</code></td><td>Section 4.</td></tr>
 <tr><td><code>FORM_ANSWER_TIMEOUT_S</code></td><td class="n">90</td><td>Seconds the kiosk waits for the button after asking a question. When it runs out the session is cancelled and its answers wiped. This is the walk-away timer; the conversation's own idle expiry is separate (below).</td></tr>
-<tr><td><code>FORM_LANGUAGES</code></td><td><code>("hi", "ta")</code></td><td>Languages the flow accepts. Adding <code>"en"</code> needs an English speech recogniser, which the device does not have; the questions exist in English already.</td></tr>
+<tr><td><code>FORM_LANGUAGES</code></td><td><code>("hi", "ta", "en")</code></td><td>Languages the form flow accepts by voice. English questions, prompts and command words exist in the catalogue; the English recogniser is in the speech service.</td></tr>
+<tr><td><code>NOMADRIGHT_FORM_TEST_IMAGE</code></td><td>unset</td><td>Environment variable for tests only: a photo file stands in for the webcam when Camera is pressed, so the form flow can be driven without a printed form. Never set it on a real kiosk.</td></tr>
 <tr><td><code>FORM_DOC_OCR_LANG</code></td><td><code>"en"</code></td><td>OCR language for passbooks and Aadhaar cards. Numbers are printed in Latin digits, so English is fastest; <code>"hi"</code> or <code>"ta"</code> is slower and gains nothing for numbers.</td></tr>
 <tr><td><code>FORM_RECEIVER_CONFIG</code></td><td><code>~/.config/nomadright/receiver.json</code></td><td>Where pairing writes the kiosk's half. Move it only together with pairing.</td></tr>
 <tr><td><code>FORM_OUTBOX_*</code>, <code>FORM_SEND_TIMEOUT_S</code></td><td></td><td>Section 2.</td></tr>
@@ -207,7 +204,11 @@ venv/bin/python -c "from pocketinfer.applications.nomad_right.formfill.outbox im
 </tbody></table></div>
 
 <h3>Speech recognition · <code>~/bhashini_models/asr/asr_config.json</code></h3>
-<pre><code>"backends": { "hi": "conformer", "ta": "whisper-ct2" }</code></pre>
+<pre><code>"backends": { "hi": "conformer", "ta": "whisper-ct2", "en": "english" },
+"english":  { "backend": "whisper-ct2-en", "ct2_model_dir": ".../asr/english_models/whisper-base.en",
+              "vosk_model_dir": ".../asr/english_models/vosk-model-small-en-us-0.15" }</code></pre>
+<p><strong>English</strong> is loaded on the first English request, not at start, so it costs nothing until a citizen chooses English. Two engines are installed: <code>whisper-ct2-en</code> (Whisper base.en, CTranslate2 int8 on the GPU, about 0.3 s per utterance) and <code>vosk</code> (the 40 MB CPU model, about 1.6 s, more errors). Switch with <code>"backend"</code> and restart the service. A better English model, small.en, is kept under <code>~/asr_english_candidates/</code>; point <code>ct2_model_dir</code> at it for fewer errors at roughly twice the latency and more memory (numbers in the rebuild report).</p>
+
 <p>Tamil options: <code>whisper-ct2</code> (in use: CTranslate2 int8, word error 12 % on FLEURS and 7 % on kiosk phrases, 2.6 s, 0.7 GB less memory) or <code>whisper</code> (TensorRT, 12 % / 5 %, 1.6 s, more memory). <code>conformer</code> for Tamil is broken (75 % errors) and is only there for Hindi. After editing: <code>sudo systemctl restart bhashini_models.service</code>.</p>
 
 <h2>6 · Forms, questions and words</h2>
