@@ -63,6 +63,7 @@ class FormSession:
         self.attempts = 0
         self.pending: Optional[Tuple[FieldRef, V.Parsed]] = None   # value awaiting yes/no
         self.doc_failed = False           # document field fell back to voice
+        self.last_done_pos: Optional[int] = None   # plan index of the field answered or skipped last (for 'change')
         self.created = time.monotonic()
         self.last_activity = self.created
         self._rebuild_plan()
@@ -231,6 +232,7 @@ class FormSession:
             if yn is True:
                 self._store(ref, parsed)
                 self.pending, self.attempts = None, 0
+                self.last_done_pos = self.pos
                 self.pos += 1
                 return self._ask()
             if yn is False or cmd == "change":
@@ -262,6 +264,7 @@ class FormSession:
             return Step(self._p("confirm_value", value=self._spell(parsed.display)), ui=self._ui(pending_value=parsed.display))
         self._store(ref, parsed)
         self.attempts = 0
+        self.last_done_pos = self.pos
         self.pos += 1
         return self._ask()
 
@@ -289,23 +292,24 @@ class FormSession:
         if ref.spec.get("required", True):
             self.unanswered_required.append(ref.key)
         self.attempts = 0
+        self.last_done_pos = self.pos
         self.pos += 1
         return self._ask()
 
     def _go_back(self) -> Step:
-        # the previous applicable, answered field
-        i = self.pos - 1
-        while i >= 0:
+        """'Change': reopen the field whose answer was given (or skipped) last so the
+        person can replace it. Never walks further back: a second 'change' simply
+        asks the reopened field again."""
+        i = self.last_done_pos
+        self.last_done_pos = None
+        if i is not None and 0 <= i < len(self.plan):
             ref = self.plan[i]
-            if self._applicable(ref) and (ref.key in self.values or ref.key in self.skipped):
-                self.values.pop(ref.key, None); self.displays.pop(ref.key, None)
-                if ref.key in self.skipped:
-                    self.skipped.remove(ref.key)
-                if ref.key in self.unanswered_required:
-                    self.unanswered_required.remove(ref.key)
-                self.pos, self.attempts = i, 0
-                return self._ask()
-            i -= 1
+            self.values.pop(ref.key, None); self.displays.pop(ref.key, None)
+            if ref.key in self.skipped:
+                self.skipped.remove(ref.key)
+            if ref.key in self.unanswered_required:
+                self.unanswered_required.remove(ref.key)
+            self.pos, self.attempts = i, 0
         return self._ask()
 
     def _store(self, ref: FieldRef, parsed: V.Parsed) -> None:

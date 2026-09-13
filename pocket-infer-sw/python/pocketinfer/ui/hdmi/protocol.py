@@ -115,6 +115,8 @@ CMD_ASK_DOCUMENT_TEXT = "ask_document_text"
 #                                                        field_count, question, pending_value, review, ...
 CMD_ASK_CHATBOT = "ask_chatbot"
 CMD_FORM_COMMAND = "form_command"
+#   client -> server {type: "replay_answer"}           "Listen again": the last spoken answer once more
+CMD_REPLAY_ANSWER = "replay_answer"
 
 # ---- /ws/terminal ----------------------------------------------------------
 # Framed JSON (not raw PTY bytes) so the PIN handshake and resize events

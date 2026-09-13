@@ -211,9 +211,54 @@ def _month(tok: str, lang: str) -> Optional[int]:
     return None
 
 
+_EN_ORDINALS = {"first": "one", "second": "two", "third": "three", "fourth": "four", "fifth": "five", "sixth": "six", "seventh": "seven",
+                "eighth": "eight", "ninth": "nine", "tenth": "ten", "eleventh": "eleven", "twelfth": "twelve", "thirteenth": "thirteen",
+                "fourteenth": "fourteen", "fifteenth": "fifteen", "sixteenth": "sixteen", "seventeenth": "seventeen",
+                "eighteenth": "eighteen", "nineteenth": "nineteen", "twentieth": "twenty", "thirtieth": "thirty"}
+
+
+def _en_year(words: List[str]) -> Optional[int]:
+    """Spoken English years: 'nineteen eighty five' -> 1985, 'twenty twenty' -> 2020,
+    'nineteen hundred' -> 1900. None when the words are not that shape."""
+    units = _UNITS["en"]
+    vals = []
+    for w in words:
+        if w in units:
+            vals.append(units[w])
+        elif w == "hundred":
+            vals.append("hundred")
+        else:
+            return None
+    if not vals or vals[0] == "hundred":
+        return None
+    # first chunk: 10..99 ('nineteen', or 'twenty' + 'one')
+    i, first = 0, 0
+    while i < len(vals) and vals[i] != "hundred" and first < 10:
+        first += vals[i]; i += 1
+    if not (10 <= first <= 99):
+        return None
+    rest = vals[i:]
+    # 'twenty one' is 21, not 2001: a year needs a tens word or 'hundred' after the first chunk
+    if not rest or not (rest[0] == "hundred" or (isinstance(rest[0], int) and rest[0] >= 10)):
+        return None
+    if rest[0] == "hundred":
+        rest = rest[1:]
+    if any(v == "hundred" for v in rest):
+        return None
+    second = sum(rest)
+    if second > 99:
+        return None
+    year = first * 100 + second
+    return year if 1900 <= year <= 2099 else None
+
+
 def parse_date(text: str, lang: str) -> Parsed:
-    """'15 8 1985', '15/08/1985', '15 अगस्त 1985', 'பதினைந்து ஆகஸ்ட் ஆயிரத்து தொள்ளாயிரத்து எண்பத்தி ஐந்து' -> 1985-08-15."""
+    """'15 8 1985', '15/08/1985', '15th August 1985', 'fifteen August nineteen eighty five', '15 अगस्त 1985',
+    'பதினைந்து ஆகஸ்ட் ஆயிரத்து தொள்ளாயிரத்து எண்பத்தி ஐந்து' -> 1985-08-15."""
     t = norm(text).translate(_DEVANAGARI_DIGITS).translate(_TAMIL_DIGITS).replace("/", " ").replace("-", " ").replace(".", " ")
+    if lang == "en":
+        t = re.sub(r"\b(\d{1,2})(st|nd|rd|th)\b", r"\1", t)          # 15th -> 15 (what English ASR writes)
+        t = " ".join(_EN_ORDINALS.get(w, w) for w in t.split())      # fifteenth -> fifteen
     toks = t.split()
     nums: List[int] = []
     month: Optional[int] = None
@@ -232,6 +277,10 @@ def parse_date(text: str, lang: str) -> Parsed:
             j += 1
         if j > i:
             v = _tokens_to_number(toks[i:j], lang)
+            if lang == "en" and j - i >= 2:
+                y = _en_year(toks[i:j])                              # 'nineteen eighty five' is a year, not 104
+                if y is not None and (v is None or not 1900 <= v <= 2099):
+                    v = y
             if v is not None:
                 nums.append(v)
             i = j

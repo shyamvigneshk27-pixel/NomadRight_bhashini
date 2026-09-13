@@ -410,7 +410,7 @@ FORM_ANSWER_TIMEOUT_S = 90.0
 # numbers are printed in Latin digits, English is the fastest tesseract pass.
 FORM_DOC_OCR_LANG = "en"
 # Languages the form flow can run in by voice (needs ASR + predefined questions).
-FORM_LANGUAGES = ("hi", "ta")
+FORM_LANGUAGES = ("hi", "ta", "en")
 # Where sealed, not-yet-acknowledged forms wait (0700), and the pairing config
 # written by tools/pair_receiver.py (keys and certificate paths - never in code).
 FORM_OUTBOX_DIR = os.path.expanduser("~/.local/state/nomadright/outbox")
@@ -513,6 +513,7 @@ SCHEME_JSON_FILES = [
 SOURCE_LANGUAGES = {
     "hi": "Hindi",
     "ta": "Tamil",
+    "en": "English",
     "or": "Odia",
     "bho": "Bhojpuri",
     "mai": "Maithili",
@@ -530,7 +531,7 @@ DEFAULT_SOURCE_LANGUAGE = "hi"
 # on-screen explanation. app.py's ui_cb() gates on this set before honouring
 # a selection - add a code here only once its .onnx checkpoint actually
 # exists on disk.
-ASR_SUPPORTED_LANGUAGES = {"hi", "ta"}
+ASR_SUPPORTED_LANGUAGES = {"hi", "ta", "en"}
 
 # ============================================================================
 # Voice Bridge Languages

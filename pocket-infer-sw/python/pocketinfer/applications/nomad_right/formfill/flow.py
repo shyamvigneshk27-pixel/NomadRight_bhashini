@@ -89,6 +89,25 @@ class FormFlow:
                     f"scores={[(c.form_id, c.score) for c in res.candidates[:3]]} {self.timings['identify']}s")
         return res
 
+    def _ask_spoken(self, prompt: str) -> str:
+        """Speak a pre-session question (confirm / choose / which scheme) with the
+        screen showing it as the current question, then wait for the answer. A
+        cancel word or the on-screen Cancel ends the session like Home."""
+        self._ui(state="CONFIRM_FORM", question=prompt, listen=True)
+        for _ in range(4):                      # 'repeat' (or an unrelated command) asks the same question again
+            if not self.io.speak(prompt):
+                return HOME
+            ans = self.io.listen(constants.FORM_ANSWER_TIMEOUT_S)
+            if ans in (HOME, TIMEOUT):
+                return ans
+            cmd = V.detect_command(ans, self.lang, self.catalog.words)
+            if cmd == "cancel":
+                return HOME
+            if cmd in ("repeat", "change", "skip"):
+                continue
+            return ans
+        return TIMEOUT
+
     def _match_form_by_speech(self, text: str, candidates: List[str]) -> Optional[str]:
         """The person names the form ('suraksha bima', 'சுரக்ஷா'): match spoken names,
         title words and scheme short names of the candidate forms (all forms when no
@@ -115,9 +134,7 @@ class FormFlow:
         if res.status == "accept" or res.status == "confirm":
             fid = res.best
             for _ in range(2):
-                if not self.io.speak(self._p("confirm_form", title=self.catalog.spoken_name(fid, self.lang))):
-                    return None, "cancelled"
-                ans = self.io.listen(constants.FORM_ANSWER_TIMEOUT_S)
+                ans = self._ask_spoken(self._p("confirm_form", title=self.catalog.spoken_name(fid, self.lang)))
                 if ans in (HOME, TIMEOUT):
                     return None, "cancelled"
                 yn = V.parse_yesno(ans, self.lang, self.catalog.words)
@@ -135,9 +152,7 @@ class FormFlow:
             return None, "cancelled"
         if res.status == "choose":
             a, b = res.top_ids[0], res.top_ids[1]
-            if not self.io.speak(self._p("choose_form", a=self.catalog.spoken_name(a, self.lang), b=self.catalog.spoken_name(b, self.lang))):
-                return None, "cancelled"
-            ans = self.io.listen(constants.FORM_ANSWER_TIMEOUT_S)
+            ans = self._ask_spoken(self._p("choose_form", a=self.catalog.spoken_name(a, self.lang), b=self.catalog.spoken_name(b, self.lang)))
             if ans in (HOME, TIMEOUT):
                 return None, "cancelled"
             fid = self._match_form_by_speech(ans, [a, b])
@@ -153,9 +168,7 @@ class FormFlow:
         with one form, offer that; otherwise ask which scheme the form is for."""
         if prior_scheme_id and self.catalog.by_scheme.get(prior_scheme_id):
             fid = self.catalog.by_scheme[prior_scheme_id][0]
-            if not self.io.speak(self._p("confirm_form", title=self.catalog.spoken_name(fid, self.lang))):
-                return None, "cancelled"
-            ans = self.io.listen(constants.FORM_ANSWER_TIMEOUT_S)
+            ans = self._ask_spoken(self._p("confirm_form", title=self.catalog.spoken_name(fid, self.lang)))
             if ans in (HOME, TIMEOUT):
                 return None, "cancelled"
             if V.parse_yesno(ans, self.lang, self.catalog.words) is True:
@@ -163,9 +176,7 @@ class FormFlow:
             named = self._match_form_by_speech(ans, [])
             if named:
                 return named, "named"
-        if not self.io.speak(self._p("not_readable")):
-            return None, "cancelled"
-        ans = self.io.listen(constants.FORM_ANSWER_TIMEOUT_S)
+        ans = self._ask_spoken(self._p("not_readable"))
         if ans in (HOME, TIMEOUT):
             return None, "cancelled"
         fid = self._match_form_by_speech(ans, [])
@@ -200,6 +211,10 @@ class FormFlow:
                 frame = self.io.capture(constants.FORM_ANSWER_TIMEOUT_S)
                 if frame is None:
                     outcome = "cancelled"; break
+                if isinstance(frame, str):
+                    # an on-screen command (skip / repeat / change / cancel) instead of a document
+                    step = self.session.handle_answer(frame)
+                    continue
                 t0 = time.perf_counter()
                 text = O.read_document(frame, constants.FORM_DOC_OCR_LANG).text
                 self._t("doc_ocr", t0)

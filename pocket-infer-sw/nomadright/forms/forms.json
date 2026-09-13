@@ -329,7 +329,8 @@
    },
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/pmsby_en.pdf (jansuraksha.gov.in)",
    "fields": [
@@ -1032,7 +1033,8 @@
    },
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/pmjjby_en.pdf (jansuraksha.gov.in)",
    "fields": [
@@ -1657,7 +1659,8 @@
    "discriminators": {},
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/apy_en.pdf, apy_hi.pdf, apy_ta.pdf (jansuraksha.gov.in)",
    "fields": [
@@ -2480,7 +2483,8 @@
    "discriminators": {},
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/pmuy_kyc_en.pdf (pmuy.gov.in, v8)",
    "fields": [
@@ -3377,7 +3381,8 @@
    "discriminators": {},
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/pmsvanidhi_laf.pdf (pmsvanidhi.mohua.gov.in)",
    "fields": [
@@ -4507,7 +4512,8 @@
    "discriminators": {},
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/pmkisan_selfdecl.pdf (central format, scanned)",
    "fields": [
@@ -5146,7 +5152,8 @@
    "discriminators": {},
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/mgnrega_registration.pdf (Operational Guidelines 2013, Annexure 3)",
    "fields": [
@@ -6013,7 +6020,8 @@
    "discriminators": {},
    "supported_languages": [
     "hi",
-    "ta"
+    "ta",
+    "en"
    ],
    "source": "sources/ssa1_centralbank.pdf (Sukanya Samriddhi Account Scheme 2019, Form-1)",
    "fields": [

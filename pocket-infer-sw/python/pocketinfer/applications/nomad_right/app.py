@@ -431,6 +431,8 @@ class NomadRightApplication(BaseApplication):
             self._on_chatbot_pressed()
         elif msg.startswith("FormCmd "):
             self._form_cmd = msg[8:].strip().lower()
+        elif msg == "Replay":
+            self._replay_last_answer()
         elif msg == "Home":
             self._on_home_pressed()
         elif msg.startswith("DocText "):
@@ -448,6 +450,18 @@ class NomadRightApplication(BaseApplication):
             return
         self._text_query_pending = text
         self._text_query_event.set()
+
+    def _replay_last_answer(self) -> None:
+        """'Listen again' on the answer screen: plays the last spoken answer once
+        more from memory (no new synthesis), only while the kiosk is idle."""
+        wav = getattr(self, "_last_answer_wav", None)
+        if not wav or self._mode != "HOME" or self._camera_busy.is_set():
+            self.logger.info(f"[NomadRight] replay refused (answer={'yes' if wav else 'no'}, mode={self._mode})")
+            return
+        self._log("REPLAY    last answer")
+        self.board.statusbar("[SPEAKING] Home=stop")
+        self._play(wav)
+        self.board.statusbar("[READY]")
 
     def _prewarm_qwen(self) -> None:
         client = getattr(getattr(self, "workflow", None), "qwen_client", None)
@@ -483,6 +497,13 @@ class NomadRightApplication(BaseApplication):
             self._log("CAMERA pressed - form capture")
             try:
                 frame = self.board.camera_frame() if hasattr(self.board, "camera_frame") else None
+                test_image = os.environ.get("NOMADRIGHT_FORM_TEST_IMAGE")
+                if test_image:
+                    # test hook: a file stands in for the webcam so the form flow can be
+                    # driven end to end without a printed form (never set on a real kiosk)
+                    import cv2
+                    frame = cv2.imread(test_image)
+                    self._log(f"FORM test image {os.path.basename(test_image)}")
             except Exception as exc:
                 self.logger.error(f"[NomadRight] Camera capture failed: {exc}")
                 frame = None
@@ -712,12 +733,9 @@ class NomadRightApplication(BaseApplication):
         while time.time() < deadline:
             if self._home_requested.is_set():
                 return FORM_HOME
-            if self._form_cmd:
-                cmd, self._form_cmd = self._form_cmd, None
-                cat = self._catalog()
-                words = (cat.words.get(cmd, {}).get(lang) if cat else None) or [cmd]
-                self._log(f"FORM cmd {cmd}")
-                return words[0]
+            cmd_word = self._take_form_cmd(lang)
+            if cmd_word:
+                return cmd_word
             self.board.wait_for_trigger_button_down(timeout=0.2)
             if self.board.trigger_button:
                 self.board.button_led(True)
@@ -734,14 +752,26 @@ class NomadRightApplication(BaseApplication):
                 return text
         return FORM_TIMEOUT
 
-    def _form_capture(self, timeout: float):
+    def _take_form_cmd(self, lang: str) -> Optional[str]:
+        """The on-screen Repeat / Change / Skip / Cancel button, as the spoken word the
+        session understands in this language (None when nothing was pressed)."""
+        if not self._form_cmd:
+            return None
+        cmd, self._form_cmd = self._form_cmd, None
+        cat = self._catalog()
+        words = (cat.words.get(cmd, {}).get(lang) if cat else None) or [cmd]
+        self._log(f"FORM cmd {cmd}")
+        return words[0]
+
+    def _form_capture(self, lang: str, timeout: float):
         """The person shows a document and presses the button: one frame, cropped."""
         deadline = time.time() + timeout
         while time.time() < deadline:
             if self._home_requested.is_set():
                 return None
-            if self._form_cmd:
-                self._form_cmd = None          # a command while waiting for a document is ignored
+            cmd_word = self._take_form_cmd(lang)
+            if cmd_word:
+                return cmd_word                # skip / repeat / change / cancel instead of a document
             self.board.wait_for_trigger_button_down(timeout=0.2)
             if self.board.trigger_button:
                 self.board.wait_for_trigger_button_up()
@@ -754,12 +784,34 @@ class NomadRightApplication(BaseApplication):
         return None
 
     def _form_speak(self, lang: str, text: str) -> bool:
+        """Speaks a form prompt. A press on Hold-and-speak or on one of the command
+        buttons while it is still speaking stops the speech at once, so the person
+        does not have to wait for the end of a long sentence; the press is then
+        picked up by _form_listen / _form_capture. Home cancels."""
         if self._home_requested.is_set():
             return False
         t0 = time.time()
         wav = self.bridge.speak(text, lang)
         self._latency(f"form_tts_{lang}", t0)
-        return self._play(wav)
+        result = {"ok": True}
+        player = threading.Thread(target=lambda: result.__setitem__("ok", self._play(wav)), daemon=True)
+        player.start()
+        interrupted = False
+        while player.is_alive():
+            if self._home_requested.is_set() or self.board.trigger_button or self._form_cmd:
+                # stop as soon as the player exists; keep polling until the playback
+                # thread has really ended so the next prompt never overlaps this one
+                if self._stop_audio():
+                    interrupted = True
+            player.join(timeout=0.05)
+        if self._home_requested.is_set():
+            return False
+        if interrupted:
+            self._log("FORM speech interrupted by the button")
+        elif not result["ok"]:
+            # a playback hiccup must not end the session; the text is on the screen
+            self.logger.warning("[NomadRight] form prompt playback failed - continuing")
+        return True
 
     def _run_form_flow(self, lang: str) -> None:
         with self._image_lock:
@@ -774,7 +826,7 @@ class NomadRightApplication(BaseApplication):
         self._set_answer(None)
         io = FlowIO(speak=lambda text: self._form_speak(lang, text),
                     listen=lambda timeout: self._form_listen(lang, timeout),
-                    capture=self._form_capture,
+                    capture=lambda timeout: self._form_capture(lang, timeout),
                     ui=self.board.set_form_state,
                     status=self.board.statusbar)
         flow = FormFlow(cat, io, lang, outbox=self.form_outbox)
@@ -1217,6 +1269,7 @@ class NomadRightApplication(BaseApplication):
                 self.logger.info("[TTS] Synthesizing and playing speaker output")
                 stage_start = time.time()
                 tts_wav = self.bridge.speak(answer_native, lang)
+                self._last_answer_wav = tts_wav
                 # Logged before playback, so the end-to-end number below
                 # measures time-to-first-sound (what the worker actually
                 # waits for) rather than including however long the answer

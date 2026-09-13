@@ -339,7 +339,7 @@ FORMS = [
                            "ta": ["பிரதம மந்திரி சுரக்ஷா பீமா யோஜனா", "சுரக்ஷா பீமா"]},
         "keywords": {"suraksha": 3.0, "accident": 1.5, "accidental": 1.5, "rupees twenty": 1.5, "disability": 0.5, "master policy": 0.5, "pmsby": 3.0, "सुरक्षा बीमा": 3.0, "दुर्घटना": 1.5, "बीस रुपये": 1.0, "சுரக்ஷா": 3.0, "விபத்து": 1.5},
         "discriminators": {"against": {"FORM_PMJJBY_CONSENT": ["suraksha", "accident"]}},
-        "supported_languages": ["hi", "ta"], "source": "sources/pmsby_en.pdf (jansuraksha.gov.in)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/pmsby_en.pdf (jansuraksha.gov.in)",
         "fields": [
             field("full_name", "name"), field("father_or_husband_name", "name"), field("address", "address"), field("village_or_town", "text"),
             field("district", "text"), field("state", "text"), field("pincode", "pincode"), field("mobile", "phone"),
@@ -360,7 +360,7 @@ FORMS = [
                            "ta": ["பிரதம மந்திரி ஜீவன் ஜோதி பீமா யோஜனா", "ஜீவன் ஜோதி"]},
         "keywords": {"jeevan": 3.0, "jyoti": 3.0, "life insurance": 1.5, "436": 1.5, "lien period": 1.0, "pmjjby": 3.0, "जीवन ज्योति": 3.0, "जीवन बीमा": 1.0, "ஜீவன் ஜோதி": 3.0, "ஆயுள் காப்பீடு": 1.0},
         "discriminators": {"against": {"FORM_PMSBY_CONSENT": ["jeevan", "jyoti", "436"]}},
-        "supported_languages": ["hi", "ta"], "source": "sources/pmjjby_en.pdf (jansuraksha.gov.in)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/pmjjby_en.pdf (jansuraksha.gov.in)",
         "fields": [
             field("full_name", "name"), field("father_or_husband_name", "name"), field("address", "address"), field("village_or_town", "text"),
             field("district", "text"), field("state", "text"), field("pincode", "pincode"), field("mobile", "phone"),
@@ -380,7 +380,7 @@ FORMS = [
                            "ta": ["அடல் ஓய்வூதிய திட்டம்", "atal pension yojana"]},
         "keywords": {"atal": 3.0, "pension": 1.0, "apy": 2.0, "apy account": 2.0, "pran": 1.5, "pfrda": 1.5, "national pension system": 2.0, "nps": 1.0, "pension amount": 1.5, "guaranteed pension": 1.5, "contribution amount": 1.0, "subscriber registration": 1.5, "अटल": 3.0, "पेंशन": 1.0, "अभिदाता": 1.5, "एपीवाई": 2.0, "அடல்": 3.0, "ஓய்வூதிய": 1.5, "சந்தாதாரர்": 1.5},
         "discriminators": {},
-        "supported_languages": ["hi", "ta"], "source": "sources/apy_en.pdf, apy_hi.pdf, apy_ta.pdf (jansuraksha.gov.in)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/apy_en.pdf, apy_hi.pdf, apy_ta.pdf (jansuraksha.gov.in)",
         "fields": [
             doc_field("account_number", "account_number", "bank_passbook", "account_number_spoken"),
             field("bank_name", "text"), field("branch_name", "text", required=False),
@@ -402,7 +402,7 @@ FORMS = [
                            "ta": ["பிரதம மந்திரி உஜ்ஜ்வலா யோஜனா"]},
         "keywords": {"ujjwala": 3.0, "lpg": 2.0, "kyc application": 1.5, "ioc/ bpc/ hpc": 1.5, "petroleum": 1.5, "natural gas": 1.0, "cylinder": 1.0, "consumer details": 1.0, "उज्ज्वला": 3.0, "एलपीजी": 1.5, "केवाईसी": 1.0, "உஜ்ஜ்வலா": 3.0},
         "discriminators": {},
-        "supported_languages": ["hi", "ta"], "source": "sources/pmuy_kyc_en.pdf (pmuy.gov.in, v8)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/pmuy_kyc_en.pdf (pmuy.gov.in, v8)",
         "fields": [
             choice("is_migrant", "yesno"), field("full_name", "name"), field("dob", "date"),
             doc_field("aadhaar", "aadhaar", "aadhaar", "aadhaar_spoken"),
@@ -429,7 +429,7 @@ FORMS = [
                            "hi": ["पीएम स्वनिधि", "स्वनिधि", "स्ट्रीट वेंडर"], "ta": ["ஸ்வநிதி", "pm svanidhi"]},
         "keywords": {"svanidhi": 3.0, "street vendor": 2.0, "vending": 2.0, "atmanirbhar nidhi": 2.0, "loan application": 1.0, "ulb": 1.0, "lender": 0.5, "स्वनिधि": 3.0, "रेहड़ी": 1.5, "ஸ்வநிதி": 3.0, "தெருவோர": 1.5},
         "discriminators": {},
-        "supported_languages": ["hi", "ta"], "source": "sources/pmsvanidhi_laf.pdf (pmsvanidhi.mohua.gov.in)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/pmsvanidhi_laf.pdf (pmsvanidhi.mohua.gov.in)",
         "fields": [
             field("full_name", "name"), field("father_or_spouse_name", "name"), field("dob", "date"), choice("marital_status", "marital_status"),
             field("mobile", "phone"), choice("gender", "gender"), choice("caste_category", "caste_category"),
@@ -453,7 +453,7 @@ FORMS = [
                            "hi": ["प्रधानमंत्री किसान सम्मान निधि", "पीएम-किसान", "स्व घोषणा", "किसान सम्मान"], "ta": ["பிஎம்-கிசான்", "கிசான் சம்மான் நிதி"]},
         "keywords": {"kisan": 3.0, "samman nidhi": 2.0, "self declaration": 2.0, "farmer": 1.0, "pm-kisan": 3.0, "khata": 0.5, "किसान": 3.0, "सम्मान निधि": 2.0, "स्व घोषणा": 1.5, "किसान सम्मान": 2.0, "கிசான்": 3.0, "சம்மான்": 1.5},
         "discriminators": {},
-        "supported_languages": ["hi", "ta"], "source": "sources/pmkisan_selfdecl.pdf (central format, scanned)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/pmkisan_selfdecl.pdf (central format, scanned)",
         "fields": [
             field("full_name", "name"), field("father_name", "name"), field("gender", "choice", question="gender", options=[{"value": v, "en": s[0], "hi": s[1], "ta": s[2]} for v, s in CHOICES["gender"].items()]),
             choice("caste_category", "caste_category"), field("dob", "date"),
@@ -473,7 +473,7 @@ FORMS = [
                            "hi": ["महात्मा गांधी राष्ट्रीय ग्रामीण रोजगार गारंटी", "मनरेगा पंजीकरण आवेदन"], "ta": ["மகாத்மா காந்தி தேசிய ஊரக வேலை உறுதி"]},
         "keywords": {"mgnrega": 3.0, "mgnregs": 3.0, "employment guarantee": 2.0, "gram panchayat": 1.5, "job card": 1.5, "willing to work": 1.5, "head of household": 1.0, "operational guidelines": 1.0, "मनरेगा": 3.0, "रोजगार गारंटी": 2.0, "ग्राम पंचायत": 1.0, "வேலை உறுதி": 2.0, "கிராம பஞ்சாயத்து": 1.0},
         "discriminators": {},
-        "supported_languages": ["hi", "ta"], "source": "sources/mgnrega_registration.pdf (Operational Guidelines 2013, Annexure 3)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/mgnrega_registration.pdf (Operational Guidelines 2013, Annexure 3)",
         "fields": [
             field("workers_count", "integer", validation={"min": 1, "max": 8}),
             {"key": "workers", "type": "group", "required": True, "count_from": "workers_count", "max_items": 6,
@@ -496,7 +496,7 @@ FORMS = [
                            "hi": ["सुकन्या समृद्धि खाता", "सुकन्या समृद्धि योजना"], "ta": ["சுகன்யா சம்ரிதி கணக்கு"]},
         "keywords": {"sukanya": 3.0, "samriddhi": 3.0, "girl child": 1.5, "depositor": 1.5, "postmaster": 1.0, "initial deposit": 1.0, "ssa-1": 1.5, "सुकन्या": 3.0, "समृद्धि": 2.0, "சுகன்யா": 3.0},
         "discriminators": {},
-        "supported_languages": ["hi", "ta"], "source": "sources/ssa1_centralbank.pdf (Sukanya Samriddhi Account Scheme 2019, Form-1)",
+        "supported_languages": ["hi", "ta", "en"], "source": "sources/ssa1_centralbank.pdf (Sukanya Samriddhi Account Scheme 2019, Form-1)",
         "fields": [
             field("girl_name", "name"), field("girl_dob", "date"), field("guardian_full_name", "name"), field("father_or_husband_name", "name"),
             field("guardian_dob", "date"), doc_field("aadhaar", "aadhaar", "aadhaar", "aadhaar_spoken"), doc_field("pan", "text", "pan", "pan", required=False),

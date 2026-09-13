@@ -44,7 +44,7 @@ logger = logging.getLogger(__name__)
 # reachable: this PIN now gates a REAL shell over /ws/terminal (see
 # server.py), not the old touchscreen prototype's cosmetic client-side
 # check. Override with the POCKETINFER_ADMIN_PIN environment variable.
-DEFAULT_ADMIN_PIN = "1234"
+DEFAULT_ADMIN_PIN = "9999"
 
 # Camera preview stream rate for the Document Scanner screen - plenty for
 # a "line the document up" live view without competing for camera/CPU
@@ -375,6 +375,7 @@ class PocketInferHDMIBoard(PocketInferDevboard):
         b.on_command(protocol.CMD_ASK_DOCUMENT_TEXT, lambda msg: self._dispatch_ui_cb(f"DocText {msg.get('text', '')}"))
         b.on_command(protocol.CMD_ASK_CHATBOT, lambda msg: self._dispatch_ui_cb("Chatbot"))
         b.on_command(protocol.CMD_FORM_COMMAND, lambda msg: self._dispatch_ui_cb(f"FormCmd {msg.get('cmd', '')}"))
+        b.on_command(protocol.CMD_REPLAY_ANSWER, lambda msg: self._dispatch_ui_cb("Replay"))
         b.on_command(protocol.CMD_EXIT_APP, lambda msg: self.exit_app())
 
     # ---- Exit portal (Settings > Admin > Exit Application) ----------------

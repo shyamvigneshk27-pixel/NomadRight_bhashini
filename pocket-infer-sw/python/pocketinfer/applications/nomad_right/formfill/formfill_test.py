@@ -121,6 +121,15 @@ class TestIdentifier(unittest.TestCase):
         self.assertNotEqual(r.status, "accept")
 
 
+class TestEnglishDates(unittest.TestCase):
+    def test_spoken_and_written_english_dates(self):
+        from pocketinfer.applications.nomad_right.formfill.validators import parse_date
+        for text, iso in (("fifteen August nineteen eighty five", "1985-08-15"), ("15th August 1985", "1985-08-15"),
+                          ("fifteenth of August nineteen eighty five", "1985-08-15"), ("twenty first March twenty twenty", "2020-03-21"),
+                          ("2 3 1990", "1990-03-02"), ("2nd March 1990", "1990-03-02"), ("two thousand five June ten", "2005-06-10")):
+            self.assertEqual(parse_date(text, "en").value, iso, text)
+
+
 class TestIfscConfusion(unittest.TestCase):
     def test_fifth_char_zero_confusions(self):
         for raw in ("SBIN0001234", "SBINQ001234", "SBINO001234", "SBIND001234", "SBIN 0001234"):
