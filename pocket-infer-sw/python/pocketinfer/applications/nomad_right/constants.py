@@ -402,10 +402,11 @@ FORM_FILLING_ENABLED = True
 # Read every answer back before sending (the citizen can still change one).
 # Set False to send as soon as the last field is answered.
 FORM_REVIEW_ENABLED = True
-# Seconds to wait for the button after a question before the session is
-# cancelled and its answers wiped (a walk-away). The scheme-intelligence idle
-# expiry (5 min) covers the conversation; a half-filled form waits at most this.
-FORM_ANSWER_TIMEOUT_S = 90.0
+# Seconds to wait for the button after a form question before the session is
+# cancelled and its answers wiped (a walk-away). 5 minutes, the inactivity
+# figure of the original specification; the conversation context itself is
+# kept until Home.
+FORM_ANSWER_TIMEOUT_S = 300.0
 # OCR language for documents shown for a value (passbook, Aadhaar card): the
 # numbers are printed in Latin digits, English is the fastest tesseract pass.
 FORM_DOC_OCR_LANG = "en"

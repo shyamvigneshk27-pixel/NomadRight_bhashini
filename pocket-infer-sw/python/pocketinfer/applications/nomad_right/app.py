@@ -467,6 +467,7 @@ class NomadRightApplication(BaseApplication):
         """A new person (Home, language change): nothing of the previous answer
         survives - not the text, not the English, not the audio, not the flag."""
         self._last_answer_wav = None
+        self._answer_completed = False
         self.last_answer_en = ""
         self._set_answer(None)
         self._publish_replay(False)
@@ -1047,6 +1048,9 @@ class NomadRightApplication(BaseApplication):
                 lang_name = constants.SOURCE_LANGUAGES.get(lang, lang.upper())
                 self.board.update_screen(mode="HOME", status=f"[READY] Lang:{lang_name}  Hold=ask")
 
+            if getattr(self, "_last_answer_wav", None) and getattr(self, "_answer_completed", False) and not getattr(self, "_replay_available", False):
+                self._publish_replay(True)
+
             turn_kind = self._wait_for_next_turn()
 
             if turn_kind == "stop" or not self.running:
@@ -1073,10 +1077,11 @@ class NomadRightApplication(BaseApplication):
             # self._home_requested check below.
             self._home_requested.clear()
 
-            # A new question: whatever answer was being replayed stops, and the
-            # previous answer is no longer the one "Listen again" would play.
+            # A new question: a replay in progress stops and "Listen again" is hidden
+            # while the new answer is being made. The previous answer itself (text and
+            # audio) is kept: if this question fails, it is still the latest completed
+            # answer. Nothing of the current person's context is cleared here.
             self._stop_audio()
-            self._last_answer_wav = None
             self._publish_replay(False)
 
             # Documented above (self._mode's own docstring) as switching to
@@ -1126,12 +1131,12 @@ class NomadRightApplication(BaseApplication):
                         time.sleep(1.0)
                         continue
 
-                    self._set_answer(None)
+                    # (the previous answer stays until the new one replaces it)
                     self.board.top_text(f"You: {native_query}"[:80])
                     self.logger.info(f"[NomadRight] TEXT query: '{native_query}'")
                 else:
                     self.board.button_led(True)
-                    self._set_answer(None)
+                    # (the previous answer stays until the new one replaces it)
                     self.board.update_screen(status="[LISTENING]", top="", bottom="")
                     # Logged before audio.start() rather than after, so the log
                     # confirms the press registered even if opening the capture
@@ -1333,6 +1338,7 @@ class NomadRightApplication(BaseApplication):
                 stage_start = time.time()
                 tts_wav = self.bridge.speak(answer_native, lang)
                 self._last_answer_wav = tts_wav
+                self._answer_completed = False
                 # Logged before playback, so the end-to-end number below
                 # measures time-to-first-sound (what the worker actually
                 # waits for) rather than including however long the answer
@@ -1343,6 +1349,7 @@ class NomadRightApplication(BaseApplication):
                 self._latency("end_to_end", turn_start)
                 outcome = self._play_interruptible(tts_wav)      # the speech button stops it and starts listening
                 played_fully = outcome == "done"
+                self._answer_completed = played_fully
                 if played_fully:
                     self._publish_replay(True)             # a completed answer: "Listen again" may now replay it
                 elif outcome == "button":

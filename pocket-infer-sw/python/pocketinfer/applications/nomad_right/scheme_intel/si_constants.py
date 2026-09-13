@@ -79,7 +79,11 @@ DISPLAY_BOTTOM_MAX = nr_constants.DISPLAY_BODY_MAX_LEN
 
 # A kiosk serves one person after another. Facts are forgotten after this
 # much inactivity so the next visitor never inherits the last one's profile.
-SESSION_TTL_S = 300.0  # 5 min idle at a kiosk = a different person; Home / language change reset immediately
+# The current person's context (facts, held cards, the scheme being discussed) is kept
+# until Home or a language change on the Home page - never cleared by an idle timer
+# (user's decision 2026-09-13). The 12 h value is only a safety net for a kiosk left
+# on overnight; it used to be 5 minutes.
+SESSION_TTL_S = 12 * 3600.0
 
 
 # ============================================================================

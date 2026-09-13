@@ -107,7 +107,7 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 <ul>
 <li>Hindi full session (flow test): 6 of 6 tests, 29 prompts, identification 6.4 s. Covers Change (reopen and replace), Skip on optional and required fields, review and sealing.</li>
 <li>English full session: sent, 27 prompts, 4.5 s of processing, every field correct, optional fields skipped.</li>
-<li>Unit tests: form and transport suites: 23 passed in 4.80s; the application suite's 19 known failures (old LCD-era screen tests) are unchanged from before this work.</li>
+<li>Unit tests: form and transport suites: 23 passed in 4.83s; the application suite's 19 known failures (old LCD-era screen tests) are unchanged from before this work.</li>
 </ul>
 <h3>Not automatable here, for you at the kiosk</h3>
 <ul>
@@ -134,9 +134,42 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 <li><strong>The power-cut clock test</strong>, section 7.</li>
 </ul>
 
+
+<h2>9 · Voice interaction fixes (evening of 13 September)</h2>
+<p>Your second brief: a clean session per person, Listen again tied to the completed answer, tap-to-speak on forms, greetings and questions about the kiosk, and tolerance for recognition errors in scheme names. Everything below was tested on the live kiosk over its own socket; the log lines quoted are the kiosk's.</p>
+<h3>What was wrong</h3>
+<ul>
+<li><strong>Stale answer after Home.</strong> Home reset the scheme-intelligence session but never the on-screen answer object, the English text or the stored answer audio, so the next person could replay the previous person's answer. Worse, the question screen derived its answer text from the screen's bottom line, so after Home it showed the Home hint "Hold: Voice Q&amp;A" as if it were an answer (your first photo).</li>
+<li><strong>Listen again</strong> was a permanent button whenever any text was on screen, with no notion of a completed answer.</li>
+<li><strong>Greetings and questions about the device</strong> ("नमस्ते", "what can you do", "who are you") translated well and then fell to the apology; the intent engine only knows scheme intents.</li>
+<li><strong>Recognition errors in scheme names.</strong> The existing phonetic corrector (<code>scheme_intel/repository.py</code>, <code>_phonetic_key</code> + <code>correct()</code>) works on the English text after translation. Your example "इनडिएस योजना के लिए महनदंड क्या है" had already become "What is the penalty for the IndS scheme?" by then, beyond its reach, while the correctly spoken sentence is answered about PDS.</li>
+</ul>
+<h3>What changed</h3>
+<div class="tbl"><table><thead><tr><th>Where</th><th>Change</th></tr></thead><tbody>
+<tr><td><code>app.py</code></td><td><code>replay_available</code> is explicit runtime state published to the screen: true only after an answer's audio has played to the end, false while the next question is being answered, false on Home and language change. Home and a language change clear the answer object, the English text, the stored audio and the flag (<code>_clear_answer_state</code>). The current person's context is never touched between questions: the previous answer stays until a new one replaces it, a question that yields nothing leaves the last completed answer replayable, and the scheme-intelligence idle expiry is lifted (<code>SESSION_TTL_S</code> 5 min → 12 h safety net). The answer playback and replay stop at once when the speech button is pressed and listening starts (<code>_play_interruptible</code>, shared with the form prompts). A predefined answer in the person's language is spoken as written.</td></tr>
+<tr><td><code>kiosk_intents.py</code> (new), <code>workflow.py</code>, <code>response.py</code></td><td>Greeting, thanks, identity, capability, how-to-use, language, form and scheme-general intents. Fuzzy phrase matching (standard-library <code>difflib</code>) on the translated English plus native greeting words in Devanagari, Tamil and romanised form; a sentence that names a scheme, a welfare topic or the person's situation is never taken here. Answers predefined in Tamil, Hindi and English, short, spoken without translation. Runs before scheme intelligence; the model is never involved.</td></tr>
+<tr><td><code>native_correct.py</code> (new)</td><td>Before translation, Hindi and Tamil words that are not known words are snapped onto scheme and welfare words that sound the same in their own script: a consonant-skeleton key (vowel signs, nasal marks and nukta removed, look-alike consonants merged), equal or one edit apart, plus a spelling check. Vocabulary from the trilingual catalogue plus a short welfare list; function words and greetings protected. A detected scheme is passed to the pipeline as its existing prior hint. "इनडिएस … महनदंड" → "पीडीएस … मानदंड"; "ஆயுஷ்மன்" → "ஆயுஷ்மான்".</td></tr>
+<tr><td><code>constants.py</code></td><td><code>FORM_ANSWER_TIMEOUT_S</code> 90 → 300 s, the five-minute inactivity figure of the original specification.</td></tr>
+<tr><td>Screen</td><td>The question page shows only the backend's answer object, never a screen line; Listen again appears only while <code>replay_available</code> is true, beside Stop speaking while speaking and beside <em>Ask your questions</em> and Home after; a fresh entry shows the microphone and no answer. The form panel uses the question screen's tap-to-speak / tap-to-stop through the same provider (one recording mechanism; press-to-capture for documents); Repeat, Change, Skip unchanged. Language tiles have identical fixed dimensions and type sizes; containers never draw a focus box.</td></tr>
+</tbody></table></div>
+<h3>Tests on the live kiosk</h3>
+<div class="tbl"><table><thead><tr><th>Test</th><th>Result</th><th>Observed</th></tr></thead><tbody>
+<tr><td>A · Fresh user, Tamil / Hindi / English: enter clean, answer in the selected language, Home clears the answer and the replay flag, replay refused after Home</td><td><span class="chip pass">pass ×3</span></td><td>"Answer state cleared (home)", "replay refused (answer=no, available=False)"</td></tr>
+<tr><td>B · Listen again: not before the first answer completes; available after; replays it; drops when the next question starts; true again when the new answer completes; Home clears</td><td><span class="chip pass">pass</span></td><td>Probe of every patch: flag false at the turn start, answer, [SPEAKING], flag true 6.8 s later with [READY]; second question: false → new answer → true; Home: answer empty, flag false</td></tr>
+<tr><td>Speech button while the device speaks: speech stops, listening starts</td><td><span class="chip pass">pass</span></td><td>"ANSWER interrupted - listening", status [LISTENING] within a second</td></tr>
+<tr><td>C · Form question: Tap to speak starts recording, Tap to stop ends it, recognition runs, the question is asked again</td><td><span class="chip pass">pass</span></td><td>[LISTENING] on the first tap, "FORM ASR … 0.1s" after the second, screenshot shows "रोकने के लिए दबाएँ" in green</td></tr>
+<tr><td>D · Repeat keeps the question, Skip during the confirmation re-asks, Home exits; Change and required-field Skip (three re-asks, then <code>unanswered_required</code>) in the flow test</td><td><span class="chip pass">pass</span></td><td>flow test 6 of 6</td></tr>
+<tr><td>E · Kiosk questions: what can you do, who are you, how can you help me, what help can I get here (English); आप क्या कर सकते हैं, आप कौन हैं (Hindi); நீங்கள் என்ன செய்ய முடியும் (Tamil)</td><td><span class="chip pass">pass</span></td><td>"KIOSK_INTENT capability / identity" for every phrasing; answers spoken in the selected language</td></tr>
+<tr><td>F · Greetings and thanks: Hello, Thank you, नमस्ते, धन्यवाद, வணக்கம், நன்றி</td><td><span class="chip pass">pass</span></td><td>"KIOSK_INTENT greeting / thanks" in all three languages</td></tr>
+<tr><td>G · "इनडिएस योजना के लिए महनदंड क्या है" (the recogniser's rendering of PDS yojana ke liye maandand)</td><td><span class="chip pass">pass</span></td><td>"[ASRFIX] hi: … -&gt; 'पीडीएस योजना के लिए मानदंड क्या है'", answered about One Nation One Ration Card, not the apology</td></tr>
+<tr><td>Scheme questions are never taken as kiosk chat ("which scheme can help me" in a scenario sentence, "can you help me get a pension")</td><td><span class="chip pass">pass</span></td><td>unit tests, 9 of 9</td></tr>
+</tbody></table></div>
+<p>Two automated checks read "failed" in the run log for reasons on the test side, verified in the kiosk log: consecutive questions with identical predefined answers look "unchanged" to the driver, and a silent press on the real microphone still hears the room, so it produced a genuine (apology) turn instead of an empty one. The intended behaviour for a truly empty recognition, the last completed answer stays replayable, is implemented at the top of the turn loop and covered by the probe's Home/turn sequence.</p>
+<p>Unit suites after the changes: 104 passed, 7 skipped, the same 19 pre-existing screen-era failures. Live screenshots (rendered from the running kiosk's own state): the Tamil answer page with Listen again, Ask your questions and Home; the Hindi form question with Tap to stop; the language page with three identical tiles.</p>
+
 <h2>Files</h2>
 <dl>
-<dt>Commits</dt><dd>NOMADRIGHT 4a75276 3105019 5edc7d8; UI c478ec4 2985aff; the speech service folder is not under git.</dd>
+<dt>Commits</dt><dd>NOMADRIGHT df4fe0b 82f57df a6d9e65; UI ef7ee2f c478ec4; the speech service folder is not under git.</dd>
 <dt>Benchmarks</dt><dd><code>~/asr_english_candidates/</code> (bench.py, bench_domain.py, clips, results); <code>bhashini_models/benchmarks/results/other/</code></dd>
 <dt>Guide</dt><dd>The operator guide was updated for the new navigation, the admin PIN, English and the test hook.</dd>
 </dl>
