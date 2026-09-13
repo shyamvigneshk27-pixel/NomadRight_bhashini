@@ -34,6 +34,12 @@ if os.path.exists(INDEX):
     except ValueError:
         pass
 SEEN = {r["sha256"] for r in STATE["received"]}
+# one row per session: the kiosk sends a numbered picture of a session after every answer
+# (status in_progress), then the finished form (complete / complete_unconfirmed), or a last
+# picture marked cancelled / timeout when the person stopped or walked away
+BY_SESSION = {r["session_id"]: r for r in STATE["received"] if r.get("session_id")}
+STATUS_TEXT = {"in_progress": "in progress", "complete": "complete", "complete_unconfirmed": "complete - the citizen could not confirm the read-back; please check with them",
+               "cancelled": "stopped by the citizen - partial", "timeout": "citizen walked away - partial"}
 
 from nacl.public import Box, PrivateKey, PublicKey
 BOX = Box(PrivateKey(base64.b64decode(open(os.path.join(HERE, CFG["receiver_private_key"])).read().strip())),
@@ -82,17 +88,33 @@ class Handler(BaseHTTPRequestHandler):
             with LOCK:
                 STATE["errors"].append({"at": datetime.datetime.now().isoformat(timespec="seconds"), "payload_id": pid, "error": type(exc).__name__})
             return self._json(400, {"status": "cannot open", "sha256": sha})
-        day = datetime.date.today().isoformat()
-        os.makedirs(os.path.join(STORE, day), exist_ok=True)
-        fn = os.path.join(STORE, day, f"{data.get('form_id', form_id)}_{data.get('session_id', pid)}.json")
-        with open(fn, "w", encoding="utf-8") as f:
-            json.dump({**data, "received_at": datetime.datetime.now().isoformat(timespec="seconds"), "from": cn}, f, ensure_ascii=False, indent=1)
-        rec = {"at": datetime.datetime.now().isoformat(timespec="seconds"), "form_id": data.get("form_id"), "scheme_id": data.get("scheme_id"), "language": data.get("language"),
-               "session_id": data.get("session_id"), "fields": len(data.get("fields", {})), "unanswered": len(data.get("unanswered_required", [])), "file": os.path.relpath(fn, HERE), "sha256": sha, "from": cn}
+        sid = data.get("session_id") or pid
+        seq = int(data.get("seq") or 0)
+        status = data.get("status") or "complete"
+        now = datetime.datetime.now().isoformat(timespec="seconds")
         with LOCK:
-            STATE["received"].append(rec); SEEN.add(sha)
+            cur = BY_SESSION.get(sid)
+            if cur is not None and seq and int(cur.get("seq") or 0) >= seq:
+                # an older picture arriving late (a retry): the newer one is already here
+                SEEN.add(sha)
+                log(f"stale picture {pid} of {sid} (seq {seq} <= {cur.get('seq')}) - kept the newer one")
+                return self._json(200, {"status": "stored", "sha256": sha, "note": "stale"})
+            day = cur["day"] if cur and cur.get("day") else datetime.date.today().isoformat()
+        os.makedirs(os.path.join(STORE, day), exist_ok=True)
+        fn = os.path.join(STORE, day, f"{data.get('form_id', form_id)}_{sid}.json")
+        with open(fn, "w", encoding="utf-8") as f:
+            json.dump({**data, "received_at": now, "from": cn}, f, ensure_ascii=False, indent=1)
+        rec = {"at": cur["at"] if cur else now, "updated": now, "day": day, "form_id": data.get("form_id"), "scheme_id": data.get("scheme_id"), "language": data.get("language"),
+               "session_id": sid, "seq": seq, "status": status, "answered": data.get("answered"), "total": data.get("total"),
+               "fields": len(data.get("fields", {})), "unanswered": len(data.get("unanswered_required", [])), "file": os.path.relpath(fn, HERE), "sha256": sha, "from": cn}
+        with LOCK:
+            if cur is not None:
+                cur.update(rec)
+            else:
+                STATE["received"].append(rec); BY_SESSION[sid] = rec
+            SEEN.add(sha)
             json.dump(STATE["received"], open(INDEX, "w"), indent=1)
-        log(f"STORED {rec['form_id']} from {cn} -> {rec['file']} ({rec['fields']} fields, {rec['unanswered']} left for the officer)")
+        log(f"{'UPDATED' if cur else 'STORED'} {rec['form_id']} {STATUS_TEXT.get(status, status)} from {cn} -> {rec['file']} ({rec['fields']} fields, {rec['unanswered']} left for the officer)")
         self._json(200, {"status": "stored", "sha256": sha})
 
 
@@ -103,15 +125,20 @@ class Dashboard(BaseHTTPRequestHandler):
     def do_GET(self):
         with LOCK:
             recs = list(reversed(STATE["received"][-100:])); kiosk = dict(STATE["kiosk"]); errors = list(STATE["errors"][-10:])
-        rows = "".join(f"<tr><td>{html.escape(r['at'])}</td><td>{html.escape(str(r['form_id']))}</td><td>{html.escape(str(r['language']))}</td><td>{r['fields']}</td>"
-                       f"<td>{r['unanswered']}</td><td><code>{html.escape(r['file'])}</code></td></tr>" for r in recs)
+        def status_cell(r):
+            st = r.get("status") or "complete"
+            cls = {"in_progress": "prog", "complete": "ok", "complete_unconfirmed": "warn", "cancelled": "warn", "timeout": "warn"}.get(st, "")
+            prog = f" ({r['answered']} of {r['total']} answered)" if st == "in_progress" and r.get("total") else ""
+            return f"<td class='{cls}'>{html.escape(STATUS_TEXT.get(st, st))}{prog}</td>"
+        rows = "".join(f"<tr><td>{html.escape(r['at'])}</td><td>{html.escape(str(r.get('updated', '')))}</td><td>{html.escape(str(r['form_id']))}</td><td>{html.escape(str(r['language']))}</td>"
+                       f"{status_cell(r)}<td>{r['fields']}</td><td>{r['unanswered']}</td><td><code>{html.escape(r['file'])}</code></td></tr>" for r in recs)
         k = (f"last contact {html.escape(kiosk.get('seen', ''))} - <b>{kiosk.get('pending', 0)} waiting on the kiosk</b>, {kiosk.get('failed', 0)} failed"
              + (f", last error: {html.escape(str(kiosk.get('last_error')))}" if kiosk.get("last_error") else "")) if kiosk else "no contact from the kiosk yet"
         err = "".join(f"<li>{html.escape(e['at'])} {html.escape(e['payload_id'])}: {html.escape(e['error'])}</li>" for e in errors)
         page = f"""<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="10"><title>NomadRight receiver</title>
-<style>body{{font-family:system-ui,sans-serif;margin:24px;max-width:1100px}} table{{border-collapse:collapse;width:100%}} td,th{{border:1px solid #ccc;padding:6px 8px;font-size:14px;text-align:left}} th{{background:#eef}} .k{{padding:10px;background:#f6f6f6;border-left:4px solid #2f3e9e;margin:12px 0}}</style>
-<h1>NomadRight receiver</h1><div class="k">Kiosk: {k}</div><p>Running since {STATE['started']}; {len(STATE['received'])} forms stored under <code>{html.escape(STORE)}</code>.</p>
-<table><tr><th>Received</th><th>Form</th><th>Lang</th><th>Fields</th><th>For officer</th><th>File</th></tr>{rows or '<tr><td colspan=6>none yet</td></tr>'}</table>
+<style>body{{font-family:system-ui,sans-serif;margin:24px;max-width:1200px}} table{{border-collapse:collapse;width:100%}} td,th{{border:1px solid #ccc;padding:6px 8px;font-size:14px;text-align:left}} th{{background:#eef}} .k{{padding:10px;background:#f6f6f6;border-left:4px solid #2f3e9e;margin:12px 0}} td.ok{{color:#2e7d4f;font-weight:600}} td.prog{{color:#2f3e9e}} td.warn{{color:#a8691c;font-weight:600}}</style>
+<h1>NomadRight receiver</h1><div class="k">Kiosk: {k}</div><p>Running since {STATE['started']}; {len(STATE['received'])} forms under <code>{html.escape(STORE)}</code>. A form appears while it is being filled and its row is updated after every answer; a form marked partial is one the citizen did not finish.</p>
+<table><tr><th>Started</th><th>Last update</th><th>Form</th><th>Lang</th><th>Status</th><th>Fields</th><th>For officer</th><th>File</th></tr>{rows or '<tr><td colspan=8>none yet</td></tr>'}</table>
 {('<h3>Rejected</h3><ul>' + err + '</ul>') if err else ''}"""
         body = page.encode("utf-8")
         self.send_response(200); self.send_header("Content-Type", "text/html; charset=utf-8"); self.send_header("Content-Length", str(len(body))); self.end_headers()

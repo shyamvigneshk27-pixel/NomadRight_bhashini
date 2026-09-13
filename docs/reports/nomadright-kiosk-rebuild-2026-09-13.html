@@ -107,7 +107,7 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 <ul>
 <li>Hindi full session (flow test): 6 of 6 tests, 29 prompts, identification 6.4 s. Covers Change (reopen and replace), Skip on optional and required fields, review and sealing.</li>
 <li>English full session: sent, 27 prompts, 4.5 s of processing, every field correct, optional fields skipped.</li>
-<li>Unit tests: form and transport suites: 23 passed in 4.83s; the application suite's 19 known failures (old LCD-era screen tests) are unchanged from before this work.</li>
+<li>Unit tests: form and transport suites: 29 passed in 6.54s; the application suite's 19 known failures (old LCD-era screen tests) are unchanged from before this work.</li>
 </ul>
 <h3>Not automatable here, for you at the kiosk</h3>
 <ul>
@@ -167,9 +167,37 @@ footer{margin-top:3rem;color:var(--muted);font-size:.85rem;border-top:1px solid 
 <p>Two automated checks read "failed" in the run log for reasons on the test side, verified in the kiosk log: consecutive questions with identical predefined answers look "unchanged" to the driver, and a silent press on the real microphone still hears the room, so it produced a genuine (apology) turn instead of an empty one. The intended behaviour for a truly empty recognition, the last completed answer stays replayable, is implemented at the top of the turn loop and covered by the probe's Home/turn sequence.</p>
 <p>Unit suites after the changes: 104 passed, 7 skipped, the same 19 pre-existing screen-era failures. Live screenshots (rendered from the running kiosk's own state): the Tamil answer page with Listen again, Ask your questions and Home; the Hindi form question with Tap to stop; the language page with three identical tiles.</p>
 
+
+<h2>10 · Save as you go (night of 13 September)</h2>
+<p>Your first real session in English: 21 questions answered, then "say yes to send it to the office" repeated for every yes you gave, and nothing reached the laptop. Two separate faults, both found in the code and reproduced on the kiosk.</p>
+<ul>
+<li><strong>The read-back had no limit.</strong> An answer that the recogniser did not turn into a yes/no word or a command simply re-asked the same question, forever. Your kiosk's latency file shows 38 recordings for that session, about 17 of them at the read-back. English Whisper on a one-word clip is the weak spot: for silence or a clipped word it writes nothing, or "you" / "Thank you." (reproduced below: the Hindi recogniser gave "" and "त" for silent presses). The value confirmation "you said X, is that correct?" had the same hole.</li>
+<li><strong>Everything lived in memory until the final yes</strong>, so the loop cost all 21 answers. And the background sender thread that retries unsent forms had never actually run: it was started before the application's running flag is set and ended at once. Sends only ever happened synchronously at the end of a session.</li>
+<li>Separately, the laptop had moved from 172.16.104.198 to .54 (DHCP) and the kiosk still dialled .198; the certificate is not tied to the address, so only the <code>host</code> line of the pairing file needs changing (section 1C of the guide, corrected).</li>
+</ul>
+<h3>What changed</h3>
+<div class="tbl"><table><thead><tr><th>Where</th><th>Change</th></tr></thead><tbody>
+<tr><td><code>formfill/session.py</code>, <code>flow.py</code></td><td>After every stored, skipped or officer-marked answer the kiosk seals a numbered picture of the whole session (<code>seq</code>, <code>status in_progress</code>) and queues it; Home, a walk-away or a spoken cancel queue a last picture marked <code>cancelled</code> / <code>timeout</code>, and the person hears that the answers so far are saved for the officer. The final yes sends <code>complete</code>. Every yes/no question (form confirmation, value read-back, final review) now counts unrecognised answers: after three, a read-back value is asked again and the final review ends as <code>complete_unconfirmed</code>. New prompts in the three languages ("I did not catch that. Say yes or no, or press the Yes or No button"). Switch <code>FORM_SEND_AS_YOU_GO</code>.</td></tr>
+<tr><td><code>formfill/outbox.py</code>, <code>app.py</code></td><td><code>queue()</code> seals and stores without waiting for the network and wakes the sender thread at once; a newer picture of a session replaces every older unsent one, so the outbox holds one file per session. The sender thread now survives its early start (the running-flag bug). On-screen Yes/No arrive as the language's first yes/no word; a press that interrupts speech opens the microphone at once instead of after the caller gets round to it (0.34 to 0.41 s measured).</td></tr>
+<tr><td><code>receiver/receiver.py</code> (copy it to the laptop)</td><td>One row per session, updated after every answer: status (in progress with n of m answered, complete, complete but not confirmed by the citizen, stopped by the citizen - partial, walked away - partial), fields, fields left for the officer, last update. A late older picture is acknowledged and ignored. An old receiver still works with the new kiosk, only less tidy.</td></tr>
+<tr><td>Screen</td><td>Green Yes and a No (Change on the read-back) button on every yes/no question, so touch works when speech does not; Skip hidden there. Words added for yes/no as people say them (yep, alright, send it; यस, ओके, हां जी; எஸ், சரிங்க; nah, नो, நோ …), ambiguous ones (sure, fine, हम्म) left out.</td></tr>
+</tbody></table></div>
+<h3>Tests</h3>
+<div class="tbl"><table><thead><tr><th>Test</th><th>Result</th><th>Observed</th></tr></thead><tbody>
+<tr><td>Unit: read-back and value confirmation never loop (three non-answers), touch yes/change in hi/ta/en, tolerant yes/no words, numbered pictures, spoken cancel hands over before wiping</td><td><span class="chip pass">5 new, 24 in the file pass</span></td><td><code>formfill_test.py</code></td></tr>
+<tr><td>Flow with real OCR and fake speech: a full Hindi PMSBY session sends 19 pictures on the way and the finished form last; Home, spoken cancel and a walk-away hand over the partial session; a read-back answered with junk three times still reaches the officer as "not confirmed"</td><td><span class="chip pass">9 of 9</span></td><td><code>flow_test.py</code>, RSS flat over six sessions</td></tr>
+<tr><td>Transport with a real receiver: three pictures queued while the receiver is down leave one file; the receiver keeps the newest picture per session and ignores a late older one; partial sessions show as partial on the dashboard</td><td><span class="chip pass">5 of 5</span></td><td><code>transport_test.py</code></td></tr>
+<tr><td>Live kiosk, local receiver, Hindi PMSBY photo, every question answered with the on-screen Skip, form confirmed and read-back answered with the on-screen Yes</td><td><span class="chip pass">pass</span></td><td>19 pictures acknowledged 20 ms after each answer, receiver row updated 19 times ("in progress, n left for the officer"), final row <code>complete</code>, seq 20, 16 fields for the officer</td></tr>
+<tr><td>Live: Home after the first question was left for the officer</td><td><span class="chip pass">pass</span></td><td>receiver row <code>stopped by the citizen - partial</code>, 1 of 19 answered, delivered before the cancel message finished</td></tr>
+<tr><td>Live: read-back answered with three silent presses on the real microphone (recogniser returned "" and "त")</td><td><span class="chip pass">pass</span></td><td>no repetition beyond the third try, "I could not hear a yes, your answers are saved for the officer", row <code>complete - not confirmed</code></td></tr>
+<tr><td>Live: press while the kiosk speaks</td><td><span class="chip pass">pass</span></td><td>speech stops and the microphone is open 0.34 / 0.40 / 0.41 s after the press</td></tr>
+<tr><td>Real send to your laptop at its new address</td><td><span class="chip pass">pass</span></td><td>sealed test form acknowledged and stored (you saw it on the dashboard)</td></tr>
+</tbody></table></div>
+<p>Not tested tonight: a real voice on the real microphone (my checks used touch and silence) and the laptop itself with the new receiver script, which needs the copy in section 1C of the guide.</p>
+
 <h2>Files</h2>
 <dl>
-<dt>Commits</dt><dd>NOMADRIGHT df4fe0b 82f57df a6d9e65; UI ef7ee2f c478ec4; the speech service folder is not under git.</dd>
+<dt>Commits</dt><dd>NOMADRIGHT 4845b48 b936bc6 df4fe0b; UI ef7ee2f c478ec4; the speech service folder is not under git.</dd>
 <dt>Benchmarks</dt><dd><code>~/asr_english_candidates/</code> (bench.py, bench_domain.py, clips, results); <code>bhashini_models/benchmarks/results/other/</code></dd>
 <dt>Guide</dt><dd>The operator guide was updated for the new navigation, the admin PIN, English and the test hook.</dd>
 </dl>

@@ -40,9 +40,9 @@ PROMPTS = {
     "unsupported": {"en": "Sorry, I cannot fill this form yet. I can help with these forms: {forms}.",
                     "hi": "माफ़ कीजिए, यह फ़ॉर्म मैं अभी नहीं भर सकता। मैं इन फ़ॉर्मों में मदद कर सकता हूँ: {forms}।",
                     "ta": "மன்னிக்கவும், இந்தப் படிவத்தை இப்போது நிரப்ப முடியாது. இந்தப் படிவங்களுக்கு உதவ முடியும்: {forms}."},
-    "start": {"en": "I will now ask the questions on this form one by one. After each question, hold the button and say your answer.",
-              "hi": "अब मैं इस फ़ॉर्म के सवाल एक-एक करके पूछूँगा। हर सवाल के बाद बटन दबाकर अपना जवाब बोलिए।",
-              "ta": "இப்போது இந்தப் படிவத்தின் கேள்விகளை ஒவ்வொன்றாகக் கேட்பேன். ஒவ்வொரு கேள்விக்குப் பிறகும் பொத்தானை அழுத்திப் பதிலைச் சொல்லுங்கள்."},
+    "start": {"en": "I will now ask the questions on this form one by one. After each question, tap the button, say your answer, then tap again to stop. Each answer is saved as soon as you give it.",
+              "hi": "अब मैं इस फ़ॉर्म के सवाल एक-एक करके पूछूँगा। हर सवाल के बाद बटन दबाइए, अपना जवाब बोलिए, फिर रुकने के लिए दोबारा दबाइए। हर जवाब बोलते ही सुरक्षित हो जाता है।",
+              "ta": "இப்போது இந்தப் படிவத்தின் கேள்விகளை ஒவ்வொன்றாகக் கேட்பேன். ஒவ்வொரு கேள்விக்குப் பிறகும் பொத்தானைத் தட்டி, பதிலைச் சொல்லி, நிறுத்த மீண்டும் தட்டுங்கள். ஒவ்வொரு பதிலும் சொன்னவுடன் சேமிக்கப்படும்."},
     "confirm_value": {"en": "You said {value}. Is that correct? Say yes or no.",
                       "hi": "आपने {value} बताया। क्या यह सही है? हाँ या नहीं बोलिए।",
                       "ta": "நீங்கள் {value} என்று சொன்னீர்கள். சரியா? ஆம் அல்லது இல்லை என்று சொல்லுங்கள்."},
@@ -76,9 +76,18 @@ PROMPTS = {
     "review_intro": {"en": "I will now read back your answers.",
                      "hi": "अब मैं आपके जवाब पढ़कर सुनाता हूँ।",
                      "ta": "இப்போது உங்கள் பதில்களைப் படித்துக் காட்டுகிறேன்."},
-    "review_confirm": {"en": "Is everything correct? Say yes to send it to the office, or say change.",
-                       "hi": "क्या सब सही है? दफ़्तर भेजने के लिए 'हाँ' बोलिए, या 'बदलो' बोलिए।",
-                       "ta": "எல்லாம் சரியா? அலுவலகத்திற்கு அனுப்ப 'ஆம்' என்று சொல்லுங்கள், அல்லது 'மாற்று' என்று சொல்லுங்கள்."},
+    "review_confirm": {"en": "Is everything correct? Say yes, or press the Yes button, to send it to the office; or say change.",
+                       "hi": "क्या सब सही है? दफ़्तर भेजने के लिए 'हाँ' बोलिए या हाँ का बटन दबाइए, या 'बदलो' बोलिए।",
+                       "ta": "எல்லாம் சரியா? அலுவலகத்திற்கு அனுப்ப 'ஆம்' என்று சொல்லுங்கள் அல்லது ஆம் பொத்தானை அழுத்துங்கள்; அல்லது 'மாற்று' என்று சொல்லுங்கள்."},
+    "didnt_hear": {"en": "I did not catch that. Please say yes or no, or press the Yes or No button on the screen.",
+                   "hi": "मुझे सुनाई नहीं दिया। कृपया हाँ या नहीं बोलिए, या स्क्रीन पर हाँ या नहीं का बटन दबाइए।",
+                   "ta": "எனக்குக் கேட்கவில்லை. தயவுசெய்து ஆம் அல்லது இல்லை என்று சொல்லுங்கள், அல்லது திரையில் ஆம் அல்லது இல்லை பொத்தானை அழுத்துங்கள்."},
+    "saved_unconfirmed": {"en": "I could not hear a yes. Your answers have already been saved for the officer, who will check them with you. Thank you.",
+                          "hi": "मुझे 'हाँ' सुनाई नहीं दिया। आपके जवाब अधिकारी के लिए पहले ही सुरक्षित कर दिए गए हैं, वे आपके साथ जाँच लेंगे। धन्यवाद।",
+                          "ta": "'ஆம்' என்று கேட்கவில்லை. உங்கள் பதில்கள் ஏற்கனவே அதிகாரிக்காகச் சேமிக்கப்பட்டுள்ளன; அவர் உங்களுடன் சரிபார்ப்பார். நன்றி."},
+    "cancelled_saved": {"en": "Form filling stopped. The answers you gave so far have been saved for the officer.",
+                        "hi": "फ़ॉर्म भरना रोक दिया गया। अब तक के आपके जवाब अधिकारी के लिए सुरक्षित कर दिए गए हैं।",
+                        "ta": "படிவம் நிரப்புவது நிறுத்தப்பட்டது. இதுவரை நீங்கள் சொன்ன பதில்கள் அதிகாரிக்காகச் சேமிக்கப்பட்டுள்ளன."},
     "which_field": {"en": "Which answer do you want to change? Say its number.",
                     "hi": "कौन सा जवाब बदलना है? उसका नंबर बोलिए।",
                     "ta": "எந்தப் பதிலை மாற்ற வேண்டும்? அதன் எண்ணைச் சொல்லுங்கள்."},
@@ -100,12 +109,12 @@ PROMPTS = {
 
 # Words the kiosk understands as answers/commands (lower-case, matched as whole words).
 WORDS = {
-    "yes": {"en": ["yes", "yeah", "correct", "right", "ok", "okay"],
-            "hi": ["हाँ", "हां", "हा", "जी", "जी हाँ", "जी हां", "सही", "ठीक", "ठीक है", "हाँ जी", "बिल्कुल"],
-            "ta": ["ஆம்", "ஆமா", "ஆமாம்", "சரி", "ஓகே", "சரிதான்", "ஆமாங்க"]},
-    "no": {"en": ["no", "nope", "wrong", "incorrect"],
-           "hi": ["नहीं", "नही", "ना", "गलत", "जी नहीं", "नहीं जी"],
-           "ta": ["இல்லை", "இல்ல", "தவறு", "இல்லைங்க", "வேண்டாம்"]},
+    "yes": {"en": ["yes", "yeah", "yep", "yup", "correct", "right", "ok", "okay", "alright", "confirm", "confirmed", "send", "send it", "go ahead", "that's right", "yes please"],
+            "hi": ["हाँ", "हां", "हा", "जी", "जी हाँ", "जी हां", "हां जी", "सही", "ठीक", "ठीक है", "ठीक हैं", "हाँ जी", "बिल्कुल", "यस", "येस", "ओके"],
+            "ta": ["ஆம்", "ஆமா", "ஆமாம்", "ஆமாமா", "ஆமான்", "சரி", "சரிங்க", "ஓகே", "சரிதான்", "ஆமாங்க", "எஸ்", "யெஸ்"]},
+    "no": {"en": ["no", "nope", "nah", "wrong", "incorrect", "not correct", "not right"],
+           "hi": ["नहीं", "नही", "ना", "नो", "गलत", "गलत है", "नहीं है", "जी नहीं", "नहीं जी"],
+           "ta": ["இல்லை", "இல்ல", "இல்லையே", "நோ", "தவறு", "தப்பு", "இல்லைங்க", "வேண்டாம்"]},
     "repeat": {"en": ["repeat", "again", "say again", "pardon"],
                "hi": ["दोबारा", "फिर से", "फिर", "दुबारा", "फिर बोलो", "फिर से बोलो"],
                "ta": ["மீண்டும்", "திரும்ப", "திரும்பச் சொல்லுங்கள்", "மறுபடியும்"]},
@@ -511,7 +520,7 @@ FORMS = [
 
 
 def main():
-    out = {"version": 1, "built": "2026-09-12", "languages": LANGS, "prompts": PROMPTS, "words": WORDS, "forms": FORMS}
+    out = {"version": 2, "built": "2026-09-13", "languages": LANGS, "prompts": PROMPTS, "words": WORDS, "forms": FORMS}
     # sanity: every question has all languages, keys unique per form
     for f in FORMS:
         keys = [x["key"] for x in f["fields"]]
