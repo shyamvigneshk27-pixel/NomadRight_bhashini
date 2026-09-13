@@ -57,7 +57,7 @@ a{color:var(--accent)}
 <div class="map">
 <div><b>Jetson kiosk</b>Started by hand in a terminal with <code>pocketinfer-retro</code>. Code: <code>~/Retro/NOMADRIGHT/pocket-infer-sw</code>. Switches: <code>python/pocketinfer/applications/nomad_right/constants.py</code>. Forms and questions: <code>nomadright/forms/build_forms.py</code> → <code>forms.json</code>.</div>
 <div><b>Speech service</b><code>bhashini_models.service</code> (systemd, starts at boot). Hindi Conformer and Tamil Whisper ASR, TTS, on port 11400. Which ASR engine serves which language: <code>~/bhashini_models/asr/asr_config.json</code>.</div>
-<div><b>Office laptop</b><code>receiver.py</code> from the pairing bundle. Accepts sealed forms on port 8443 (mutual TLS, kiosk certificate only), officer dashboard at <code>http://localhost:8080/</code>, files under <code>received/</code>. Paired today with 172.16.104.198.</div>
+<div><b>Office laptop</b><code>receiver.py</code> from the pairing bundle. Accepts sealed forms on port 8443 (mutual TLS, kiosk certificate only), officer dashboard at <code>http://localhost:8080/</code>, files under <code>received/</code>. Paired 13 September 2026; the address the kiosk dials is the <code>host</code> line of <code>~/.config/nomadright/receiver.json</code>.</div>
 </div>
 
 <h2>1 · Run it</h2>
@@ -82,7 +82,7 @@ python receiver.py</code></pre><p>First line: <code>receiving on port 8443 (mTLS
 <li><div><p><strong>Copy the bundle from the Jetson</strong> (the Jetson is 172.16.104.200 on the office Wi-Fi):</p><pre><code>scp -r stark-x@172.16.104.200:nomadright-receiver-bundle .</code></pre><p>The folder holds the receiver script, its private key and certificate, the CA certificate and the kiosk's public key. Keep it private.</p></div></li>
 <li><div><p><strong>Install the one dependency</strong> (Python 3.8 or newer):</p><pre><code>pip install pynacl</code></pre></div></li>
 <li><div><p><strong>Allow the port.</strong> When Windows asks, allow Python on private networks. Otherwise add an inbound rule for TCP 8443 limited to the kiosk's address 172.16.104.200. Ping stays blocked; that is fine.</p></div></li>
-<li><div><p><strong>Keep the laptop's address fixed</strong> at 172.16.104.198 (a DHCP reservation on the router, or a static address). The kiosk holds that address and the certificate is bound to it; if it changes, re-pair (section 3).</p></div></li>
+<li><div><p><strong>Keep the laptop's address fixed</strong> (a DHCP reservation on the router, or a static address; <code>ipconfig</code> shows the current one). The kiosk dials the address in the <code>host</code> line of <code>~/.config/nomadright/receiver.json</code>. If the address changes anyway, edit that one line and restart the kiosk. Nothing else changes: the receiver is identified by its certificate fingerprint, not by its address, so the keys and the bundle on the laptop stay valid and no re-pairing is needed (verified 13 September: the laptop moved from .198 to .54 and the same bundle was accepted).</p></div></li>
 </ol>
 
 <h3>D. A citizen's session, what the operator does</h3>
@@ -122,12 +122,12 @@ mv failed/&lt;session&gt;.sealed . &amp;&amp; rm -f failed/&lt;session&gt;.seale
 <pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw
 python3 tools/pair_receiver.py --receiver-ip 172.16.104.198 --device-id kiosk-01</code></pre>
 <dl>
-<dt><code>--receiver-ip</code></dt><dd>The laptop's fixed address. Required. The receiver certificate is bound to it.</dd>
+<dt><code>--receiver-ip</code></dt><dd>The laptop's address, written to the <code>host</code> line of the kiosk config. Required. The certificate is not tied to it; a later address change needs only that line edited (section 1C).</dd>
 <dt><code>--port</code></dt><dd>Receiver port, default 8443. The kiosk config and the bundle's <code>receiver.json</code> both get it.</dd>
 <dt><code>--device-id</code></dt><dd>Name in the kiosk certificate and in the officer's log, default <code>kiosk-01</code>. Use a different id per kiosk if there are several.</dd>
 <dt><code>--days</code></dt><dd>Certificate validity, default 3650 (ten years).</dd>
 </dl>
-<p><strong>Re-run pairing</strong> when the laptop's address changes, when the receiver moves to another PC, or when the bundle was lost. It overwrites <code>~/.config/nomadright/receiver.json</code> and deletes and recreates <code>~/nomadright-receiver-bundle/</code>; the previous bundle on the laptop stops being accepted, so copy the new one over (section 1C) and restart <code>receiver.py</code>. Restart the kiosk afterwards; it reads the pairing at start.</p>
+<p><strong>Re-run pairing</strong> when the receiver moves to another PC or when the bundle was lost. An address change alone does not need it: edit the <code>host</code> line (section 1C). It overwrites <code>~/.config/nomadright/receiver.json</code> and deletes and recreates <code>~/nomadright-receiver-bundle/</code>; the previous bundle on the laptop stops being accepted, so copy the new one over (section 1C) and restart <code>receiver.py</code>. Restart the kiosk afterwards; it reads the pairing at start.</p>
 <p><strong>Check the link</strong> from the Jetson while the receiver is running; <code>True</code> means the certificate handshake and the fingerprint check passed:</p>
 <pre><code>cd ~/Retro/NOMADRIGHT/pocket-infer-sw/python
 venv/bin/python -c "from pocketinfer.applications.nomad_right.formfill.outbox import PairingConfig; print(PairingConfig().outbox().transport.reachable())"</code></pre>
@@ -238,7 +238,7 @@ venv/bin/python pocketinfer/applications/nomad_right/benchmarks/form_id_benchmar
 <h3>Quick checks</h3>
 <div class="tbl"><table><thead><tr><th>Symptom</th><th>Meaning</th><th>Do</th></tr></thead><tbody>
 <tr><td><code>RECEIVER  not paired</code> at kiosk start</td><td>No <code>~/.config/nomadright/receiver.json</code></td><td>Run pairing (section 3). Forms are still filled and sealed; they wait in the outbox.</td></tr>
-<tr><td>"saved, will be sent automatically" every time</td><td>Laptop not reachable: receiver not running, firewall, or a different address</td><td>Start <code>receiver.py</code>; run the link check in section 3; compare the laptop's current address with 172.16.104.198.</td></tr>
+<tr><td>"saved, will be sent automatically" every time</td><td>Laptop not reachable: receiver not running, firewall, or a different address</td><td>Start <code>receiver.py</code>; run the link check in section 3; compare the laptop's current address (<code>ipconfig</code>) with the <code>host</code> line of <code>~/.config/nomadright/receiver.json</code>, edit the line if they differ and restart the kiosk.</td></tr>
 <tr><td>Dashboard shows "Rejected"</td><td>A blob the laptop could not open or verify</td><td>Almost always a re-pair on one side only. Copy the current bundle to the laptop and restart it.</td></tr>
 <tr><td>Kiosk says "choose Hindi or Tamil" on Camera</td><td>English selected</td><td>Select Hindi or Tamil.</td></tr>
 <tr><td>Kiosk lists the supported forms (26 s)</td><td>The camera saw no known form, often a desk or a blank page</td><td>Hold the form's title in view, flat, closer.</td></tr>
@@ -263,6 +263,6 @@ venv/bin/python pocketinfer/applications/nomad_right/benchmarks/form_session_ben
 rm -rf ~/Retro/NOMADRIGHT/pocket-infer-sw/webui_dist/assets
 cp -r ~/UI/dist/* ~/Retro/NOMADRIGHT/pocket-infer-sw/webui_dist/</code></pre>
 
-<div class="note warn"><strong>Still open:</strong> a native speaker's pass over the Hindi and Tamil strings in <code>build_forms.py</code>; the eight forms printed and photographed with the kiosk webcam; the first real send to the laptop once <code>receiver.py</code> is running there.</div>
+<div class="note warn"><strong>Still open:</strong> a native speaker's pass over the Hindi and Tamil strings in <code>build_forms.py</code>; the eight forms printed and photographed with the kiosk webcam. The first real send to the laptop was made on the evening of 13 September (sealed test form, acknowledged in 0.6 s, stored on the laptop); the laptop's address had changed from .198 to .54 and only the <code>host</code> line needed changing.</div>
 <footer>Written 13 September 2026 from the code as committed (NOMADRIGHT 6ae73b5, UI 7e90af1). Companion reports: <em>NomadRight Form Filling</em> (measurements and design) and <em>NomadRight Orin Tune-Up</em> (speech, chatbot and memory work).</footer>
 </main>
