@@ -268,8 +268,16 @@ class TestAsrLanguageGating(unittest.TestCase):
         """Locks the gating set to what infer.py actually loads, so this
         test breaks (loudly, in CI) instead of the LCD (silently, live) the
         next time someone edits one without the other."""
+        import json, os
         from pocketinfer.applications.nomad_right import constants
-        self.assertEqual(constants.ASR_SUPPORTED_LANGUAGES, {"hi", "ta"})
+        # the speech service's own mapping (~/bhashini_models/asr/asr_config.json) is the truth:
+        # every language it serves (Conformer, Whisper or the lazily loaded English engine)
+        cfg = os.path.expanduser("~/bhashini_models/asr/asr_config.json")
+        if os.path.exists(cfg):
+            served = {lang for lang, backend in json.load(open(cfg)).get("backends", {}).items() if backend}
+            self.assertEqual(constants.ASR_SUPPORTED_LANGUAGES, served)
+        else:
+            self.assertEqual(constants.ASR_SUPPORTED_LANGUAGES, {"hi", "ta", "en"})
         self.assertTrue(constants.ASR_SUPPORTED_LANGUAGES.issubset(constants.SOURCE_LANGUAGES.keys()))
 
 
