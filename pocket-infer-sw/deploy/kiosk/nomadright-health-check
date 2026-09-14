@@ -1,0 +1,21 @@
+#!/bin/bash
+# Run by nomadright-health.timer every minute. If the kiosk has been up for more
+# than 3 minutes and its web server does not answer three checks in a row, the
+# kiosk is restarted (a crash never gets here - systemd restarts it at once).
+UNIT=nomadright-kiosk.service
+STATE="${XDG_RUNTIME_DIR:-/tmp}/nomadright-health.fails"
+active=$(systemctl --user show "$UNIT" -p ActiveState --value)
+if [ "$active" != "active" ]; then echo 0 > "$STATE"; exit 0; fi
+since=$(systemctl --user show "$UNIT" -p ActiveEnterTimestampMonotonic --value)
+read -r up _ < /proc/uptime; now=$(( ${up%.*} * 1000000 ))      # bash 64-bit; awk's %d overflows after ~36 min of uptime
+age=$(( (now - since) / 1000000 ))
+if [ "$age" -lt 180 ]; then echo 0 > "$STATE"; exit 0; fi
+if curl -sf --max-time 5 http://127.0.0.1:8765/index.html -o /dev/null; then echo 0 > "$STATE"; exit 0; fi
+n=$(( $(cat "$STATE" 2>/dev/null || echo 0) + 1 )); echo "$n" > "$STATE"
+echo "kiosk web server not answering ($n/3)"
+if [ "$n" -ge 3 ]; then
+  echo "restarting $UNIT after 3 failed checks"
+  echo 0 > "$STATE"
+  systemctl --user restart "$UNIT"
+fi
+exit 0

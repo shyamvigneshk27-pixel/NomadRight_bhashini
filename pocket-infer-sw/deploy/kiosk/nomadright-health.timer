@@ -1,0 +1,12 @@
+# A crash is caught by Restart=always; this catches a hang (process alive, screen dead).
+[Unit]
+Description=NomadRight kiosk health check every minute
+PartOf=graphical-session.target
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=1min
+AccuracySec=10s
+
+[Install]
+WantedBy=graphical-session.target

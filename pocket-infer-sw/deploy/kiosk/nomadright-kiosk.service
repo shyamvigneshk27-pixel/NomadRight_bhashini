@@ -1,0 +1,28 @@
+# NomadRight kiosk as an appliance: starts with the desktop session, restarts
+# itself after a crash, runs with the apology fallback (no model for questions).
+# Installed as a *user* unit (~/.config/systemd/user) by install-kiosk-service.sh,
+# so it inherits the session's DISPLAY / XAUTHORITY / audio and needs no root.
+[Unit]
+Description=NomadRight kiosk (pocketinfer-retro, NOMADRIGHT_QUERY_FALLBACK=sorry)
+PartOf=graphical-session.target
+After=graphical-session.target
+# never give up restarting (a crash loop keeps trying every 3 s until it works)
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+WorkingDirectory=/home/stark-x/Retro/NOMADRIGHT/pocket-infer-sw
+Environment=NOMADRIGHT_QUERY_FALLBACK=sorry
+Environment=DISPLAY=:1
+Environment=LD_LIBRARY_PATH=/usr/local/cuda-12.6/lib64
+Environment=PATH=/home/stark-x/.local/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+# wait (up to 4 min) for the speech service that systemd starts at boot
+ExecStartPre=/home/stark-x/.local/bin/nomadright-wait-speech
+ExecStart=/home/stark-x/Retro/NOMADRIGHT/pocket-infer-sw/python/venv/bin/pocketinfer-service
+Restart=always
+RestartSec=3
+TimeoutStopSec=20
+KillMode=control-group
+
+[Install]
+WantedBy=graphical-session.target

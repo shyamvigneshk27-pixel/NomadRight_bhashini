@@ -1,0 +1,7 @@
+# One check of the kiosk's own web server; nomadright-health.timer runs it every minute.
+[Unit]
+Description=NomadRight kiosk health check
+
+[Service]
+Type=oneshot
+ExecStart=/home/stark-x/.local/bin/nomadright-health-check

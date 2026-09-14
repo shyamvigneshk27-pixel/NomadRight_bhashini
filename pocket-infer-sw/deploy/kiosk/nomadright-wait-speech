@@ -1,0 +1,9 @@
+#!/bin/bash
+# ExecStartPre of nomadright-kiosk.service: give bhashini_models.service (speech,
+# started by systemd at boot) up to 4 minutes; then start the kiosk regardless.
+for i in $(seq 1 120); do
+  curl -sf --max-time 2 http://127.0.0.1:11400/health -o /dev/null && exit 0
+  sleep 2
+done
+echo "speech service not ready after 240 s - starting the kiosk anyway"
+exit 0
