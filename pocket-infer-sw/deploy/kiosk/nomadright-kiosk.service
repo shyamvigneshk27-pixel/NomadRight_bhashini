@@ -13,7 +13,10 @@ StartLimitIntervalSec=0
 Type=simple
 WorkingDirectory=/home/stark-x/Retro/NOMADRIGHT/pocket-infer-sw
 Environment=NOMADRIGHT_QUERY_FALLBACK=sorry
-Environment=DISPLAY=:1
+# DISPLAY and XAUTHORITY come from the desktop session (systemd --user imports them):
+# :0 with automatic login, :1 when someone logs in by hand after a greeter. Never
+# hard-code them; POCKETINFER_DISPLAY is only the fallback if the session set nothing.
+Environment=POCKETINFER_DISPLAY=:0
 Environment=LD_LIBRARY_PATH=/usr/local/cuda-12.6/lib64
 Environment=PATH=/home/stark-x/.local/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 # wait (up to 4 min) for the speech service that systemd starts at boot
