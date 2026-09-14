@@ -167,7 +167,7 @@ class TestLanguageSync(unittest.TestCase):
 
 
 class TestStartupSelfCheck(unittest.TestCase):
-    def _run_check(self, board, status_code=200, raises=False):
+    def _run_check(self, board, status_code=200, raises=False, backend="ollama"):
         def fake_get(url, timeout=None):
             if raises:
                 raise OSError("connection refused")
@@ -178,7 +178,8 @@ class TestStartupSelfCheck(unittest.TestCase):
             return resp
 
         app, _ = _app(board)
-        with unittest.mock.patch("requests.get", side_effect=fake_get):
+        with unittest.mock.patch("requests.get", side_effect=fake_get), \
+                unittest.mock.patch.object(constants, "LLM_BACKEND", backend):
             app._startup_selfcheck()
         return board.log_lines
 
@@ -198,6 +199,24 @@ class TestStartupSelfCheck(unittest.TestCase):
         self.assertIn("BHASHINI  DOWN", joined)
         self.assertIn("OLLAMA    DOWN", joined)
         self.assertIn("WARNING: degraded", joined)
+
+    def test_llama_server_backend_does_not_probe_ollama(self):
+        board = LoggingBoard()
+        seen = []
+        def fake_get(url, timeout=None):
+            seen.append(url)
+            class Resp:
+                status_code = 200
+            return Resp()
+        app, _ = _app(board)
+        with unittest.mock.patch("requests.get", side_effect=fake_get), \
+                unittest.mock.patch.object(constants, "LLM_BACKEND", "llama-server"):
+            app._startup_selfcheck()
+        joined = "\n".join(board.log_lines)
+        self.assertFalse(any("11434" in u for u in seen))
+        self.assertNotIn("OLLAMA", joined)
+        self.assertIn("LLM       llama-server on demand", joined)
+        self.assertIn("All subsystems OK", joined)
 
     def test_missing_audio_hardware_is_reported(self):
         board = LoggingBoard()

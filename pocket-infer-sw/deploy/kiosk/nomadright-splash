@@ -1,0 +1,66 @@
+#!/usr/bin/env python3
+"""Full-screen splash shown by the kiosk session from the first moment until the
+kiosk window is up: the NomadRight artwork and "Starting" in the three languages.
+No window manager is assumed: the window is sized to the screen itself. Exits as
+soon as a window called "PocketInfer" (the kiosk) exists, so it never sits in front
+of the kiosk. After five minutes without the kiosk it says so instead of staying
+silent; it keeps waiting (systemd keeps restarting the kiosk)."""
+import os, subprocess, sys, time
+import gi
+gi.require_version("Gtk", "3.0")
+gi.require_version("Gdk", "3.0")
+from gi.repository import Gtk, Gdk, GdkPixbuf, GLib, Pango
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ART = next((p for p in (os.path.join(HERE, "nomadright-splash.jpg"), os.path.expanduser("~/.local/share/nomadright/splash.jpg"),
+                        "/home/stark-x/Retro/NOMADRIGHT/pocket-infer-sw/deploy/kiosk/splash.jpg") if os.path.exists(p)), None)
+START = time.monotonic()
+
+def kiosk_window_up():
+    try:
+        out = subprocess.run(["xwininfo", "-root", "-tree"], capture_output=True, text=True, timeout=3).stdout
+        return '"PocketInfer"' in out
+    except Exception:
+        return False
+
+def main():
+    disp = Gdk.Display.get_default()
+    mon = disp.get_primary_monitor() or disp.get_monitor(0)
+    geo = mon.get_geometry()
+    win = Gtk.Window(title="NomadRight starting")
+    win.set_decorated(False)
+    win.set_default_size(geo.width, geo.height)
+    win.move(geo.x, geo.y)
+    css = Gtk.CssProvider(); css.load_from_data(b'window { background-color: #0b1a3a; }')
+    Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=24)
+    box.set_valign(Gtk.Align.CENTER); box.set_halign(Gtk.Align.CENTER)
+    if ART:
+        pb = GdkPixbuf.Pixbuf.new_from_file_at_scale(ART, int(geo.width * 0.62), int(geo.height * 0.62), True)
+        box.pack_start(Gtk.Image.new_from_pixbuf(pb), False, False, 0)
+    label = Gtk.Label()
+    label.set_justify(Gtk.Justification.CENTER)
+    label.set_markup('<span foreground="#ffffff" size="x-large" weight="bold">Starting  ·  शुरू हो रहा है  ·  தொடங்குகிறது</span>')
+    box.pack_start(label, False, False, 0)
+    win.add(box)
+    win.connect("destroy", Gtk.main_quit)
+    win.show_all()
+    win.fullscreen()          # honoured when a window manager exists; harmless otherwise
+
+    size = [geo.width, geo.height, geo.x, geo.y]
+    def tick():
+        g = (disp.get_primary_monitor() or disp.get_monitor(0)).get_geometry()
+        if [g.width, g.height, g.x, g.y] != size:           # a display came up after the splash started
+            size[:] = [g.width, g.height, g.x, g.y]; win.move(g.x, g.y); win.resize(g.width, g.height)
+        if kiosk_window_up():
+            GLib.timeout_add(1500, Gtk.main_quit)      # let the kiosk window paint first
+            return False
+        if time.monotonic() - START > 300:
+            label.set_markup('<span foreground="#ffd27a" size="x-large" weight="bold">Still starting, please wait  ·  कृपया प्रतीक्षा करें  ·  காத்திருக்கவும்</span>')
+        return True
+    GLib.timeout_add(1500, tick)
+    Gtk.main()
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())

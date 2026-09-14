@@ -278,7 +278,12 @@ class NomadRightApplication(BaseApplication):
 
         _probe("BHASHINI", f"http://{self.app_config.bhashini_host}:"
                            f"{self.app_config.bhashini_port}/health")
-        _probe("OLLAMA", "http://localhost:11434/api/tags")
+        if constants.LLM_BACKEND == "ollama":
+            _probe("OLLAMA", "http://localhost:11434/api/tags")
+        else:
+            # the chatbot starts its own llama-server on demand; the Ollama daemon is
+            # not used (and is switched off on the kiosk), so it is not a degradation
+            self._log(f"{'LLM':<9} {constants.LLM_BACKEND} on demand")
 
         mic = getattr(self.board, "alsa_capture_card", None)
         spk = getattr(self.board, "alsa_playback_card", None)

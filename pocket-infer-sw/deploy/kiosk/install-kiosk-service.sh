@@ -6,13 +6,16 @@ set -e
 HERE="$(cd "$(dirname "$0")" && pwd)"
 export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
 mkdir -p ~/.config/systemd/user ~/.local/bin
-install -m 755 "$HERE/nomadright-wait-speech" "$HERE/nomadright-health-check" ~/.local/bin/
+install -m 755 "$HERE/nomadright-wait-speech" "$HERE/nomadright-health-check" "$HERE/nomadright-session" "$HERE/nomadright-splash" ~/.local/bin/
+install -m 644 "$HERE/splash.jpg" ~/.local/bin/nomadright-splash.jpg
 install -m 644 "$HERE/nomadright-kiosk.service" "$HERE/nomadright-health.service" "$HERE/nomadright-health.timer" ~/.config/systemd/user/
 systemctl --user daemon-reload
 systemctl --user enable nomadright-kiosk.service nomadright-health.timer
 systemctl --user start nomadright-health.timer
-if ss -ltn | grep -q ':8765 '; then
-  echo "a kiosk is already running on port 8765 (started by hand?) - stop it, then: systemctl --user start nomadright-kiosk.service"
+if systemctl --user is-active --quiet nomadright-kiosk.service; then
+  echo "kiosk service already running (restart it to load new code: systemctl --user restart nomadright-kiosk)"
+elif ss -ltn | grep -q ':8765 '; then
+  echo "a kiosk started by hand is using port 8765 - stop it, then: systemctl --user start nomadright-kiosk.service"
 else
   systemctl --user start nomadright-kiosk.service
 fi

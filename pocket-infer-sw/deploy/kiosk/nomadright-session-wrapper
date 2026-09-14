@@ -1,0 +1,11 @@
+#!/bin/sh
+# /usr/local/bin/nomadright-session - the program GDM starts for the "NomadRight Kiosk"
+# session. Lives outside the home directory so GDM can always see it; runs the user's
+# kiosk session script, and if that is missing starts the normal Ubuntu desktop instead
+# of failing back to the login screen.
+if [ -x "$HOME/.local/bin/nomadright-session" ]; then
+  exec "$HOME/.local/bin/nomadright-session"
+fi
+echo "$(date '+%F %T') ~/.local/bin/nomadright-session missing - starting the Ubuntu desktop" >> "$HOME/.xsession-errors" 2>/dev/null
+export GNOME_SHELL_SESSION_MODE=ubuntu XDG_CURRENT_DESKTOP=ubuntu:GNOME XDG_SESSION_DESKTOP=ubuntu
+exec /usr/bin/gnome-session --session=ubuntu

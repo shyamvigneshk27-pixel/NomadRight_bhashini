@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=NomadRight Kiosk
+Comment=Only the NomadRight kiosk application, no desktop
+Exec=/usr/local/bin/nomadright-session
+TryExec=/usr/local/bin/nomadright-session
+Type=Application
+DesktopNames=NomadRight

@@ -1,0 +1,71 @@
+#!/bin/bash
+# NomadRight kiosk X session: no desktop, no panels, no icons - only the kiosk.
+# Started by GDM for the automatic-login user through /usr/local/bin/nomadright-session
+# (installed by install-kiosk-session.sh), which execs this file. It must stay alive
+# while the kiosk should be on screen: when it exits, GDM ends the session.
+# Recovery (ssh, tailscale or a text console with Ctrl+Alt+F3):
+#   sudo bash ~/Retro/NOMADRIGHT/pocket-infer-sw/deploy/kiosk/restore-desktop.sh && sudo systemctl restart gdm3
+LOG="$HOME/.local/state/nomadright/session.log"
+mkdir -p "$(dirname "$LOG")" 2>/dev/null
+[ -f "$LOG" ] && [ "$(stat -c %s "$LOG" 2>/dev/null || echo 0)" -gt 1048576 ] && mv -f "$LOG" "$LOG.1"
+exec >>"$LOG" 2>&1
+log() { echo "$(date '+%F %T') $*"; }
+log "session start DISPLAY=$DISPLAY dryrun=${NOMADRIGHT_SESSION_DRYRUN:-0}"
+
+# Without a desktop nobody else sets a mode when a display is connected (at boot the
+# X screen is 640x480 until a monitor answers, and a monitor can be plugged in or
+# powered on later). Give every connected output without a mode its preferred mode,
+# make the first one primary, and switch off outputs that went away.
+fix_outputs() {
+  local q; q=$(xrandr --query 2>/dev/null) || return
+  local changed=0 primary_set
+  primary_set=$(echo "$q" | grep -c " connected primary [0-9]")
+  while read -r name state rest; do
+    if [ "$state" = connected ] && ! echo "$rest" | grep -qE '^(primary )?[0-9]+x[0-9]+\+'; then
+      if [ "$primary_set" = 0 ]; then xrandr --output "$name" --auto --pos 0x0 --primary; primary_set=1
+      else xrandr --output "$name" --auto; fi
+      changed=1; log "display $name connected: mode set"
+    elif [ "$state" = disconnected ] && echo "$rest" | grep -qE '^(primary )?[0-9]+x[0-9]+\+'; then
+      xrandr --output "$name" --off; changed=1; log "display $name disconnected: output off"
+    fi
+  done < <(echo "$q" | grep -E "^\S+ (connected|disconnected)")
+  [ "$changed" = 1 ] && { xsetroot -solid '#0b1a3a'; xset s off; xset s noblank; xset -dpms; }
+}
+
+# the screen never blanks or sleeps; a dark root instead of a desktop
+xset s off; xset s noblank; xset -dpms
+xsetroot -solid '#0b1a3a'
+fix_outputs
+
+if [ -z "$NOMADRIGHT_SESSION_DRYRUN" ]; then
+  # hand the display to the user's systemd instance (the kiosk unit and the health
+  # check run there) and to dbus-activated helpers - what gnome-session would do
+  systemctl --user import-environment DISPLAY XAUTHORITY XDG_SESSION_TYPE XDG_SESSION_ID XDG_SEAT XDG_VTNR XDG_SESSION_CLASS
+  dbus-update-activation-environment --systemd DISPLAY XAUTHORITY
+  # when this session ends (restart of GDM, switch back to the desktop) the kiosk must
+  # not keep running against a display that is gone; the next session starts it again
+  stop_kiosk() { log "session ending: stopping the kiosk"; systemctl --user stop nomadright-kiosk.service nomadright-health.timer; exit 0; }
+  trap stop_kiosk TERM HUP INT
+fi
+
+# a window manager is optional; none is installed on this device
+command -v openbox >/dev/null 2>&1 && openbox &
+
+# splash until the kiosk window is up (the kiosk takes about a minute after the speech service)
+[ -x "$HOME/.local/bin/nomadright-splash" ] && "$HOME/.local/bin/nomadright-splash" &
+SPLASH=$!
+
+if [ -z "$NOMADRIGHT_SESSION_DRYRUN" ]; then
+  systemctl --user start nomadright-kiosk.service nomadright-health.timer
+  log "kiosk unit started: $(systemctl --user is-active nomadright-kiosk.service)"
+  # keep the session alive; watch the displays. sleep in the background + wait keeps
+  # the TERM trap responsive.
+  while true; do
+    fix_outputs
+    sleep 3 & wait $!
+  done
+else
+  # dry run (tests on a nested X server): show the splash, exit when it exits
+  wait "$SPLASH" 2>/dev/null
+  log "dry run finished"
+fi
