@@ -153,6 +153,11 @@ class Board:
     ALSA_CAPTURE_CHANNEL_NAME = "Mic"
     ALSA_PLAYBACK_CHANNEL_NAME = "Speaker"
     ALSA_DEVNAME_BLACKLIST = ['NVIDIA Jetson Orin Nano APE']
+    # Mixer levels set at start. Boards whose microphone clips at full gain lower
+    # ALSA_CAPTURE_VOLUME; recordings that still clip step it down (_on_capture_clipped).
+    ALSA_CAPTURE_VOLUME = 100
+    ALSA_CAPTURE_VOLUME_MIN = 15
+    ALSA_PLAYBACK_VOLUME = 100
 
     def __init__(self, args):
         self.logger = logging.getLogger(__name__)
@@ -224,10 +229,24 @@ class Board:
         self.alsa_playback_card = playback_device['alsa_card'] if playback_device else None
         _alsa_playback_device = playback_device['alsa_device'] if playback_device else None
         self.alsa_playback_device = f'hw:{self.alsa_playback_card},{_alsa_playback_device}'
-        # Try to crank up volume on recording and playback devices
-        audio.set_volume(self.alsa_capture_card, 100)
-        audio.set_volume(self.alsa_playback_card, 100)
+        # Mixer levels: the capture level is per board (a webcam microphone clips at
+        # 100%), and a recording that clips lowers it for the next one.
+        self.capture_volume = self.ALSA_CAPTURE_VOLUME
+        audio.set_volume(self.alsa_capture_card, self.capture_volume)
+        audio.set_volume(self.alsa_playback_card, self.ALSA_PLAYBACK_VOLUME)
+        self.audio.clip_callback = self._on_capture_clipped
         self.ui_cbs = []
+
+    def _on_capture_clipped(self, stats) -> None:
+        """A recording reached full scale: lower the microphone gain by 5 points
+        (not below ALSA_CAPTURE_VOLUME_MIN) so the next person is recorded cleanly."""
+        new = max(self.ALSA_CAPTURE_VOLUME_MIN, self.capture_volume - 5)
+        if new == self.capture_volume or self.alsa_capture_card is None:
+            return
+        self.logger.warning("Microphone clipped (%.2f%% of samples at full scale) - capture level %d%% -> %d%%",
+                            stats.get("raw_clipped", 0.0) * 100, self.capture_volume, new)
+        self.capture_volume = new
+        audio.set_volume(self.alsa_capture_card, new)
 
     def subscribe_to_ui(self, func):
         if func not in self.ui_cbs:

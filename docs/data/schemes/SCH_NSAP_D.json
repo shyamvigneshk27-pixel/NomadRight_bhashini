@@ -1,0 +1,272 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_NSAP_D",
+  "scheme_name": "Indira Gandhi National Disability Pension Scheme",
+  "short_name": "IGNDPS",
+  "spoken_name": "the disability pension",
+  "legacy_code": null,
+  "category": "Social Justice",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "domains": [
+   "PENSION",
+   "DISABILITY"
+  ],
+  "description": "IGNDPS is a component of NSAP providing monthly pension to BPL persons with 80% or more disability. Central Government contribution: Rs 300/month for age 18-79 years, Rs 500/month for age 80 years and above. Disability must be certified by a competent medical authority. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+  "voice_summary": "The disability pension is for people aged 18 to 79 with 80 percent or more disability, from below poverty line families. The central share is 300 rupees a month.",
+  "benefits": [
+   "Rs 300/month disability pension (Central share)",
+   "Rs 500/month disability pension for 80+ (Central share)"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Applicant must be aged 18 years or above",
+   "Applicant must be aged 79 years or below (Rs 500/month for 80+)",
+   "Applicant must have 80% or more disability certified by competent medical authority",
+   "Applicant must belong to a BPL household"
+  ],
+  "age_min": 18,
+  "age_max": 79,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Proof of Age (18+ years)",
+   "Disability Certificate (80%+ disability)",
+   "BPL Card / Certificate",
+   "Bank / Post Office Passbook",
+   "Domicile Certificate (optional)"
+  ],
+  "application_process": [
+   "offline: Obtain application form from BDO / Gram Panchayat / District Social Welfare Office.",
+   "offline: Attach disability certificate / UDID card, BPL ration card, and bank passbook.",
+   "offline: Submit to BDO or District Disability Rehabilitation Centre.",
+   "online: Visit the NSAP portal or state social welfare portal.",
+   "online: Select 'Apply Online' -> 'Indira Gandhi National Disability Pension Scheme (IGNDPS)'.",
+   "online: Upload disability certificate (80%+ severe/multiple disability or UDID card) and BPL proof.",
+   "online: Provide Aadhaar and bank account details."
+  ],
+  "application_mode": "OFFLINE_AND_ONLINE",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.60,61,62,63",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2009-02-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": "SCH_NSAP",
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_NSAP_D description, RULE_NSAP_D_ELIG",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 99,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 0,
+   "text": "Rs 300/month disability pension (Central share)",
+   "value_inr": 300.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.65"
+  },
+  {
+   "id": 100,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 1,
+   "text": "Rs 500/month disability pension for 80+ (Central share)",
+   "value_inr": 500.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.65"
+  }
+ ],
+ "documents": [
+  {
+   "id": 80,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar number or enrollment slip for identity verification",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 81,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 1,
+   "name": "Proof of Age (18+ years)",
+   "description": "Birth certificate, school certificate, EPIC, or medical officer age certificate",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 82,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 2,
+   "name": "Disability Certificate (80%+ disability)",
+   "description": "Disability certificate issued by competent medical authority certifying 80% or more disability",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 83,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 3,
+   "name": "BPL Card / Certificate",
+   "description": "BPL ration card or certificate issued by designated authority",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 84,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 4,
+   "name": "Bank / Post Office Passbook",
+   "description": "Active bank or post office savings account passbook with IFSC/branch code",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 85,
+   "scheme_id": "SCH_NSAP_D",
+   "rank": 5,
+   "name": "Domicile Certificate",
+   "description": "",
+   "mandatory": 0,
+   "source": "canonical p.65,66"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 116,
+   "scheme_id": "SCH_NSAP_D",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Obtain application form from BDO / Gram Panchayat / District Social Welfare Office.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 117,
+   "scheme_id": "SCH_NSAP_D",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Attach disability certificate / UDID card, BPL ration card, and bank passbook.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 118,
+   "scheme_id": "SCH_NSAP_D",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Submit to BDO or District Disability Rehabilitation Centre.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 119,
+   "scheme_id": "SCH_NSAP_D",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit the NSAP portal or state social welfare portal.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 120,
+   "scheme_id": "SCH_NSAP_D",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Select 'Apply Online' -> 'Indira Gandhi National Disability Pension Scheme (IGNDPS)'.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 121,
+   "scheme_id": "SCH_NSAP_D",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Upload disability certificate (80%+ severe/multiple disability or UDID card) and BPL proof.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 122,
+   "scheme_id": "SCH_NSAP_D",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Provide Aadhaar and bank account details.",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_NSAP_D_ELIG",
+   "scheme_id": "SCH_NSAP_D",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Applicant must be aged 18 years or above\", \"source\": \"Page 65, NSAP IGNDPS Eligibility\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Applicant must be aged 79 years or below (Rs 500/month for 80+)\", \"source\": \"Page 65, NSAP IGNDPS Eligibility\", \"field\": \"age\", \"op\": \"<=\", \"value\": 79}, {\"desc\": \"Applicant must have 80% or more disability certified by competent medical authority\", \"source\": \"Page 65, NSAP IGNDPS Eligibility\", \"field\": \"disability_percentage\", \"op\": \">=\", \"value\": 80}, {\"desc\": \"Applicant must belong to a BPL household\", \"source\": \"Page 65, NSAP IGNDPS Eligibility\", \"field\": \"is_bpl\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for IGNDPS Disability Pension",
+   "source": "canonical p.65,66",
+   "valid_from": "2009-02-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_NSAP_D",
+   "application_mode": "OFFLINE_AND_ONLINE",
+   "processing_time": "30-45 working days",
+   "fees": "Free of cost / No application fee",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "aliases_en": [
+  "disability pension",
+  "divyang pension",
+  "handicapped pension",
+  "igndps",
+  "indira gandhi disability pension",
+  "indira gandhi national disability pension scheme",
+  "nsap disability",
+  "nsap-d",
+  "viklang pension"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Indira Gandhi National Disability Pension Scheme",
+  "hi": "इंदिरा गांधी राष्ट्रीय दिव्यांगता पेंशन योजना",
+  "ta": "இந்திரா காந்தி தேசிய மாற்றுத்திறனாளி ஓய்வூதியத் திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The disability pension is for people aged 18 to 79 with 80 percent or more disability, from below poverty line families. The central share is 300 rupees a month.",
+  "hi": "दिव्यांगता पेंशन गरीबी रेखा से नीचे के परिवारों के 80 प्रतिशत या उससे अधिक विकलांग लोगों के लिए है। केंद्रीय हिस्सा 300 रुपये प्रति माह है।",
+  "ta": "18 முதல் 79 வயதுக்குட்பட்ட 80 சதவீதம் அல்லது அதற்கு மேற்பட்ட ஊனமுற்றோர், வறுமைக் கோட்டிற்குக் கீழே உள்ள குடும்பங்களைச் சேர்ந்தவர்களுக்கு ஊனமுற்றோர் ஓய்வூதியம் வழங்கப்படுகிறது. மத்திய அரசின் பங்கு மாதத்திற்கு 300 ரூபாய் ஆகும்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

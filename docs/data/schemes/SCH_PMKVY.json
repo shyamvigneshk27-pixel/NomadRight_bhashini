@@ -1,0 +1,93 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMKVY",
+  "scheme_name": "Pradhan Mantri Kaushal Vikas Yojana",
+  "short_name": "PMKVY",
+  "spoken_name": "PM Kaushal Vikas skill training",
+  "legacy_code": null,
+  "category": "Skill Development",
+  "ministry": "Ministry of Skill Development and Entrepreneurship",
+  "department": null,
+  "implementing_agency": "NSDC Training Partners, Skill India Centres",
+  "domains": [
+   "EDUCATION"
+  ],
+  "description": "For Indian nationals aged 18-45. 12th class dropouts or 10th pass students can enroll. Provides skill training and certification. Targets 8 lakh youth over scheme period 2020-21. Promotes sustainable Skill Centres and private sector participation.",
+  "voice_summary": "PM Kaushal Vikas Yojana gives skill training and certification to Indian youth aged 18 to 45.",
+  "benefits": [],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "UNEMPLOYED",
+   "STUDENT"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.4,5",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    4,
+    5
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_PMKVY description",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "kaushal vikas",
+  "pm kaushal vikas",
+  "pmkvy",
+  "pradhan mantri kaushal vikas yojana",
+  "skill india",
+  "skill training scheme",
+  "skill training"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Pradhan Mantri Kaushal Vikas Yojana",
+  "hi": "प्रधानमंत्री कौशल विकास योजना",
+  "ta": "பிரதான் மந்திரி கௌஷல் விகாஸ் யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Kaushal Vikas Yojana gives skill training and certification to Indian youth aged 18 to 45.",
+  "hi": "प्रधानमंत्री कौशल विकास योजना 18 से 45 वर्ष की आयु के भारतीय युवाओं को कौशल प्रशिक्षण और प्रमाणन प्रदान करती है।",
+  "ta": "பிஎம் கௌஷல் விகாஸ் யோஜனா 18 முதல் 45 வயது வரையிலான இந்திய இளைஞர்களுக்கு திறன் பயிற்சி மற்றும் சான்றிதழை வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

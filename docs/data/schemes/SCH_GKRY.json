@@ -1,0 +1,85 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_GKRY",
+  "scheme_name": "Garib Kalyan Rozgar Yojana",
+  "short_name": "GKRY",
+  "spoken_name": "Garib Kalyan Rozgar Yojana",
+  "legacy_code": null,
+  "category": "Rural Development",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "Gram Panchayats, Designated Worksites",
+  "domains": [
+   "WORKER"
+  ],
+  "description": "Scheme provides employment for 125 days. Target workers identified in 25 working areas including PM Kusum Works, cattle sheds, poultry sheds, goat sheds, Shyama Prasad Mukherjee RURBAN mission, national highways, well construction etc.",
+  "voice_summary": "Garib Kalyan Rozgar Yojana provides 125 days of employment in 25 types of work.",
+  "benefits": [],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.4",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    4
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_GKRY description",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "garib kalyan rozgar",
+  "garib kalyan rozgar yojana",
+  "gkry"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Garib Kalyan Rozgar Yojana",
+  "hi": "गरीब कल्याण रोजगार योजना",
+  "ta": "கரீப் கல்யாண் ரோஜ்கர் யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "Garib Kalyan Rozgar Yojana provides 125 days of employment in 25 types of work.",
+  "hi": "गरीब कल्याण रोजगार योजना 25 प्रकार के कार्यों में 125 दिनों का रोजगार प्रदान करती है।",
+  "ta": "கரீப் கல்யாண் ரோஜ்கர் யோஜனா 25 வகையான வேலைகளில் 125 நாட்கள் வேலைவாய்ப்பை வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

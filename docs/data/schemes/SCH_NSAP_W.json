@@ -1,0 +1,270 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_NSAP_W",
+  "scheme_name": "Indira Gandhi National Widow Pension Scheme",
+  "short_name": "IGNWPS",
+  "spoken_name": "the widow pension",
+  "legacy_code": null,
+  "category": "Social Justice",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "domains": [
+   "PENSION"
+  ],
+  "description": "IGNWPS is a component of NSAP providing monthly pension to BPL widows. Central Government contribution: Rs 300/month for age 40-79 years, Rs 500/month for age 80 years and above. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+  "voice_summary": "The widow pension is for widows aged 40 to 79 from below poverty line families. The central share is 300 rupees a month.",
+  "benefits": [
+   "Rs 300/month widow pension (Central share)",
+   "Rs 500/month widow pension for 80+ (Central share)"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Widow must be aged 40 years or above",
+   "Widow must be aged 79 years or below (Rs 500/month for 80+)",
+   "Applicant must be a widow",
+   "Applicant must belong to a BPL household"
+  ],
+  "age_min": 40,
+  "age_max": 79,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Proof of Age (40+ years)",
+   "Widow Certificate / Death Certificate of Spouse",
+   "BPL Card / Certificate",
+   "Bank / Post Office Passbook",
+   "Domicile Certificate (optional)"
+  ],
+  "application_process": [
+   "offline: Obtain application form from Gram Panchayat / BDO office.",
+   "offline: Attach death certificate of husband, age proof, BPL card, and bank passbook.",
+   "offline: Submit to Social Welfare Officer / BDO office.",
+   "online: Visit the official NSAP portal (nsap.nic.in) or state social welfare department portal.",
+   "online: Select 'Apply Online' and choose 'Indira Gandhi National Widow Pension Scheme (IGNWPS)'.",
+   "online: Upload death certificate of husband, age proof (40+), and BPL proof.",
+   "online: Provide bank account details for DBT pension transfer."
+  ],
+  "application_mode": "OFFLINE_AND_ONLINE",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.60,61,62,63",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2009-02-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": "SCH_NSAP",
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_NSAP_W description, RULE_NSAP_W_ELIG",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 97,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 0,
+   "text": "Rs 300/month widow pension (Central share)",
+   "value_inr": 300.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.65"
+  },
+  {
+   "id": 98,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 1,
+   "text": "Rs 500/month widow pension for 80+ (Central share)",
+   "value_inr": 500.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.65"
+  }
+ ],
+ "documents": [
+  {
+   "id": 74,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar number or enrollment slip for identity verification",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 75,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 1,
+   "name": "Proof of Age (40+ years)",
+   "description": "Birth certificate, school certificate, EPIC, or medical officer age certificate",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 76,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 2,
+   "name": "Widow Certificate / Death Certificate of Spouse",
+   "description": "Certificate confirming widow status issued by competent authority, or death certificate of spouse",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 77,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 3,
+   "name": "BPL Card / Certificate",
+   "description": "BPL ration card or certificate issued by designated authority",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 78,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 4,
+   "name": "Bank / Post Office Passbook",
+   "description": "Active bank or post office savings account passbook with IFSC/branch code",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 79,
+   "scheme_id": "SCH_NSAP_W",
+   "rank": 5,
+   "name": "Domicile Certificate",
+   "description": "",
+   "mandatory": 0,
+   "source": "canonical p.65,66"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 109,
+   "scheme_id": "SCH_NSAP_W",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Obtain application form from Gram Panchayat / BDO office.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 110,
+   "scheme_id": "SCH_NSAP_W",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Attach death certificate of husband, age proof, BPL card, and bank passbook.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 111,
+   "scheme_id": "SCH_NSAP_W",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Submit to Social Welfare Officer / BDO office.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 112,
+   "scheme_id": "SCH_NSAP_W",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit the official NSAP portal (nsap.nic.in) or state social welfare department portal.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 113,
+   "scheme_id": "SCH_NSAP_W",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Select 'Apply Online' and choose 'Indira Gandhi National Widow Pension Scheme (IGNWPS)'.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 114,
+   "scheme_id": "SCH_NSAP_W",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Upload death certificate of husband, age proof (40+), and BPL proof.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 115,
+   "scheme_id": "SCH_NSAP_W",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Provide bank account details for DBT pension transfer.",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_NSAP_W_ELIG",
+   "scheme_id": "SCH_NSAP_W",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Widow must be aged 40 years or above\", \"source\": \"Page 65, NSAP IGNWPS Eligibility\", \"field\": \"age\", \"op\": \">=\", \"value\": 40}, {\"desc\": \"Widow must be aged 79 years or below (Rs 500/month for 80+)\", \"source\": \"Page 65, NSAP IGNWPS Eligibility\", \"field\": \"age\", \"op\": \"<=\", \"value\": 79}, {\"desc\": \"Applicant must be a widow\", \"source\": \"Page 65, NSAP IGNWPS Eligibility\", \"field\": \"marital_status\", \"op\": \"==\", \"value\": \"WIDOW\"}, {\"desc\": \"Applicant must belong to a BPL household\", \"source\": \"Page 65, NSAP IGNWPS Eligibility\", \"field\": \"is_bpl\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for IGNWPS Widow Pension",
+   "source": "canonical p.65,66",
+   "valid_from": "2009-02-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_NSAP_W",
+   "application_mode": "OFFLINE_AND_ONLINE",
+   "processing_time": "30-45 working days",
+   "fees": "Free of cost / No application fee",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "aliases_en": [
+  "ignwps",
+  "indira gandhi national widow pension scheme",
+  "indira gandhi widow pension",
+  "nsap widow",
+  "nsap-w",
+  "vidhva pension",
+  "vidhwa pension",
+  "widow pension"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Indira Gandhi National Widow Pension Scheme",
+  "hi": "इंदिरा गांधी राष्ट्रीय विधवा पेंशन योजना",
+  "ta": "இந்திரா காந்தி தேசிய விதவை ஓய்வூதியத் திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The widow pension is for widows aged 40 to 79 from below poverty line families. The central share is 300 rupees a month.",
+  "hi": "विधवा पेंशन गरीबी रेखा से नीचे के परिवारों की 40 से 79 वर्ष की विधवाओं के लिए है। केंद्रीय हिस्सा 300 रुपये प्रति माह है।",
+  "ta": "விதவை ஓய்வூதியம் வறுமைக் கோட்டிற்குக் கீழே உள்ள குடும்பங்களைச் சேர்ந்த 40 முதல் 79 வயது வரையிலான விதவைகளுக்கு வழங்கப்படுகிறது. மத்திய அரசின் பங்கு மாதத்திற்கு 300 ரூபாய் ஆகும்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

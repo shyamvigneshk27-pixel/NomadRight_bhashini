@@ -1,0 +1,330 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_VISHWA",
+  "scheme_name": "PM Vishwakarma Scheme",
+  "short_name": "PM Vishwakarma",
+  "spoken_name": "PM Vishwakarma",
+  "legacy_code": null,
+  "category": "MSME",
+  "ministry": "Ministry of Micro, Small and Medium Enterprises",
+  "department": null,
+  "implementing_agency": "MoMSME, MoSD&E, DFS, Common Service Centres (CSCs)",
+  "domains": [
+   "FINANCIAL",
+   "EDUCATION"
+  ],
+  "description": "Provides PM Vishwakarma Certificate and ID card, basic training (5-7 days), advanced training (15+ days), stipend Rs 500/day during training, toolkit incentive of Rs 15,000, collateral-free loans at 5% interest (Tranche 1: up to Rs 1 lakh/18 months; Tranche 2: up to Rs 2 lakh/30 months), digital transaction incentive Rs 1/transaction up to 100 per month, marketing support. Early repayment restriction: not before 6 months from disbursement. Helpline: 1800 267 7777. Family = husband, wife, unmarried children; only 1 per family can apply.",
+  "voice_summary": "PM Vishwakarma supports artisans in 18 traditional trades with a certificate, training with a stipend, a 15000 rupee toolkit incentive, and loans at 5 percent interest.",
+  "benefits": [
+   "First tranche: collateral-free loan up to Rs 1 lakh at 5% interest for 18 months",
+   "Second tranche: up to Rs 2 lakh for 30 months after repayment of first tranche",
+   "One-time toolkit incentive of Rs 15,000 after skill assessment",
+   "Stipend of Rs 500/day during skill training",
+   "Rs 1 per eligible digital transaction, up to 100 transactions per month"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be 18 years or above",
+   "Must work in one of the 18 approved traditional artisan trades"
+  ],
+  "age_min": 18,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "ARTISAN"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Mobile Number linked to Aadhaar",
+   "Bank Account Details",
+   "Ration Card"
+  ],
+  "application_process": [
+   "offline: Physical biometric verification and hands-on skill training at designated training centers.",
+   "online: Artisan visits nearest CSC for Aadhaar-based biometric registration on PM Vishwakarma Portal.",
+   "online: Three-tier verification: Stage 1 Gram Panchayat / ULB verification; Stage 2 District Implementation Committee; Stage 3 Screening Committee.",
+   "online: Upon approval, download PM Vishwakarma Certificate and ID Card.",
+   "online: Undergo 5-7 days basic skill training (Rs 500/day stipend).",
+   "online: Receive Rs 15,000 toolkit digital e-voucher and apply for Enterprise Development Loan (Tranche 1: Rs 1 Lakh at 5% interest)."
+  ],
+  "application_mode": "ONLINE_VIA_CSC",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.27,28,29,30",
+  "official_url": "https://pmvishwakarma.gov.in",
+  "helpline": "1800 267 7777 / 17923 / 1800 267 7777",
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+   ],
+   "seed_file": "pm_vishwakarma.json",
+   "summary_basis": "canonical SCH_VISHWA description, BEN_VISHWA",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 75,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 0,
+   "text": "First tranche: collateral-free loan up to Rs 1 lakh at 5% interest for 18 months",
+   "value_inr": 100000.0,
+   "frequency": null,
+   "source": "canonical p.27,28"
+  },
+  {
+   "id": 76,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 1,
+   "text": "Second tranche: up to Rs 2 lakh for 30 months after repayment of first tranche",
+   "value_inr": 200000.0,
+   "frequency": null,
+   "source": "canonical p.27,28"
+  },
+  {
+   "id": 77,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 2,
+   "text": "One-time toolkit incentive of Rs 15,000 after skill assessment",
+   "value_inr": 15000.0,
+   "frequency": null,
+   "source": "canonical p.28,29"
+  },
+  {
+   "id": 78,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 3,
+   "text": "Stipend of Rs 500/day during skill training",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.29"
+  },
+  {
+   "id": 79,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 4,
+   "text": "Rs 1 per eligible digital transaction, up to 100 transactions per month",
+   "value_inr": 1.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.30"
+  }
+ ],
+ "documents": [
+  {
+   "id": 48,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card of artisan/craftsperson",
+   "mandatory": 1,
+   "source": "canonical p.7"
+  },
+  {
+   "id": 49,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 1,
+   "name": "Mobile Number linked to Aadhaar",
+   "description": "Mobile number",
+   "mandatory": 1,
+   "source": "canonical p.7"
+  },
+  {
+   "id": 50,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 2,
+   "name": "Bank Account Details",
+   "description": "Operative bank account with IFSC",
+   "mandatory": 1,
+   "source": "canonical p.7"
+  },
+  {
+   "id": 51,
+   "scheme_id": "SCH_VISHWA",
+   "rank": 3,
+   "name": "Ration Card",
+   "description": "Family ration card",
+   "mandatory": 1,
+   "source": "canonical p.7"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 77,
+   "scheme_id": "SCH_VISHWA",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Physical biometric verification and hands-on skill training at designated training centers.",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 78,
+   "scheme_id": "SCH_VISHWA",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Artisan visits nearest CSC for Aadhaar-based biometric registration on PM Vishwakarma Portal.",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 79,
+   "scheme_id": "SCH_VISHWA",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Three-tier verification: Stage 1 Gram Panchayat / ULB verification; Stage 2 District Implementation Committee; Stage 3 Screening Committee.",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 80,
+   "scheme_id": "SCH_VISHWA",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Upon approval, download PM Vishwakarma Certificate and ID Card.",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 81,
+   "scheme_id": "SCH_VISHWA",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Undergo 5-7 days basic skill training (Rs 500/day stipend).",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 82,
+   "scheme_id": "SCH_VISHWA",
+   "mode": "online",
+   "step_no": 5,
+   "text": "Receive Rs 15,000 toolkit digital e-voucher and apply for Enterprise Development Loan (Tranche 1: Rs 1 Lakh at 5% interest).",
+   "source": "canonical p.7"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [
+  {
+   "id": 46,
+   "scheme_id": "SCH_VISHWA",
+   "question": "What trades and benefits are covered under PM Vishwakarma?",
+   "answer": "Covers 18 traditional trades (carpenters, blacksmiths, potters, weavers, etc.). Benefits include PM Vishwakarma Certificate & ID, basic skill training with Rs 500/day stipend, Rs 15,000 toolkit incentive, and collateral-free enterprise loans up to Rs 3 Lakh (Rs 1 Lakh tranche 1, Rs 2 Lakh tranche 2) at a concessional 5% interest rate.",
+   "source": "canonical p.7"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 41,
+   "scheme_id": "SCH_VISHWA",
+   "kind": "helpline",
+   "value": "1800 267 7777 / 17923",
+   "description": "Helpline",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 42,
+   "scheme_id": "SCH_VISHWA",
+   "kind": "portal",
+   "value": "https://pmvishwakarma.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 43,
+   "scheme_id": "SCH_VISHWA",
+   "kind": "grievance",
+   "value": "District Implementation Committee & MSME-DFO",
+   "description": "Grievance redressal",
+   "source": "canonical p.7"
+  },
+  {
+   "id": 51,
+   "scheme_id": "SCH_VISHWA",
+   "kind": "helpline",
+   "value": "1800 267 7777",
+   "description": "Helpline",
+   "source": "canonical p.27,28,29,30"
+  },
+  {
+   "id": 52,
+   "scheme_id": "SCH_VISHWA",
+   "kind": "portal",
+   "value": "pmvishwakarma.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.27,28,29,30"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_VISHWA_ELIG",
+   "scheme_id": "SCH_VISHWA",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be 18 years or above\", \"source\": \"Page 27, PM Vishwakarma FAQs\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Must work in one of the 18 approved traditional artisan trades\", \"source\": \"Page 27, PM Vishwakarma FAQs\", \"field\": \"trade\", \"op\": \"IN\", \"value\": [\"CARPENTER\", \"BOAT_MAKER\", \"ARMOURER\", \"BLACKSMITH\", \"HAMMER_AND_TOOL_KIT_MAKER\", \"LOCKSMITH\", \"SCULPTOR_STONE_CARVER\", \"GOLDSMITH\", \"POTTER\", \"COBBLER\", \"MASON\", \"BASKET_MAT_BROOM_MAKER_COIR_WEAVER\", \"DOLL_AND_TOY_MAKER\", \"BARBER\", \"GARLAND_MAKER\", \"WASHERMAN\", \"TAILOR\", \"FISHING_NET_MAKER\"]}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM Vishwakarma scheme",
+   "source": "canonical p.27,28,29,30",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_VISHWA_EXCL",
+   "scheme_id": "SCH_VISHWA",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"desc\": \"Government employee and their family members not eligible\", \"source\": \"Page 31, PM Vishwakarma FAQ 21\", \"field\": \"govt_employee_or_family\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Only one member per family (husband, wife, unmarried children) can apply\", \"source\": \"Page 31, PM Vishwakarma FAQ 23\", \"field\": \"family_availed_vishwa\", \"op\": \"==\", \"value\": true}, {\"desc\": \"PMEGP loan availed - not eligible\", \"source\": \"Page 31, PM Vishwakarma FAQ 24\", \"field\": \"availed_pmegp\", \"op\": \"==\", \"value\": true}, {\"op\": \"AND\", \"desc\": \"\", \"items\": [{\"desc\": \"Outstanding PM SVANidhi loan - not eligible (unless fully repaid)\", \"source\": \"Page 31, PM Vishwakarma FAQ 24\", \"field\": \"outstanding_svanidhi_loan\", \"op\": \"==\", \"value\": true}]}, {\"op\": \"AND\", \"desc\": \"\", \"items\": [{\"desc\": \"Outstanding PM MUDRA loan - not eligible (unless fully repaid)\", \"source\": \"Page 31, PM Vishwakarma FAQ 24\", \"field\": \"outstanding_mudra_loan\", \"op\": \"==\", \"value\": true}]}]}",
+   "unless_logic": null,
+   "description": "Excluded from PM Vishwakarma",
+   "source": "canonical p.31",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_VISHWA",
+   "application_mode": "ONLINE_VIA_CSC",
+   "processing_time": "15-30 days for complete 3-tier verification",
+   "fees": "Free registration at CSC",
+   "source": "canonical p.7"
+  }
+ ],
+ "aliases_en": [
+  "artisan scheme",
+  "pm vishwakarma",
+  "pm vishwakarma scheme",
+  "vishwakarm",
+  "vishwakarma",
+  "vishwakarma yojana",
+  "visvakaram"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "PM Vishwakarma Scheme",
+  "hi": "प्रधानमंत्री विश्वकर्मा योजना",
+  "ta": "பிரதமர் விஸ்வகர்மா திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "PM Vishwakarma supports artisans in 18 traditional trades with a certificate, training with a stipend, a 15000 rupee toolkit incentive, and loans at 5 percent interest.",
+  "hi": "प्रधानमंत्री विश्वकर्मा 18 पारंपरिक व्यवसायों में कारीगरों को एक प्रमाण पत्र, एक वजीफे के साथ प्रशिक्षण, 15000 रुपये के टूलकिट प्रोत्साहन और 5 प्रतिशत ब्याज पर ऋण के साथ सहायता प्रदान करते हैं।",
+  "ta": "பிரதமர் விஸ்வகர்மா 18 பாரம்பரிய தொழில்களில் கைவினைஞர்களுக்கு சான்றிதழ், உதவித்தொகை பயிற்சி, 15000 ரூபாய் கருவித்தொகுப்பு ஊக்கத்தொகை மற்றும் 5 சதவீத வட்டியில் கடன் வழங்குகிறார்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

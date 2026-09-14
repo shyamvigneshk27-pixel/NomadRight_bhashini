@@ -1,0 +1,209 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_NPST",
+  "scheme_name": "National Pension Scheme for Traders and Self-Employed Persons",
+  "short_name": "NPS-Traders",
+  "spoken_name": "the pension scheme for traders",
+  "legacy_code": null,
+  "category": "Pension & Social Security",
+  "ministry": "Ministry of Labour & Employment",
+  "department": null,
+  "implementing_agency": "Common Service Centres (CSCs)",
+  "domains": [
+   "PENSION"
+  ],
+  "description": "Voluntary and contributory pension scheme. Monthly contribution ranges from Rs 55 to Rs 200. 50% paid by beneficiary, 50% by Central Government. Annual turnover must not exceed Rs 1.5 Crore.",
+  "voice_summary": "The National Pension Scheme for Traders is for shopkeepers, small traders and self-employed people aged 18 to 40. It pays 3000 rupees a month after age 60.",
+  "benefits": [
+   "Monthly assured pension of Rs 3000 after age 60"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be Indian Citizen",
+   "Age must be 18 or above",
+   "Age must not exceed 40",
+   "Must be a shopkeeper, petty/small shop owner (restaurants, hotels, real estate brokers etc.)",
+   "Annual turnover must not exceed Rs 1.5 Crore"
+  ],
+  "age_min": 18,
+  "age_max": 40,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "SHOPKEEPER",
+   "SMALL_TRADER",
+   "SELF_EMPLOYED"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Savings Bank Account / Jan Dhan Passbook",
+   "Self-Declaration of Turnover",
+   "GSTIN (optional)"
+  ],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [
+   "Annual turnover exceeding Rs. 1.5 Crore",
+   "Beneficiaries enrolled in EPFO, ESIC, NPS, or Income Tax Payers"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.3,4",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    3,
+    4
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical RULE_NPST_ELIG, BEN_NPST",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 63,
+   "scheme_id": "SCH_NPST",
+   "rank": 0,
+   "text": "Monthly assured pension of Rs 3000 after age 60",
+   "value_inr": 3000.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.3"
+  }
+ ],
+ "documents": [
+  {
+   "id": 24,
+   "scheme_id": "SCH_NPST",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card of trader/retailer",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  },
+  {
+   "id": 25,
+   "scheme_id": "SCH_NPST",
+   "rank": 1,
+   "name": "Savings Bank Account / Jan Dhan Passbook",
+   "description": "Bank account details with IFSC",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  },
+  {
+   "id": 26,
+   "scheme_id": "SCH_NPST",
+   "rank": 2,
+   "name": "Self-Declaration of Turnover",
+   "description": "Self-certification that annual turnover is Rs 1.5 Cr or below",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  },
+  {
+   "id": 27,
+   "scheme_id": "SCH_NPST",
+   "rank": 3,
+   "name": "GSTIN",
+   "description": "GST Identification Number if registered",
+   "mandatory": 0,
+   "source": "canonical p.4"
+  }
+ ],
+ "procedure_steps": [],
+ "exceptions": [
+  {
+   "id": 36,
+   "scheme_id": "SCH_NPST",
+   "kind": "exclusion",
+   "text": "Annual turnover exceeding Rs. 1.5 Crore",
+   "source": "canonical p.4"
+  },
+  {
+   "id": 37,
+   "scheme_id": "SCH_NPST",
+   "kind": "exclusion",
+   "text": "Beneficiaries enrolled in EPFO, ESIC, NPS, or Income Tax Payers",
+   "source": "canonical p.4"
+  }
+ ],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "EXCL_FILE_EXCL_NPST_002",
+   "scheme_id": "SCH_NPST",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"field\": \"income_tax_payer\", \"op\": \"==\", \"value\": \"True or employment.is_epfo_or_esic_member == True\", \"desc\": \"Beneficiaries enrolled in EPFO, ESIC, NPS, or Income Tax Payers\", \"source\": \"canonical p.4\"}]}",
+   "unless_logic": null,
+   "description": "Beneficiaries enrolled in EPFO, ESIC, NPS, or Income Tax Payers",
+   "source": "canonical exclusions p.4",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_NPST_ELIG",
+   "scheme_id": "SCH_NPST",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be Indian Citizen\", \"source\": \"Page 3, NPS Traders Eligibility\", \"field\": \"citizenship\", \"op\": \"==\", \"value\": \"INDIAN\"}, {\"desc\": \"Age must be 18 or above\", \"source\": \"Page 3, NPS Traders Eligibility\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Age must not exceed 40\", \"source\": \"Page 3, NPS Traders Eligibility\", \"field\": \"age\", \"op\": \"<=\", \"value\": 40}, {\"desc\": \"Must be a shopkeeper, petty/small shop owner (restaurants, hotels, real estate brokers etc.)\", \"source\": \"Page 3, NPS Traders Eligibility\", \"field\": \"occupation\", \"op\": \"IN\", \"value\": [\"SHOPKEEPER\", \"SMALL_TRADER\", \"SELF_EMPLOYED\"]}, {\"desc\": \"Annual turnover must not exceed Rs 1.5 Crore\", \"source\": \"Page 3, NPS Traders Eligibility\", \"field\": \"annual_turnover\", \"op\": \"<=\", \"value\": 15000000}]}",
+   "unless_logic": null,
+   "description": "Eligible for NPS Traders Scheme",
+   "source": "canonical p.3",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_NPST_EXCL",
+   "scheme_id": "SCH_NPST",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"desc\": \"EPFO member excluded\", \"source\": \"Page 3, NPS Traders\", \"field\": \"epfo_esic_member\", \"op\": \"==\", \"value\": true}, {\"desc\": \"ESIC member excluded\", \"source\": \"Page 3, NPS Traders\", \"field\": \"epfo_esic_member\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Already enrolled in PM-SYM excluded\", \"source\": \"Page 3, NPS Traders\", \"field\": \"pmsym_member\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Excluded from NPS Traders",
+   "source": "canonical p.3",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "national pension scheme for traders",
+  "national pension scheme for traders and self-employed persons",
+  "nps for traders",
+  "nps traders",
+  "nps-traders",
+  "pension for traders",
+  "pension scheme for traders",
+  "shopkeeper pension",
+  "traders pension",
+  "vyapari pension"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "National Pension Scheme for Traders and Self-Employed Persons",
+  "hi": "व्यापारियों और स्व-नियोजित व्यक्तियों के लिए राष्ट्रीय पेंशन योजना",
+  "ta": "வணிகர்கள் மற்றும் சுயதொழில் செய்பவர்களுக்கான தேசிய ஓய்வூதியத் திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The National Pension Scheme for Traders is for shopkeepers, small traders and self-employed people aged 18 to 40. It pays 3000 rupees a month after age 60.",
+  "hi": "व्यापारियों के लिए राष्ट्रीय पेंशन योजना दुकानदारों, छोटे व्यापारियों और 18 से 40 वर्ष की आयु के स्व-नियोजित लोगों के लिए है। यह 60 वर्ष की आयु के बाद प्रति माह 3000 रुपये का भुगतान करता है।",
+  "ta": "வணிகர்களுக்கான தேசிய ஓய்வூதியத் திட்டம் கடைக்காரர்கள், சிறு வணிகர்கள் மற்றும் 18 முதல் 40 வயதுக்குட்பட்ட சுயதொழில் செய்பவர்களுக்கானது. 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 3000 ரூபாய் செலுத்துகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

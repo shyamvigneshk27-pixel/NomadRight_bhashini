@@ -1,0 +1,137 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_VBG_RAMG",
+  "scheme_name": "Viksit Bharat – Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+  "short_name": "VB-G RAM G",
+  "spoken_name": "the VB-G RAM G rural jobs guarantee",
+  "legacy_code": null,
+  "category": "Rural Development",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "Gram Panchayats, Block/District/State administrations",
+  "domains": [
+   "WORKER"
+  ],
+  "description": "Came into force 1 July 2026. Replaced MGNREGA. Increases guarantee from 100 to 125 days. 60-day agricultural season break where works may be suspended. Weekly wage payment (not later than fortnight after work done). Unemployment allowance for unmet guarantee. Four priority areas: water security, core rural infrastructure, livelihood-related infrastructure, extreme weather mitigation. Plans from Viksit Gram Panchayat Plans. Fund sharing: 60:40 (Centre:State); 90:10 for NE/Himalayan States. Existing MGNREGA e-KYC cards valid until Gramin Rozgar Guarantee Cards issued.",
+  "voice_summary": "The VB-G RAM G Act, in force from 1 July 2026, guarantees 125 days of paid work a year to rural households whose adults volunteer for unskilled manual work.",
+  "benefits": [
+   "125 days guaranteed wage employment per rural household per year (from 1 July 2026)",
+   "Unemployment allowance payable if eligible employment not provided under the Act"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be an adult member (18+)",
+   "Must reside in rural area",
+   "Must volunteer to undertake unskilled manual work"
+  ],
+  "age_min": 18,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "AGRICULTURAL_LABOURER",
+   "DAILY_WAGE_WORKER",
+   "UNEMPLOYED"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.21,22,23",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2026-07-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    21,
+    22,
+    23
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_VBG_RAMG description, RULE_VBG_RAMG_ELIG",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 89,
+   "scheme_id": "SCH_VBG_RAMG",
+   "rank": 0,
+   "text": "125 days guaranteed wage employment per rural household per year (from 1 July 2026)",
+   "value_inr": null,
+   "frequency": "ANNUAL",
+   "source": "canonical p.21"
+  },
+  {
+   "id": 90,
+   "scheme_id": "SCH_VBG_RAMG",
+   "rank": 1,
+   "text": "Unemployment allowance payable if eligible employment not provided under the Act",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.22"
+  }
+ ],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_VBG_RAMG_ELIG",
+   "scheme_id": "SCH_VBG_RAMG",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be an adult member (18+)\", \"source\": \"Page 21, VB-G RAM G Act details\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Must reside in rural area\", \"source\": \"Page 21, VB-G RAM G Act details\", \"field\": \"area_type\", \"op\": \"==\", \"value\": \"RURAL\"}, {\"desc\": \"Must volunteer to undertake unskilled manual work\", \"source\": \"Page 21, VB-G RAM G Act details\", \"field\": \"willing_manual_work\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for VB-G RAM G Act 2025 employment (from 1 July 2026)",
+   "source": "canonical p.21,22,23",
+   "valid_from": "2026-07-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "125 days employment",
+  "125 days of work",
+  "125 days work",
+  "gramin rozgar guarantee card",
+  "rural employment 2026",
+  "vb g ram g",
+  "vb-g ram g",
+  "vbg ram g",
+  "viksit bharat guarantee for rozgar",
+  "viksit bharat rozgar",
+  "viksit bharat – guarantee for rozgar and ajeevika mission (gramin) act, 2025"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Viksit Bharat – Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+  "hi": "विकास भारत-रोजगार और आजीविका मिशन (ग्रामीण) अधिनियम, 2025 के लिए गारंटी",
+  "ta": "விகாஸித் பாரத்-ரோஜ்கர் மற்றும் அஜிவிகா மிஷன் (கிராமின்) சட்டம், 2025க்கான உத்தரவாதம்"
+ },
+ "catalog_descriptions": {
+  "en": "The VB-G RAM G Act, in force from 1 July 2026, guarantees 125 days of paid work a year to rural households whose adults volunteer for unskilled manual work.",
+  "hi": "1 जुलाई 2026 से लागू वी. बी.-जी. रैम जी. अधिनियम ग्रामीण परिवारों को वर्ष में 125 दिनों के वेतन वाले काम की गारंटी देता है, जिनके वयस्क अकुशल शारीरिक काम के लिए स्वेच्छा से काम करते हैं।",
+  "ta": "2026 ஜூலை 1 முதல் அமலில் உள்ள வி. பி-ஜி. ரேம் ஜி சட்டம், திறமையற்ற கை வேலை செய்வதற்காக தன்னார்வத் தொண்டு செய்யும் கிராமப்புற குடும்பங்களுக்கு ஆண்டுக்கு 125 நாட்கள் ஊதியத்துடன் வேலை செய்வதற்கான உத்தரவாதத்தை அளிக்கிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

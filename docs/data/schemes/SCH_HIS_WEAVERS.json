@@ -1,0 +1,88 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_HIS_WEAVERS",
+  "scheme_name": "Health Insurance Scheme for Weavers",
+  "short_name": "HIS Weavers",
+  "spoken_name": "health insurance for weavers",
+  "legacy_code": null,
+  "category": "Health",
+  "ministry": "Ministry of Textiles",
+  "department": null,
+  "implementing_agency": "Weavers Service Centres",
+  "domains": [
+   "HEALTH"
+  ],
+  "description": "Health insurance for handloom weavers earning 50% or more income from weaving.",
+  "voice_summary": "The Health Insurance Scheme for Weavers gives health insurance to handloom weavers who earn at least half of their income from weaving.",
+  "benefits": [],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "WEAVER"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.6",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    6
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_HIS_WEAVERS description",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "health insurance for weavers",
+  "health insurance scheme for weavers",
+  "his weavers",
+  "weaver health insurance"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Health Insurance Scheme for Weavers",
+  "hi": "बुनकरों के लिए स्वास्थ्य बीमा योजना",
+  "ta": "நெசவாளர்களுக்கான சுகாதாரக் காப்பீட்டுத் திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The Health Insurance Scheme for Weavers gives health insurance to handloom weavers who earn at least half of their income from weaving.",
+  "hi": "बुनकरों के लिए स्वास्थ्य बीमा योजना उन हथकरघा बुनकरों को स्वास्थ्य बीमा देती है जो अपनी आय का कम से कम आधा बुनाई से कमाते हैं।",
+  "ta": "நெசவாளர்களுக்கான சுகாதாரக் காப்பீட்டுத் திட்டம், நெசவுத் தொழிலில் இருந்து தங்கள் வருமானத்தில் பாதியாவது சம்பாதிக்கும் கைத்தறி நெசவாளர்களுக்கு சுகாதாரக் காப்பீட்டை வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

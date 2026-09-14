@@ -1,0 +1,152 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMJKMY",
+  "scheme_name": "Pradhan Mantri Kisan Mandhan Yojana",
+  "short_name": "PM-KMY",
+  "spoken_name": "PM Kisan Mandhan pension",
+  "legacy_code": null,
+  "category": "Agriculture",
+  "ministry": "Ministry of Agriculture and Farmers Welfare",
+  "department": null,
+  "implementing_agency": "Common Service Centres (CSCs)",
+  "domains": [
+   "PENSION"
+  ],
+  "description": "Voluntary contributory pension scheme for small and marginal farmers with cultivable land up to 2 hectares. Entry age 18-40. Monthly pension Rs 3,000 at age 60. Monthly contribution Rs 55 to Rs 200 (equal matching by Central Government).",
+  "voice_summary": "PM Kisan Mandhan Yojana is a pension scheme for small and marginal farmers aged 18 to 40. It pays 3000 rupees a month after age 60.",
+  "benefits": [
+   "Monthly pension of Rs 3,000 for small and marginal farmers after age 60"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be a small and marginal farmer",
+   "Cultivable land must be up to 2 hectares",
+   "Age 18 or above",
+   "Age 40 or below"
+  ],
+  "age_min": 18,
+  "age_max": 40,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "FARMER"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [
+   "Farmers holding cultivable land greater than 2 hectares",
+   "Income tax payers or members of EPFO, NPS, ESIC or other pension schemes"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.7,8",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    7,
+    8
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_PMJKMY description, BEN_PMJKMY",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 111,
+   "scheme_id": "SCH_PMJKMY",
+   "rank": 0,
+   "text": "Monthly pension of Rs 3,000 for small and marginal farmers after age 60",
+   "value_inr": 3000.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.7,8"
+  }
+ ],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [
+  {
+   "id": 48,
+   "scheme_id": "SCH_PMJKMY",
+   "kind": "exclusion",
+   "text": "Farmers holding cultivable land greater than 2 hectares",
+   "source": "canonical p.12"
+  },
+  {
+   "id": 49,
+   "scheme_id": "SCH_PMJKMY",
+   "kind": "exclusion",
+   "text": "Income tax payers or members of EPFO, NPS, ESIC or other pension schemes",
+   "source": "canonical p.12"
+  }
+ ],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "EXCL_FILE_EXCL_PMJKMY_002",
+   "scheme_id": "SCH_PMJKMY",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"field\": \"income_tax_payer\", \"op\": \"==\", \"value\": \"True or employment.is_epfo_or_esic_member == True\", \"desc\": \"Income tax payers or members of EPFO, NPS, ESIC or other pension schemes\", \"source\": \"canonical p.12\"}]}",
+   "unless_logic": null,
+   "description": "Income tax payers or members of EPFO, NPS, ESIC or other pension schemes",
+   "source": "canonical exclusions p.12",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_PMKMY_ELIG",
+   "scheme_id": "SCH_PMJKMY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be a small and marginal farmer\", \"source\": \"Page 7, Pradhan Mantri Kisan Mandhan Yojana\", \"field\": \"small_marginal_farmer\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Cultivable land must be up to 2 hectares\", \"source\": \"Page 7, Pradhan Mantri Kisan Mandhan Yojana\", \"field\": \"land_area_ha\", \"op\": \"<=\", \"value\": 2.0}, {\"desc\": \"Age 18 or above\", \"source\": \"Page 7, Pradhan Mantri Kisan Mandhan Yojana\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Age 40 or below\", \"source\": \"Page 7, Pradhan Mantri Kisan Mandhan Yojana\", \"field\": \"age\", \"op\": \"<=\", \"value\": 40}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM Kisan Mandhan Yojana (farmer pension)",
+   "source": "canonical p.7,8",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "farmer pension",
+  "kisan maan-dhan",
+  "kisan maandhan",
+  "kisan mandhan",
+  "pm kisan mandhan",
+  "pm kmy",
+  "pm-kmy",
+  "pmkmy",
+  "pradhan mantri kisan mandhan yojana"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Pradhan Mantri Kisan Mandhan Yojana",
+  "hi": "प्रधानमंत्री किसान मानधन योजना",
+  "ta": "பிரதான் மந்திரி கிசான் மந்தன் யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Kisan Mandhan Yojana is a pension scheme for small and marginal farmers aged 18 to 40. It pays 3000 rupees a month after age 60.",
+  "hi": "पीएम किसान मानधन योजना 18 से 40 वर्ष की आयु के छोटे और सीमांत किसानों के लिए एक पेंशन योजना है। यह 60 वर्ष की आयु के बाद प्रति माह 3000 रुपये का भुगतान करता है।",
+  "ta": "பி. எம். கிசான் மந்தன் யோஜனா என்பது 18 முதல் 40 வயதுக்குட்பட்ட சிறு மற்றும் குறு விவசாயிகளுக்கான ஓய்வூதியத் திட்டமாகும். 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 3000 ரூபாய் செலுத்துகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

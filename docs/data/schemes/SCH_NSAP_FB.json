@@ -1,0 +1,258 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_NSAP_FB",
+  "scheme_name": "National Family Benefit Scheme",
+  "short_name": "NFBS",
+  "spoken_name": "the National Family Benefit Scheme",
+  "legacy_code": null,
+  "category": "Social Justice",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "domains": [
+   "FINANCIAL"
+  ],
+  "description": "NFBS is a component of NSAP providing Rs 20,000 one-time lump sum to BPL families on the death of the primary breadwinner aged 18-59 years. The assistance is paid to the surviving head of the household. Disbursed through DBT to the bank account of the bereaved family.",
+  "voice_summary": "The National Family Benefit Scheme gives 20000 rupees once to a below poverty line family when its main earner, aged 18 to 59, dies.",
+  "benefits": [
+   "Rs 20,000 one-time assistance on death of breadwinner"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Deceased breadwinner must have been aged 18 years or above",
+   "Deceased breadwinner must have been aged 59 years or below",
+   "Family must belong to a BPL household"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Death Certificate of Breadwinner",
+   "Proof of Age of Deceased (18-59 years)",
+   "BPL Card / Certificate",
+   "Bank / Post Office Passbook",
+   "FIR / Postmortem Report (if applicable) (optional)"
+  ],
+  "application_process": [
+   "offline: Obtain NFBS application form from Gram Panchayat / BDO office.",
+   "offline: Attach breadwinner's death certificate, age verification, BPL card, and bank details.",
+   "offline: Submit to BDO / District Social Welfare Officer within designated period.",
+   "online: Visit the NSAP portal or state social welfare portal.",
+   "online: Select 'Apply Online' -> 'National Family Benefit Scheme (NFBS)'.",
+   "online: Upload death certificate of breadwinner (died aged 18-59) and BPL proof.",
+   "online: Provide head of household bank account details."
+  ],
+  "application_mode": "OFFLINE_AND_ONLINE",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.60,61,62,63",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "1995-08-15",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": "SCH_NSAP",
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_NSAP_FB description, BEN_NSAP_FB",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 101,
+   "scheme_id": "SCH_NSAP_FB",
+   "rank": 0,
+   "text": "Rs 20,000 one-time assistance on death of breadwinner",
+   "value_inr": 20000.0,
+   "frequency": "ONE_TIME",
+   "source": "canonical p.65"
+  }
+ ],
+ "documents": [
+  {
+   "id": 86,
+   "scheme_id": "SCH_NSAP_FB",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar number of the claimant (surviving head of household)",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 87,
+   "scheme_id": "SCH_NSAP_FB",
+   "rank": 1,
+   "name": "Death Certificate of Breadwinner",
+   "description": "Death certificate of the deceased primary breadwinner",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 88,
+   "scheme_id": "SCH_NSAP_FB",
+   "rank": 2,
+   "name": "Proof of Age of Deceased (18-59 years)",
+   "description": "Age proof of the deceased breadwinner showing age between 18-59 at time of death",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 89,
+   "scheme_id": "SCH_NSAP_FB",
+   "rank": 3,
+   "name": "BPL Card / Certificate",
+   "description": "BPL ration card or certificate issued by designated authority",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 90,
+   "scheme_id": "SCH_NSAP_FB",
+   "rank": 4,
+   "name": "Bank / Post Office Passbook",
+   "description": "Active bank or post office account of the claimant",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 91,
+   "scheme_id": "SCH_NSAP_FB",
+   "rank": 5,
+   "name": "FIR / Postmortem Report (if applicable)",
+   "description": "",
+   "mandatory": 0,
+   "source": "canonical p.65,66"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 123,
+   "scheme_id": "SCH_NSAP_FB",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Obtain NFBS application form from Gram Panchayat / BDO office.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 124,
+   "scheme_id": "SCH_NSAP_FB",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Attach breadwinner's death certificate, age verification, BPL card, and bank details.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 125,
+   "scheme_id": "SCH_NSAP_FB",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Submit to BDO / District Social Welfare Officer within designated period.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 126,
+   "scheme_id": "SCH_NSAP_FB",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit the NSAP portal or state social welfare portal.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 127,
+   "scheme_id": "SCH_NSAP_FB",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Select 'Apply Online' -> 'National Family Benefit Scheme (NFBS)'.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 128,
+   "scheme_id": "SCH_NSAP_FB",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Upload death certificate of breadwinner (died aged 18-59) and BPL proof.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 129,
+   "scheme_id": "SCH_NSAP_FB",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Provide head of household bank account details.",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_NSAP_FB_ELIG",
+   "scheme_id": "SCH_NSAP_FB",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Deceased breadwinner must have been aged 18 years or above\", \"source\": \"Page 65, NSAP NFBS Eligibility\", \"field\": \"breadwinner_age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Deceased breadwinner must have been aged 59 years or below\", \"source\": \"Page 65, NSAP NFBS Eligibility\", \"field\": \"breadwinner_age\", \"op\": \"<=\", \"value\": 59}, {\"desc\": \"Family must belong to a BPL household\", \"source\": \"Page 65, NSAP NFBS Eligibility\", \"field\": \"is_bpl\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for NFBS National Family Benefit Scheme",
+   "source": "canonical p.65,66",
+   "valid_from": "1995-08-15",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_NSAP_FB",
+   "application_mode": "OFFLINE_AND_ONLINE",
+   "processing_time": "30-45 working days",
+   "fees": "Free of cost / No application fee",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "aliases_en": [
+  "breadwinner death benefit",
+  "family benefit scheme",
+  "national family benefit",
+  "national family benefit scheme",
+  "nfbs",
+  "nsap family benefit",
+  "nsap-fb"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "National Family Benefit Scheme",
+  "hi": "राष्ट्रीय परिवार लाभ योजना",
+  "ta": "தேசிய குடும்ப நலத் திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The National Family Benefit Scheme gives 20000 rupees once to a below poverty line family when its main earner, aged 18 to 59, dies.",
+  "hi": "राष्ट्रीय परिवार लाभ योजना गरीबी रेखा से नीचे के परिवार को एक बार 20,000 रुपये देती है जब इसके मुख्य कमाने वाले 18 से 59 वर्ष की आयु के परिवार की मृत्यु हो जाती है।",
+  "ta": "தேசிய குடும்ப நலத் திட்டம், வறுமைக் கோட்டிற்குக் கீழே உள்ள ஒரு குடும்பத்தின் முக்கிய வருவாய் ஈட்டும் 18 முதல் 59 வயதுடையவர் இறந்தால், ஒரு முறை 20,000 ரூபாய் வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

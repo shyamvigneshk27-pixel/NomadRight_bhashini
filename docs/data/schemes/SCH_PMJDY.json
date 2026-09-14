@@ -1,0 +1,161 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMJDY",
+  "scheme_name": "Pradhan Mantri Jan Dhan Yojana",
+  "short_name": "PMJDY",
+  "spoken_name": "Jan Dhan bank account",
+  "legacy_code": null,
+  "category": "Financial Inclusion",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "Banks, Bank Mitras (Business Correspondents)",
+  "domains": [
+   "FINANCIAL"
+  ],
+  "description": "Launched 28.8.2014. Provides Basic Savings Bank Deposit (BSBD) account with no minimum balance. Free RuPay debit card with accident insurance Rs 2 lakh (Rs 1 lakh for pre-28.8.2018 accounts). Overdraft up to Rs 10,000. Financial literacy programs. As of 28.02.2025: 54.97 crore accounts; Rs 2,52,750 crore deposits; 30.60 crore women accounts (55.7%); 36.59 crore rural/semi-urban (66.6%); 37.60 crore RuPay cards. Extended beyond 14.8.2018 with focus shifting to every unbanked adult.",
+  "voice_summary": "PM Jan Dhan Yojana gives a basic bank account with no minimum balance, a free RuPay debit card with 2 lakh rupees accident insurance, and an overdraft of up to 10000 rupees.",
+  "benefits": [
+   "Basic Savings Bank Deposit (BSBD) account with no minimum balance requirement",
+   "Free RuPay debit card with accident insurance cover of Rs 2 lakh (for post-28.8.2018 accounts; Rs 1 lakh for older accounts)",
+   "Overdraft facility up to Rs 10,000 for eligible account holders"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Other Officially Valid Documents (OVD) (optional)"
+  ],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.24,25,26,27",
+  "official_url": "https://pmjdy.gov.in/scheme",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2014-08-28",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    24,
+    25,
+    26,
+    27
+   ],
+   "seed_file": "pmjdy.json",
+   "summary_basis": "canonical SCH_PMJDY description, BEN_PMJDY",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 83,
+   "scheme_id": "SCH_PMJDY",
+   "rank": 0,
+   "text": "Basic Savings Bank Deposit (BSBD) account with no minimum balance requirement",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.24"
+  },
+  {
+   "id": 84,
+   "scheme_id": "SCH_PMJDY",
+   "rank": 1,
+   "text": "Free RuPay debit card with accident insurance cover of Rs 2 lakh (for post-28.8.2018 accounts; Rs 1 lakh for older accounts)",
+   "value_inr": 200000.0,
+   "frequency": null,
+   "source": "canonical p.24,25"
+  },
+  {
+   "id": 85,
+   "scheme_id": "SCH_PMJDY",
+   "rank": 2,
+   "text": "Overdraft facility up to Rs 10,000 for eligible account holders",
+   "value_inr": 10000.0,
+   "frequency": null,
+   "source": "canonical p.25"
+  }
+ ],
+ "documents": [
+  {
+   "id": 64,
+   "scheme_id": "SCH_PMJDY",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card (if address changed, self-attestation sufficient)",
+   "mandatory": 1,
+   "source": "canonical p.11"
+  },
+  {
+   "id": 65,
+   "scheme_id": "SCH_PMJDY",
+   "rank": 1,
+   "name": "Other Officially Valid Documents (OVD)",
+   "description": "Voter ID, Driving License, Passport, NREGA Job Card (if Aadhaar unavailable)",
+   "mandatory": 0,
+   "source": "canonical p.11"
+  }
+ ],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "basic bank account",
+  "jan dhan",
+  "jan dhan account",
+  "jan dhan yojana",
+  "jan-dhan",
+  "jandhan",
+  "pmjdy",
+  "pradhan mantri jan dhan yojana",
+  "0 balance account",
+  "bank account"
+ ],
+ "relationships": [
+  {
+   "id": 2,
+   "source_scheme_id": "SCH_PMKISAN",
+   "target_scheme_id": "SCH_PMJDY",
+   "relationship_type": "PREREQUISITE_RAIL",
+   "description": "PM Jan Dhan Yojana bank accounts provide the financial inclusion rail for DBT transfer of PM-KISAN installments."
+  }
+ ],
+ "catalog_names": {
+  "en": "Pradhan Mantri Jan Dhan Yojana",
+  "hi": "प्रधानमंत्री जन धन योजना",
+  "ta": "பிரதான் மந்திரி ஜன் தன் யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Jan Dhan Yojana gives a basic bank account with no minimum balance, a free RuPay debit card with 2 lakh rupees accident insurance, and an overdraft of up to 10000 rupees.",
+  "hi": "पीएम जन धन योजना बिना किसी न्यूनतम शेष राशि के एक बुनियादी बैंक खाता, 2 लाख रुपये के दुर्घटना बीमा के साथ एक मुफ्त रुपे डेबिट कार्ड और 10000 रुपये तक का ओवरड्राफ्ट प्रदान करती है।",
+  "ta": "பிஎம் ஜன் தன் யோஜனா குறைந்தபட்ச இருப்பு இல்லாத அடிப்படை வங்கிக் கணக்கு, 2 லட்சம் ரூபாய் விபத்துக் காப்பீட்டுடன் கூடிய இலவச ரூபே டெபிட் கார்டு மற்றும் 10000 ரூபாய் வரை ஓவர் டிராஃப்ட் வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [
+   "जनधन"
+  ],
+  "ta": [
+   "ஜன்தன்"
+  ]
+ },
+ "forms_supported_on_device": []
+}

@@ -1,0 +1,186 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMMY",
+  "scheme_name": "Pradhan Mantri Mudra Yojana",
+  "short_name": "MUDRA",
+  "spoken_name": "MUDRA loans",
+  "legacy_code": null,
+  "category": "Financial Inclusion",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "MUDRA, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs",
+  "domains": [
+   "FINANCIAL"
+  ],
+  "description": "Implemented through MUDRA (Micro Units Development & Refinance Agency), a subsidiary of SIDBI. Categories: Shishu (up to Rs 50,000), Kishor (Rs 50,001 to Rs 5 lakh), Tarun (Rs 5,00,001 to Rs 10 lakh), Tarun Plus (Rs 10,00,001 to Rs 20 lakh). No collateral required. Purpose: manufacturing, trading, service activities. Women entrepreneurs encouraged with additional facilities.",
+  "voice_summary": "PM MUDRA Yojana gives loans without collateral to small and micro businesses: Shishu up to 50000 rupees, Kishor up to 5 lakh, Tarun up to 10 lakh and Tarun Plus up to 20 lakh.",
+  "benefits": [
+   "Shishu: Loans up to Rs 50,000",
+   "Kishor: Loans above Rs 50,000 and up to Rs 5 lakh",
+   "Tarun: Loans above Rs 5 lakh and up to Rs 10 lakh",
+   "Tarun Plus: Loans above Rs 10 lakh and up to Rs 20 lakh"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "SHOPKEEPER",
+   "SMALL_TRADER",
+   "SELF_EMPLOYED",
+   "STREET_VENDOR",
+   "ARTISAN"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Identity Proof",
+   "Residence Proof",
+   "Business Proposal / Quotation for Machinery",
+   "Last 6 Months Bank Statement (optional)"
+  ],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.40,41,42,43",
+  "official_url": "https://www.financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2015-04-08",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    40,
+    41,
+    42,
+    43,
+    44
+   ],
+   "seed_file": "pmmy.json",
+   "summary_basis": "canonical SCH_PMMY description, BEN_PMMY",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 104,
+   "scheme_id": "SCH_PMMY",
+   "rank": 0,
+   "text": "Shishu: Loans up to Rs 50,000",
+   "value_inr": 50000.0,
+   "frequency": null,
+   "source": "canonical p.42"
+  },
+  {
+   "id": 105,
+   "scheme_id": "SCH_PMMY",
+   "rank": 1,
+   "text": "Kishor: Loans above Rs 50,000 and up to Rs 5 lakh",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.42"
+  },
+  {
+   "id": 106,
+   "scheme_id": "SCH_PMMY",
+   "rank": 2,
+   "text": "Tarun: Loans above Rs 5 lakh and up to Rs 10 lakh",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.42"
+  },
+  {
+   "id": 107,
+   "scheme_id": "SCH_PMMY",
+   "rank": 3,
+   "text": "Tarun Plus: Loans above Rs 10 lakh and up to Rs 20 lakh",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.42"
+  }
+ ],
+ "documents": [
+  {
+   "id": 56,
+   "scheme_id": "SCH_PMMY",
+   "rank": 0,
+   "name": "Identity Proof",
+   "description": "Aadhaar Card, Voter ID, PAN Card, or Passport",
+   "mandatory": 1,
+   "source": "canonical p.9"
+  },
+  {
+   "id": 57,
+   "scheme_id": "SCH_PMMY",
+   "rank": 1,
+   "name": "Residence Proof",
+   "description": "Electricity bill, ration card, or Aadhaar",
+   "mandatory": 1,
+   "source": "canonical p.9"
+  },
+  {
+   "id": 58,
+   "scheme_id": "SCH_PMMY",
+   "rank": 2,
+   "name": "Business Proposal / Quotation for Machinery",
+   "description": "Quotation of machinery/items to be purchased",
+   "mandatory": 1,
+   "source": "canonical p.9"
+  },
+  {
+   "id": 59,
+   "scheme_id": "SCH_PMMY",
+   "rank": 3,
+   "name": "Last 6 Months Bank Statement",
+   "description": "Bank statement of current or savings account",
+   "mandatory": 0,
+   "source": "canonical p.9"
+  }
+ ],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "kishor loan",
+  "mudra",
+  "mudra loan",
+  "mudra yojana",
+  "pmmy",
+  "pradhan mantri mudra yojana",
+  "shishu kishor tarun",
+  "shishu loan",
+  "tarun loan",
+  "business loan"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Pradhan Mantri Mudra Yojana",
+  "hi": "प्रधानमंत्री मुद्रा योजना",
+  "ta": "பிரதான் மந்திரி முத்ரா யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM MUDRA Yojana gives loans without collateral to small and micro businesses: Shishu up to 50000 rupees, Kishor up to 5 lakh, Tarun up to 10 lakh and Tarun Plus up to 20 lakh.",
+  "hi": "पीएम मुद्रा योजना छोटे और सूक्ष्म व्यवसायों को बिना किसी संपार्श्विक के ऋण देती हैः शिशु 50,000 रुपये तक, किशोर 5 लाख रुपये तक, तरुण 10 लाख रुपये तक और तरुण प्लस 20 लाख रुपये तक।",
+  "ta": "சிறு மற்றும் குறு வணிகங்களுக்கு பிணையமில்லாமல் கடன் வழங்கும் பிரதமர் முத்ரா யோஜனா திட்டம்ஃ சிஷு 50000 ரூபாய் வரையிலும், கிஷோர் 5 லட்சம் ரூபாய் வரையிலும், தருண் 10 லட்சம் ரூபாய் வரையிலும், தருண் பிளஸ் 20 லட்சம் ரூபாய் வரையிலும் கடன் வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

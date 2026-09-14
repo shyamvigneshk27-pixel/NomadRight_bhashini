@@ -1,0 +1,362 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMKISAN",
+  "scheme_name": "Pradhan Mantri Kisan Samman Nidhi",
+  "short_name": "PM-KISAN",
+  "spoken_name": "PM-KISAN",
+  "legacy_code": null,
+  "category": "Agriculture",
+  "ministry": "Ministry of Agriculture and Farmers Welfare",
+  "department": null,
+  "implementing_agency": "State/UT Governments, Patwari/Revenue Officers, pmkisan.gov.in",
+  "domains": [
+   "FINANCIAL"
+  ],
+  "description": "Direct income support of Rs 6000 per year paid in 3 equal installments of Rs 2000 every four months via DBT. All landholding farmer families irrespective of land size eligible (revised from initial 2 ha limit on 01.06.2019). Land cut-off date: 01.02.2019 for determining landholding eligibility. Aadhaar mandatory. Bank account with IFSC mandatory.",
+  "voice_summary": "PM-KISAN gives land-holding farmer families 6000 rupees a year, paid in three instalments of 2000 rupees directly into their bank account.",
+  "benefits": [
+   "Rs 6000 per year income support to farmer families"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be a landholding farmer family with cultivable land in their name (any size from 01.06.2019)",
+   "Cultivable land must be in the name of the farmer family"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "FARMER"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Land Record Documents (Khatauni / Jamabandi)",
+   "Aadhaar-Seeded Bank Account"
+  ],
+  "application_process": [
+   "offline: Visit the nearest Common Service Centre (CSC) or local Patwari / Revenue Officer / Nodal Agriculture Officer.",
+   "offline: Submit land records, Aadhaar, and bank passbook for verification.",
+   "online: Visit official PM-KISAN portal (pmkisan.gov.in) -> Farmers Corner -> 'New Farmer Registration'.",
+   "online: Select Rural Farmer Registration or Urban Farmer Registration.",
+   "online: Enter Aadhaar Number and Mobile Number, select State, and verify OTP.",
+   "online: Fill personal, bank, and land details (survey/khata number, dag/khasra number, land size in hectares).",
+   "online: Complete mandatory e-KYC using Aadhaar OTP or facial recognition via PM-KISAN Mobile App."
+  ],
+  "application_mode": "ONLINE_AND_OFFLINE",
+  "portability": null,
+  "exceptions": [
+   "Institutional land holders are excluded",
+   "Former and present holders of constitutional posts",
+   "Persons who paid income tax in last assessment year",
+   "Retired persons / pensioners whose monthly pension is Rs. 10,000 or more (excluding multi-tasking staff / Class IV)",
+   "Doctors, Engineers, Lawyers, Chartered Accountants, and Architects registered with professional bodies"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.10,11,12,13",
+  "official_url": "https://pmkisan.gov.in",
+  "helpline": "155261 / 011-24300606",
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2018-12-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18
+   ],
+   "seed_file": "pm_kisan.json",
+   "summary_basis": "canonical SCH_PMKISAN description, BEN_PMKISAN",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 70,
+   "scheme_id": "SCH_PMKISAN",
+   "rank": 0,
+   "text": "Rs 6000 per year income support to farmer families",
+   "value_inr": 6000.0,
+   "frequency": "ANNUAL",
+   "source": "canonical p.10"
+  }
+ ],
+ "documents": [
+  {
+   "id": 37,
+   "scheme_id": "SCH_PMKISAN",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Mandatory Aadhaar card of landholder farmer",
+   "mandatory": 1,
+   "source": "canonical p.5"
+  },
+  {
+   "id": 38,
+   "scheme_id": "SCH_PMKISAN",
+   "rank": 1,
+   "name": "Land Record Documents (Khatauni / Jamabandi)",
+   "description": "Proof of cultivable land ownership in land records",
+   "mandatory": 1,
+   "source": "canonical p.5"
+  },
+  {
+   "id": 39,
+   "scheme_id": "SCH_PMKISAN",
+   "rank": 2,
+   "name": "Aadhaar-Seeded Bank Account",
+   "description": "Bank account linked with NPCI / Aadhaar",
+   "mandatory": 1,
+   "source": "canonical p.5"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 56,
+   "scheme_id": "SCH_PMKISAN",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Visit the nearest Common Service Centre (CSC) or local Patwari / Revenue Officer / Nodal Agriculture Officer.",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 57,
+   "scheme_id": "SCH_PMKISAN",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Submit land records, Aadhaar, and bank passbook for verification.",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 58,
+   "scheme_id": "SCH_PMKISAN",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit official PM-KISAN portal (pmkisan.gov.in) -> Farmers Corner -> 'New Farmer Registration'.",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 59,
+   "scheme_id": "SCH_PMKISAN",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Select Rural Farmer Registration or Urban Farmer Registration.",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 60,
+   "scheme_id": "SCH_PMKISAN",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Enter Aadhaar Number and Mobile Number, select State, and verify OTP.",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 61,
+   "scheme_id": "SCH_PMKISAN",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Fill personal, bank, and land details (survey/khata number, dag/khasra number, land size in hectares).",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 62,
+   "scheme_id": "SCH_PMKISAN",
+   "mode": "online",
+   "step_no": 5,
+   "text": "Complete mandatory e-KYC using Aadhaar OTP or facial recognition via PM-KISAN Mobile App.",
+   "source": "canonical p.5"
+  }
+ ],
+ "exceptions": [
+  {
+   "id": 38,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "exclusion",
+   "text": "Institutional land holders are excluded",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 39,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "exclusion",
+   "text": "Former and present holders of constitutional posts",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 40,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "exclusion",
+   "text": "Persons who paid income tax in last assessment year",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 41,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "exclusion",
+   "text": "Retired persons / pensioners whose monthly pension is Rs. 10,000 or more (excluding multi-tasking staff / Class IV)",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 42,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "exclusion",
+   "text": "Doctors, Engineers, Lawyers, Chartered Accountants, and Architects registered with professional bodies",
+   "source": "canonical p.5"
+  }
+ ],
+ "faqs": [
+  {
+   "id": 42,
+   "scheme_id": "SCH_PMKISAN",
+   "question": "How much financial benefit is given under PM-KISAN every year?",
+   "answer": "Under PM-KISAN, eligible farmer families receive Rs. 6,000 per year transferred directly into their Aadhaar-linked bank accounts in three equal 4-monthly installments of Rs. 2,000 each.",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 43,
+   "scheme_id": "SCH_PMKISAN",
+   "question": "Is eKYC mandatory for PM-KISAN beneficiaries?",
+   "answer": "Yes, eKYC is mandatory for all PM-KISAN registered farmers. It can be done through OTP on the portal or biometric verification at CSC or facial recognition on the PM-KISAN App.",
+   "source": "canonical p.5"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 32,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "helpline",
+   "value": "155261 / 011-24300606",
+   "description": "Helpline",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 33,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "portal",
+   "value": "https://pmkisan.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.5"
+  },
+  {
+   "id": 34,
+   "scheme_id": "SCH_PMKISAN",
+   "kind": "grievance",
+   "value": "District Nodal Agriculture Officers & PM-KISAN Grievance Portal",
+   "description": "Grievance redressal",
+   "source": "canonical p.5"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_PMKISAN_ELIG",
+   "scheme_id": "SCH_PMKISAN",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be a landholding farmer family with cultivable land in their name (any size from 01.06.2019)\", \"source\": \"Page 10, PM-KISAN FAQ; land size restriction removed 01.06.2019\", \"field\": \"owns_land\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Cultivable land must be in the name of the farmer family\", \"source\": \"Page 10, PM-KISAN\", \"field\": \"land_in_family_name\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM-KISAN income support",
+   "source": "canonical p.10,11,12,13",
+   "valid_from": "2019-06-01",
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_PMKISAN_ELIG_LEGACY",
+   "scheme_id": "SCH_PMKISAN",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must own cultivable land\", \"source\": \"Page 13, Set 2 FAQs (historical)\", \"field\": \"owns_land\", \"op\": \"==\", \"value\": true}, {\"desc\": \"HISTORICAL: Land must be up to 2 hectares (pre-01.06.2019)\", \"source\": \"Page 13, PM-KISAN Set 2 FAQs (historical - before revision)\", \"field\": \"land_area_ha\", \"op\": \"<=\", \"value\": 2.0}]}",
+   "unless_logic": null,
+   "description": "HISTORICAL: Initial PM-KISAN eligibility (land up to 2 hectares only)",
+   "source": "canonical p.13",
+   "valid_from": "2018-12-01",
+   "valid_until": "2019-05-31"
+  },
+  {
+   "rule_id": "RULE_PMKISAN_EXCL",
+   "scheme_id": "SCH_PMKISAN",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"desc\": \"Institutional landholders (companies, trusts etc.) excluded\", \"source\": \"Page 10, PM-KISAN exclusions\", \"field\": \"institutional_landholder\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Former/current MP, MLA, Ministers, Mayors excluded\", \"source\": \"Page 10, PM-KISAN exclusions\", \"field\": \"constitutional_post\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Central/State Government employees (except MTS/Group D) excluded\", \"source\": \"Page 10, PM-KISAN exclusions\", \"field\": \"govt_employee\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Persons getting pension of Rs 10,000 or more per month excluded\", \"source\": \"Page 10, PM-KISAN exclusions\", \"field\": \"monthly_pension\", \"op\": \">=\", \"value\": 10000}, {\"desc\": \"Income tax payers excluded\", \"source\": \"Page 10, PM-KISAN exclusions\", \"field\": \"income_tax_payer\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Doctors, engineers, lawyers, CAs and other registered professionals excluded\", \"source\": \"Page 10, PM-KISAN exclusions\", \"field\": \"registered_professional\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Excluded from PM-KISAN",
+   "source": "canonical p.10,11",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_PMKISAN",
+   "application_mode": "ONLINE_AND_OFFLINE",
+   "processing_time": "Approval by State/District Nodal Officer within 15-30 days",
+   "fees": "Free on portal; standard CSC assistance charges apply for CSC visits",
+   "source": "canonical p.5"
+  }
+ ],
+ "aliases_en": [
+  "farmer income support",
+  "kisan samman",
+  "kisan samman nidhi",
+  "pm kisan",
+  "pm-kisan",
+  "pmkisan",
+  "pradhan mantri kisan samman nidhi"
+ ],
+ "relationships": [
+  {
+   "id": 2,
+   "source_scheme_id": "SCH_PMKISAN",
+   "target_scheme_id": "SCH_PMJDY",
+   "relationship_type": "PREREQUISITE_RAIL",
+   "description": "PM Jan Dhan Yojana bank accounts provide the financial inclusion rail for DBT transfer of PM-KISAN installments."
+  }
+ ],
+ "catalog_names": {
+  "en": "Pradhan Mantri Kisan Samman Nidhi",
+  "hi": "प्रधानमंत्री किसान सम्मान निधि",
+  "ta": "பிரதான் மந்திரி கிசான் சம்மன் நிதி"
+ },
+ "catalog_descriptions": {
+  "en": "PM-KISAN gives land-holding farmer families 6000 rupees a year, paid in three instalments of 2000 rupees directly into their bank account.",
+  "hi": "पीएम-किसान भूमि धारक किसान परिवारों को प्रति वर्ष 6000 रुपये देता है, जिसका भुगतान 2000 रुपये की तीन किश्तों में सीधे उनके बैंक खाते में किया जाता है।",
+  "ta": "பிஎம்-கிசான் நிறுவனம் விவசாயக் குடும்பங்களுக்கு ஆண்டுக்கு 6000 ரூபாய் வழங்குகிறது, 2000 ரூபாய் என்ற மூன்று தவணைகளில் அவர்களின் வங்கிக் கணக்கில் நேரடியாக செலுத்தப்படுகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [
+   "किसान"
+  ],
+  "ta": [
+   "கிசான்"
+  ]
+ },
+ "forms_supported_on_device": [
+  {
+   "form_id": "FORM_PMKISAN_SELF_DECLARATION",
+   "title": {
+    "en": "PM-KISAN self declaration form",
+    "hi": "पीएम-किसान स्व-घोषणा फ़ॉर्म",
+    "ta": "பிஎம்-கிசான் சுய அறிவிப்புப் படிவம்"
+   },
+   "fields": 19,
+   "supported_languages": [
+    "hi",
+    "ta",
+    "en"
+   ]
+  }
+ ]
+}

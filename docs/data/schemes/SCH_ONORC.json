@@ -1,0 +1,494 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_ONORC",
+  "scheme_name": "Public Distribution System - One Nation One Ration Card (PDS / ONORC)",
+  "short_name": "ONORC",
+  "spoken_name": "One Nation One Ration Card",
+  "legacy_code": "PDS",
+  "category": "Food Security",
+  "ministry": "Ministry of Consumer Affairs, Food & Public Distribution",
+  "department": "Department of Food & Supplies and Consumer Affairs",
+  "implementing_agency": "States/UTs via ePoS at Fair Price Shops",
+  "domains": [
+   "RATION",
+   "MIGRANT"
+  ],
+  "description": "The One Nation One Ration Card (ONORC) plan is a nationwide portability initiative under the National Food Security Act (NFSA), 2013, enabling eligible beneficiaries to access their subsidised food grain entitlements from any Fair Price Shop (FPS) across India using their existing ration card with Aadhaar-based authentication. It is implemented by the Department of Food and Public Distribution, Ministry of Consumer Affairs, Food and Public Distribution, Government of India.",
+  "voice_summary": "One Nation One Ration Card lets ration card holders under the National Food Security Act collect their ration from any Fair Price Shop in India, with Aadhaar verification. No separate application is needed.",
+  "benefits": [
+   "Seamless access to subsidised food grains from any ePoS-enabled Fair Price Shop across all 36 States/UTs in India.",
+   "Inter-state and intra-state portability of ration card entitlements.",
+   "Flexible distribution: if a beneficiary collects part of their ration in one location, family members can collect the remaining balance at their home location using the same ration card.",
+   "Real-time access to entitlement details via ePoS devices and the Mera Ration mobile application (available in 13 languages).",
+   "No separate application required for existing NFSA beneficiaries to use ONORC; only Aadhaar-ration card linkage is needed.",
+   "Subsidised Foodgrains (Original NFSA prices as per Section 3): rice: Rs. 3 per kg; wheat: Rs. 2 per kg; coarse_grains: Rs. 1 per kg"
+  ],
+  "target_beneficiaries": [
+   "Antyodaya Anna Yojana (AAY) Households",
+   "Priority Households (PHH)",
+   "Migrant Workers and their families"
+  ],
+  "eligibility": [
+   "The applicant must be an existing ration cardholder covered under the National Food Security Act (NFSA), 2013.",
+   "The beneficiary's Aadhaar number must be seeded (linked) with their ration card to avail of the portability feature.",
+   "Beneficiary must fall under either Antyodaya Anna Yojana (AAY) or Priority Household (PHH) category as identified by the respective State/UT Government.",
+   "Must be a ration cardholder covered under NFSA 2013",
+   "Aadhaar number must be seeded in ration card",
+   "Card is an NFSA card (Antyodaya or Priority Household)"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": 1,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Ration Card",
+   "Aadhaar Card"
+  ],
+  "application_process": [
+   "offline: Ensure your Aadhaar number is linked (seeded) with your existing ration card. If not linked, visit the local Food and Civil Supplies office or designated centre.",
+   "offline: Visit any ePoS-enabled Fair Price Shop (FPS) in any State/UT.",
+   "offline: Provide your Aadhaar number or ration card number at the FPS for identification.",
+   "offline: Complete authentication via biometric verification (fingerprint or iris scan) on the ePoS device at the FPS.",
+   "offline: Collect your entitled food grains upon successful authentication.",
+   "online: No separate online application is required for ONORC portability if you are already an NFSA beneficiary.",
+   "online: Download the 'Mera Ration' mobile application (available on Android) to check entitlements, find nearest Fair Price Shops, view transaction history (last 6 months), check Aadhaar seeding status, and register migration details.",
+   "online: Services are also accessible via the UMANG (Unified Mobile Application for New-age Governance) platform."
+  ],
+  "application_mode": "HYBRID",
+  "portability": "Beneficiaries can collect their entitled foodgrains from any ePoS-enabled Fair Price Shop in any State/UT across India. Beneficiaries can collect their entitled foodgrains from any ePoS-enabled Fair Price Shop within their own State/UT, in any district. Implemented across all 36 States/Union Territories of India. If a beneficiary collects part of their ration at one location, family members can collect the remaining balance at their home location or any other FPS. Aadhaar-based biometric authentication (fingerprint or iris scan) via ePoS devices.",
+  "exceptions": [
+   "Beneficiaries whose Aadhaar is not seeded with their ration card cannot avail of ONORC portability features.",
+   "Fair Price Shops that are not equipped with functional ePoS devices cannot process ONORC transactions.",
+   "ONORC portability is available only at ePoS-enabled Fair Price Shops. FPS without ePoS devices cannot offer portability.",
+   "Biometric authentication failure (e.g., due to worn fingerprints in manual labourers) may prevent beneficiaries from accessing rations at certain times.",
+   "Internet/network connectivity issues at remote FPS locations may affect real-time transaction processing."
+  ],
+  "official_source": "MyScheme - Government of India; Department of Food and Public Distribution; National Food Security Portal; IMPDS Portal; Press Information Bureau; National Food Security Act, 2013; Official scheme compilation (scheme 2.pdf), dataset p.1,2",
+  "official_url": "https://nfsa.gov.in",
+  "helpline": "14445 / 1967 / 1967 / 14445",
+  "last_verified": "2026-08-03",
+  "status": "ACTIVE",
+  "effective_from": "2018-01-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical+legacy",
+   "legacy_json": "pds.json",
+   "canonical_pages": [
+    1,
+    2
+   ],
+   "seed_file": null,
+   "summary_basis": "pds.json description, benefits[4]; canonical SCH_ONORC description",
+   "migration_support_source": "pds.json portability.inter_state"
+  }
+ },
+ "benefits": [
+  {
+   "id": 1,
+   "scheme_id": "SCH_ONORC",
+   "rank": 0,
+   "text": "Seamless access to subsidised food grains from any ePoS-enabled Fair Price Shop across all 36 States/UTs in India.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 2,
+   "scheme_id": "SCH_ONORC",
+   "rank": 1,
+   "text": "Inter-state and intra-state portability of ration card entitlements.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 3,
+   "scheme_id": "SCH_ONORC",
+   "rank": 2,
+   "text": "Flexible distribution: if a beneficiary collects part of their ration in one location, family members can collect the remaining balance at their home location using the same ration card.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 4,
+   "scheme_id": "SCH_ONORC",
+   "rank": 3,
+   "text": "Real-time access to entitlement details via ePoS devices and the Mera Ration mobile application (available in 13 languages).",
+   "value_inr": null,
+   "frequency": null,
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 5,
+   "scheme_id": "SCH_ONORC",
+   "rank": 4,
+   "text": "No separate application required for existing NFSA beneficiaries to use ONORC; only Aadhaar-ration card linkage is needed.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 6,
+   "scheme_id": "SCH_ONORC",
+   "rank": 5,
+   "text": "Subsidised Foodgrains (Original NFSA prices as per Section 3): rice: Rs. 3 per kg; wheat: Rs. 2 per kg; coarse_grains: Rs. 1 per kg",
+   "value_inr": null,
+   "frequency": null,
+   "source": "NFSA 2013, Schedule I"
+  },
+  {
+   "id": 7,
+   "scheme_id": "SCH_ONORC",
+   "rank": 6,
+   "text": "Free Foodgrains under PM Garib Kalyan Ann Yojana (PMGKAY) Extension: Since January 1, 2023, the Government of India provides foodgrains free of cost to all AAY and PHH beneficiaries under NFSA. This has been extended for a period of five years effective from January 1, 2024.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "pib.gov.in, dfpd.gov.in"
+  },
+  {
+   "id": 8,
+   "scheme_id": "SCH_ONORC",
+   "rank": 7,
+   "text": "AAY Household Entitlement: 35 kg of foodgrains per household per month",
+   "value_inr": null,
+   "frequency": null,
+   "source": "NFSA 2013, Section 3(2)"
+  },
+  {
+   "id": 9,
+   "scheme_id": "SCH_ONORC",
+   "rank": 8,
+   "text": "PHH Individual Entitlement: 5 kg of foodgrains per person per month",
+   "value_inr": null,
+   "frequency": null,
+   "source": "NFSA 2013, Section 3(1)"
+  },
+  {
+   "id": 59,
+   "scheme_id": "SCH_ONORC",
+   "rank": 9,
+   "text": "Claim full or part food grains from any Fair Price Shop across India",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.1"
+  }
+ ],
+ "documents": [
+  {
+   "id": 1,
+   "scheme_id": "SCH_ONORC",
+   "rank": 0,
+   "name": "Ration Card",
+   "description": "Existing valid ration card issued under NFSA by the respective State/UT Government.",
+   "mandatory": 1,
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 2,
+   "scheme_id": "SCH_ONORC",
+   "rank": 1,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar number of the beneficiary, which must be seeded (linked) with the ration card for biometric or Aadhaar-based authentication at ePoS devices.",
+   "mandatory": 1,
+   "source": "myscheme.gov.in"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 1,
+   "scheme_id": "SCH_ONORC",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Ensure your Aadhaar number is linked (seeded) with your existing ration card. If not linked, visit the local Food and Civil Supplies office or designated centre.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 2,
+   "scheme_id": "SCH_ONORC",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Visit any ePoS-enabled Fair Price Shop (FPS) in any State/UT.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 3,
+   "scheme_id": "SCH_ONORC",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Provide your Aadhaar number or ration card number at the FPS for identification.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 4,
+   "scheme_id": "SCH_ONORC",
+   "mode": "offline",
+   "step_no": 4,
+   "text": "Complete authentication via biometric verification (fingerprint or iris scan) on the ePoS device at the FPS.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 5,
+   "scheme_id": "SCH_ONORC",
+   "mode": "offline",
+   "step_no": 5,
+   "text": "Collect your entitled food grains upon successful authentication.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 6,
+   "scheme_id": "SCH_ONORC",
+   "mode": "online",
+   "step_no": 1,
+   "text": "No separate online application is required for ONORC portability if you are already an NFSA beneficiary.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 7,
+   "scheme_id": "SCH_ONORC",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Download the 'Mera Ration' mobile application (available on Android) to check entitlements, find nearest Fair Price Shops, view transaction history (last 6 months), check Aadhaar seeding status, and register migration details.",
+   "source": "myscheme.gov.in, impds.nic.in"
+  },
+  {
+   "id": 8,
+   "scheme_id": "SCH_ONORC",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Services are also accessible via the UMANG (Unified Mobile Application for New-age Governance) platform.",
+   "source": "umang.gov.in"
+  }
+ ],
+ "exceptions": [
+  {
+   "id": 1,
+   "scheme_id": "SCH_ONORC",
+   "kind": "exception",
+   "text": "Beneficiaries whose Aadhaar is not seeded with their ration card cannot avail of ONORC portability features.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 2,
+   "scheme_id": "SCH_ONORC",
+   "kind": "exception",
+   "text": "Fair Price Shops that are not equipped with functional ePoS devices cannot process ONORC transactions.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 3,
+   "scheme_id": "SCH_ONORC",
+   "kind": "limitation",
+   "text": "ONORC portability is available only at ePoS-enabled Fair Price Shops. FPS without ePoS devices cannot offer portability.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 4,
+   "scheme_id": "SCH_ONORC",
+   "kind": "limitation",
+   "text": "Biometric authentication failure (e.g., due to worn fingerprints in manual labourers) may prevent beneficiaries from accessing rations at certain times.",
+   "source": ""
+  },
+  {
+   "id": 5,
+   "scheme_id": "SCH_ONORC",
+   "kind": "limitation",
+   "text": "Internet/network connectivity issues at remote FPS locations may affect real-time transaction processing.",
+   "source": ""
+  }
+ ],
+ "faqs": [
+  {
+   "id": 1,
+   "scheme_id": "SCH_ONORC",
+   "question": "What is One Nation One Ration Card (ONORC)?",
+   "answer": "ONORC is a nationwide portability plan that enables NFSA beneficiaries to access their subsidised food grain entitlements from any Fair Price Shop across India using Aadhaar-based authentication, regardless of where their ration card was originally issued.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 2,
+   "scheme_id": "SCH_ONORC",
+   "question": "Do I need to apply separately for ONORC?",
+   "answer": "No. If you are already an NFSA beneficiary, you do not need a separate application. You only need to ensure your Aadhaar number is linked (seeded) with your ration card.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 3,
+   "scheme_id": "SCH_ONORC",
+   "question": "Can my family members collect the remaining ration at our home location?",
+   "answer": "Yes. If you collect part of your entitlement at one location, your family members can collect the remaining balance at any other ePoS-enabled Fair Price Shop.",
+   "source": "myscheme.gov.in"
+  },
+  {
+   "id": 4,
+   "scheme_id": "SCH_ONORC",
+   "question": "What is the Mera Ration app?",
+   "answer": "Mera Ration is a mobile application developed by NIC that allows beneficiaries to find the nearest FPS, check food grain entitlements, view recent transaction history, check Aadhaar seeding status, and register migration details. It is available in 13 languages.",
+   "source": "myscheme.gov.in, impds.nic.in"
+  },
+  {
+   "id": 5,
+   "scheme_id": "SCH_ONORC",
+   "question": "Is the food grain provided free of cost?",
+   "answer": "Since January 1, 2023, the Government of India provides foodgrains free of cost to all AAY and PHH beneficiaries under NFSA. This has been extended for five years from January 1, 2024.",
+   "source": "pib.gov.in, dfpd.gov.in"
+  },
+  {
+   "id": 32,
+   "scheme_id": "SCH_ONORC",
+   "question": "I live in Mumbai but my family lives in Rajasthan, Can my family receive the ration at Rajasthan?",
+   "answer": "Yes, the ONORC scheme allows your family to claim their part of ration on the same Ration Card in Rajasthan while you can claim your share in Mumbai.",
+   "source": "canonical p.2"
+  },
+  {
+   "id": 33,
+   "scheme_id": "SCH_ONORC",
+   "question": "My allotted Fair Price Shop (FPS) does not give me the ration. Can I claim ration from any other FPS?",
+   "answer": "Yes, the scheme allows you to claim ration from any other Fair Price Shop (FPS) in the area or across the nation if your Aadhaar is seeded to your Ration Card.",
+   "source": "canonical p.2"
+  },
+  {
+   "id": 34,
+   "scheme_id": "SCH_ONORC",
+   "question": "Who are eligible for the One Nation One Ration Card scheme?",
+   "answer": "This scheme can be availed by all eligible ration cardholders or beneficiaries covered under the National Food Security Act (NFSA), 2013 with Aadhaar numbers seeded.",
+   "source": "canonical p.2"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 1,
+   "scheme_id": "SCH_ONORC",
+   "kind": "helpline",
+   "value": "14445",
+   "description": "National toll-free helpline for One Nation One Ration Card (ONORC) plan.",
+   "source": "myscheme.gov.in, impds.nic.in"
+  },
+  {
+   "id": 2,
+   "scheme_id": "SCH_ONORC",
+   "kind": "helpline",
+   "value": "1967",
+   "description": "Nationwide helpline for Public Distribution System related queries.",
+   "source": "nfsa.gov.in"
+  },
+  {
+   "id": 3,
+   "scheme_id": "SCH_ONORC",
+   "kind": "grievance",
+   "value": "https://pgportal.gov.in/",
+   "description": "Centralized Public Grievance Redress and Monitoring System (CPGRAMS).",
+   "source": "pgportal.gov.in"
+  },
+  {
+   "id": 26,
+   "scheme_id": "SCH_ONORC",
+   "kind": "helpline",
+   "value": "1967 / 14445",
+   "description": "Helpline",
+   "source": "canonical p.1"
+  },
+  {
+   "id": 27,
+   "scheme_id": "SCH_ONORC",
+   "kind": "portal",
+   "value": "https://nfsa.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.1"
+  },
+  {
+   "id": 28,
+   "scheme_id": "SCH_ONORC",
+   "kind": "grievance",
+   "value": "State PDS Portals & District Food Supplies Officer",
+   "description": "Grievance redressal",
+   "source": "canonical p.1"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_ONORC_ELIG",
+   "scheme_id": "SCH_ONORC",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be a ration cardholder covered under NFSA 2013\", \"source\": \"Page 1, Eligibility section\", \"field\": \"ration_card\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Aadhaar number must be seeded in ration card\", \"source\": \"Page 1, Eligibility section\", \"field\": \"aadhaar_seeded_ration\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for One Nation One Ration Card",
+   "source": "canonical p.1",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_ONORC_NFSA_CATEGORY",
+   "scheme_id": "SCH_ONORC",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"field\": \"nfsa_beneficiary\", \"op\": \"==\", \"value\": true, \"desc\": \"Card is an NFSA card (Antyodaya or Priority Household)\", \"source\": \"nfsa.gov.in\"}]}",
+   "unless_logic": null,
+   "description": "NFSA beneficiary (AAY or PHH category)",
+   "source": "pds.json eligibility[2] (nfsa.gov.in, dfpd.gov.in)",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_ONORC",
+   "application_mode": "HYBRID",
+   "processing_time": "Instantaneous at ePoS terminal",
+   "fees": "Zero application or registration fees",
+   "source": "canonical p.1,2"
+  }
+ ],
+ "aliases_en": [
+  "mera ration",
+  "one nation one ration",
+  "one nation one ration card",
+  "one nation ration card",
+  "onorc",
+  "pds",
+  "public distribution system",
+  "ration card portability",
+  "ration portability",
+  "fair price shop",
+  "ration card",
+  "ration shop"
+ ],
+ "relationships": [
+  {
+   "id": 5,
+   "source_scheme_id": "SCH_ONORC",
+   "target_scheme_id": "SCH_NFSA",
+   "relationship_type": "DEPENDENCY",
+   "description": "ONORC operates strictly on top of the National Food Security Act (NFSA) 2013 entitlements."
+  }
+ ],
+ "catalog_names": {
+  "en": "Public Distribution System - One Nation One Ration Card (PDS / ONORC)",
+  "hi": "सार्वजनिक वितरण प्रणाली-एक राष्ट्र एक राशन कार्ड (पीडीएस/ओएनओआरसी)",
+  "ta": "பொது விநியோக முறை-ஒரே நாடு ஒரே ரேஷன் அட்டை (பி. டி. எஸ்/ஓ. என். ஓ. ஆர். சி)"
+ },
+ "catalog_descriptions": {
+  "en": "One Nation One Ration Card lets ration card holders under the National Food Security Act collect their ration from any Fair Price Shop in India, with Aadhaar verification. No separate application is needed.",
+  "hi": "वन नेशन वन राशन कार्ड राष्ट्रीय खाद्य सुरक्षा अधिनियम के तहत राशन कार्ड धारकों को आधार सत्यापन के साथ भारत में किसी भी उचित मूल्य की दुकान से अपना राशन एकत्र करने की अनुमति देता है। अलग से आवेदन करने की आवश्यकता नहीं है।",
+  "ta": "ஒரே நாடு ஒரே ரேஷன் கார்டு என்பது தேசிய உணவு பாதுகாப்புச் சட்டத்தின் கீழ் ரேஷன் கார்டு வைத்திருப்பவர்கள் இந்தியாவில் உள்ள எந்த நியாயமான விலைக் கடையிலிருந்தும் தங்கள் ரேஷன் பொருட்களை ஆதார் சரிபார்ப்புடன் சேகரிக்க அனுமதிக்கிறது. இதற்குத் தனி விண்ணப்பம் தேவையில்லை."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [
+   "पीडीएस",
+   "राशन"
+  ],
+  "ta": [
+   "பிடிஎஸ்",
+   "ரேஷன்"
+  ]
+ },
+ "forms_supported_on_device": []
+}

@@ -13,10 +13,20 @@ replaced, and only by a vocabulary word that sounds the same.
 
 Sound key: the word's consonant skeleton - vowel signs, independent vowels,
 nasal marks and nukta removed, look-alike consonants merged. Two skeletons that
-are equal or one edit apart, plus a spelling similarity check, snap the word.
-Vocabulary: the scheme names of the trilingual catalogue (scheme_catalog.json)
-in that script plus a short list of scheme and welfare words. Function words
-are listed explicitly and never touched. Standard library only.
+are equal (spelling similarity >= 0.45) or one edit apart (>= 0.6) snap the word.
+
+What may be replaced: only a word that is NOT a real word. Real words are the
+~71k entries of nomadright/lexicon/native_words.txt (IndicTrans2's own
+vocabulary, which holds Tamil words in Devanagari form, plus every word the
+kiosk itself says; build_native_lexicon.py) - Tamil is looked up after the same
+Unicode-block conversion to Devanagari the translator uses. Without this check
+the first version turned ordinary Tamil ("செய்ய முடியும்", "கிடைக்கும்", "நீங்க")
+into words from scheme titles ("சுய மானியம்", "உள்ளடக்கம்", "வங்கி").
+What it may become: scheme names and short names from the catalogue plus a
+curated list of welfare words - not the catalogue's category labels.
+Real-word recognition errors that matter ("फैशन" for "पेंशन") and split words
+("य श्रम" for "ई-श्रम") are handled by a short curated list of confusions.
+Tamil words carrying a case ending are matched on their stem. Standard library only.
 """
 from __future__ import annotations
 
@@ -29,6 +39,27 @@ from typing import Dict, List, Optional, Set, Tuple
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _CATALOG = os.path.normpath(os.path.join(_HERE, "..", "..", "..", "..", "nomadright", "scheme_intel", "scheme_catalog.json"))
+_LEXICON = os.path.normpath(os.path.join(_HERE, "..", "..", "..", "..", "nomadright", "lexicon", "native_words.txt"))
+
+# real-word and split-word recognition errors seen in real transcripts: (regex on the utterance, replacement)
+CONFUSIONS: Dict[str, List[Tuple[str, str]]] = {
+    "hi": [(r"(?<!\S)(?:इनडिएस|इंडिएस|इनडीएस|इंडीएस|पिडिएस|पीडिएस|पिडीएस|पी\s*डी\s*एस)(?!\S)", "पीडीएस"),
+           (r"(?<!\S)(?:ओनोर्क|ओ\s*एन\s*ओ\s*आर\s*सी)(?!\S)", "ओएनओआरसी"), (r"(?<!\S)फैशन(?!\S)", "पेंशन"), (r"(?<!\S)फेंशन(?!\S)", "पेंशन"), (r"(?<!\S)कारड(?!\S)", "कार्ड"), (r"(?<!\S)जोब(?!\S)", "जॉब"),
+           (r"(?<!\S)(?:य|ई|इ|ये|यी)\s*[-]?\s*श्रम(?!\S)", "ई-श्रम"), (r"(?<!\S)हिल\s+पर\s+लाइ\S*(?!\S)", "हेल्पलाइन"),
+           (r"(?<!\S)पी\s+एम(?!\S)", "पीएम"), (r"(?<!\S)राशन\s+कारड(?!\S)", "राशन कार्ड")],
+    "ta": [(r"(?<!\S)(?:பி\s*டி\s*எஸ்|பிடியெஸ்|பீடிஎஸ்)(?!\S)", "பிடிஎஸ்"), (r"(?<!\S)(?:ஈ|இ|ஏ)\s*[-]?\s*ஷ்ரம்(?!\S)", "இ-ஷ்ரம்"), (r"(?<!\S)(?:ஈ|இ)\s*ஷரம்(?!\S)", "இ-ஷ்ரம்"),
+           (r"மந்திரிக்கு\s+சான்(?!\S)", "மந்திரி கிசான்"), (r"(?<!\S)பி\s+எம்(?!\S)", "பிஎம்"), (r"(?<!\S)ஹெல்ப்\s*லைன்(?!\S)", "ஹெல்ப்லைன்")],
+}
+
+# generic words from scheme titles that a garbled word must never be turned into
+_BLOCKED_TARGETS: Dict[str, Set[str]] = {
+    "hi": {"अधिनियम", "मिशन", "राष्ट्रीय", "राज्य", "कल्याण", "विकास", "ग्रामीण", "शहरी", "स्वरोजगार", "पुनर्वास", "सम्मान", "निधि", "गारंटी", "अभियान"},
+    "ta": {"சட்டம்", "சட்ட", "மிஷன்", "தேசிய", "மாநில", "நலன்", "வளர்ச்சி", "கிராமப்புற", "நகர்ப்புற", "சுய", "மறுவாழ்வு", "உள்ளடக்கம்", "நிதி", "உத்தரவாதம்", "இயக்கம்"},
+}
+
+# common Tamil case/postposition endings: an unknown word is also tried without them
+_TA_SUFFIXES = ("க்கான", "க்காக", "க்கு", "வுக்கு", "யுடன்", "உடன்", "த்தில்", "த்தை", "த்தின்", "யில்", "வில்", "இல்", "ில்", "ல்", "யை", "வை", "ஐ",
+                "ை", "இன்", "ின்", "ஆக", "ாக", "ும்", "ஆன", "ான")
 
 # ── extra vocabulary (spoken forms of scheme names and welfare words) ──────────
 EXTRA_VOCAB: Dict[str, List[str]] = {
@@ -43,10 +74,10 @@ EXTRA_VOCAB: Dict[str, List[str]] = {
 }
 
 # spoken scheme names -> catalogue id (used to hint the pipeline even if the translator mangles the name)
-SCHEME_HINTS: Dict[str, Dict[str, str]] = {
-    "hi": {"पीडीएस": "SCH_ONORC", "राशन": "SCH_ONORC", "आयुष्मान": "SCH_PMJAY", "ईश्रम": "SCH_ESHRAM", "श्रम कार्ड": "SCH_ESHRAM", "किसान": "SCH_PMKISAN",
+SCHEME_HINTS: Dict[str, Dict[str, Optional[str]]] = {
+    "hi": {"पीडीएस": "SCH_ONORC", "राशन": "SCH_ONORC", "आयुष्मान": "SCH_PMJAY", "ईश्रम": "SCH_ESHRAM", "ई-श्रम": "SCH_ESHRAM", "श्रम कार्ड": "SCH_ESHRAM", "हेल्पलाइन": None, "किसान": "SCH_PMKISAN",
            "मनरेगा": "SCH_MGNREGA", "उज्ज्वला": "SCH_PMUY", "जनधन": "SCH_PMJDY", "आवास": "SCH_PMAYG"},
-    "ta": {"பிடிஎஸ்": "SCH_ONORC", "ரேஷன்": "SCH_ONORC", "ஆயுஷ்மான்": "SCH_PMJAY", "இஷ்ரம்": "SCH_ESHRAM", "ஈஷ்ரம்": "SCH_ESHRAM", "கிசான்": "SCH_PMKISAN",
+    "ta": {"பிடிஎஸ்": "SCH_ONORC", "ரேஷன்": "SCH_ONORC", "ஆயுஷ்மான்": "SCH_PMJAY", "இஷ்ரம்": "SCH_ESHRAM", "ஈஷ்ரம்": "SCH_ESHRAM", "இ-ஷ்ரம்": "SCH_ESHRAM", "கிசான்": "SCH_PMKISAN",
            "உஜ்வலா": "SCH_PMUY", "ஜன்தன்": "SCH_PMJDY", "ஆவாஸ்": "SCH_PMAYG"},
 }
 
@@ -126,37 +157,70 @@ class NativeCorrector:
         for lang in ("hi", "ta"):
             words: Set[str] = set(EXTRA_VOCAB[lang])
             for item in cat.get(lang) or []:
-                for field in ("name", "short", "category"):
+                for field in ("name", "short_name", "spoken_name"):
                     for tok in str(item.get(field, "")).replace("-", " ").split():
                         tok = tok.strip("()।,.:;!?\"'")
                         if len(tok) >= 2:
                             words.add(tok)
+            words -= _BLOCKED_TARGETS.get(lang, set())
             self.vocab[lang] = words
             for w in words:
                 self.by_key[lang].setdefault(skeleton(w, lang), set()).add(w)
+        self.lexicon: Set[str] = set()
+        try:
+            with open(_LEXICON, encoding="utf-8") as f:
+                self.lexicon = {l.rstrip("\n") for l in f if l and not l.startswith("#")}
+        except OSError:
+            pass
+
+    @staticmethod
+    def _deva(word: str) -> str:
+        """The translator's own Tamil -> Devanagari conversion (Unicode block offset)."""
+        return "".join(chr(ord(c) - 0x0B80 + 0x0900) if 0x0B80 <= ord(c) <= 0x0BFF else c for c in word)
+
+    def is_real_word(self, word: str, lang: str) -> bool:
+        if not self.lexicon:
+            return False
+        return (self._deva(word) if lang == "ta" else word) in self.lexicon
+
+    def _candidate(self, bare: str, lang: str) -> Optional[str]:
+        key = skeleton(bare, lang)
+        if len(key) < 2:
+            return None
+        best, best_r = None, 0.0
+        for w in self.by_key[lang].get(key, ()):
+            r = difflib.SequenceMatcher(None, bare, w).ratio()
+            if r >= 0.45 and r > best_r:
+                best, best_r = w, r
+        if len(key) >= 3:
+            for k, ws in self.by_key[lang].items():
+                if k != key and len(k) >= 3 and _edit1(key, k):
+                    for w in ws:
+                        r = difflib.SequenceMatcher(None, bare, w).ratio()
+                        if r >= 0.6 and r > best_r:
+                            best, best_r = w, r
+        return best
 
     def correct_token(self, tok: str, lang: str) -> str:
         bare = tok.strip("।,.:;!?\"'()")
         if not bare or lang not in self.vocab:
             return tok
-        if bare in self.vocab[lang] or bare in STOP[lang] or bare.isdigit():
+        if bare in self.vocab[lang] or bare in STOP[lang] or bare.isdigit() or re.search(r"[A-Za-z0-9]", bare):
             return tok
-        key = skeleton(bare, lang)
-        if len(key) < 2:
-            return tok
-        cands: Set[str] = set(self.by_key[lang].get(key, ()))
-        if len(key) >= 3:
-            for k, ws in self.by_key[lang].items():
-                if len(k) >= 3 and _edit1(key, k):
-                    cands |= ws
-        if not cands:
-            return tok
-        best, best_r = None, 0.0
-        for w in cands:
-            r = difflib.SequenceMatcher(None, bare, w).ratio()
-            if r > best_r:
-                best, best_r = w, r
-        if best is None or best_r < 0.45:
+        if self.is_real_word(bare, lang):
+            return tok                                   # a real word is never "corrected"
+        best = self._candidate(bare, lang)
+        if best is None and lang == "ta":
+            for suf in _TA_SUFFIXES:
+                if bare.endswith(suf) and len(bare) - len(suf) >= 3:
+                    stem = bare[: -len(suf)]
+                    if self.is_real_word(stem, lang):
+                        return tok
+                    cand = self._candidate(stem, lang)
+                    if cand is not None:
+                        best = cand + suf
+                        break
+        if best is None:
             return tok
         return tok.replace(bare, best, 1)
 
@@ -171,11 +235,13 @@ class NativeCorrector:
                 return text, None
         except Exception:
             pass
+        for pattern, repl in CONFUSIONS.get(lang, ()):
+            text = re.sub(pattern, repl, text)
         out = [self.correct_token(tok, lang) for tok in text.split()]
         fixed = " ".join(out)
         hint = None
         for name, sid in SCHEME_HINTS[lang].items():
-            if name in fixed:
+            if sid and name in fixed:
                 hint = sid
                 break
         return fixed, hint

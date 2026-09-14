@@ -1,0 +1,287 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_NSAP_OA",
+  "scheme_name": "Indira Gandhi National Old Age Pension Scheme",
+  "short_name": "IGNOAPS",
+  "spoken_name": "the old age pension",
+  "legacy_code": null,
+  "category": "Social Justice",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "domains": [
+   "PENSION"
+  ],
+  "description": "IGNOAPS is a component of NSAP providing monthly pension to BPL senior citizens. Central Government contribution: Rs 200/month for age 60-79 years, Rs 500/month for age 80 years and above. States may add their own top-up contribution. Launched 15 August 1995. Pension disbursed through DBT to Aadhaar-linked bank or post office account.",
+  "voice_summary": "The old age pension is for people aged 60 or above from below poverty line families. The central share is 200 rupees a month, and 500 rupees from age 80.",
+  "benefits": [
+   "Rs 200/month old age pension for persons aged 60-79 (Central share)",
+   "Rs 500/month old age pension for persons aged 80+ (Central share)"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Applicant must be aged 60 years or above",
+   "Applicant must belong to a household living below the poverty line (BPL)"
+  ],
+  "age_min": 60,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Proof of Age (60+ years)",
+   "BPL Card / Certificate",
+   "Bank / Post Office Passbook",
+   "Domicile Certificate (optional)"
+  ],
+  "application_process": [
+   "offline: Collect IGNOAPS application form from Gram Panchayat / Block Development Office / Municipality.",
+   "offline: Attach Aadhaar card, age proof certificate, BPL proof, and bank passbook photocopy.",
+   "offline: Submit form to Social Welfare Officer or Block Development Office.",
+   "offline: Verification is conducted by local administration before sanction.",
+   "online: Visit the official NSAP portal (nsap.nic.in) or your state social welfare department portal.",
+   "online: Select 'Apply Online' and choose 'Indira Gandhi National Old Age Pension Scheme (IGNOAPS)'.",
+   "online: Complete Aadhaar e-KYC authentication.",
+   "online: Upload age proof document (showing age 60+) and BPL ration card/income certificate.",
+   "online: Enter bank account details linked to Aadhaar for Direct Benefit Transfer.",
+   "online: Submit application and note down tracking reference number."
+  ],
+  "application_mode": "OFFLINE_AND_ONLINE",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.60,61,62,63",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "1995-08-15",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": "SCH_NSAP",
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_NSAP_OA description, RULE_NSAP_OA_ELIG",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 95,
+   "scheme_id": "SCH_NSAP_OA",
+   "rank": 0,
+   "text": "Rs 200/month old age pension for persons aged 60-79 (Central share)",
+   "value_inr": 200.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.65"
+  },
+  {
+   "id": 96,
+   "scheme_id": "SCH_NSAP_OA",
+   "rank": 1,
+   "text": "Rs 500/month old age pension for persons aged 80+ (Central share)",
+   "value_inr": 500.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.65"
+  }
+ ],
+ "documents": [
+  {
+   "id": 69,
+   "scheme_id": "SCH_NSAP_OA",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar number or enrollment slip for identity verification",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 70,
+   "scheme_id": "SCH_NSAP_OA",
+   "rank": 1,
+   "name": "Proof of Age (60+ years)",
+   "description": "Birth certificate, school certificate, electoral photo identity card (EPIC), or medical officer age certificate",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 71,
+   "scheme_id": "SCH_NSAP_OA",
+   "rank": 2,
+   "name": "BPL Card / Certificate",
+   "description": "BPL ration card or certificate issued by designated Gram Panchayat / Municipal authority",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 72,
+   "scheme_id": "SCH_NSAP_OA",
+   "rank": 3,
+   "name": "Bank / Post Office Passbook",
+   "description": "Active single bank or post office savings account passbook with IFSC/branch code",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 73,
+   "scheme_id": "SCH_NSAP_OA",
+   "rank": 4,
+   "name": "Domicile Certificate",
+   "description": "",
+   "mandatory": 0,
+   "source": "canonical p.65,66"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 99,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Collect IGNOAPS application form from Gram Panchayat / Block Development Office / Municipality.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 100,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Attach Aadhaar card, age proof certificate, BPL proof, and bank passbook photocopy.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 101,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Submit form to Social Welfare Officer or Block Development Office.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 102,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "offline",
+   "step_no": 4,
+   "text": "Verification is conducted by local administration before sanction.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 103,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit the official NSAP portal (nsap.nic.in) or your state social welfare department portal.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 104,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Select 'Apply Online' and choose 'Indira Gandhi National Old Age Pension Scheme (IGNOAPS)'.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 105,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Complete Aadhaar e-KYC authentication.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 106,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Upload age proof document (showing age 60+) and BPL ration card/income certificate.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 107,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "online",
+   "step_no": 5,
+   "text": "Enter bank account details linked to Aadhaar for Direct Benefit Transfer.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 108,
+   "scheme_id": "SCH_NSAP_OA",
+   "mode": "online",
+   "step_no": 6,
+   "text": "Submit application and note down tracking reference number.",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_NSAP_OA_ELIG",
+   "scheme_id": "SCH_NSAP_OA",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Applicant must be aged 60 years or above\", \"source\": \"Page 65, NSAP IGNOAPS Eligibility\", \"field\": \"age\", \"op\": \">=\", \"value\": 60}, {\"desc\": \"Applicant must belong to a household living below the poverty line (BPL)\", \"source\": \"Page 65, NSAP IGNOAPS Eligibility\", \"field\": \"is_bpl\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for IGNOAPS Old Age Pension",
+   "source": "canonical p.65,66",
+   "valid_from": "1995-08-15",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_NSAP_OA",
+   "application_mode": "OFFLINE_AND_ONLINE",
+   "processing_time": "30-45 working days",
+   "fees": "Free of cost / No application fee",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "aliases_en": [
+  "budhapa pension",
+  "ignoaps",
+  "indira gandhi national old age pension scheme",
+  "indira gandhi old age pension",
+  "nsap old age",
+  "nsap-oa",
+  "old age pension",
+  "senior citizen pension",
+  "vriddha pension",
+  "vridha pension"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Indira Gandhi National Old Age Pension Scheme",
+  "hi": "इंदिरा गांधी राष्ट्रीय वृद्धावस्था पेंशन योजना",
+  "ta": "இந்திரா காந்தி தேசிய முதியோர் ஓய்வூதியத் திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The old age pension is for people aged 60 or above from below poverty line families. The central share is 200 rupees a month, and 500 rupees from age 80.",
+  "hi": "वृद्धावस्था पेंशन गरीबी रेखा से नीचे के परिवारों के 60 वर्ष या उससे अधिक आयु के लोगों के लिए है। केंद्रीय हिस्सा 200 रुपये प्रति माह है, और 80 वर्ष की आयु से 500 रुपये है।",
+  "ta": "முதியோர் ஓய்வூதியம் என்பது வறுமைக் கோட்டிற்குக் கீழே உள்ள குடும்பங்களைச் சேர்ந்த 60 வயது அல்லது அதற்கு மேற்பட்டவர்களுக்கு வழங்கப்படுகிறது. மத்தியப் பங்கு மாதத்திற்கு 200 ரூபாயாகவும், 80 வயதிலிருந்தே 500 ரூபாயாகவும் உள்ளது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

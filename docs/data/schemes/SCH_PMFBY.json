@@ -1,0 +1,141 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMFBY",
+  "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+  "short_name": "PMFBY",
+  "spoken_name": "PM Fasal Bima crop insurance",
+  "legacy_code": null,
+  "category": "Agriculture",
+  "ministry": "Ministry of Agriculture and Farmers Welfare",
+  "department": null,
+  "implementing_agency": "Insurance companies, Banks, PACS, CSCs",
+  "domains": [
+   "FINANCIAL"
+  ],
+  "description": "Launched from Kharif 2016. Optional for all farmers including KCC holders (loanee farmers can opt out at least 7 days before cut-off date). Covers food crops, oilseeds, annual commercial/horticultural crops. Risks covered: drought, dry spells, flood, inundation, widespread pest/disease, landslides, natural fire, storms, hailstorms, cyclones. Prevented sowing/mid-season adversity/post-harvest (up to 2 weeks) coverage. Localized calamities covered. Exclusions: war, nuclear risks, malicious damage, preventable risks. Technology: YES-TECH, CROPIC App, CCE Agri App. Portal: National Crop Insurance Portal (NCIP).",
+  "voice_summary": "PM Fasal Bima Yojana is crop insurance for farmers, including tenant farmers and sharecroppers, against crop loss from drought, flood, pests, storms and other natural risks.",
+  "benefits": [
+   "Comprehensive crop insurance from pre-sowing to post-harvest against natural risks",
+   "Post-harvest loss coverage for up to 2 weeks after harvest for crops left in field for drying"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must have an insurable interest in the insured crop",
+   "Must be growing notified crops in notified areas"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "FARMER"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.44,45,46,47",
+  "official_url": "pmfby.gov.in",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2016-01-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+   ],
+   "seed_file": "pmfby.json",
+   "summary_basis": "canonical SCH_PMFBY description, RULE_PMFBY_ELIG; scheme compilation p.184",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 108,
+   "scheme_id": "SCH_PMFBY",
+   "rank": 0,
+   "text": "Comprehensive crop insurance from pre-sowing to post-harvest against natural risks",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.44,45"
+  },
+  {
+   "id": 109,
+   "scheme_id": "SCH_PMFBY",
+   "rank": 1,
+   "text": "Post-harvest loss coverage for up to 2 weeks after harvest for crops left in field for drying",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.45"
+  }
+ ],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [
+  {
+   "id": 54,
+   "scheme_id": "SCH_PMFBY",
+   "kind": "portal",
+   "value": "pmfby.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.44,45,46,47"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_PMFBY_ELIG",
+   "scheme_id": "SCH_PMFBY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"op\": \"OR\", \"desc\": \"\", \"items\": [{\"desc\": \"Can be owner, sharecropper, or tenant farmer\", \"source\": \"Page 44, PMFBY FAQ 3\", \"field\": \"farmer_type\", \"op\": \"IN\", \"value\": [\"OWNER_FARMER\", \"SHARECROPPER\", \"TENANT_FARMER\"]}, {\"desc\": \"Tribal farmers with FRA land eligible\", \"source\": \"Page 44, PMFBY FAQ 5\", \"field\": \"tribal_forest_dweller\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Farmers cultivating community-owned land (NE states) eligible\", \"source\": \"Page 44, PMFBY FAQ 6\", \"field\": \"community_land\", \"op\": \"==\", \"value\": true}]}, {\"desc\": \"Must have an insurable interest in the insured crop\", \"source\": \"Page 44, PMFBY FAQ 3\", \"field\": \"insurable_interest\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Must be growing notified crops in notified areas\", \"source\": \"Page 44, PMFBY FAQ 3\", \"field\": \"crop_notified\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for PMFBY crop insurance",
+   "source": "canonical p.44,45",
+   "valid_from": "2016-01-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "crop insurance",
+  "fasal bima",
+  "pm fasal bima",
+  "pmfby",
+  "pradhan mantri fasal bima yojana"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Pradhan Mantri Fasal Bima Yojana",
+  "hi": "प्रधानमंत्री फसल बीमा योजना",
+  "ta": "பிரதான் மந்திரி பசல் பீமா யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Fasal Bima Yojana is crop insurance for farmers, including tenant farmers and sharecroppers, against crop loss from drought, flood, pests, storms and other natural risks.",
+  "hi": "प्रधानमंत्री फसल बीमा योजना किसानों के लिए फसल बीमा है, जिसमें किरायेदार किसान और बटाईदार शामिल हैं, सूखे, बाढ़, कीटों, तूफान और अन्य प्राकृतिक जोखिमों से फसल के नुकसान के खिलाफ।",
+  "ta": "பிரதமர் பயிர்க் காப்பீட்டுத் திட்டம் என்பது வறட்சி, வெள்ளம், பூச்சிகள், புயல்கள் மற்றும் பிற இயற்கை அபாயங்களால் பயிர் இழப்புக்கு எதிராக குத்தகைதாரர்கள் மற்றும் பங்குதாரர்கள் உள்ளிட்ட விவசாயிகளுக்கான பயிர்க் காப்பீட்டுத் திட்டமாகும்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

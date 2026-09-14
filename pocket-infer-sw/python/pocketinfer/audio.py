@@ -105,6 +105,58 @@ def set_volume(alsa_card, volume, controls=None):
 
 
 
+CLIP_FRACTION_LIMIT = 0.001      # more than 0.1% of samples at full scale: the microphone gain is too high
+
+
+def condition_speech(samples, rate, target_peak=0.891, max_gain=20.0, highpass_hz=70.0):
+    """Speech clean-up for recognition, no clipping ever.
+
+    1. The switch-on click: USB microphones produce a loud low-frequency thump
+       ~150-300 ms after the device is opened. If a frame in the first 0.6 s is
+       more than four times louder than the typical level of the rest, the audio
+       up to 60 ms after that frame is dropped.
+    2. DC offset and rumble below `highpass_hz` are removed (2nd-order Butterworth).
+    3. The peak is scaled to `target_peak` (-1 dBFS), with at most `max_gain`
+       amplification so a quiet room is not blown up into loud noise.
+    Returns (int16 array, stats) - stats holds the raw peak, the fraction of raw
+    samples at full scale, the milliseconds cut and the gain used."""
+    a = np.asarray(samples, dtype=np.float64) / 32768.0
+    stats = {"raw_peak": float(np.max(np.abs(a))) if len(a) else 0.0,
+             "raw_clipped": float(np.mean(np.abs(a) >= 0.999)) if len(a) else 0.0,
+             "cut_ms": 0, "gain": 1.0}
+    if len(a) == 0:
+        return np.zeros(0, dtype=np.int16), stats
+    frame = max(1, int(0.02 * rate))
+    head = int(0.6 * rate)
+    if len(a) > head + int(0.4 * rate):
+        nfr = len(a) // frame
+        env = np.sqrt(np.mean((a[: nfr * frame] - np.mean(a)).reshape(nfr, frame) ** 2, axis=1))
+        head_frames = head // frame
+        rest = env[head_frames:]
+        typical = float(np.median(rest)) if len(rest) else 0.0
+        loud = np.where(env[:head_frames] > 4.0 * max(typical, 1e-4))[0]
+        if len(loud):
+            cut = min(head, (int(loud[-1]) + 1) * frame + int(0.06 * rate))
+            a = a[cut:]
+            stats["cut_ms"] = int(cut * 1000 / rate)
+    a = a - np.mean(a)
+    try:
+        from scipy.signal import butter, sosfilt
+        sos = butter(2, highpass_hz, btype="highpass", fs=rate, output="sos")
+        a = sosfilt(sos, a)
+    except Exception:
+        # no scipy: a first-order DC blocker still removes offset and most rumble
+        y = np.empty_like(a); prev_x = prev_y = 0.0; r = 0.995
+        for i, x in enumerate(a):
+            prev_y = x - prev_x + r * prev_y; prev_x = x; y[i] = prev_y
+        a = y
+    peak = float(np.max(np.abs(a))) if len(a) else 0.0
+    gain = min(max_gain, target_peak / peak) if peak > 0 else 1.0
+    stats["gain"] = round(gain, 2)
+    out = np.clip(a * gain, -1.0, 1.0)
+    return (out * 32767.0).astype(np.int16), stats
+
+
 class AudioRecorder:
     def __init__(self, device_idx=0, channels=1, frames_per_buffer=1024):
         self.logger = logging.getLogger(__name__)
@@ -117,6 +169,8 @@ class AudioRecorder:
         self.frames = []
         self.thread = threading.Thread()
         self.recording = False
+        self.last_stats = {}
+        self.clip_callback = None     # board hook: called with the stats when a recording clipped
 
         self.rate = 16000  # Default rate, will be updated to a supported rate
         # List of common rates to test 
@@ -203,23 +257,25 @@ class AudioRecorder:
         wf.close()
 
     def to_audio_data(self):
+        """The recording as 16-bit mono AudioData, conditioned for speech recognition
+        (condition_speech): the microphone's switch-on click is cut, DC and rumble
+        are filtered out and the level is normalised WITHOUT clipping. The old
+        version scaled the loudest sample to full scale and then multiplied by 1.2
+        on purpose ("hard-clip a little"); on this kiosk's webcam microphone, whose
+        switch-on click and room noise already reach full scale, that clipped 14% of
+        every recording and turned "I am 40 years old" into nonsense for Whisper."""
         byte_data = b''.join(self.frames)
-
-        # Convert bytes to signed 16-bit samples
         arr = np.frombuffer(byte_data, dtype=np.int16)
         if len(arr) == 0:
             return AudioData(byte_data, self.rate, 2)
-        # int16's range is -32768..32767, so abs(-32768) alone overflows
-        # int16 (wraps back to -32768) - genuinely happens on loud
-        # mic input that hits full-scale negative clipping, silently
-        # producing a wrong (garbage) gain below instead of erroring.
-        # Widen to int64 first so abs() has headroom.
-        ampl = max(abs(int(np.min(arr))), abs(int(np.max(arr))))
-        gain = 32768.0 / ampl if ampl > 0 else 1.0
-        arr = (arr*gain*1.2) # Intentionall hard-clip a little
-        arr = np.clip(arr, -32768, 32767).astype(np.int16)
-
-        return AudioData(arr.tobytes(), self.rate, 2)
+        out, stats = condition_speech(arr, self.rate)
+        self.last_stats = stats
+        if self.clip_callback is not None and stats.get("raw_clipped", 0.0) > CLIP_FRACTION_LIMIT:
+            try:
+                self.clip_callback(stats)
+            except Exception:
+                self.logger.debug("clip callback failed", exc_info=True)
+        return AudioData(out.tobytes(), self.rate, 2)
 
     def terminate(self):
         self.p.terminate()

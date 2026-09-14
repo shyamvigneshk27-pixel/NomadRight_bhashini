@@ -31,6 +31,10 @@ class PocketInferDevboard(Board):
     # warning and a full device probe on every launch.
     V4L_CAMERA_NAME = 'ABWB1002_PC_WebCam'
     ALSA_CAPTURE_NAME = 'ABWB1002 PC WebCam'
+    # Measured 14 Sep 2026: at 100% (+31.6 dB) this webcam microphone records the room
+    # at -13 dBFS with 0.6% of samples clipped before anyone speaks; at 35% a loud
+    # voice right at the device clips below 1% and the room sits near -22 dBFS.
+    ALSA_CAPTURE_VOLUME = 35
     # Must match the real ALSA device name substring ('UACDemoV1.0: USB
     # Audio' per `aplay -l`) - the old value 'USB Audio Device' never
     # matched anything on this hardware, so Board.__init__'s "device not

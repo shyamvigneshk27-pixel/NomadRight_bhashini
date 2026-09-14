@@ -1,0 +1,511 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_ESHRAM",
+  "scheme_name": "e-Shram Portal + OSH Code 2020 — Unorganised Worker Registration & Interstate Migrant Rights",
+  "short_name": "e-Shram",
+  "spoken_name": "e-Shram registration",
+  "legacy_code": "ESHRAM",
+  "category": "Labour & Employment",
+  "ministry": null,
+  "department": null,
+  "implementing_agency": null,
+  "domains": [
+   "WORKER",
+   "MIGRANT"
+  ],
+  "description": "e-Shram is a national database of unorganised workers launched by the Ministry of Labour & Employment, Government of India. It provides a Universal Account Number (UAN) card to every registered unorganised worker that is valid pan-India. The Occupational Safety, Health and Working Conditions Code (OSH Code), 2020 consolidates and replaces the Inter-State Migrant Workmen Act, 1979 and 13 other labour laws, providing pan-India portability of welfare benefits for migrant workers.",
+  "voice_summary": "e-Shram is a free national registration for unorganised workers aged 16 to 59. You get a card with a Universal Account Number that is valid across India.",
+  "benefits": [
+   "Universal Account Number (UAN) e-Shram Card — a pan-India valid digital identity for unorganised workers.",
+   "Access to 50+ linked government welfare schemes through the single e-Shram UAN.",
+   "Pan-India portability of welfare benefits — worker can access benefits in any state using their UAN.",
+   "OSH Code 2020 Rights: Equal wages as local workers in the destination state (no wage discrimination for interstate migrants).",
+   "OSH Code 2020 Rights: Free transportation from home state to destination state and back for contractor-recruited workers.",
+   "OSH Code 2020 Rights: Free basic medical facilities at the worksite."
+  ],
+  "target_beneficiaries": [
+   "Construction Workers",
+   "Agricultural Workers",
+   "Domestic Workers",
+   "Street Vendors and Small Traders",
+   "Transport Workers",
+   "All Informal Sector Workers"
+  ],
+  "eligibility": [
+   "Any unorganised worker aged 16 to 59 years is eligible to register on e-Shram.",
+   "Worker must not be a member of EPFO (Employees Provident Fund Organisation) or ESIC (Employees State Insurance Corporation) — i.e., must be in the unorganised/informal sector.",
+   "Worker must have an active Aadhaar-linked mobile number for OTP-based registration.",
+   "For OSH Code interstate migrant worker protections: any person who has migrated from one state to another for work, whether recruited by a contractor or self-migrated, is covered under OSH Code 2020.",
+   "Establishments employing 10 or more interstate migrant workers must mandatorily register under OSH Code 2020.",
+   "Aged 16 or above",
+   "Aged 59 or below",
+   "Works in the unorganised sector",
+   "Has Aadhaar with a linked mobile number for OTP"
+  ],
+  "age_min": 16,
+  "age_max": 59,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "UNORGANISED"
+  ],
+  "gender": null,
+  "migration_support": 1,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Aadhaar-linked Mobile Number",
+   "Bank Account Details (IFSC + Account Number)",
+   "Occupation/Work Proof (optional) (optional)"
+  ],
+  "application_process": [
+   "offline: Visit the nearest Common Service Centre (CSC) with your Aadhaar card and bank passbook.",
+   "offline: The CSC operator will register you on the e-Shram portal. The service is free of cost — no registration fee.",
+   "offline: You will receive your 12-digit UAN and e-Shram card (physical printout available at CSC).",
+   "offline: If you face wage theft or rights violation, visit the nearest District Labour Office (Shram Suvidha Kendra) with your e-Shram UAN card and file a complaint.",
+   "online: Visit eshram.gov.in on any mobile or computer.",
+   "online: Click 'Register on e-Shram' and enter your Aadhaar-linked mobile number.",
+   "online: Enter the OTP received on your Aadhaar-linked mobile number.",
+   "online: Fill in personal details: name, date of birth, gender, occupation, state, bank account details.",
+   "online: Submit the form. A 12-digit UAN (Universal Account Number) will be generated instantly and an e-Shram card will be available for download."
+  ],
+  "application_mode": "ONLINE_AND_OFFLINE",
+  "portability": "e-Shram UAN is a single national identity valid across all states. Benefits linked to UAN are accessible anywhere in India. All 36 States and Union Territories of India. Under OSH Code 2020, welfare benefits are portable across states — a worker's entitlements travel with them regardless of destination state.",
+  "exceptions": [
+   "Workers who are already members of EPFO or ESIC (i.e., those in formal employment) are NOT eligible to register on e-Shram.",
+   "The PMSBY insurance linked to e-Shram must be renewed annually by paying Rs. 12/year after the first free year.",
+   "OSH Code 2020 applies only to establishments with 10 or more workers. Small employers with fewer than 10 workers have limited applicability.",
+   "e-Shram registration does NOT directly provide cash benefits — it is a registration/identity platform. Cash benefits come through linked schemes like PMSBY.",
+   "OSH Code 2020 is notified but state-level rules are still being finalised by individual states. Enforcement varies by state.",
+   "Self-migrated workers (who found work on their own without a contractor) have fewer protections under OSH Code compared to contractor-recruited workers."
+  ],
+  "official_source": "e-Shram Portal; MyScheme - Government of India; Ministry of Labour & Employment; OSH Code 2020 Text",
+  "official_url": "https://eshram.gov.in",
+  "helpline": "14434 / 1800-891-8888",
+  "last_verified": "2026-08-08",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "legacy",
+   "legacy_json": "eshram_osh.json",
+   "canonical_pages": null,
+   "seed_file": null,
+   "summary_basis": "eshram_osh.json eligibility[0], faq[1], benefits[0]",
+   "migration_support_source": "eshram_osh.json portability.inter_state"
+  }
+ },
+ "benefits": [
+  {
+   "id": 20,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 0,
+   "text": "Universal Account Number (UAN) e-Shram Card — a pan-India valid digital identity for unorganised workers.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 21,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 1,
+   "text": "Access to 50+ linked government welfare schemes through the single e-Shram UAN.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 22,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 2,
+   "text": "Pan-India portability of welfare benefits — worker can access benefits in any state using their UAN.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, eshram.gov.in"
+  },
+  {
+   "id": 23,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 3,
+   "text": "OSH Code 2020 Rights: Equal wages as local workers in the destination state (no wage discrimination for interstate migrants).",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 135"
+  },
+  {
+   "id": 24,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 4,
+   "text": "OSH Code 2020 Rights: Free transportation from home state to destination state and back for contractor-recruited workers.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 136"
+  },
+  {
+   "id": 25,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 5,
+   "text": "OSH Code 2020 Rights: Free basic medical facilities at the worksite.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 138"
+  },
+  {
+   "id": 26,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 6,
+   "text": "OSH Code 2020 Rights: Displacement allowance equal to 50% of monthly wages or Rs. 75, whichever is higher.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 137"
+  },
+  {
+   "id": 27,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 7,
+   "text": "OSH Code 2020 Rights: Adequate housing and protective clothing at worksites where workers are camped.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 138"
+  },
+  {
+   "id": 28,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 8,
+   "text": "Contractor must pay wages on time — not less than minimum wages of the destination state.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 135"
+  },
+  {
+   "id": 29,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 9,
+   "text": "Accidental Death Insurance (PMSBY via e-Shram): Rs. 2,00,000",
+   "value_inr": null,
+   "frequency": null,
+   "source": "eshram.gov.in, jansuraksha.gov.in"
+  },
+  {
+   "id": 30,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 10,
+   "text": "Displacement Allowance: 50% of monthly wages or Rs. 75 — whichever is higher",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 137"
+  },
+  {
+   "id": 31,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 11,
+   "text": "Return Journey Expenses: Actual travel cost",
+   "value_inr": null,
+   "frequency": null,
+   "source": "OSH Code 2020, Section 136"
+  }
+ ],
+ "documents": [
+  {
+   "id": 7,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Mandatory for identity verification and OTP-based registration on the e-Shram portal.",
+   "mandatory": 1,
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 8,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 1,
+   "name": "Aadhaar-linked Mobile Number",
+   "description": "Mobile number registered with Aadhaar to receive OTP for registration.",
+   "mandatory": 1,
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 9,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 2,
+   "name": "Bank Account Details (IFSC + Account Number)",
+   "description": "For direct benefit transfer of insurance claims and other financial benefits.",
+   "mandatory": 1,
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 10,
+   "scheme_id": "SCH_ESHRAM",
+   "rank": 3,
+   "name": "Occupation/Work Proof (optional)",
+   "description": "Contractor letter, work certificate, or self-declaration of occupation. Not strictly mandatory at registration stage.",
+   "mandatory": 0,
+   "source": "eshram.gov.in"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 18,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Visit the nearest Common Service Centre (CSC) with your Aadhaar card and bank passbook.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 19,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "The CSC operator will register you on the e-Shram portal. The service is free of cost — no registration fee.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 20,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "You will receive your 12-digit UAN and e-Shram card (physical printout available at CSC).",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 21,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "offline",
+   "step_no": 4,
+   "text": "If you face wage theft or rights violation, visit the nearest District Labour Office (Shram Suvidha Kendra) with your e-Shram UAN card and file a complaint.",
+   "source": "OSH Code 2020, Ministry of Labour"
+  },
+  {
+   "id": 22,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit eshram.gov.in on any mobile or computer.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 23,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Click 'Register on e-Shram' and enter your Aadhaar-linked mobile number.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 24,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Enter the OTP received on your Aadhaar-linked mobile number.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 25,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Fill in personal details: name, date of birth, gender, occupation, state, bank account details.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 26,
+   "scheme_id": "SCH_ESHRAM",
+   "mode": "online",
+   "step_no": 5,
+   "text": "Submit the form. A 12-digit UAN (Universal Account Number) will be generated instantly and an e-Shram card will be available for download.",
+   "source": "eshram.gov.in"
+  }
+ ],
+ "exceptions": [
+  {
+   "id": 14,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "exception",
+   "text": "Workers who are already members of EPFO or ESIC (i.e., those in formal employment) are NOT eligible to register on e-Shram.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 15,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "exception",
+   "text": "The PMSBY insurance linked to e-Shram must be renewed annually by paying Rs. 12/year after the first free year.",
+   "source": "jansuraksha.gov.in"
+  },
+  {
+   "id": 16,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "exception",
+   "text": "OSH Code 2020 applies only to establishments with 10 or more workers. Small employers with fewer than 10 workers have limited applicability.",
+   "source": "OSH Code 2020, Section 3"
+  },
+  {
+   "id": 17,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "limitation",
+   "text": "e-Shram registration does NOT directly provide cash benefits — it is a registration/identity platform. Cash benefits come through linked schemes like PMSBY.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 18,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "limitation",
+   "text": "OSH Code 2020 is notified but state-level rules are still being finalised by individual states. Enforcement varies by state.",
+   "source": "Ministry of Labour & Employment"
+  },
+  {
+   "id": 19,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "limitation",
+   "text": "Self-migrated workers (who found work on their own without a contractor) have fewer protections under OSH Code compared to contractor-recruited workers.",
+   "source": "OSH Code 2020, Chapter XIII"
+  }
+ ],
+ "faqs": [
+  {
+   "id": 13,
+   "scheme_id": "SCH_ESHRAM",
+   "question": "What is e-Shram and why should I register?",
+   "answer": "e-Shram is a government portal where unorganised workers register once and get a 12-digit UAN card that is valid across all of India. It gives you identity proof as a worker, auto-links you to Rs. 2 lakh accident insurance, and makes you eligible for 50+ government schemes.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 14,
+   "scheme_id": "SCH_ESHRAM",
+   "question": "Is e-Shram registration free?",
+   "answer": "Yes. Registration on e-Shram is completely free. No fee is charged at any step.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 15,
+   "scheme_id": "SCH_ESHRAM",
+   "question": "My contractor is not paying my wages. What can I do?",
+   "answer": "Under OSH Code 2020, the contractor must pay your wages within 14 days of the wage period ending, and at least the minimum wage of the destination state. If they have not paid you, go to the nearest District Labour Office (Shram Suvidha Kendra) with your e-Shram UAN card and file a wage-theft complaint using Form 11. The contractor can have their licence suspended for non-payment.",
+   "source": "OSH Code 2020, Section 135, Ministry of Labour"
+  },
+  {
+   "id": 16,
+   "scheme_id": "SCH_ESHRAM",
+   "question": "I migrated on my own, not through a contractor. Am I still protected?",
+   "answer": "Yes. e-Shram registration gives you identity and insurance regardless of how you migrated. However, the specific contractor-linked rights under OSH Code (like transportation and displacement allowance) apply only when you were recruited by a licensed contractor.",
+   "source": "eshram.gov.in, OSH Code 2020"
+  },
+  {
+   "id": 17,
+   "scheme_id": "SCH_ESHRAM",
+   "question": "What happens if I get injured at work?",
+   "answer": "If you are registered on e-Shram, you are covered by Rs. 2 lakh accident insurance under PMSBY. Additionally, under OSH Code 2020, the contractor is liable to provide medical care and compensation for workplace injuries. Go to the nearest empanelled hospital and also report to the District Labour Office.",
+   "source": "eshram.gov.in, OSH Code 2020"
+  },
+  {
+   "id": 18,
+   "scheme_id": "SCH_ESHRAM",
+   "question": "Can I register on e-Shram if I don't have internet?",
+   "answer": "Yes. Visit any Common Service Centre (CSC) near you. The CSC operator will register you for free. You need your Aadhaar card and bank account details.",
+   "source": "eshram.gov.in"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 8,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "helpline",
+   "value": "14434",
+   "description": "National toll-free helpline for e-Shram portal queries.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 9,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "portal",
+   "value": "https://eshram.gov.in",
+   "description": "Official e-Shram registration portal.",
+   "source": "eshram.gov.in"
+  },
+  {
+   "id": 10,
+   "scheme_id": "SCH_ESHRAM",
+   "kind": "helpline",
+   "value": "1800-891-8888",
+   "description": "Ministry of Labour & Employment helpline for OSH Code and labour rights complaints.",
+   "source": "Ministry of Labour & Employment"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_ESHRAM_ELIG",
+   "scheme_id": "SCH_ESHRAM",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"field\": \"age\", \"op\": \">=\", \"value\": 16, \"desc\": \"Aged 16 or above\", \"source\": \"eshram.gov.in\"}, {\"field\": \"age\", \"op\": \"<=\", \"value\": 59, \"desc\": \"Aged 59 or below\", \"source\": \"eshram.gov.in\"}, {\"field\": \"is_unorganised_worker\", \"op\": \"==\", \"value\": true, \"desc\": \"Works in the unorganised sector\", \"source\": \"eshram.gov.in\"}, {\"field\": \"aadhaar\", \"op\": \"==\", \"value\": true, \"desc\": \"Has Aadhaar with a linked mobile number for OTP\", \"source\": \"eshram.gov.in\"}]}",
+   "unless_logic": null,
+   "description": "Eligible to register on e-Shram",
+   "source": "eshram_osh.json eligibility (eshram.gov.in)",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_ESHRAM_EXCL",
+   "scheme_id": "SCH_ESHRAM",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"field\": \"epfo_esic_member\", \"op\": \"==\", \"value\": true, \"desc\": \"is covered by PF or ESI\", \"source\": \"eshram.gov.in\"}]}",
+   "unless_logic": null,
+   "description": "EPFO/ESIC members cannot register on e-Shram",
+   "source": "eshram_osh.json eligibility/exceptions (eshram.gov.in)",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_ESHRAM",
+   "application_mode": "ONLINE_AND_OFFLINE",
+   "processing_time": null,
+   "fees": null,
+   "source": "ESHRAM_OSH_001"
+  }
+ ],
+ "aliases_en": [
+  "e-shram",
+  "e-shram card",
+  "e-shram portal",
+  "national database of unorganised workers",
+  "shram card",
+  "uan card",
+  "unorganised worker card"
+ ],
+ "relationships": [
+  {
+   "id": 1,
+   "source_scheme_id": "SCH_PMSYM",
+   "target_scheme_id": "SCH_ESHRAM",
+   "relationship_type": "INTEGRATED_PORTAL",
+   "description": "e-Shram acts as the national registry and single-window onboarding database for PM-SYM unorganised workers."
+  }
+ ],
+ "catalog_names": {
+  "en": "e-Shram Portal + OSH Code 2020 — Unorganised Worker Registration & Interstate Migrant Rights",
+  "hi": "ई-श्रम पोर्टल + ओएसएच कोड 2020-असंगठित श्रमिक पंजीकरण और अंतरराज्यीय प्रवासी अधिकार",
+  "ta": "மின்-ஷ்ராம் இணையதளம் + ஓ. எஸ். எச் குறியீடு 2020-அமைப்புசாரா தொழிலாளர் பதிவு மற்றும் மாநிலங்களுக்கு இடையேயான புலம்பெயர்ந்தோர் உரிமைகள்"
+ },
+ "catalog_descriptions": {
+  "en": "e-Shram is a free national registration for unorganised workers aged 16 to 59. You get a card with a Universal Account Number that is valid across India.",
+  "hi": "ई-श्रम 16 से 59 वर्ष की आयु के असंगठित श्रमिकों के लिए एक मुफ्त राष्ट्रीय पंजीकरण है। आपको एक सार्वभौमिक खाता संख्या वाला कार्ड मिलता है जो पूरे भारत में मान्य है।",
+  "ta": "இ-ஷ்ரம் என்பது 16 முதல் 59 வயது வரையிலான அமைப்புசாரா தொழிலாளர்களுக்கான இலவச தேசிய பதிவு ஆகும். இந்தியா முழுவதும் செல்லுபடியாகும் யுனிவர்சல் அக்கவுண்ட் எண்ணுடன் கூடிய அட்டையைப் பெறுவீர்கள்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [
+   "ईश्रम",
+   "श्रम कार्ड"
+  ],
+  "ta": [
+   "இஷ்ரம்",
+   "ஈஷ்ரம்"
+  ]
+ },
+ "forms_supported_on_device": []
+}

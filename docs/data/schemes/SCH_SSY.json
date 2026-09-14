@@ -1,0 +1,212 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_SSY",
+  "scheme_name": "Sukanya Samriddhi Yojana",
+  "short_name": "SSY",
+  "spoken_name": "Sukanya Samriddhi savings account",
+  "legacy_code": null,
+  "category": "Small Savings",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Economic Affairs",
+  "implementing_agency": "Post Offices, Designated Banks",
+  "domains": [
+   "EDUCATION",
+   "FINANCIAL"
+  ],
+  "description": "Account can be opened for girl child below 10 years of age by parent/guardian. Interest rate: 8.2% per annum, compounded yearly. Deposits for 15 years; account matures after 21 years from opening. Partial withdrawal permitted after girl attains 18 years for education (up to 50% of balance). EEE tax status (Section 80C deduction, tax-free interest, tax-free maturity). Maximum 2 accounts per family (exception for twins). Account can be opened at post offices and designated banks.",
+  "voice_summary": "Sukanya Samriddhi Yojana is a savings account for a girl child below 10 years, opened by a parent or guardian at a post office or bank.",
+  "benefits": [],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Has a daughter below 10 years",
+   "Must be resident Indian (NRI not eligible)"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": "FEMALE",
+  "migration_support": 1,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Birth Certificate of Girl Child",
+   "Aadhaar / ID Proof of Parent / Legal Guardian",
+   "Address Proof of Parent / Guardian",
+   "Medical Certificate (in case of twins/triplets)"
+  ],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [
+   "Male children cannot open SSY accounts. Only girl child eligible.",
+   "Maximum of 2 accounts per family allowed, except in case of twin/triplet girl birth"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.51,52,53,54",
+  "official_url": "https://www.indiapost.gov.in/VAS/pages/pmodashboard/sukanyasamriddhiaccount.aspx",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    51,
+    52,
+    53,
+    54,
+    55
+   ],
+   "seed_file": "sukanya_samriddhi.json",
+   "summary_basis": "canonical SCH_SSY description, RULE_SSY_ELIG",
+   "migration_support_source": "scheme compilation p.199 ('account can be transferred anywhere in India')"
+  }
+ },
+ "benefits": [],
+ "documents": [
+  {
+   "id": 60,
+   "scheme_id": "SCH_SSY",
+   "rank": 0,
+   "name": "Birth Certificate of Girl Child",
+   "description": "Birth certificate issued by municipal or hospital authority",
+   "mandatory": 1,
+   "source": "canonical p.10"
+  },
+  {
+   "id": 61,
+   "scheme_id": "SCH_SSY",
+   "rank": 1,
+   "name": "Aadhaar / ID Proof of Parent / Legal Guardian",
+   "description": "Aadhaar, Passport, or PAN card of parent",
+   "mandatory": 1,
+   "source": "canonical p.10"
+  },
+  {
+   "id": 62,
+   "scheme_id": "SCH_SSY",
+   "rank": 2,
+   "name": "Address Proof of Parent / Guardian",
+   "description": "Aadhaar, Utility Bill, or Passport",
+   "mandatory": 1,
+   "source": "canonical p.10"
+  },
+  {
+   "id": 63,
+   "scheme_id": "SCH_SSY",
+   "rank": 3,
+   "name": "Medical Certificate (in case of twins/triplets)",
+   "description": "Medical certificate from authorized doctor",
+   "mandatory": 1,
+   "source": "canonical p.10"
+  }
+ ],
+ "procedure_steps": [],
+ "exceptions": [
+  {
+   "id": 45,
+   "scheme_id": "SCH_SSY",
+   "kind": "exclusion",
+   "text": "Male children cannot open SSY accounts. Only girl child eligible.",
+   "source": "canonical p.10"
+  },
+  {
+   "id": 46,
+   "scheme_id": "SCH_SSY",
+   "kind": "exclusion",
+   "text": "Maximum of 2 accounts per family allowed, except in case of twin/triplet girl birth",
+   "source": "canonical p.10"
+  }
+ ],
+ "faqs": [
+  {
+   "id": 47,
+   "scheme_id": "SCH_SSY",
+   "question": "When does a Sukanya Samriddhi Yojana (SSY) account mature?",
+   "answer": "An SSY account matures 21 years from the date of its opening or upon marriage of the girl child after attaining 18 years of age. Partial withdrawal up to 50% is allowed for higher education after age 18.",
+   "source": "canonical p.10"
+  }
+ ],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "EXCL_FILE_EXCL_SSY_001",
+   "scheme_id": "SCH_SSY",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"field\": \"gender\", \"op\": \"!=\", \"value\": \"FEMALE\", \"desc\": \"Male children cannot open SSY accounts. Only girl child eligible.\", \"source\": \"canonical p.10\"}]}",
+   "unless_logic": null,
+   "description": "Male children cannot open SSY accounts. Only girl child eligible.",
+   "source": "canonical exclusions p.10",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_SSY_ELIG",
+   "scheme_id": "SCH_SSY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"field\": \"girl_child_under_10\", \"op\": \"==\", \"value\": true, \"desc\": \"Has a daughter below 10 years\", \"source\": \"Page 51, SSY details\"}, {\"desc\": \"Must be resident Indian (NRI not eligible)\", \"source\": \"Page 51, SSY details\", \"field\": \"citizenship\", \"op\": \"==\", \"value\": \"INDIAN_RESIDENT\"}]}",
+   "unless_logic": null,
+   "description": "Eligible for Sukanya Samriddhi Yojana account",
+   "source": "canonical p.51,52",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_SSY_FAMILY_CAP",
+   "scheme_id": "SCH_SSY",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Maximum 2 SSY accounts per family (exception for twins/triplets)\", \"source\": \"Page 51, SSY details\", \"field\": \"ssy_accounts_count\", \"op\": \">=\", \"value\": 2}]}",
+   "unless_logic": null,
+   "description": "SSY family limit: maximum 2 girls per family",
+   "source": "canonical p.51",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "girl child savings",
+  "ssy",
+  "sukanya",
+  "sukanya samriddhi",
+  "sukanya samriddhi yojana"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Sukanya Samriddhi Yojana",
+  "hi": "सुकन्या समृद्धि योजना",
+  "ta": "சுகன்யா சம்ரிதி யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "Sukanya Samriddhi Yojana is a savings account for a girl child below 10 years, opened by a parent or guardian at a post office or bank.",
+  "hi": "सुकन्या समृद्धि योजना 10 वर्ष से कम आयु की बालिकाओं के लिए एक बचत खाता है, जिसे माता-पिता या अभिभावक द्वारा डाकघर या बैंक में खोला जाता है।",
+  "ta": "சுகன்யா சம்ரிதி யோஜனா என்பது 10 வயதிற்குட்பட்ட பெண் குழந்தைகளுக்கான சேமிப்புக் கணக்கு ஆகும், இது ஒரு தபால் அலுவலகம் அல்லது வங்கியில் பெற்றோர் அல்லது பாதுகாவலரால் திறக்கப்படுகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": [
+  {
+   "form_id": "FORM_SSA1_ACCOUNT_OPENING",
+   "title": {
+    "en": "Sukanya Samriddhi Account opening form (SSA-1)",
+    "hi": "सुकन्या समृद्धि खाता खोलने का फ़ॉर्म (एसएसए-1)",
+    "ta": "சுகன்யா சம்ரிதி கணக்கு தொடங்கும் படிவம் (எஸ்எஸ்ஏ-1)"
+   },
+   "fields": 18,
+   "supported_languages": [
+    "hi",
+    "ta",
+    "en"
+   ]
+  }
+ ]
+}

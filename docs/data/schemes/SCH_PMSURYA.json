@@ -1,0 +1,305 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMSURYA",
+  "scheme_name": "PM Surya Ghar: Muft Bijli Yojana",
+  "short_name": "PM Surya Ghar",
+  "spoken_name": "PM Surya Ghar rooftop solar",
+  "legacy_code": null,
+  "category": "Renewable Energy",
+  "ministry": "Ministry of New and Renewable Energy",
+  "department": null,
+  "implementing_agency": "DISCOMs, REC, National Portal",
+  "domains": [
+   "HOUSING",
+   "FINANCIAL"
+  ],
+  "description": "Investment of over Rs 75,000 crore. Subsidy for residential households: Rs 30,000/kW up to 2 kW; Rs 18,000/kW for additional capacity up to 3 kW; total subsidy for systems larger than 3 kW capped at Rs 78,000. GHS/RWA: Rs 18,000/kW for common facilities up to 500 kW. Special states: additional 10% subsidy per kW. Online application at pmsuryaghar.gov.in.",
+  "voice_summary": "PM Surya Ghar gives households a subsidy of up to 78000 rupees for rooftop solar panels, and up to 300 units of free electricity a month.",
+  "benefits": [
+   "Rs 30,000 per kW subsidy for residential households (up to 2 kW)",
+   "Rs 18,000 per kW for additional capacity between 2-3 kW",
+   "Total subsidy capped at Rs 78,000 for systems larger than 3 kW",
+   "Up to 300 units of free electricity per month"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must have registered DISCOM electricity connection",
+   "Roof must be feasible for solar installation (DISCOM approval)"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Electricity Bill",
+   "Aadhaar Card",
+   "Bank Account Passbook / Cancelled Cheque",
+   "Proof of Roof Ownership / Electricity Connection"
+  ],
+  "application_process": [
+   "offline: Net meter physical inspection and installation by DISCOM field team.",
+   "online: Register on National Portal for PM Surya Ghar (pmsuryaghar.gov.in) by selecting State, Distribution Company (DISCOM), and Consumer Account Number.",
+   "online: Apply for Rooftop Solar installation by submitting roof area and sanctioned load details.",
+   "online: Wait for DISCOM feasibility approval online.",
+   "online: Select a registered vendor and get the rooftop solar plant installed.",
+   "online: Submit plant details and apply for net meter inspection.",
+   "online: Upon DISCOM inspection and commissioning certificate generation, submit bank account details for direct subsidy disbursement."
+  ],
+  "application_mode": "ONLINE",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.18,19,20,21",
+  "official_url": "https://pmsuryaghar.gov.in",
+  "helpline": "15555",
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    18,
+    19,
+    20,
+    21
+   ],
+   "seed_file": "pm_surya_ghar.json",
+   "summary_basis": "canonical SCH_PMSURYA objective, BEN_PMSURYA",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 71,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 0,
+   "text": "Rs 30,000 per kW subsidy for residential households (up to 2 kW)",
+   "value_inr": 30000.0,
+   "frequency": null,
+   "source": "canonical p.19"
+  },
+  {
+   "id": 72,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 1,
+   "text": "Rs 18,000 per kW for additional capacity between 2-3 kW",
+   "value_inr": 18000.0,
+   "frequency": null,
+   "source": "canonical p.19"
+  },
+  {
+   "id": 73,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 2,
+   "text": "Total subsidy capped at Rs 78,000 for systems larger than 3 kW",
+   "value_inr": 78000.0,
+   "frequency": null,
+   "source": "canonical p.19"
+  },
+  {
+   "id": 74,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 3,
+   "text": "Up to 300 units of free electricity per month",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.18"
+  }
+ ],
+ "documents": [
+  {
+   "id": 40,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 0,
+   "name": "Electricity Bill",
+   "description": "Recent electricity bill showing consumer number",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  },
+  {
+   "id": 41,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 1,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card of household head / applicant",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  },
+  {
+   "id": 42,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 2,
+   "name": "Bank Account Passbook / Cancelled Cheque",
+   "description": "Account details of electricity consumer",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  },
+  {
+   "id": 43,
+   "scheme_id": "SCH_PMSURYA",
+   "rank": 3,
+   "name": "Proof of Roof Ownership / Electricity Connection",
+   "description": "Electricity connection in name of applicant",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 63,
+   "scheme_id": "SCH_PMSURYA",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Net meter physical inspection and installation by DISCOM field team.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 64,
+   "scheme_id": "SCH_PMSURYA",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Register on National Portal for PM Surya Ghar (pmsuryaghar.gov.in) by selecting State, Distribution Company (DISCOM), and Consumer Account Number.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 65,
+   "scheme_id": "SCH_PMSURYA",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Apply for Rooftop Solar installation by submitting roof area and sanctioned load details.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 66,
+   "scheme_id": "SCH_PMSURYA",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Wait for DISCOM feasibility approval online.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 67,
+   "scheme_id": "SCH_PMSURYA",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Select a registered vendor and get the rooftop solar plant installed.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 68,
+   "scheme_id": "SCH_PMSURYA",
+   "mode": "online",
+   "step_no": 5,
+   "text": "Submit plant details and apply for net meter inspection.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 69,
+   "scheme_id": "SCH_PMSURYA",
+   "mode": "online",
+   "step_no": 6,
+   "text": "Upon DISCOM inspection and commissioning certificate generation, submit bank account details for direct subsidy disbursement.",
+   "source": "canonical p.6"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [
+  {
+   "id": 44,
+   "scheme_id": "SCH_PMSURYA",
+   "question": "How much subsidy is provided under PM Surya Ghar Muft Bijli Yojana?",
+   "answer": "The scheme provides subsidy of Rs. 30,000 for 1 kW systems, Rs. 60,000 for 2 kW systems, and Rs. 78,000 for 3 kW or higher systems, providing up to 300 units of free electricity monthly.",
+   "source": "canonical p.6"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 35,
+   "scheme_id": "SCH_PMSURYA",
+   "kind": "helpline",
+   "value": "15555",
+   "description": "Helpline",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 36,
+   "scheme_id": "SCH_PMSURYA",
+   "kind": "portal",
+   "value": "https://pmsuryaghar.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 37,
+   "scheme_id": "SCH_PMSURYA",
+   "kind": "grievance",
+   "value": "DISCOM Consumer Forum & National Portal Support Desk",
+   "description": "Grievance redressal",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 49,
+   "scheme_id": "SCH_PMSURYA",
+   "kind": "portal",
+   "value": "https://pmsuryaghar.gov.in/",
+   "description": "Official portal",
+   "source": "canonical p.18,19,20,21"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_PMSURYA_ELIG",
+   "scheme_id": "SCH_PMSURYA",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must have registered DISCOM electricity connection\", \"source\": \"Page 18, PM Surya Ghar Consumer Registration\", \"field\": \"has_electricity_connection\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Roof must be feasible for solar installation (DISCOM approval)\", \"source\": \"Page 19, Application step 3\", \"field\": \"roof_type\", \"op\": \"==\", \"value\": \"SUITABLE_FOR_SOLAR\"}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM Surya Ghar rooftop solar subsidy",
+   "source": "canonical p.18,19,20",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_PMSURYA",
+   "application_mode": "ONLINE",
+   "processing_time": "Subsidy credited directly to bank account within 30 days of commissioning",
+   "fees": "Application online is free; plant cost net of subsidy payable to vendor",
+   "source": "canonical p.6"
+  }
+ ],
+ "aliases_en": [
+  "muft bijli",
+  "pm surya ghar",
+  "pm surya ghar: muft bijli yojana",
+  "rooftop solar",
+  "solar subsidy",
+  "surya ghar"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "PM Surya Ghar: Muft Bijli Yojana",
+  "hi": "पीएम सूर्य घरः मुफ्त बिजली योजना",
+  "ta": "பிரதமர் சூர்யா கர்ஃ முஃப்ட் பிஜ்லி யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Surya Ghar gives households a subsidy of up to 78000 rupees for rooftop solar panels, and up to 300 units of free electricity a month.",
+  "hi": "पीएम सूर्य घर घरों को छत पर सौर पैनलों के लिए 78000 रुपये तक की सब्सिडी देता है, और एक महीने में 300 यूनिट तक मुफ्त बिजली देता है।",
+  "ta": "பிரதமர் சூர்யா கர், வீடுகளுக்கு ரூஃபோப் சோலார் பேனல்களுக்கு 78000 ரூபாய் வரை மானியமும், மாதத்திற்கு 300 யூனிட் வரை இலவச மின்சாரமும் வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

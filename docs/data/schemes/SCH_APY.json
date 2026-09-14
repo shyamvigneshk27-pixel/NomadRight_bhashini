@@ -1,0 +1,216 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_APY",
+  "scheme_name": "Atal Pension Yojana",
+  "short_name": "APY",
+  "spoken_name": "Atal Pension Yojana",
+  "legacy_code": null,
+  "category": "Pension & Social Security",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "PFRDA, Banks, Post Offices (DoP CBS Platform), Business Correspondents",
+  "domains": [
+   "PENSION"
+  ],
+  "description": "Defined contributory pension scheme regulated by PFRDA. Guaranteed monthly pension of Rs 1000 to Rs 5000 at age 60 depending on contribution amount and entry age. On subscriber death, spouse receives the same pension; on spouse death, corpus returned to nominee. Existing Swavalamban subscribers migrated to APY. Charges levied for delayed/non-payment.",
+  "voice_summary": "Atal Pension Yojana gives a guaranteed pension of 1000 to 5000 rupees a month after age 60. People aged 18 to 40 with a savings bank account can join.",
+  "benefits": [
+   "Guaranteed minimum monthly pension of Rs 1000 to Rs 5000 at age 60, depending on contribution amount and entry age",
+   "On subscriber death, spouse receives same pension amount",
+   "On death of both subscriber and spouse, accumulated pension corpus returned to nominee"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Minimum age 18 years",
+   "Maximum entry age 40 years",
+   "Must have a savings bank account"
+  ],
+  "age_min": 18,
+  "age_max": 40,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "UNORGANISED"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Savings Bank Account / Post Office Account",
+   "Mobile Number"
+  ],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [
+   "Income tax payers are not permitted to open new APY accounts after 1st October 2022"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.6,7,8,9",
+  "official_url": "https://www.pfrda.org.in/web/pfrda/schemes/atal-pension-yojana-apy",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    6,
+    7,
+    8,
+    9
+   ],
+   "seed_file": "apy.json",
+   "summary_basis": "canonical SCH_APY description, RULE_APY_ELIG",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 67,
+   "scheme_id": "SCH_APY",
+   "rank": 0,
+   "text": "Guaranteed minimum monthly pension of Rs 1000 to Rs 5000 at age 60, depending on contribution amount and entry age",
+   "value_inr": null,
+   "frequency": "MONTHLY",
+   "source": "canonical p.6,9"
+  },
+  {
+   "id": 68,
+   "scheme_id": "SCH_APY",
+   "rank": 1,
+   "text": "On subscriber death, spouse receives same pension amount",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.9"
+  },
+  {
+   "id": 69,
+   "scheme_id": "SCH_APY",
+   "rank": 2,
+   "text": "On death of both subscriber and spouse, accumulated pension corpus returned to nominee",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.9"
+  }
+ ],
+ "documents": [
+  {
+   "id": 34,
+   "scheme_id": "SCH_APY",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar number",
+   "mandatory": 1,
+   "source": "canonical p.5"
+  },
+  {
+   "id": 35,
+   "scheme_id": "SCH_APY",
+   "rank": 1,
+   "name": "Savings Bank Account / Post Office Account",
+   "description": "Active savings account",
+   "mandatory": 1,
+   "source": "canonical p.5"
+  },
+  {
+   "id": 36,
+   "scheme_id": "SCH_APY",
+   "rank": 2,
+   "name": "Mobile Number",
+   "description": "Registered mobile number",
+   "mandatory": 1,
+   "source": "canonical p.5"
+  }
+ ],
+ "procedure_steps": [],
+ "exceptions": [
+  {
+   "id": 43,
+   "scheme_id": "SCH_APY",
+   "kind": "exclusion",
+   "text": "Income tax payers are not permitted to open new APY accounts after 1st October 2022",
+   "source": "canonical p.5"
+  }
+ ],
+ "faqs": [
+  {
+   "id": 41,
+   "scheme_id": "SCH_APY",
+   "question": "What pension amounts can one choose under Atal Pension Yojana?",
+   "answer": "Under APY, subscribers can choose a guaranteed monthly pension of Rs. 1,000, Rs. 2,000, Rs. 3,000, Rs. 4,000, or Rs. 5,000 starting from age 60, based on monthly contribution.",
+   "source": "canonical p.5"
+  }
+ ],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "EXCL_FILE_EXCL_APY_001",
+   "scheme_id": "SCH_APY",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"field\": \"income_tax_payer\", \"op\": \"==\", \"value\": true, \"desc\": \"Income tax payers are not permitted to open new APY accounts after 1st October 2022\", \"source\": \"canonical p.5\"}]}",
+   "unless_logic": null,
+   "description": "Income tax payers are not permitted to open new APY accounts after 1st October 2022",
+   "source": "canonical exclusions p.5",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_APY_ELIG",
+   "scheme_id": "SCH_APY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Minimum age 18 years\", \"source\": \"Page 6, APY guidelines\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Maximum entry age 40 years\", \"source\": \"Page 6, APY guidelines\", \"field\": \"age\", \"op\": \"<=\", \"value\": 40}, {\"desc\": \"Must have a savings bank account\", \"source\": \"Page 6, APY guidelines\", \"field\": \"has_bank_account\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for Atal Pension Yojana",
+   "source": "canonical p.6,7,8,9",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "apy",
+  "atal pension",
+  "atal pension yojana",
+  "nps lite",
+  "nps-lite"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Atal Pension Yojana",
+  "hi": "अटल पेंशन योजना",
+  "ta": "அடல் ஓய்வூதியத் திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "Atal Pension Yojana gives a guaranteed pension of 1000 to 5000 rupees a month after age 60. People aged 18 to 40 with a savings bank account can join.",
+  "hi": "अटल पेंशन योजना 60 वर्ष की आयु के बाद 1000 से 5000 रुपये प्रति माह की गारंटीकृत पेंशन देती है। 18 से 40 वर्ष की आयु के लोग जिनके पास बचत बैंक खाता है, वे इसमें शामिल हो सकते हैं।",
+  "ta": "அடல் ஓய்வூதியத் திட்டம் 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 1000 முதல் 5000 ரூபாய் வரை உத்தரவாத ஓய்வூதியத்தை வழங்குகிறது. சேமிப்புக் கணக்கு வைத்திருக்கும் 18 முதல் 40 வயதுக்குட்பட்டவர்கள் இதில் சேரலாம்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": [
+  {
+   "form_id": "FORM_APY_REGISTRATION",
+   "title": {
+    "en": "Atal Pension Yojana subscriber registration form",
+    "hi": "अटल पेंशन योजना अभिदाता पंजीकरण फ़ॉर्म",
+    "ta": "அடல் ஓய்வூதிய திட்டம் சந்தாதாரர் பதிவுப் படிவம்"
+   },
+   "fields": 18,
+   "supported_languages": [
+    "hi",
+    "ta",
+    "en"
+   ]
+  }
+ ]
+}

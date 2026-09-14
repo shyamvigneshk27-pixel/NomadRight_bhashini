@@ -1,0 +1,438 @@
+[
+ {
+  "scheme_id": "SCH_PMFBY",
+  "name": "Pradhan Mantri Fasal Bima Yojana",
+  "short": "PMFBY",
+  "category": "Agriculture",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "pmfby.gov.in",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMJKMY",
+  "name": "Pradhan Mantri Kisan Mandhan Yojana",
+  "short": "PM-KMY",
+  "category": "Agriculture",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMKISAN",
+  "name": "Pradhan Mantri Kisan Samman Nidhi",
+  "short": "PM-KISAN",
+  "category": "Agriculture",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://pmkisan.gov.in",
+  "last_verified": null,
+  "forms": [
+   "FORM_PMKISAN_SELF_DECLARATION"
+  ]
+ },
+ {
+  "scheme_id": "SCH_PMJDY",
+  "name": "Pradhan Mantri Jan Dhan Yojana",
+  "short": "PMJDY",
+  "category": "Financial Inclusion",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://pmjdy.gov.in/scheme",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMJJBY",
+  "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+  "short": "PMJJBY",
+  "category": "Financial Inclusion",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://www.financialservices.gov.in/pmjjby",
+  "last_verified": null,
+  "forms": [
+   "FORM_PMJJBY_CONSENT"
+  ]
+ },
+ {
+  "scheme_id": "SCH_PMMY",
+  "name": "Pradhan Mantri Mudra Yojana",
+  "short": "MUDRA",
+  "category": "Financial Inclusion",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://www.financialservices.gov.in/pradhan-mantri-mudra-yojana-pmmy",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMSBY",
+  "name": "Pradhan Mantri Suraksha Bima Yojana",
+  "short": "PMSBY",
+  "category": "Financial Inclusion",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://www.financialservices.gov.in/index.php/pradhan-mantri-suraksha-bima-yojana-pmsby",
+  "last_verified": null,
+  "forms": [
+   "FORM_PMSBY_CONSENT"
+  ]
+ },
+ {
+  "scheme_id": "SCH_ONORC",
+  "name": "Public Distribution System - One Nation One Ration Card (PDS / ONORC)",
+  "short": "ONORC",
+  "category": "Food Security",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://nfsa.gov.in",
+  "last_verified": "2026-08-03",
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMJAY",
+  "name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (AB PM-JAY)",
+  "short": "PM-JAY",
+  "category": "Health",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://pmjay.gov.in",
+  "last_verified": "2026-08-03",
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_ABPMJAY",
+  "name": "Ayushman Bharat PM-JAY Mukhmantri Sehat Bima Yojana",
+  "short": "Punjab MMSBY",
+  "category": "Health",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_HIS_WEAVERS",
+  "name": "Health Insurance Scheme for Weavers",
+  "short": "HIS Weavers",
+  "category": "Health",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_BOCW",
+  "name": "Building and Other Construction Workers (BOCW) Welfare Scheme",
+  "short": "BOCW",
+  "category": "Labour & Employment",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://labour.gov.in/bocw",
+  "last_verified": "2026-08-08",
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_ESHRAM",
+  "name": "e-Shram Portal + OSH Code 2020 — Unorganised Worker Registration & Interstate Migrant Rights",
+  "short": "e-Shram",
+  "category": "Labour & Employment",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://eshram.gov.in",
+  "last_verified": "2026-08-08",
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_DAY",
+  "name": "Deen Dayal Upadhyaya Antyodaya Yojana",
+  "short": "DAY",
+  "category": "Livelihoods",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_VISHWA",
+  "name": "PM Vishwakarma Scheme",
+  "short": "PM Vishwakarma",
+  "category": "MSME",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://pmvishwakarma.gov.in",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_APY",
+  "name": "Atal Pension Yojana",
+  "short": "APY",
+  "category": "Pension & Social Security",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://www.pfrda.org.in/web/pfrda/schemes/atal-pension-yojana-apy",
+  "last_verified": null,
+  "forms": [
+   "FORM_APY_REGISTRATION"
+  ]
+ },
+ {
+  "scheme_id": "SCH_NPST",
+  "name": "National Pension Scheme for Traders and Self-Employed Persons",
+  "short": "NPS-Traders",
+  "category": "Pension & Social Security",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMSYM",
+  "name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+  "short": "PM-SYM",
+  "category": "Pension & Social Security",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://maandhan.in",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMUY",
+  "name": "Pradhan Mantri Ujjwala Yojana",
+  "short": "PMUY",
+  "category": "Petroleum & Natural Gas",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://pmuy.gov.in",
+  "last_verified": null,
+  "forms": [
+   "FORM_PMUY_KYC"
+  ]
+ },
+ {
+  "scheme_id": "SCH_PMSURYA",
+  "name": "PM Surya Ghar: Muft Bijli Yojana",
+  "short": "PM Surya Ghar",
+  "category": "Renewable Energy",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://pmsuryaghar.gov.in",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_GKRY",
+  "name": "Garib Kalyan Rozgar Yojana",
+  "short": "GKRY",
+  "category": "Rural Development",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_MGNREGA",
+  "name": "Mahatma Gandhi National Rural Employment Guarantee Scheme (MGNREGS)",
+  "short": "MGNREGA",
+  "category": "Rural Development",
+  "status": "REPEALED",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://nrega.nic.in",
+  "last_verified": "2026-08-03",
+  "forms": [
+   "FORM_MGNREGA_REGISTRATION"
+  ]
+ },
+ {
+  "scheme_id": "SCH_VBG_RAMG",
+  "name": "Viksit Bharat – Guarantee for Rozgar and Ajeevika Mission (Gramin) Act, 2025",
+  "short": "VB-G RAM G",
+  "category": "Rural Development",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMAYG",
+  "name": "Pradhan Mantri Awaas Yojana – Gramin",
+  "short": "PMAY-G",
+  "category": "Rural Housing",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://rural.gov.in/sites/default/files/PMAY-G_Suo_moto_disclosure_27012022_0.pdf",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_DDUGKY",
+  "name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+  "short": "DDU-GKY",
+  "category": "Skill Development",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_PMKVY",
+  "name": "Pradhan Mantri Kaushal Vikas Yojana",
+  "short": "PMKVY",
+  "category": "Skill Development",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_SSY",
+  "name": "Sukanya Samriddhi Yojana",
+  "short": "SSY",
+  "category": "Small Savings",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://www.indiapost.gov.in/VAS/pages/pmodashboard/sukanyasamriddhiaccount.aspx",
+  "last_verified": null,
+  "forms": [
+   "FORM_SSA1_ACCOUNT_OPENING"
+  ]
+ },
+ {
+  "scheme_id": "SCH_NSAP_AP",
+  "name": "Annapurna Scheme",
+  "short": "Annapurna",
+  "category": "Social Justice",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_NSAP_D",
+  "name": "Indira Gandhi National Disability Pension Scheme",
+  "short": "IGNDPS",
+  "category": "Social Justice",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_NSAP_OA",
+  "name": "Indira Gandhi National Old Age Pension Scheme",
+  "short": "IGNOAPS",
+  "category": "Social Justice",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_NSAP_W",
+  "name": "Indira Gandhi National Widow Pension Scheme",
+  "short": "IGNWPS",
+  "category": "Social Justice",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_NSAP_FB",
+  "name": "National Family Benefit Scheme",
+  "short": "NFBS",
+  "category": "Social Justice",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_NSAP",
+  "name": "National Social Assistance Programme",
+  "short": "NSAP",
+  "category": "Social Justice",
+  "status": "ACTIVE",
+  "is_listed": 0,
+  "in_screen_catalog": false,
+  "official_url": "https://rural.gov.in/sites/default/files/NSAP_Guidelines_English.pdf",
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_SRMS",
+  "name": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+  "short": "SRMS",
+  "category": "Social Justice",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": null,
+  "last_verified": null,
+  "forms": []
+ },
+ {
+  "scheme_id": "SCH_SVANIDHI",
+  "name": "PM Street Vendor's AtmaNirbhar Nidhi",
+  "short": "PM SVANidhi",
+  "category": "Urban Livelihoods",
+  "status": "ACTIVE",
+  "is_listed": 1,
+  "in_screen_catalog": true,
+  "official_url": "https://pmsvanidhi.mohua.gov.in",
+  "last_verified": null,
+  "forms": [
+   "FORM_PMSVANIDHI_LAF"
+  ]
+ }
+]

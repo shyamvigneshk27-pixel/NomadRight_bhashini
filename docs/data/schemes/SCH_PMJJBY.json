@@ -1,0 +1,194 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMJJBY",
+  "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+  "short_name": "PMJJBY",
+  "spoken_name": "PM Jeevan Jyoti life insurance",
+  "legacy_code": null,
+  "category": "Financial Inclusion",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "Banks, Post Offices, LIC and other life insurance companies",
+  "domains": [
+   "FINANCIAL"
+  ],
+  "description": "One-year renewable term life insurance offering Rs 2 lakh cover for death due to any reason. Annual premium Rs 436/-. Cover period 1 June to 31 May. Entry age 18-50 years, cover continues up to age 55. Lien period of 30 days for non-accidental deaths for new/rejoining subscribers. Administered through LIC and other life insurance companies via participating Banks/Post Offices.",
+  "voice_summary": "PM Jeevan Jyoti Bima Yojana is life insurance of 2 lakh rupees for people aged 18 to 50 with a bank account. The premium is 436 rupees a year.",
+  "benefits": [
+   "Rs 2 lakh on death due to any reason"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Age must be 18 years (completed) or above",
+   "Age must not exceed 50 years (age nearer birthday)",
+   "Must have a bank or post office savings account",
+   "Aadhaar is primary KYC for bank account"
+  ],
+  "age_min": 18,
+  "age_max": 50,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Savings Bank Account Details",
+   "Consent cum Auto-Debit Mandate Form"
+  ],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [
+   "Persons below 18 years or above 50 years of age (risk cover ends at age 55)"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.5,6,7,8",
+  "official_url": "https://www.financialservices.gov.in/pmjjby",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2022-06-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    5,
+    6,
+    7,
+    8
+   ],
+   "seed_file": "pmjjby.json",
+   "summary_basis": "canonical SCH_PMJJBY description, RULE_PMJJBY_ELIG, BEN_PMJJBY",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 64,
+   "scheme_id": "SCH_PMJJBY",
+   "rank": 0,
+   "text": "Rs 2 lakh on death due to any reason",
+   "value_inr": 200000.0,
+   "frequency": null,
+   "source": "canonical p.5,7"
+  }
+ ],
+ "documents": [
+  {
+   "id": 28,
+   "scheme_id": "SCH_PMJJBY",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card of account holder",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  },
+  {
+   "id": 29,
+   "scheme_id": "SCH_PMJJBY",
+   "rank": 1,
+   "name": "Savings Bank Account Details",
+   "description": "Operative bank account in participating bank",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  },
+  {
+   "id": 30,
+   "scheme_id": "SCH_PMJJBY",
+   "rank": 2,
+   "name": "Consent cum Auto-Debit Mandate Form",
+   "description": "Signed auto-debit consent form",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  }
+ ],
+ "procedure_steps": [],
+ "exceptions": [
+  {
+   "id": 50,
+   "scheme_id": "SCH_PMJJBY",
+   "kind": "exclusion",
+   "text": "Persons below 18 years or above 50 years of age (risk cover ends at age 55)",
+   "source": "canonical p.4"
+  }
+ ],
+ "faqs": [
+  {
+   "id": 39,
+   "scheme_id": "SCH_PMJJBY",
+   "question": "What is the premium and life insurance coverage under PMJJBY?",
+   "answer": "PMJJBY provides life insurance cover of Rs. 2,00,000 in case of death due to any reason. The annual premium is Rs. 436 per annum, auto-debited from the subscriber's bank account in May/June.",
+   "source": "canonical p.4"
+  }
+ ],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_PMJJBY_ELIG",
+   "scheme_id": "SCH_PMJJBY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Age must be 18 years (completed) or above\", \"source\": \"Page 5, PMJJBY Eligibility; Revised Rules Para 7\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Age must not exceed 50 years (age nearer birthday)\", \"source\": \"Page 5, PMJJBY Eligibility; Revised Rules Para 7\", \"field\": \"age\", \"op\": \"<=\", \"value\": 50}, {\"desc\": \"Must have a bank or post office savings account\", \"source\": \"Page 5, PMJJBY; Revised Rules Para 2\", \"field\": \"has_bank_account\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Aadhaar is primary KYC for bank account\", \"source\": \"Revised Rules Para 2\", \"field\": \"aadhaar\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM Jeevan Jyoti Bima Yojana",
+   "source": "canonical p.5,6,7",
+   "valid_from": "2022-06-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "jeevan jyoti",
+  "jeevan jyoti bima",
+  "jeevan jyoti bima yojana",
+  "life insurance scheme",
+  "pmjjby",
+  "pradhan mantri jeevan jyoti bima yojana",
+  "life insurance"
+ ],
+ "relationships": [
+  {
+   "id": 3,
+   "source_scheme_id": "SCH_PMSBY",
+   "target_scheme_id": "SCH_PMJJBY",
+   "relationship_type": "COMPLEMENTARY",
+   "description": "PMJJBY covers natural and accidental death (life insurance), while PMSBY specifically covers accidental death and disability. Both share bank auto-debit mechanisms."
+  }
+ ],
+ "catalog_names": {
+  "en": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+  "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना",
+  "ta": "பிரதான் மந்திரி ஜீவன் ஜோதி பீமா யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Jeevan Jyoti Bima Yojana is life insurance of 2 lakh rupees for people aged 18 to 50 with a bank account. The premium is 436 rupees a year.",
+  "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना 18 से 50 वर्ष की आयु के लोगों के लिए 2 लाख रुपये का जीवन बीमा है। प्रीमियम 436 रुपये प्रति वर्ष है।",
+  "ta": "பிஎம் ஜீவன் ஜோதி பீமா யோஜனா என்பது வங்கிக் கணக்கு வைத்திருக்கும் 18 முதல் 50 வயதுக்குட்பட்டவர்களுக்கு 2 லட்சம் ரூபாய் ஆயுள் காப்பீட்டு திட்டமாகும். பிரீமியம் தொகை ஆண்டுக்கு 436 ரூபாய் ஆகும்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": [
+  {
+   "form_id": "FORM_PMJJBY_CONSENT",
+   "title": {
+    "en": "PM Jeevan Jyoti Bima Yojana consent form",
+    "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना सहमति फ़ॉर्म",
+    "ta": "பிரதம மந்திரி ஜீவன் ஜோதி பீமா யோஜனா ஒப்புதல் படிவம்"
+   },
+   "fields": 21,
+   "supported_languages": [
+    "hi",
+    "ta",
+    "en"
+   ]
+  }
+ ]
+}

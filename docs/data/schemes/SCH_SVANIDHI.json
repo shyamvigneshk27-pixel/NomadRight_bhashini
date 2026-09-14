@@ -1,0 +1,334 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_SVANIDHI",
+  "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi",
+  "short_name": "PM SVANidhi",
+  "spoken_name": "PM SVANidhi street vendor loans",
+  "legacy_code": null,
+  "category": "Urban Livelihoods",
+  "ministry": "Ministry of Housing and Urban Affairs",
+  "department": null,
+  "implementing_agency": "SIDBI, Scheduled Commercial Banks, RRBs, SFBs, Cooperative Banks, NBFCs, MFIs, SHG Banks, Indian Bank (PAiSA portal)",
+  "domains": [
+   "FINANCIAL"
+  ],
+  "description": "Central Sector Scheme. Initial working capital loan up to Rs 10,000 for 1 year (generic FAQ). Interest subsidy at 7%. Monthly cashback incentive on digital transactions (Rs 50 on 50 transactions; additional Rs 25 on next 50; additional Rs 25 on next 100; max Rs 100/month). Higher loan on timely repayment. No collateral required. Scheme implemented up to March 2022 per FAQ 8.",
+  "voice_summary": "PM SVANidhi gives street vendors working capital loans without collateral, starting at up to 10000 rupees, with a 7 percent interest subsidy and cashback on digital payments.",
+  "benefits": [
+   "First tranche working capital loan up to Rs 10,000 with 1-year repayment tenure",
+   "Second tranche enhanced working capital loan up to Rs 20,000 upon timely or early repayment of first tranche",
+   "Third tranche working capital loan up to Rs 50,000 upon timely repayment of second tranche",
+   "Interest subsidy at 7% per annum credited quarterly directly into beneficiary bank account via DBT",
+   "Monthly cashback incentive: Rs 50 for first 50 transactions, additional Rs 25 for next 50, and Rs 25 for next 100 eligible digital transactions"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be Indian Citizen",
+   "Must be a street vendor/hawker",
+   "Must have been vending in urban areas as on or before March 24, 2020"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "STREET_VENDOR"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Vending Certificate / Identity Card",
+   "Letter of Recommendation (LoR)",
+   "Aadhaar Card",
+   "Bank Account Details"
+  ],
+  "application_process": [
+   "offline: Visit nearest CSC, Municipal Corporation office, or bank branch for application submission.",
+   "offline: Collect Letter of Recommendation (LoR) from Town Vending Committee (TVC) if not possessing ID card.",
+   "online: Access PM SVANidhi portal (pmsvanidhi.mohua.gov.in) or PM SVANidhi mobile app.",
+   "online: Enter mobile number and verify via OTP.",
+   "online: Select vendor category: (A) Vendors with Vending Card/LoR, (B) Vendors left out of survey, (C) Surrounding rural vendors.",
+   "online: Upload KYC documents and select preferred lending institution / bank.",
+   "online: Submit loan application for 1st tranche (up to Rs 10,000)."
+  ],
+  "application_mode": "ONLINE_AND_OFFLINE",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.22,23,24,25",
+  "official_url": "https://pmsvanidhi.mohua.gov.in",
+  "helpline": "1800 11 1979",
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": "2022-03-31",
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    22,
+    23,
+    24,
+    25,
+    26
+   ],
+   "seed_file": "pm_svanidhi.json",
+   "summary_basis": "canonical SCH_SVANIDHI description, BEN_SVANIDHI",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 112,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 0,
+   "text": "First tranche working capital loan up to Rs 10,000 with 1-year repayment tenure",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.22,23"
+  },
+  {
+   "id": 113,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 1,
+   "text": "Second tranche enhanced working capital loan up to Rs 20,000 upon timely or early repayment of first tranche",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.22,23"
+  },
+  {
+   "id": 114,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 2,
+   "text": "Third tranche working capital loan up to Rs 50,000 upon timely repayment of second tranche",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.22,23"
+  },
+  {
+   "id": 115,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 3,
+   "text": "Interest subsidy at 7% per annum credited quarterly directly into beneficiary bank account via DBT",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.22,23"
+  },
+  {
+   "id": 116,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 4,
+   "text": "Monthly cashback incentive: Rs 50 for first 50 transactions, additional Rs 25 for next 50, and Rs 25 for next 100 eligible digital transactions",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.23"
+  }
+ ],
+ "documents": [
+  {
+   "id": 44,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 0,
+   "name": "Vending Certificate / Identity Card",
+   "description": "Certificate of Vending or ID card issued by Urban Local Body (ULB)",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  },
+  {
+   "id": 45,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 1,
+   "name": "Letter of Recommendation (LoR)",
+   "description": "LoR from ULB / Town Vending Committee if ID card not issued",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  },
+  {
+   "id": 46,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 2,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  },
+  {
+   "id": 47,
+   "scheme_id": "SCH_SVANIDHI",
+   "rank": 3,
+   "name": "Bank Account Details",
+   "description": "Savings account details",
+   "mandatory": 1,
+   "source": "canonical p.6"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 70,
+   "scheme_id": "SCH_SVANIDHI",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Visit nearest CSC, Municipal Corporation office, or bank branch for application submission.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 71,
+   "scheme_id": "SCH_SVANIDHI",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Collect Letter of Recommendation (LoR) from Town Vending Committee (TVC) if not possessing ID card.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 72,
+   "scheme_id": "SCH_SVANIDHI",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Access PM SVANidhi portal (pmsvanidhi.mohua.gov.in) or PM SVANidhi mobile app.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 73,
+   "scheme_id": "SCH_SVANIDHI",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Enter mobile number and verify via OTP.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 74,
+   "scheme_id": "SCH_SVANIDHI",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Select vendor category: (A) Vendors with Vending Card/LoR, (B) Vendors left out of survey, (C) Surrounding rural vendors.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 75,
+   "scheme_id": "SCH_SVANIDHI",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Upload KYC documents and select preferred lending institution / bank.",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 76,
+   "scheme_id": "SCH_SVANIDHI",
+   "mode": "online",
+   "step_no": 5,
+   "text": "Submit loan application for 1st tranche (up to Rs 10,000).",
+   "source": "canonical p.6"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [
+  {
+   "id": 45,
+   "scheme_id": "SCH_SVANIDHI",
+   "question": "What are the loan amounts and interest subsidy available under PM SVANidhi?",
+   "answer": "PM SVANidhi offers working capital loans: 1st tranche up to Rs. 10,000 (1-year tenure); 2nd tranche up to Rs. 20,000; and 3rd tranche up to Rs. 50,000 upon timely repayment, with 7% interest subsidy per annum and up to Rs. 1,200 annual cashback on digital transactions.",
+   "source": "canonical p.6"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 38,
+   "scheme_id": "SCH_SVANIDHI",
+   "kind": "helpline",
+   "value": "1800 11 1979",
+   "description": "Helpline",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 39,
+   "scheme_id": "SCH_SVANIDHI",
+   "kind": "portal",
+   "value": "https://pmsvanidhi.mohua.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 40,
+   "scheme_id": "SCH_SVANIDHI",
+   "kind": "grievance",
+   "value": "Town Vending Committee & SIDBI Helpdesk",
+   "description": "Grievance redressal",
+   "source": "canonical p.6"
+  },
+  {
+   "id": 50,
+   "scheme_id": "SCH_SVANIDHI",
+   "kind": "portal",
+   "value": "pmsvanidhi.mohua.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.22,23,24,25"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_SVANIDHI_ELIG",
+   "scheme_id": "SCH_SVANIDHI",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be Indian Citizen\", \"source\": \"Page 4, e-Shram SVANidhi\", \"field\": \"citizenship\", \"op\": \"==\", \"value\": \"INDIAN\"}, {\"desc\": \"Must be a street vendor/hawker\", \"source\": \"Page 22, SVANidhi FAQ 5\", \"field\": \"occupation\", \"op\": \"==\", \"value\": \"STREET_VENDOR\"}, {\"desc\": \"Must have been vending in urban areas as on or before March 24, 2020\", \"source\": \"Page 22, SVANidhi FAQ 5\", \"field\": \"vending_since_march_2020\", \"op\": \"==\", \"value\": true}, {\"op\": \"OR\", \"desc\": \"\", \"items\": [{\"desc\": \"Has Certificate of Vending or Identity Card from ULB\", \"source\": \"Page 22, SVANidhi Eligibility\", \"field\": \"cov_or_id_card\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Is in the surveyed vendor list (Provisional CoV issued)\", \"source\": \"Page 22, SVANidhi Eligibility\", \"field\": \"in_survey_list\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Has Letter of Recommendation from ULB/TVC (for peri-urban/unsurveyed vendors)\", \"source\": \"Page 23, SVANidhi FAQ 5/6\", \"field\": \"lor_from_ulb\", \"op\": \"==\", \"value\": true}]}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM SVANidhi working capital loan",
+   "source": "canonical p.22,23",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_SVANIDHI",
+   "application_mode": "ONLINE_AND_OFFLINE",
+   "processing_time": "Loan sanctioned typically within 7-14 working days",
+   "fees": "No collateral or processing charges",
+   "source": "canonical p.6"
+  }
+ ],
+ "aliases_en": [
+  "atma nirbhar nidhi",
+  "atmanirbhar nidhi",
+  "pm street vendor's atmanirbhar nidhi",
+  "pm svanidhi",
+  "street vendor loan",
+  "svanidhi",
+  "swanidhi"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "PM Street Vendor's AtmaNirbhar Nidhi",
+  "hi": "पीएम स्ट्रीट वेंडर की आत्मनिर्भर निधि",
+  "ta": "பிரதமரின் தெரு விற்பனையாளர்களின் தற்சார்பு நிதி"
+ },
+ "catalog_descriptions": {
+  "en": "PM SVANidhi gives street vendors working capital loans without collateral, starting at up to 10000 rupees, with a 7 percent interest subsidy and cashback on digital payments.",
+  "hi": "पीएम स्वनिधि सड़क विक्रेताओं को बिना किसी संपार्श्विक के 10,000 रुपये तक का कार्यशील पूंजी ऋण देता है, जिसमें 7 प्रतिशत ब्याज सब्सिडी और डिजिटल भुगतान पर कैशबैक दिया जाता है।",
+  "ta": "பிரதமர் ஸ்வநிதி தெரு வியாபாரிகளுக்கு பிணையமில்லாத மூலதனக் கடன்களை வழங்குகிறது, இது 10000 ரூபாய் வரை தொடங்குகிறது, 7 சதவீத வட்டி மானியம் மற்றும் டிஜிட்டல் கொடுப்பனவுகளுக்கு கேஷ்பேக் வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": [
+  {
+   "form_id": "FORM_PMSVANIDHI_LAF",
+   "title": {
+    "en": "PM SVANidhi loan application form",
+    "hi": "पीएम स्वनिधि ऋण आवेदन फ़ॉर्म",
+    "ta": "பிஎம் ஸ்வநிதி கடன் விண்ணப்பப் படிவம்"
+   },
+   "fields": 30,
+   "supported_languages": [
+    "hi",
+    "ta",
+    "en"
+   ]
+  }
+ ]
+}

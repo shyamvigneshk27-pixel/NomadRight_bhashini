@@ -1,0 +1,361 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMSYM",
+  "scheme_name": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+  "short_name": "PM-SYM",
+  "spoken_name": "PM Shram Yogi Maan-dhan pension",
+  "legacy_code": null,
+  "category": "Pension & Social Security",
+  "ministry": "Ministry of Labour & Employment",
+  "department": null,
+  "implementing_agency": "Common Service Centres (CSCs)",
+  "domains": [
+   "PENSION",
+   "WORKER"
+  ],
+  "description": "Voluntary and contributory pension scheme for unorganised workers. Monthly contribution ranges from Rs 55 to Rs 200 depending upon the entry age. 50% paid by beneficiary and 50% matched by Central Government.",
+  "voice_summary": "PM Shram Yogi Maan-dhan is a pension scheme for unorganised workers aged 18 to 40 who earn up to 15000 rupees a month. It pays 3000 rupees a month after age 60.",
+  "benefits": [
+   "Monthly assured pension of Rs 3000 after age 60",
+   "Spouse eligible for 50% of monthly pension on death of beneficiary",
+   "If husband and wife both join, jointly eligible for Rs 6000/month"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be an Indian Citizen",
+   "Age must be 18 years or above",
+   "Age must not exceed 40 years",
+   "Monthly income must be below Rs 15,000",
+   "Must be an unorganised worker"
+  ],
+  "age_min": 18,
+  "age_max": 40,
+  "income_limit": 15000,
+  "income_limit_period": "MONTHLY",
+  "occupation": [
+   "UNORGANISED"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Savings Bank Account / Jan Dhan Account",
+   "Mobile Number"
+  ],
+  "application_process": [
+   "offline: Visit the nearest Common Services Centre (CSC) along with Aadhaar card and Savings Bank Passbook.",
+   "offline: VLE (Village Level Entrepreneur) enters details and takes biometric authentication.",
+   "offline: System calculates monthly contribution (Rs 55 to Rs 200 based on age).",
+   "offline: Pay the first installment in cash at CSC; system generates PMSYM Card immediately.",
+   "online: Visit the official portal maandhan.in or self-enrollment section on e-Shram portal.",
+   "online: Enter Aadhaar number and verify using OTP sent to registered mobile.",
+   "online: Fill applicant details, unorganised worker occupation, and bank IFSC.",
+   "online: Set up bank auto-debit mandate and make the initial monthly contribution online."
+  ],
+  "application_mode": "OFFLINE_AND_ONLINE",
+  "portability": null,
+  "exceptions": [
+   "Income Tax Payers are not eligible",
+   "Members covered under EPFO, ESIC, or NPS (Govt funded) are excluded",
+   "Monthly income exceeds Rs. 15,000 per month"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.3,4,5",
+  "official_url": "https://maandhan.in",
+  "helpline": "1800 267 6888 / 14434",
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    3,
+    4,
+    5
+   ],
+   "seed_file": "pm_sym.json",
+   "summary_basis": "canonical RULE_PMSYM_ELIG, BEN_PMSYM_001; scheme compilation p.110-111",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 60,
+   "scheme_id": "SCH_PMSYM",
+   "rank": 0,
+   "text": "Monthly assured pension of Rs 3000 after age 60",
+   "value_inr": 3000.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 61,
+   "scheme_id": "SCH_PMSYM",
+   "rank": 1,
+   "text": "Spouse eligible for 50% of monthly pension on death of beneficiary",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.3"
+  },
+  {
+   "id": 62,
+   "scheme_id": "SCH_PMSYM",
+   "rank": 2,
+   "text": "If husband and wife both join, jointly eligible for Rs 6000/month",
+   "value_inr": 6000.0,
+   "frequency": "MONTHLY",
+   "source": "canonical p.3"
+  }
+ ],
+ "documents": [
+  {
+   "id": 21,
+   "scheme_id": "SCH_PMSYM",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card of unorganised worker",
+   "mandatory": 1,
+   "source": "canonical p.3"
+  },
+  {
+   "id": 22,
+   "scheme_id": "SCH_PMSYM",
+   "rank": 1,
+   "name": "Savings Bank Account / Jan Dhan Account",
+   "description": "Bank passbook or cheque leaf with IFSC",
+   "mandatory": 1,
+   "source": "canonical p.3"
+  },
+  {
+   "id": 23,
+   "scheme_id": "SCH_PMSYM",
+   "rank": 2,
+   "name": "Mobile Number",
+   "description": "Active mobile number linked to Aadhaar",
+   "mandatory": 1,
+   "source": "canonical p.3"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 48,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Visit the nearest Common Services Centre (CSC) along with Aadhaar card and Savings Bank Passbook.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 49,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "VLE (Village Level Entrepreneur) enters details and takes biometric authentication.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 50,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "System calculates monthly contribution (Rs 55 to Rs 200 based on age).",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 51,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "offline",
+   "step_no": 4,
+   "text": "Pay the first installment in cash at CSC; system generates PMSYM Card immediately.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 52,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit the official portal maandhan.in or self-enrollment section on e-Shram portal.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 53,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Enter Aadhaar number and verify using OTP sent to registered mobile.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 54,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Fill applicant details, unorganised worker occupation, and bank IFSC.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 55,
+   "scheme_id": "SCH_PMSYM",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Set up bank auto-debit mandate and make the initial monthly contribution online.",
+   "source": "canonical p.3"
+  }
+ ],
+ "exceptions": [
+  {
+   "id": 33,
+   "scheme_id": "SCH_PMSYM",
+   "kind": "exclusion",
+   "text": "Income Tax Payers are not eligible",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 34,
+   "scheme_id": "SCH_PMSYM",
+   "kind": "exclusion",
+   "text": "Members covered under EPFO, ESIC, or NPS (Govt funded) are excluded",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 35,
+   "scheme_id": "SCH_PMSYM",
+   "kind": "exclusion",
+   "text": "Monthly income exceeds Rs. 15,000 per month",
+   "source": "canonical p.3"
+  }
+ ],
+ "faqs": [
+  {
+   "id": 35,
+   "scheme_id": "SCH_PMSYM",
+   "question": "Are gig and platform workers covered under e-Shram?",
+   "answer": "Yes, gig and platform workers are included in the e-Shram database and eligible for social security welfare schemes.",
+   "source": "canonical p.13"
+  },
+  {
+   "id": 36,
+   "scheme_id": "SCH_PMSYM",
+   "question": "What is the minimum assured pension under PM-SYM?",
+   "answer": "Beneficiaries receive an assured minimum monthly pension of Rs. 3,000 per month after attaining the age of 60 years.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 37,
+   "scheme_id": "SCH_PMSYM",
+   "question": "What happens if a PM-SYM subscriber dies before reaching 60 years of age?",
+   "answer": "If a subscriber dies before 60, their spouse can continue the scheme by paying regular contributions, or exit the scheme and receive the subscriber's accumulated contribution along with interest.",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 38,
+   "scheme_id": "SCH_PMSYM",
+   "question": "What is the family pension after the demise of the PM-SYM pensioner?",
+   "answer": "During receipt of pension after age 60, if the pensioner dies, the spouse is entitled to receive 50% of the pension (i.e. Rs. 1,500 per month) as family pension. This is applicable only to spouse.",
+   "source": "canonical p.3"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 29,
+   "scheme_id": "SCH_PMSYM",
+   "kind": "helpline",
+   "value": "1800 267 6888 / 14434",
+   "description": "Helpline",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 30,
+   "scheme_id": "SCH_PMSYM",
+   "kind": "portal",
+   "value": "https://maandhan.in",
+   "description": "Official portal",
+   "source": "canonical p.3"
+  },
+  {
+   "id": 31,
+   "scheme_id": "SCH_PMSYM",
+   "kind": "grievance",
+   "value": "LIC Branch Grievance Officers & Joint Secretary (Labour)",
+   "description": "Grievance redressal",
+   "source": "canonical p.3"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_PMSYM_ELIG",
+   "scheme_id": "SCH_PMSYM",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be an Indian Citizen\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"citizenship\", \"op\": \"==\", \"value\": \"INDIAN\"}, {\"desc\": \"Age must be 18 years or above\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Age must not exceed 40 years\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"age\", \"op\": \"<=\", \"value\": 40}, {\"desc\": \"Monthly income must be below Rs 15,000\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"monthly_income\", \"op\": \"<=\", \"value\": 15000}, {\"desc\": \"Must be an unorganised worker\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"is_unorganised_worker\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM Shram Yogi Maan-Dhan",
+   "source": "canonical p.3",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_PMSYM_EXCL",
+   "scheme_id": "SCH_PMSYM",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"desc\": \"EPFO member is excluded\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"epfo_esic_member\", \"op\": \"==\", \"value\": true}, {\"desc\": \"ESIC member is excluded\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"epfo_esic_member\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Government-funded NPS member is excluded\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"nps_govt_member\", \"op\": \"==\", \"value\": true}, {\"desc\": \"Income tax payer is excluded\", \"source\": \"Page 3, PMSYM Eligibility\", \"field\": \"income_tax_payer\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Excluded from PM Shram Yogi Maan-Dhan",
+   "source": "canonical p.3",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_PMSYM",
+   "application_mode": "OFFLINE_AND_ONLINE",
+   "processing_time": "Instant card generation upon first contribution",
+   "fees": "Free enrollment (Govt pays CSC fee)",
+   "source": "canonical p.3"
+  }
+ ],
+ "aliases_en": [
+  "maan-dhan",
+  "maandhan yojana",
+  "pm sym",
+  "pm-sym",
+  "pmsym",
+  "pradhan mantri shram yogi maan-dhan yojana",
+  "shram yogi",
+  "shram yogi maan-dhan",
+  "shram yogi maandhan",
+  "shram yogi mandhan",
+  "unorganised worker pension"
+ ],
+ "relationships": [
+  {
+   "id": 1,
+   "source_scheme_id": "SCH_PMSYM",
+   "target_scheme_id": "SCH_ESHRAM",
+   "relationship_type": "INTEGRATED_PORTAL",
+   "description": "e-Shram acts as the national registry and single-window onboarding database for PM-SYM unorganised workers."
+  }
+ ],
+ "catalog_names": {
+  "en": "Pradhan Mantri Shram Yogi Maan-Dhan Yojana",
+  "hi": "प्रधानमंत्री श्रम योगी मान-धन योजना",
+  "ta": "பிரதான் மந்திரி ஷ்ரம் யோகி மான்-தன் யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Shram Yogi Maan-dhan is a pension scheme for unorganised workers aged 18 to 40 who earn up to 15000 rupees a month. It pays 3000 rupees a month after age 60.",
+  "hi": "पीएम श्रम योगी मान-धन 18 से 40 वर्ष की आयु के असंगठित श्रमिकों के लिए एक पेंशन योजना है जो प्रति माह 15000 रुपये तक कमाते हैं। यह 60 वर्ष की आयु के बाद प्रति माह 3000 रुपये का भुगतान करता है।",
+  "ta": "பி. எம். ஷ்ரம் யோகி மான்-தன் என்பது 18 முதல் 40 வயது வரையிலான அமைப்புசாரா தொழிலாளர்களுக்கான ஓய்வூதியத் திட்டமாகும், அவர்கள் மாதத்திற்கு 15000 ரூபாய் வரை சம்பாதிக்கிறார்கள். 60 வயதிற்குப் பிறகு ஒரு மாதத்திற்கு 3000 ரூபாய் செலுத்துகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

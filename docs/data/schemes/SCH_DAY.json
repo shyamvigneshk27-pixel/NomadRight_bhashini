@@ -1,0 +1,91 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_DAY",
+  "scheme_name": "Deen Dayal Upadhyaya Antyodaya Yojana",
+  "short_name": "DAY",
+  "spoken_name": "Deen Dayal Antyodaya Yojana",
+  "legacy_code": null,
+  "category": "Livelihoods",
+  "ministry": "Ministry of Rural Development / Ministry of Housing and Urban Affairs",
+  "department": null,
+  "implementing_agency": "ULBs, State Rural Livelihoods Missions",
+  "domains": [
+   "WORKER",
+   "FINANCIAL"
+  ],
+  "description": "For any Indian citizen intending to get trained on skills. Aims to enhance skills and self-business financing. Covers both urban and rural poor.",
+  "voice_summary": "Deen Dayal Antyodaya Yojana helps the urban and rural poor with skill training and financing to start their own business.",
+  "benefits": [],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "UNEMPLOYED",
+   "SELF_EMPLOYED"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.4",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    4
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_DAY description, objective",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "day-nrlm",
+  "day-nulm",
+  "deen dayal antyodaya",
+  "deen dayal upadhyaya antyodaya yojana",
+  "deendayal antyodaya"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Deen Dayal Upadhyaya Antyodaya Yojana",
+  "hi": "दीन दयाल उपाध्याय अन्त्योदय योजना",
+  "ta": "தீன் தயாள் உபாத்யாயா அந்தியோதயா யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "Deen Dayal Antyodaya Yojana helps the urban and rural poor with skill training and financing to start their own business.",
+  "hi": "दीन दयाल अन्त्योदय योजना शहरी और ग्रामीण गरीबों को कौशल प्रशिक्षण और वित्तपोषण के साथ अपना व्यवसाय शुरू करने में मदद करती है।",
+  "ta": "தீன் தயாள் அந்தியோதயா யோஜனா நகர்ப்புற மற்றும் கிராமப்புற ஏழைகளுக்கு திறன் பயிற்சி மற்றும் நிதியுதவி மூலம் தங்கள் சொந்த வணிகத்தைத் தொடங்க உதவுகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

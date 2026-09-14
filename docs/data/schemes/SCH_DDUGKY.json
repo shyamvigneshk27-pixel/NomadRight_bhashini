@@ -1,0 +1,106 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_DDUGKY",
+  "scheme_name": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+  "short_name": "DDU-GKY",
+  "spoken_name": "Grameen Kaushalya skill training",
+  "legacy_code": null,
+  "category": "Skill Development",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "DDU-GKY Training Centres",
+  "domains": [
+   "EDUCATION",
+   "WORKER"
+  ],
+  "description": "Training programs for youth aged 15-35 (up to 45 for women and vulnerable groups including PwD). Placement-linked skill training.",
+  "voice_summary": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana gives free skill training with job placement to rural poor youth aged 15 to 35, and up to 45 for women.",
+  "benefits": [
+   "Free skill training with placement assistance for rural poor youth aged 15-35 (45 for women/PwD)"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "UNEMPLOYED",
+   "STUDENT"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.4,5",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    4,
+    5
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_DDUGKY description, BEN_DDUGKY",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 110,
+   "scheme_id": "SCH_DDUGKY",
+   "rank": 0,
+   "text": "Free skill training with placement assistance for rural poor youth aged 15-35 (45 for women/PwD)",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.4"
+  }
+ ],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "ddu gky",
+  "ddu-gky",
+  "ddugky",
+  "deen dayal upadhyay grameen kaushalya yojana",
+  "grameen kaushalya",
+  "kaushalya yojana",
+  "rural skill training"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Deen Dayal Upadhyay Grameen Kaushalya Yojana",
+  "hi": "दीन दयाल उपाध्याय ग्रामीण कौशल योजना",
+  "ta": "தீன் தயாள் உபாத்யாய் கிராமீன் கௌஷல்யா யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "Deen Dayal Upadhyaya Grameen Kaushalya Yojana gives free skill training with job placement to rural poor youth aged 15 to 35, and up to 45 for women.",
+  "hi": "दीन दयाल उपाध्याय ग्रामीण कौशल योजना 15 से 35 वर्ष की आयु के ग्रामीण गरीब युवाओं को नौकरी देने के साथ-साथ महिलाओं के लिए 45 तक मुफ्त कौशल प्रशिक्षण प्रदान करती है।",
+  "ta": "தீன் தயாள் உபாத்யாயா கிராமீன் கௌஷல்யா யோஜனா 15 முதல் 35 வயது வரையிலான கிராமப்புற ஏழை இளைஞர்களுக்கு வேலை வாய்ப்புடன் இலவச திறன் பயிற்சியையும், 45 வயது வரையிலான பெண்களுக்கு வேலைவாய்ப்பையும் வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

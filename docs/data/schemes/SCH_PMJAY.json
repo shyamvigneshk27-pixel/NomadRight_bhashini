@@ -1,0 +1,511 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMJAY",
+  "scheme_name": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (AB PM-JAY)",
+  "short_name": "PM-JAY",
+  "spoken_name": "Ayushman Bharat PM-JAY",
+  "legacy_code": "PMJAY",
+  "category": "Health",
+  "ministry": null,
+  "department": null,
+  "implementing_agency": null,
+  "domains": [
+   "HEALTH",
+   "MATERNITY",
+   "MIGRANT"
+  ],
+  "description": "Ayushman Bharat Pradhan Mantri Jan Arogya Yojana (AB PM-JAY) is a flagship health assurance scheme of the Government of India launched on 23rd September, 2018. It provides a health coverage of Rs. 5 lakh per family per year for secondary and tertiary care hospitalisation to identified vulnerable families. It is implemented by the National Health Authority (NHA), Ministry of Health and Family Welfare, Government of India.",
+  "voice_summary": "Ayushman Bharat PM-JAY gives eligible poor and vulnerable families cashless hospital treatment up to 5 lakh rupees per family per year, at empanelled hospitals anywhere in India.",
+  "benefits": [
+   "Health coverage of up to Rs. 5,00,000 (Five Lakh Rupees) per family per year for secondary and tertiary care hospitalisation.",
+   "Cashless and paperless treatment at any empanelled public or private hospital across India (portability).",
+   "All pre-existing conditions are covered from day one of enrolment.",
+   "No restriction on family size, age, or gender.",
+   "Coverage includes hospitalisation expenses, day care treatments, follow-up care, pre-hospitalisation (up to 3 days) and post-hospitalisation expenses (up to 15 days), and newborn care.",
+   "Over 1,900 treatment procedures covered across 25+ medical specialties."
+  ],
+  "target_beneficiaries": [
+   "Rural Poor (SECC 2011 - Deprivation Criteria)",
+   "Urban Poor (SECC 2011 - Occupational Categories)",
+   "Senior Citizens aged 70 years and above"
+  ],
+  "eligibility": [
+   "Families identified based on the deprivation and occupational criteria of the Socio-Economic Caste Census (SECC) 2011 data.",
+   "Rural: Households with specific deprivation criteria including families with no adult member between ages 16-59, female-headed households with no adult male member between 16-59, households with disabled members and no able-bodied adult member, SC/ST households, landless households deriving major part of income from manual casual labour, households without shelter, destitute/living on alms, manual scavenger families, and primitive tribal groups.",
+   "Urban: Workers from specific occupational categories including rag pickers, beggars, domestic workers, street vendors/cobblers/hawkers, construction workers/plumbers/masons/labourers/painters/welders/security guards/coolies, sweepers/sanitation workers/mali, home-based workers/artisans/handicraft workers/tailors, transport workers/drivers/conductors/helpers/cart or rickshaw pullers, shop workers/assistants/peons/delivery assistants/attendants/waiters, electricians/mechanics/assemblers/repair workers, washermen/chowkidars.",
+   "All citizens aged 70 years and above are eligible for coverage of up to Rs. 5 lakh per year, regardless of their socio-economic status (effective September 2024). Those in families already covered by PM-JAY receive an additional top-up cover of up to Rs. 5 lakh specifically for senior citizens aged 70+.",
+   "Family is in the SECC 2011 list, or you are 70 or older"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": 1,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Ration Card (optional)",
+   "PM-JAY E-Card / Ayushman Card",
+   "Any valid Government-issued Photo ID (optional)"
+  ],
+  "application_process": [
+   "offline: Call the PM-JAY helpline at 14555 (toll-free) to check your eligibility.",
+   "offline: Visit the nearest empanelled hospital. Approach the Ayushman Mitra/PMAM desk at the hospital.",
+   "offline: Carry your Aadhaar card, ration card, or any government-issued photo ID for identity verification.",
+   "offline: The Pradhan Mantri Arogya Mitra (PMAM) at the hospital will verify your identity and eligibility, and generate your PM-JAY e-card if not already created.",
+   "offline: Upon verification, the beneficiary can avail cashless treatment at the empanelled hospital.",
+   "online: Visit the official PM-JAY website at https://pmjay.gov.in and use the 'Am I Eligible' tool to check your eligibility by entering your mobile number and captcha.",
+   "online: Alternatively, download the Ayushman Bharat (PM-JAY) mobile application to check eligibility and find empanelled hospitals.",
+   "online: If eligible, visit the nearest Common Service Centre (CSC) or empanelled hospital with your Aadhaar card and other identity documents to get your PM-JAY e-card / Ayushman Card generated.",
+   "online: For treatment, visit any empanelled hospital. The hospital's Pradhan Mantri Arogya Mitra (PMAM) will assist with verification, e-card creation (if not done), and cashless admission."
+  ],
+  "application_mode": "ONLINE_AND_OFFLINE",
+  "portability": "PM-JAY benefits are portable across the country. A beneficiary can visit any empanelled public or private hospital in India to avail cashless treatment, regardless of the state where they are registered. Pan-India portability across all empanelled hospitals.",
+  "exceptions": [
+   "Individuals who own a two-wheeler, three-wheeler, or four-wheeler motorised vehicle, or a mechanised fishing boat are excluded under SECC 2011 urban criteria.",
+   "Households with a member who is a government employee are excluded under SECC 2011.",
+   "Households with agricultural equipment such as a tractor are excluded under SECC 2011 rural criteria.",
+   "Households paying income tax are excluded under SECC 2011.",
+   "Households with a refrigerator or landline phone are excluded under SECC 2011 rural criteria.",
+   "Treatment is available only at empanelled hospitals. Non-empanelled hospitals cannot provide cashless PM-JAY treatment.",
+   "OPD (Out-Patient Department) expenses are not covered under PM-JAY.",
+   "Cosmetic procedures, organ transplants (unless specified in HBP), and fertility-related treatments are generally not covered."
+  ],
+  "official_source": "National Health Authority; PM-JAY Official Portal; MyScheme - Government of India; Press Information Bureau; India.gov.in - National Portal of India",
+  "official_url": "https://pmjay.gov.in",
+  "helpline": "14555",
+  "last_verified": "2026-08-03",
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "legacy",
+   "legacy_json": "pmjay.json",
+   "canonical_pages": null,
+   "seed_file": null,
+   "summary_basis": "pmjay.json description, benefits[0-1], portability",
+   "migration_support_source": "pmjay.json portability.description"
+  }
+ },
+ "benefits": [
+  {
+   "id": 10,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 0,
+   "text": "Health coverage of up to Rs. 5,00,000 (Five Lakh Rupees) per family per year for secondary and tertiary care hospitalisation.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "nha.gov.in, pmjay.gov.in"
+  },
+  {
+   "id": 11,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 1,
+   "text": "Cashless and paperless treatment at any empanelled public or private hospital across India (portability).",
+   "value_inr": null,
+   "frequency": null,
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 12,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 2,
+   "text": "All pre-existing conditions are covered from day one of enrolment.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 13,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 3,
+   "text": "No restriction on family size, age, or gender.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 14,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 4,
+   "text": "Coverage includes hospitalisation expenses, day care treatments, follow-up care, pre-hospitalisation (up to 3 days) and post-hospitalisation expenses (up to 15 days), and newborn care.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 15,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 5,
+   "text": "Over 1,900 treatment procedures covered across 25+ medical specialties.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "nha.gov.in, pib.gov.in"
+  },
+  {
+   "id": 16,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 6,
+   "text": "Additional top-up cover of Rs. 5 lakh for senior citizens aged 70 and above in already covered families.",
+   "value_inr": null,
+   "frequency": null,
+   "source": "india.gov.in"
+  },
+  {
+   "id": 17,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 7,
+   "text": "Health Coverage: Rs. 5,00,000 per family per year",
+   "value_inr": null,
+   "frequency": null,
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 18,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 8,
+   "text": "Additional Senior Citizen Cover: Rs. 5,00,000 additional for citizens aged 70+",
+   "value_inr": null,
+   "frequency": null,
+   "source": "india.gov.in"
+  },
+  {
+   "id": 19,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 9,
+   "text": "Health Benefit Packages (HBP): Varies by procedure",
+   "value_inr": null,
+   "frequency": null,
+   "source": "pib.gov.in, nha.gov.in"
+  }
+ ],
+ "documents": [
+  {
+   "id": 3,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "For identity verification and beneficiary authentication.",
+   "mandatory": 1,
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 4,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 1,
+   "name": "Ration Card",
+   "description": "For family identification and eligibility verification.",
+   "mandatory": 0,
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 5,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 2,
+   "name": "PM-JAY E-Card / Ayushman Card",
+   "description": "Beneficiary health card issued under PM-JAY for availing cashless treatment. Can be generated at Common Service Centres (CSCs), Empanelled Hospitals, or via the Ayushman App.",
+   "mandatory": 1,
+   "source": "pmjay.gov.in, nha.gov.in"
+  },
+  {
+   "id": 6,
+   "scheme_id": "SCH_PMJAY",
+   "rank": 3,
+   "name": "Any valid Government-issued Photo ID",
+   "description": "Voter ID, Driving License, PAN Card, Passport, or any other government-issued photo identity document.",
+   "mandatory": 0,
+   "source": "pmjay.gov.in"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 9,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Call the PM-JAY helpline at 14555 (toll-free) to check your eligibility.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 10,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Visit the nearest empanelled hospital. Approach the Ayushman Mitra/PMAM desk at the hospital.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 11,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Carry your Aadhaar card, ration card, or any government-issued photo ID for identity verification.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 12,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "offline",
+   "step_no": 4,
+   "text": "The Pradhan Mantri Arogya Mitra (PMAM) at the hospital will verify your identity and eligibility, and generate your PM-JAY e-card if not already created.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 13,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "offline",
+   "step_no": 5,
+   "text": "Upon verification, the beneficiary can avail cashless treatment at the empanelled hospital.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 14,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit the official PM-JAY website at https://pmjay.gov.in and use the 'Am I Eligible' tool to check your eligibility by entering your mobile number and captcha.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 15,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Alternatively, download the Ayushman Bharat (PM-JAY) mobile application to check eligibility and find empanelled hospitals.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 16,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "online",
+   "step_no": 3,
+   "text": "If eligible, visit the nearest Common Service Centre (CSC) or empanelled hospital with your Aadhaar card and other identity documents to get your PM-JAY e-card / Ayushman Card generated.",
+   "source": "pmjay.gov.in, nha.gov.in"
+  },
+  {
+   "id": 17,
+   "scheme_id": "SCH_PMJAY",
+   "mode": "online",
+   "step_no": 4,
+   "text": "For treatment, visit any empanelled hospital. The hospital's Pradhan Mantri Arogya Mitra (PMAM) will assist with verification, e-card creation (if not done), and cashless admission.",
+   "source": "pmjay.gov.in"
+  }
+ ],
+ "exceptions": [
+  {
+   "id": 6,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "exception",
+   "text": "Individuals who own a two-wheeler, three-wheeler, or four-wheeler motorised vehicle, or a mechanised fishing boat are excluded under SECC 2011 urban criteria.",
+   "source": "SECC 2011 Exclusion Criteria"
+  },
+  {
+   "id": 7,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "exception",
+   "text": "Households with a member who is a government employee are excluded under SECC 2011.",
+   "source": "SECC 2011 Exclusion Criteria"
+  },
+  {
+   "id": 8,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "exception",
+   "text": "Households with agricultural equipment such as a tractor are excluded under SECC 2011 rural criteria.",
+   "source": "SECC 2011 Exclusion Criteria"
+  },
+  {
+   "id": 9,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "exception",
+   "text": "Households paying income tax are excluded under SECC 2011.",
+   "source": "SECC 2011 Exclusion Criteria"
+  },
+  {
+   "id": 10,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "exception",
+   "text": "Households with a refrigerator or landline phone are excluded under SECC 2011 rural criteria.",
+   "source": "SECC 2011 Exclusion Criteria"
+  },
+  {
+   "id": 11,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "limitation",
+   "text": "Treatment is available only at empanelled hospitals. Non-empanelled hospitals cannot provide cashless PM-JAY treatment.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 12,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "limitation",
+   "text": "OPD (Out-Patient Department) expenses are not covered under PM-JAY.",
+   "source": ""
+  },
+  {
+   "id": 13,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "limitation",
+   "text": "Cosmetic procedures, organ transplants (unless specified in HBP), and fertility-related treatments are generally not covered.",
+   "source": ""
+  }
+ ],
+ "faqs": [
+  {
+   "id": 6,
+   "scheme_id": "SCH_PMJAY",
+   "question": "What is PM-JAY?",
+   "answer": "Ayushman Bharat PM-JAY is a government health assurance scheme providing Rs. 5 lakh per family per year for secondary and tertiary care hospitalisation to identified poor and vulnerable families.",
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 7,
+   "scheme_id": "SCH_PMJAY",
+   "question": "How can I check my eligibility?",
+   "answer": "You can check eligibility by visiting pmjay.gov.in and using the 'Am I Eligible' tool, calling the helpline 14555, or visiting the nearest empanelled hospital or Common Service Centre.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 8,
+   "scheme_id": "SCH_PMJAY",
+   "question": "Is there any enrolment fee?",
+   "answer": "No. There is no enrolment fee or premium to be paid by the beneficiary. The scheme is entirely funded by the Government.",
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 9,
+   "scheme_id": "SCH_PMJAY",
+   "question": "Are pre-existing conditions covered?",
+   "answer": "Yes. All pre-existing conditions are covered from day one.",
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 10,
+   "scheme_id": "SCH_PMJAY",
+   "question": "What is the coverage amount?",
+   "answer": "Rs. 5,00,000 per family per year. Senior citizens aged 70+ get an additional Rs. 5 lakh cover.",
+   "source": "nha.gov.in, india.gov.in"
+  },
+  {
+   "id": 11,
+   "scheme_id": "SCH_PMJAY",
+   "question": "How many procedures are covered?",
+   "answer": "Over 1,900 treatment procedures across 25+ medical specialties are covered under the scheme.",
+   "source": "nha.gov.in, pib.gov.in"
+  },
+  {
+   "id": 12,
+   "scheme_id": "SCH_PMJAY",
+   "question": "What is the Ayushman Card / PM-JAY e-card?",
+   "answer": "It is the beneficiary health card issued under PM-JAY required for availing cashless treatment. It can be generated at Common Service Centres, empanelled hospitals, or via the Ayushman App.",
+   "source": "pmjay.gov.in"
+  }
+ ],
+ "contacts": [
+  {
+   "id": 4,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "helpline",
+   "value": "14555",
+   "description": "National toll-free helpline for PM-JAY beneficiary queries, eligibility checks, hospital assistance, and technical support.",
+   "source": "pmjay.gov.in, nha.gov.in"
+  },
+  {
+   "id": 5,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "portal",
+   "value": "https://pmjay.gov.in",
+   "description": "Official PM-JAY website for eligibility check, hospital search, and scheme information.",
+   "source": "pmjay.gov.in"
+  },
+  {
+   "id": 6,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "portal",
+   "value": "https://nha.gov.in",
+   "description": "National Health Authority official website.",
+   "source": "nha.gov.in"
+  },
+  {
+   "id": 7,
+   "scheme_id": "SCH_PMJAY",
+   "kind": "grievance",
+   "value": "https://cgrms.pmjay.gov.in",
+   "description": "PM-JAY Grievance Redressal Management System.",
+   "source": "pmjay.gov.in"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_PMJAY_ELIG",
+   "scheme_id": "SCH_PMJAY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"op\": \"OR\", \"desc\": \"Family is in the SECC 2011 list, or you are 70 or older\", \"items\": [{\"field\": \"in_secc_2011\", \"op\": \"==\", \"value\": true, \"desc\": \"Family is listed in the SECC 2011 data\", \"source\": \"nha.gov.in\"}, {\"field\": \"age\", \"op\": \">=\", \"value\": 70, \"desc\": \"Aged 70 or above\", \"source\": \"india.gov.in, pib.gov.in\"}]}]}",
+   "unless_logic": null,
+   "description": "Eligible for AB PM-JAY: SECC 2011 family, or any citizen aged 70+",
+   "source": "pmjay.json eligibility (nha.gov.in, pmjay.gov.in, india.gov.in)",
+   "valid_from": null,
+   "valid_until": null
+  },
+  {
+   "rule_id": "RULE_PMJAY_EXCL",
+   "scheme_id": "SCH_PMJAY",
+   "rule_type": "EXCLUSION",
+   "logic": "{\"op\": \"OR\", \"items\": [{\"field\": \"income_tax_payer\", \"op\": \"==\", \"value\": true, \"desc\": \"household pays income tax\", \"source\": \"SECC 2011\"}, {\"field\": \"govt_employee_or_family\", \"op\": \"==\", \"value\": true, \"desc\": \"a household member is a government employee\", \"source\": \"SECC 2011\"}]}",
+   "unless_logic": "{\"field\": \"age\", \"op\": \">=\", \"value\": 70}",
+   "description": "SECC 2011 exclusion criteria (not applied to the 70+ category)",
+   "source": "pmjay.json exceptions (SECC 2011 exclusion criteria)",
+   "valid_from": null,
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_PMJAY",
+   "application_mode": "ONLINE_AND_OFFLINE",
+   "processing_time": null,
+   "fees": null,
+   "source": "PMJAY_001"
+  }
+ ],
+ "aliases_en": [
+  "ayushman",
+  "ayushman bharat",
+  "ayushman bharat card",
+  "ayushman card",
+  "golden card",
+  "jan arogya",
+  "pm jay",
+  "pm-jay",
+  "pmjay",
+  "500000 lakhmark health insurance",
+  "health card",
+  "health insurance"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Ayushman Bharat - Pradhan Mantri Jan Arogya Yojana (AB PM-JAY)",
+  "hi": "आयुष्मान भारत-प्रधानमंत्री जन आरोग्य योजना (एबी पीएम-जेएवाई)",
+  "ta": "ஆயுஷ்மான் பாரத்-பிரதான் மந்திரி ஜன ஆரோக்யா யோஜனா (ஏபி பிஎம்-ஜேஏவை)"
+ },
+ "catalog_descriptions": {
+  "en": "Ayushman Bharat PM-JAY gives eligible poor and vulnerable families cashless hospital treatment up to 5 lakh rupees per family per year, at empanelled hospitals anywhere in India.",
+  "hi": "आयुष्मान भारत पीएम-जेएवाई भारत में कहीं भी सूचीबद्ध अस्पतालों में पात्र गरीब और कमजोर परिवारों को प्रति परिवार प्रति वर्ष 5 लाख रुपये तक कैशलेस अस्पताल में इलाज प्रदान करता है।",
+  "ta": "ஆயுஷ்மான் பாரத் பிஎம்-ஜேஏவை திட்டத்தின் கீழ் தகுதியான ஏழை மற்றும் பாதிக்கப்படக்கூடிய குடும்பங்களுக்கு இந்தியாவில் எங்கும் உள்ள பட்டியலிடப்பட்ட மருத்துவமனைகளில் ஆண்டுக்கு ஒரு குடும்பத்திற்கு 5 லட்சம் ரூபாய் வரை பணமில்லா மருத்துவமனை சிகிச்சையை வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [
+   "आयुष्मान"
+  ],
+  "ta": [
+   "ஆயுஷ்மான்"
+  ]
+ },
+ "forms_supported_on_device": []
+}

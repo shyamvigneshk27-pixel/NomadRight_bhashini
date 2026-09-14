@@ -1,0 +1,91 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_SRMS",
+  "scheme_name": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+  "short_name": "SRMS",
+  "spoken_name": "the rehabilitation scheme for manual scavengers",
+  "legacy_code": null,
+  "category": "Social Justice",
+  "ministry": "Ministry of Social Justice and Empowerment",
+  "department": null,
+  "implementing_agency": "NSKFDC",
+  "domains": [
+   "WORKER",
+   "FINANCIAL"
+  ],
+  "description": "One-time cash assistance of Rs 40,000 and free skill training with stipend Rs 3,000/month for identified manual scavengers.",
+  "voice_summary": "The rehabilitation scheme for manual scavengers gives identified manual scavengers 40000 rupees of one-time help and free skill training with a stipend.",
+  "benefits": [],
+  "target_beneficiaries": null,
+  "eligibility": [],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [
+   "SANITATION_WORKER"
+  ],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.7",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": null,
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    7
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_SRMS description",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [],
+ "procedure_meta": [],
+ "aliases_en": [
+  "manual scavenger rehabilitation",
+  "manual scavenger scheme",
+  "manual scavengers scheme",
+  "rehabilitation of manual scavengers",
+  "self employment scheme for rehabilitation of manual scavengers",
+  "srms"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Self Employment Scheme for Rehabilitation of Manual Scavengers",
+  "hi": "हाथ से सफाई करने वालों के पुनर्वास के लिए स्व-रोजगार योजना",
+  "ta": "கையால் தோட்டி செய்யும் தொழிலாளர்களின் புனர்வாழ்வுக்கான சுய வேலைவாய்ப்பு திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The rehabilitation scheme for manual scavengers gives identified manual scavengers 40000 rupees of one-time help and free skill training with a stipend.",
+  "hi": "हाथ से सफाई करने वालों के लिए पुनर्वास योजना चिन्हित हाथ से सफाई करने वालों को 40,000 रुपये एक बार की सहायता और वजीफे के साथ मुफ्त कौशल प्रशिक्षण देती है।",
+  "ta": "கையால் தோட்டி செய்யும் தொழிலாளர்களுக்கான மறுவாழ்வுத் திட்டம், அடையாளம் காணப்பட்ட கையால் தோட்டி செய்யும் தொழிலாளர்களுக்கு 40,000 ரூபாய் ஒரு முறை உதவியும், இலவச திறன் பயிற்சியும் உதவித்தொகையுடன் வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

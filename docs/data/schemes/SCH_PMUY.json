@@ -1,0 +1,312 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMUY",
+  "scheme_name": "Pradhan Mantri Ujjwala Yojana",
+  "short_name": "PMUY",
+  "spoken_name": "Ujjwala gas connection",
+  "legacy_code": null,
+  "category": "Petroleum & Natural Gas",
+  "ministry": "Ministry of Petroleum and Natural Gas",
+  "department": null,
+  "implementing_agency": "Oil Marketing Companies (OMCs), LPG distributors",
+  "domains": [
+   "HOUSING",
+   "FINANCIAL"
+  ],
+  "description": "Launched 1 May 2016 in Ballia, Uttar Pradesh. Deposit-free LPG connection. Cash assistance: Rs 2,050 for 14.2 kg cylinder; Rs 1,300 for 5 kg cylinder. First LPG refill free. Stove (hotplate) free. Administered by Ministry of Petroleum and Natural Gas through OMCs.",
+  "voice_summary": "Pradhan Mantri Ujjwala Yojana gives a deposit-free LPG gas connection to adult women from poor households, with the first refill and a stove free.",
+  "benefits": [
+   "Cash assistance of Rs 2050 for 14.2 kg cylinder deposit-free connection",
+   "Cash assistance of Rs 1300 for 5 kg cylinder connection",
+   "First LPG refill free + Stove (hotplate) free from OMCs"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Applicant must be a woman",
+   "Must have attained 18 years of age",
+   "No other LPG connection from any OMC should exist in the same household",
+   "Must belong to a poor household (deprivation declaration required)"
+  ],
+  "age_min": 18,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": "FEMALE",
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card of Adult Woman Applicant",
+   "Ration Card / Family Composition Document",
+   "Bank Account Details",
+   "14-Point Declaration"
+  ],
+  "application_process": [
+   "offline: Visit nearest LPG distributor showroom.",
+   "offline: Submit filled application form along with Aadhaar, ration card, bank passbook, and 14-point declaration.",
+   "offline: Distributor verifies eligibility against OMC de-duplication database.",
+   "offline: Receive LPG cylinder, pressure regulator, hose pipe, and stove.",
+   "online: Visit pmuy.gov.in portal, select LPG distributor (Indane, Bharatgas, or HP Gas).",
+   "online: Submit online application form with Aadhaar and family ration card details."
+  ],
+  "application_mode": "ONLINE_AND_OFFLINE",
+  "portability": null,
+  "exceptions": [
+   "Any household already having an existing LPG connection in the name of any family member"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.32,33,34,35",
+  "official_url": "https://pmuy.gov.in",
+  "helpline": "1800 233 3555 / 1906",
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2016-05-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    32,
+    33,
+    34,
+    35
+   ],
+   "seed_file": "pmuy.json",
+   "summary_basis": "canonical SCH_PMUY description, RULE_PMUY_ELIG, BEN_PMUY",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 80,
+   "scheme_id": "SCH_PMUY",
+   "rank": 0,
+   "text": "Cash assistance of Rs 2050 for 14.2 kg cylinder deposit-free connection",
+   "value_inr": 2050.0,
+   "frequency": null,
+   "source": "canonical p.33"
+  },
+  {
+   "id": 81,
+   "scheme_id": "SCH_PMUY",
+   "rank": 1,
+   "text": "Cash assistance of Rs 1300 for 5 kg cylinder connection",
+   "value_inr": 1300.0,
+   "frequency": null,
+   "source": "canonical p.33"
+  },
+  {
+   "id": 82,
+   "scheme_id": "SCH_PMUY",
+   "rank": 2,
+   "text": "First LPG refill free + Stove (hotplate) free from OMCs",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.33"
+  }
+ ],
+ "documents": [
+  {
+   "id": 52,
+   "scheme_id": "SCH_PMUY",
+   "rank": 0,
+   "name": "Aadhaar Card of Adult Woman Applicant",
+   "description": "Aadhaar card",
+   "mandatory": 1,
+   "source": "canonical p.8"
+  },
+  {
+   "id": 53,
+   "scheme_id": "SCH_PMUY",
+   "rank": 1,
+   "name": "Ration Card / Family Composition Document",
+   "description": "Ration card showing family members",
+   "mandatory": 1,
+   "source": "canonical p.8"
+  },
+  {
+   "id": 54,
+   "scheme_id": "SCH_PMUY",
+   "rank": 2,
+   "name": "Bank Account Details",
+   "description": "Aadhaar linked bank account of the woman",
+   "mandatory": 1,
+   "source": "canonical p.8"
+  },
+  {
+   "id": 55,
+   "scheme_id": "SCH_PMUY",
+   "rank": 3,
+   "name": "14-Point Declaration",
+   "description": "Self-declaration of not having existing LPG",
+   "mandatory": 1,
+   "source": "canonical p.8"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 83,
+   "scheme_id": "SCH_PMUY",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Visit nearest LPG distributor showroom.",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 84,
+   "scheme_id": "SCH_PMUY",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Submit filled application form along with Aadhaar, ration card, bank passbook, and 14-point declaration.",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 85,
+   "scheme_id": "SCH_PMUY",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Distributor verifies eligibility against OMC de-duplication database.",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 86,
+   "scheme_id": "SCH_PMUY",
+   "mode": "offline",
+   "step_no": 4,
+   "text": "Receive LPG cylinder, pressure regulator, hose pipe, and stove.",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 87,
+   "scheme_id": "SCH_PMUY",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit pmuy.gov.in portal, select LPG distributor (Indane, Bharatgas, or HP Gas).",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 88,
+   "scheme_id": "SCH_PMUY",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Submit online application form with Aadhaar and family ration card details.",
+   "source": "canonical p.8"
+  }
+ ],
+ "exceptions": [
+  {
+   "id": 44,
+   "scheme_id": "SCH_PMUY",
+   "kind": "exclusion",
+   "text": "Any household already having an existing LPG connection in the name of any family member",
+   "source": "canonical p.8"
+  }
+ ],
+ "faqs": [],
+ "contacts": [
+  {
+   "id": 44,
+   "scheme_id": "SCH_PMUY",
+   "kind": "helpline",
+   "value": "1800 233 3555 / 1906",
+   "description": "Helpline",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 45,
+   "scheme_id": "SCH_PMUY",
+   "kind": "portal",
+   "value": "https://pmuy.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 46,
+   "scheme_id": "SCH_PMUY",
+   "kind": "grievance",
+   "value": "OMC Area Offices & MoP&NG Helpdesk",
+   "description": "Grievance redressal",
+   "source": "canonical p.8"
+  },
+  {
+   "id": 53,
+   "scheme_id": "SCH_PMUY",
+   "kind": "portal",
+   "value": "pmuy.gov.in",
+   "description": "Official portal",
+   "source": "canonical p.32,33,34,35"
+  }
+ ],
+ "rules": [
+  {
+   "rule_id": "RULE_PMUY_ELIG",
+   "scheme_id": "SCH_PMUY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Applicant must be a woman\", \"source\": \"Page 32, PMUY Eligibility point 1\", \"field\": \"gender\", \"op\": \"==\", \"value\": \"FEMALE\"}, {\"desc\": \"Must have attained 18 years of age\", \"source\": \"Page 32, PMUY Eligibility point 1\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"No other LPG connection from any OMC should exist in the same household\", \"source\": \"Page 32, PMUY Eligibility point 2\", \"field\": \"lpg_connection\", \"op\": \"==\", \"value\": false}, {\"desc\": \"Must belong to a poor household (deprivation declaration required)\", \"source\": \"Page 32, PMUY Eligibility point 3\", \"field\": \"poor_household\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM Ujjwala Yojana LPG connection",
+   "source": "canonical p.32,33",
+   "valid_from": "2016-05-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_PMUY",
+   "application_mode": "ONLINE_AND_OFFLINE",
+   "processing_time": "Connection released within 7-10 days of document verification",
+   "fees": "Free security deposit, free first cylinder and stove assistance",
+   "source": "canonical p.8"
+  }
+ ],
+ "aliases_en": [
+  "free gas connection",
+  "gas connection scheme",
+  "lpg connection scheme",
+  "lpg scheme",
+  "pmuy",
+  "pradhan mantri ujjwala yojana",
+  "ujjwala",
+  "ujjwala yojana",
+  "gas connection"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Pradhan Mantri Ujjwala Yojana",
+  "hi": "प्रधानमंत्री उज्ज्वला योजना",
+  "ta": "பிரதான் மந்திரி உஜ்வாலா யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "Pradhan Mantri Ujjwala Yojana gives a deposit-free LPG gas connection to adult women from poor households, with the first refill and a stove free.",
+  "hi": "प्रधानमंत्री उज्ज्वला योजना गरीब परिवारों की वयस्क महिलाओं को जमा-मुक्त एलपीजी गैस कनेक्शन देती है, जिसमें पहला रिफिल और एक चूल्हा मुफ्त होता है।",
+  "ta": "பிரதம மந்திரி உஜ்வாலா யோஜனா ஏழைக் குடும்பங்களைச் சேர்ந்த வயது வந்த பெண்களுக்கு வைப்புத்தொகை இல்லாத எல்பிஜி எரிவாயு இணைப்பை வழங்குகிறது, இதில் முதல் முறையாக எரிவாயு நிரப்புதல் மற்றும் அடுப்பு இலவசமாக வழங்கப்படுகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [
+   "उज्ज्वला"
+  ],
+  "ta": [
+   "உஜ்வலா"
+  ]
+ },
+ "forms_supported_on_device": [
+  {
+   "form_id": "FORM_PMUY_KYC",
+   "title": {
+    "en": "PM Ujjwala Yojana KYC application form",
+    "hi": "प्रधानमंत्री उज्ज्वला योजना केवाईसी आवेदन फ़ॉर्म",
+    "ta": "பிரதம மந்திரி உஜ்ஜ்வலா யோஜனா கேஒய்சி விண்ணப்பப் படிவம்"
+   },
+   "fields": 21,
+   "supported_languages": [
+    "hi",
+    "ta",
+    "en"
+   ]
+  }
+ ]
+}

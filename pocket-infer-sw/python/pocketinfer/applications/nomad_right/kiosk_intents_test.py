@@ -2,6 +2,7 @@
 import unittest
 
 from pocketinfer.applications.nomad_right import kiosk_intents as K
+from pocketinfer.applications.nomad_right import native_correct as NC
 from pocketinfer.applications.nomad_right import native_correct as N
 
 TERMS = {"ration", "pension", "pds", "wedding", "ayushman"}
@@ -58,6 +59,68 @@ class TestNativeCorrection(unittest.TestCase):
 
     def test_english_passes_through(self):
         self.assertEqual(N.correct("What documents do I need", "en"), ("What documents do I need", None))
+
+
+class TestNativeIntentsV2(unittest.TestCase):
+    """2026-09-14: native phrasings for every intent, tolerant greetings, generic scheme words."""
+
+    def hit(self, native, en, lang):
+        h = K.match(native, en, lang)
+        return h.intent if h else None
+
+    def test_greeting_with_extra_words_from_the_recogniser(self):
+        for t in ("मुख्य नमस्ते", "नमस्ते भैया", "अरे नमस्ते", "नमस्ते जी"):
+            self.assertEqual(self.hit(t, "", "hi"), "greeting", t)
+        for t in ("வணக்கம் அண்ணா", "வணக்கம்ங்க", "குட் மார்னிங்"):
+            self.assertEqual(self.hit(t, "", "ta"), "greeting", t)
+        self.assertEqual(self.hit("hello madam", "hello madam", "en"), "greeting")
+
+    def test_greeting_inside_a_scheme_question_is_not_a_greeting(self):
+        self.assertIsNone(self.hit("नमस्ते राशन कार्ड कैसे बनेगा", "Hello, how will the ration card be made?", "hi"))
+        self.assertIsNone(self.hit("வணக்கம் ரேஷன் அட்டை எப்படி பெறுவது", "Hello, how to get a ration card", "ta"))
+
+    def test_native_phrasings_without_translation(self):
+        cases = [("hi", "आप कौन हैं", "identity"), ("hi", "यह क्या है", "identity"), ("hi", "क्या कर सकते हो", "capability"),
+                 ("hi", "मेरी मदद कैसे करोगे", "capability"), ("hi", "मुझे कैसे मदद मिलेगी", "help"), ("hi", "क्या मैं तमिल में बोल सकता हूँ", "usage_language"),
+                 ("ta", "நீங்கள் யார்", "identity"), ("ta", "நீங்க என்ன செய்வீங்க", "capability"), ("ta", "இதை எப்படி பயன்படுத்துவது", "usage_how"),
+                 ("ta", "நான் தகுதியானவரா", "eligibility"), ("ta", "எனக்கு எந்த திட்டம் கிடைக்கும்", "schemes_general"), ("ta", "அரசு படிவம் நிரப்ப வேண்டும்", "usage_form")]
+        for lang, t, want in cases:
+            self.assertEqual(self.hit(t, "", lang), want, t)
+
+    def test_english_eligibility_and_help(self):
+        self.assertEqual(self.hit("Can you check whether I am eligible?", "Can you check whether I am eligible?", "en"), "eligibility")
+        self.assertEqual(self.hit("I need help", "I need help", "en"), "help")
+        self.assertEqual(self.hit("What help can I get?", "What help can I get?", "en"), "capability")
+
+    def test_specific_schemes_and_personal_details_stay_with_the_pipeline(self):
+        for lang, t, en in [("en", "Am I eligible for PM Kisan?", "Am I eligible for PM Kisan?"), ("hi", "मुझे पैसों की मदद चाहिए", "I need money help"),
+                            ("hi", "मेरी उम्र चालीस साल है", "I am forty years old"), ("ta", "எனக்கு பணம் உதவி வேண்டும்", "I need money help"),
+                            ("ta", "என் பெயர் லட்சுமி", "My name is Lakshmi"), ("en", "15 August 1985", "15 August 1985"), ("hi", "हाँ", "yes")]:
+            self.assertIsNone(self.hit(t, en, lang), t)
+
+
+class TestNativeCorrectionV2(unittest.TestCase):
+    def test_ordinary_tamil_is_never_changed(self):
+        for t in ("நீங்கள் என்ன செய்ய முடியும்", "நீங்க என்ன செய்வீங்க", "இங்கே என்ன உதவி கிடைக்கும்", "அரசு திட்டங்கள் பற்றி சொல்லுங்கள்",
+                  "என் தகுதியை சரிபார்க்க முடியுமா", "நான் சென்னையில் வேலை செய்கிறேன்"):
+            self.assertEqual(NC.correct(t, "ta")[0], t)
+
+    def test_ordinary_hindi_is_never_changed(self):
+        for t in ("मुझे पैसों की मदद चाहिए", "मैं बिहार से आया मजदूर हूँ", "मुख्य नमस्ते", "आप क्या कर सकते हैं"):
+            self.assertEqual(NC.correct(t, "hi")[0], t)
+
+    def test_real_recognition_errors_are_fixed(self):
+        self.assertEqual(NC.correct("इनडिएस योजना के लिए महनदंड क्या है", "hi")[0], "पीडीएस योजना के लिए मानदंड क्या है")
+        self.assertIn("पेंशन", NC.correct("मेरी उम्र साठ साल है क्या फैशन मिलेगी", "hi")[0])
+        self.assertEqual(NC.correct("हिल पर लाइय नंबर क्या है", "hi")[0], "हेल्पलाइन नंबर क्या है")
+        fixed, hint = NC.correct("आयुशमन कारड के लिए कोनसे दसतावेज चाहिए", "hi")
+        self.assertIn("आयुष्मान कार्ड", fixed); self.assertIn("दस्तावेज", fixed); self.assertEqual(hint, "SCH_PMJAY")
+        self.assertEqual(NC.correct("என் வேஷன் அட்டையை தமிழ்நாட்டில் பயன்படுத்தலாமா", "ta"), ("என் ரேஷன் அட்டையை தமிழ்நாட்டில் பயன்படுத்தலாமா", "SCH_ONORC"))
+        fixed, hint = NC.correct("பிரதம மந்திரிக்கு சான் திட்டம் பற்றி சொல்லுங்கள்", "ta")
+        self.assertIn("கிசான்", fixed); self.assertEqual(hint, "SCH_PMKISAN")
+
+    def test_garbled_word_is_never_turned_into_a_generic_title_word(self):
+        self.assertNotIn("சட்டம்", NC.correct("நீட்டம் அட்டை பதிவு செய்வது எப்படி", "ta")[0])
 
 
 if __name__ == "__main__":

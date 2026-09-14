@@ -1,0 +1,203 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMSBY",
+  "scheme_name": "Pradhan Mantri Suraksha Bima Yojana",
+  "short_name": "PMSBY",
+  "spoken_name": "PM Suraksha accident insurance",
+  "legacy_code": null,
+  "category": "Financial Inclusion",
+  "ministry": "Ministry of Finance",
+  "department": "Department of Financial Services",
+  "implementing_agency": "Banks, Post Offices",
+  "domains": [
+   "FINANCIAL",
+   "DISABILITY"
+  ],
+  "description": "One-year renewable personal accident insurance scheme. Premium Rs 20 per annum. Cover period 1 June to 31 May. Entry age 18-70 years. Rs 2 lakh for accidental death or total disability; Rs 1 lakh for partial disability.",
+  "voice_summary": "PM Suraksha Bima Yojana is accident insurance for people aged 18 to 70 with a bank account. It pays up to 2 lakh rupees, for a premium of 20 rupees a year.",
+  "benefits": [
+   "Rs 2 lakh for accidental death or total permanent disability",
+   "Rs 1 lakh for partial permanent disability"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Age 18 or above",
+   "Age 70 or below",
+   "Must have Jan Dhan or savings bank account with Aadhaar"
+  ],
+  "age_min": 18,
+  "age_max": 70,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Savings Bank Account Details",
+   "Auto-Debit Consent Form"
+  ],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [
+   "Persons below 18 years or above 70 years of age"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.5,6",
+  "official_url": "https://www.financialservices.gov.in/index.php/pradhan-mantri-suraksha-bima-yojana-pmsby",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2022-06-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    5,
+    6
+   ],
+   "seed_file": "pmsby.json",
+   "summary_basis": "canonical SCH_PMSBY description, RULE_PMSBY_ELIG, BEN_PMSBY",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 65,
+   "scheme_id": "SCH_PMSBY",
+   "rank": 0,
+   "text": "Rs 2 lakh for accidental death or total permanent disability",
+   "value_inr": 200000.0,
+   "frequency": null,
+   "source": "canonical p.5"
+  },
+  {
+   "id": 66,
+   "scheme_id": "SCH_PMSBY",
+   "rank": 1,
+   "text": "Rs 1 lakh for partial permanent disability",
+   "value_inr": 100000.0,
+   "frequency": null,
+   "source": "canonical p.5"
+  }
+ ],
+ "documents": [
+  {
+   "id": 31,
+   "scheme_id": "SCH_PMSBY",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar card",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  },
+  {
+   "id": 32,
+   "scheme_id": "SCH_PMSBY",
+   "rank": 1,
+   "name": "Savings Bank Account Details",
+   "description": "Operative bank or post office account",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  },
+  {
+   "id": 33,
+   "scheme_id": "SCH_PMSBY",
+   "rank": 2,
+   "name": "Auto-Debit Consent Form",
+   "description": "Signed auto-debit mandate",
+   "mandatory": 1,
+   "source": "canonical p.4"
+  }
+ ],
+ "procedure_steps": [],
+ "exceptions": [
+  {
+   "id": 51,
+   "scheme_id": "SCH_PMSBY",
+   "kind": "exclusion",
+   "text": "Persons below 18 years or above 70 years of age",
+   "source": "canonical p.4"
+  }
+ ],
+ "faqs": [
+  {
+   "id": 40,
+   "scheme_id": "SCH_PMSBY",
+   "question": "What is the risk coverage and annual premium under PMSBY?",
+   "answer": "PMSBY offers accidental death and full disability cover of Rs. 2,00,000, and partial permanent disability cover of Rs. 1,00,000. The premium is only Rs. 20 per annum, auto-debited from the bank account.",
+   "source": "canonical p.4"
+  }
+ ],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_PMSBY_ELIG",
+   "scheme_id": "SCH_PMSBY",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Age 18 or above\", \"source\": \"Page 5, PMSBY Eligibility\", \"field\": \"age\", \"op\": \">=\", \"value\": 18}, {\"desc\": \"Age 70 or below\", \"source\": \"Page 5, PMSBY Eligibility\", \"field\": \"age\", \"op\": \"<=\", \"value\": 70}, {\"desc\": \"Must have Jan Dhan or savings bank account with Aadhaar\", \"source\": \"Page 5, PMSBY Eligibility\", \"field\": \"has_bank_account\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for PM Suraksha Bima Yojana",
+   "source": "canonical p.5,6",
+   "valid_from": "2022-06-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "accident insurance scheme",
+  "pm suraksha",
+  "pmsby",
+  "pradhan mantri suraksha bima yojana",
+  "pradhan mantri suraksha bima yojana - full rules",
+  "suraksha bima",
+  "suraksha bima yojana",
+  "accident insurance"
+ ],
+ "relationships": [
+  {
+   "id": 3,
+   "source_scheme_id": "SCH_PMSBY",
+   "target_scheme_id": "SCH_PMJJBY",
+   "relationship_type": "COMPLEMENTARY",
+   "description": "PMJJBY covers natural and accidental death (life insurance), while PMSBY specifically covers accidental death and disability. Both share bank auto-debit mechanisms."
+  }
+ ],
+ "catalog_names": {
+  "en": "Pradhan Mantri Suraksha Bima Yojana",
+  "hi": "प्रधानमंत्री सुरक्षा बीमा योजना",
+  "ta": "பிரதான் மந்திரி சுரக்ஷா பீமா யோஜனா"
+ },
+ "catalog_descriptions": {
+  "en": "PM Suraksha Bima Yojana is accident insurance for people aged 18 to 70 with a bank account. It pays up to 2 lakh rupees, for a premium of 20 rupees a year.",
+  "hi": "पीएम सुरक्षा बीमा योजना 18 से 70 वर्ष की आयु के लोगों के लिए एक दुर्घटना बीमा है, जिसका बैंक खाता है। यह 20 रुपये प्रति वर्ष के प्रीमियम के लिए 2 लाख रुपये तक का भुगतान करता है।",
+  "ta": "பிஎம் சுரக்ஷா பீமா யோஜனா என்பது 18 முதல் 70 வயதுக்குட்பட்டவர்களுக்கு வங்கிக் கணக்கு வைத்திருக்கும் விபத்துக் காப்பீட்டு திட்டமாகும். இது ஆண்டுக்கு 20 ரூபாய் பிரீமியத்திற்கு 2 லட்சம் ரூபாய் வரை செலுத்துகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": [
+  {
+   "form_id": "FORM_PMSBY_CONSENT",
+   "title": {
+    "en": "PM Suraksha Bima Yojana consent form",
+    "hi": "प्रधानमंत्री सुरक्षा बीमा योजना सहमति फ़ॉर्म",
+    "ta": "பிரதம மந்திரி சுரக்ஷா பீமா யோஜனா ஒப்புதல் படிவம்"
+   },
+   "fields": 22,
+   "supported_languages": [
+    "hi",
+    "ta",
+    "en"
+   ]
+  }
+ ]
+}

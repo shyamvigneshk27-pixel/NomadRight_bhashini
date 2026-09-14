@@ -1,0 +1,257 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_NSAP_AP",
+  "scheme_name": "Annapurna Scheme",
+  "short_name": "Annapurna",
+  "spoken_name": "the Annapurna food grain scheme",
+  "legacy_code": null,
+  "category": "Social Justice",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats/ULBs",
+  "domains": [
+   "RATION",
+   "PENSION"
+  ],
+  "description": "Annapurna is a component of NSAP providing 10 kg of food grains (wheat or rice) per month free of cost to eligible BPL senior citizens aged 60 years and above who are not receiving pension under IGNOAPS. The scheme is meant to ensure food security for destitute elderly who have been left out of IGNOAPS coverage.",
+  "voice_summary": "The Annapurna scheme gives 10 kilos of free food grains a month to poor elderly people aged 60 or above who do not get the old age pension.",
+  "benefits": [
+   "10 kg food grains per month free for eligible elderly not receiving IGNOAPS"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Applicant must be aged 60 years or above",
+   "Applicant must NOT be receiving pension under IGNOAPS",
+   "Applicant must belong to a BPL household"
+  ],
+  "age_min": 60,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [
+   "Aadhaar Card",
+   "Proof of Age (60+ years)",
+   "BPL Card / Certificate",
+   "Declaration of Non-Receipt of IGNOAPS",
+   "Domicile Certificate (optional)"
+  ],
+  "application_process": [
+   "offline: Obtain Annapurna Scheme form from Gram Panchayat or Taluk Supply Office / Ration Office.",
+   "offline: Attach age proof (60+), BPL ration card, and non-pensioner certificate.",
+   "offline: Submit to local Food & Civil Supplies Inspector or BDO office.",
+   "offline: Upon sanction, an Annapurna special ration card is issued for 10 kg free grains monthly.",
+   "online: Visit state Food and Civil Supplies / Social Welfare portal.",
+   "online: Select 'Apply for Annapurna Scheme'.",
+   "online: Upload age proof (60+) and declaration of non-receipt of pension under IGNOAPS.",
+   "online: Select designated Fair Price Shop (FPS) for food grain collection."
+  ],
+  "application_mode": "OFFLINE_AND_ONLINE",
+  "portability": null,
+  "exceptions": [],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.60,61,62,63",
+  "official_url": null,
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2000-04-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": "SCH_NSAP",
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66
+   ],
+   "seed_file": null,
+   "summary_basis": "canonical SCH_NSAP_AP description, RULE_NSAP_AP_ELIG",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 102,
+   "scheme_id": "SCH_NSAP_AP",
+   "rank": 0,
+   "text": "10 kg food grains per month free for eligible elderly not receiving IGNOAPS",
+   "value_inr": null,
+   "frequency": "MONTHLY",
+   "source": "canonical p.65"
+  }
+ ],
+ "documents": [
+  {
+   "id": 92,
+   "scheme_id": "SCH_NSAP_AP",
+   "rank": 0,
+   "name": "Aadhaar Card",
+   "description": "Aadhaar number or enrollment slip for identity verification",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 93,
+   "scheme_id": "SCH_NSAP_AP",
+   "rank": 1,
+   "name": "Proof of Age (60+ years)",
+   "description": "Birth certificate, school certificate, EPIC, or medical officer age certificate",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 94,
+   "scheme_id": "SCH_NSAP_AP",
+   "rank": 2,
+   "name": "BPL Card / Certificate",
+   "description": "BPL ration card or certificate issued by designated authority",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 95,
+   "scheme_id": "SCH_NSAP_AP",
+   "rank": 3,
+   "name": "Declaration of Non-Receipt of IGNOAPS",
+   "description": "Self-declaration or verification that the applicant is not receiving pension under IGNOAPS",
+   "mandatory": 1,
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 96,
+   "scheme_id": "SCH_NSAP_AP",
+   "rank": 4,
+   "name": "Domicile Certificate",
+   "description": "",
+   "mandatory": 0,
+   "source": "canonical p.65,66"
+  }
+ ],
+ "procedure_steps": [
+  {
+   "id": 130,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "offline",
+   "step_no": 1,
+   "text": "Obtain Annapurna Scheme form from Gram Panchayat or Taluk Supply Office / Ration Office.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 131,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "offline",
+   "step_no": 2,
+   "text": "Attach age proof (60+), BPL ration card, and non-pensioner certificate.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 132,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "offline",
+   "step_no": 3,
+   "text": "Submit to local Food & Civil Supplies Inspector or BDO office.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 133,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "offline",
+   "step_no": 4,
+   "text": "Upon sanction, an Annapurna special ration card is issued for 10 kg free grains monthly.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 134,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "online",
+   "step_no": 1,
+   "text": "Visit state Food and Civil Supplies / Social Welfare portal.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 135,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "online",
+   "step_no": 2,
+   "text": "Select 'Apply for Annapurna Scheme'.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 136,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "online",
+   "step_no": 3,
+   "text": "Upload age proof (60+) and declaration of non-receipt of pension under IGNOAPS.",
+   "source": "canonical p.65,66"
+  },
+  {
+   "id": 137,
+   "scheme_id": "SCH_NSAP_AP",
+   "mode": "online",
+   "step_no": 4,
+   "text": "Select designated Fair Price Shop (FPS) for food grain collection.",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "exceptions": [],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_NSAP_AP_ELIG",
+   "scheme_id": "SCH_NSAP_AP",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Applicant must be aged 60 years or above\", \"source\": \"Page 65, NSAP Annapurna Eligibility\", \"field\": \"age\", \"op\": \">=\", \"value\": 60}, {\"desc\": \"Applicant must NOT be receiving pension under IGNOAPS\", \"source\": \"Page 65, NSAP Annapurna Eligibility\", \"field\": \"ignoaps_member\", \"op\": \"==\", \"value\": false}, {\"desc\": \"Applicant must belong to a BPL household\", \"source\": \"Page 65, NSAP Annapurna Eligibility\", \"field\": \"is_bpl\", \"op\": \"==\", \"value\": true}]}",
+   "unless_logic": null,
+   "description": "Eligible for Annapurna Scheme (food grains for elderly)",
+   "source": "canonical p.65,66",
+   "valid_from": "2000-04-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [
+  {
+   "scheme_id": "SCH_NSAP_AP",
+   "application_mode": "OFFLINE_AND_ONLINE",
+   "processing_time": "30 working days",
+   "fees": "Free of cost / No application fee",
+   "source": "canonical p.65,66"
+  }
+ ],
+ "aliases_en": [
+  "annapurna",
+  "annapurna scheme",
+  "annapurna yojana",
+  "free food grains elderly",
+  "nsap annapurna",
+  "nsap-ap"
+ ],
+ "relationships": [],
+ "catalog_names": {
+  "en": "Annapurna Scheme",
+  "hi": "अन्नपूर्णा योजना",
+  "ta": "அன்னபூர்ணா திட்டம்"
+ },
+ "catalog_descriptions": {
+  "en": "The Annapurna scheme gives 10 kilos of free food grains a month to poor elderly people aged 60 or above who do not get the old age pension.",
+  "hi": "अन्नपूर्णा योजना 60 वर्ष या उससे अधिक आयु के गरीब बुजुर्गों को प्रति माह 10 किलो मुफ्त खाद्यान्न देती है, जिन्हें वृद्धावस्था पेंशन नहीं मिलती है।",
+  "ta": "அன்னபூர்ணா திட்டம் முதியோர் ஓய்வூதியம் பெறாத 60 வயது அல்லது அதற்கு மேற்பட்ட ஏழை முதியவர்களுக்கு மாதத்திற்கு 10 கிலோ இலவச உணவு தானியங்களை வழங்குகிறது."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [],
+  "ta": []
+ },
+ "forms_supported_on_device": []
+}

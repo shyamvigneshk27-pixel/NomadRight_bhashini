@@ -1,0 +1,176 @@
+{
+ "scheme": {
+  "scheme_id": "SCH_PMAYG",
+  "scheme_name": "Pradhan Mantri Awaas Yojana – Gramin",
+  "short_name": "PMAY-G",
+  "spoken_name": "PM Awaas Yojana Gramin housing",
+  "legacy_code": null,
+  "category": "Rural Housing",
+  "ministry": "Ministry of Rural Development",
+  "department": null,
+  "implementing_agency": "State/UT Governments, District Administration, Gram Panchayats",
+  "domains": [
+   "HOUSING"
+  ],
+  "description": "Implemented from 1 April 2016. Framework 2022 applicable. Minimum house size: 25 sq metres including cooking area. Unit assistance: Rs 1.20 lakh (plain areas), Rs 1.30 lakh (hilly/NE/difficult). Cost sharing: 60:40 (Centre:State) for plains; 90:10 for NE/Himachal/Uttarakhand/J&K; 100% Central for UTs. Toilet assistance Rs 12,000 via SBM-G/MGNREGS convergence. MGNREGS labour: 90/95 person-days. Beneficiary selection via SECC 2011 housing deprivation data and Awaas+ lists verified by Gram Sabha. AwaasApp for geo-tagged monitoring. Institutional finance up to Rs 70,000 facilitated. Extended 2024-29 with 2 crore additional houses; total target 4.95 crore by 2029.",
+  "voice_summary": "PM Awaas Yojana Gramin helps houseless and poor rural families build a pucca house, with 1.2 lakh rupees in plain areas and 1.3 lakh in hilly areas.",
+  "benefits": [
+   "Rs 1.20 lakh unit assistance for house construction in plain areas",
+   "Rs 1.30 lakh unit assistance for house construction in hilly/NE/difficult areas",
+   "Rs 12,000 for toilet construction through SBM-G convergence",
+   "90/95 person-days unskilled wage labour through MGNREGS convergence"
+  ],
+  "target_beneficiaries": null,
+  "eligibility": [
+   "Must be a rural household"
+  ],
+  "age_min": null,
+  "age_max": null,
+  "income_limit": null,
+  "income_limit_period": null,
+  "occupation": [],
+  "gender": null,
+  "migration_support": null,
+  "state": "ALL",
+  "district": null,
+  "documents": [],
+  "application_process": [],
+  "application_mode": null,
+  "portability": null,
+  "exceptions": [
+   "Households possessing a pucca house or receiving previous housing subsidy"
+  ],
+  "official_source": "Official scheme compilation (scheme 2.pdf), dataset p.55,56,57,58",
+  "official_url": "https://rural.gov.in/sites/default/files/PMAY-G_Suo_moto_disclosure_27012022_0.pdf",
+  "helpline": null,
+  "last_verified": null,
+  "status": "ACTIVE",
+  "effective_from": "2016-04-01",
+  "effective_until": null,
+  "superseded_by": null,
+  "parent_scheme_id": null,
+  "is_listed": 1,
+  "provenance": {
+   "base": "canonical",
+   "legacy_json": null,
+   "canonical_pages": [
+    55,
+    56,
+    57,
+    58
+   ],
+   "seed_file": "pmay_g.json",
+   "summary_basis": "canonical SCH_PMAYG objective, BEN_PMAYG",
+   "migration_support_source": null
+  }
+ },
+ "benefits": [
+  {
+   "id": 91,
+   "scheme_id": "SCH_PMAYG",
+   "rank": 0,
+   "text": "Rs 1.20 lakh unit assistance for house construction in plain areas",
+   "value_inr": 120000.0,
+   "frequency": null,
+   "source": "canonical p.56"
+  },
+  {
+   "id": 92,
+   "scheme_id": "SCH_PMAYG",
+   "rank": 1,
+   "text": "Rs 1.30 lakh unit assistance for house construction in hilly/NE/difficult areas",
+   "value_inr": 130000.0,
+   "frequency": null,
+   "source": "canonical p.56"
+  },
+  {
+   "id": 93,
+   "scheme_id": "SCH_PMAYG",
+   "rank": 2,
+   "text": "Rs 12,000 for toilet construction through SBM-G convergence",
+   "value_inr": 12000.0,
+   "frequency": null,
+   "source": "canonical p.56"
+  },
+  {
+   "id": 94,
+   "scheme_id": "SCH_PMAYG",
+   "rank": 3,
+   "text": "90/95 person-days unskilled wage labour through MGNREGS convergence",
+   "value_inr": null,
+   "frequency": null,
+   "source": "canonical p.56"
+  }
+ ],
+ "documents": [],
+ "procedure_steps": [],
+ "exceptions": [
+  {
+   "id": 47,
+   "scheme_id": "SCH_PMAYG",
+   "kind": "exclusion",
+   "text": "Households possessing a pucca house or receiving previous housing subsidy",
+   "source": "canonical p.10"
+  }
+ ],
+ "faqs": [],
+ "contacts": [],
+ "rules": [
+  {
+   "rule_id": "RULE_PMAYG_ELIG",
+   "scheme_id": "SCH_PMAYG",
+   "rule_type": "QUALIFICATION",
+   "logic": "{\"op\": \"AND\", \"items\": [{\"desc\": \"Must be a rural household\", \"source\": \"Page 55, PMAY-G\", \"field\": \"area_type\", \"op\": \"==\", \"value\": \"RURAL\"}, {\"op\": \"OR\", \"desc\": \"\", \"items\": [{\"desc\": \"Household is houseless or living in 0, 1, or 2 kutcha wall/roof house per SECC 2011\", \"source\": \"Page 56, PMAY-G beneficiary selection\", \"field\": \"housing_deprivation\", \"op\": \"IN\", \"value\": [\"HOUSELESS\", \"ZERO_ROOM_KUTCHA\", \"ONE_ROOM_KUTCHA\", \"TWO_ROOM_KUTCHA\"]}, {\"desc\": \"Household included in Awaas+ list\", \"source\": \"Page 56, PMAY-G\", \"field\": \"in_awasplus_list\", \"op\": \"==\", \"value\": true}], \"kind\": \"verify\"}]}",
+   "unless_logic": null,
+   "description": "Eligible for PMAY-G rural housing assistance",
+   "source": "canonical p.55,56",
+   "valid_from": "2016-04-01",
+   "valid_until": null
+  }
+ ],
+ "procedure_meta": [],
+ "aliases_en": [
+  "awaas yojana",
+  "awaas yojana gramin",
+  "awas yojana",
+  "gramin awas",
+  "pm awaas",
+  "pm awas",
+  "pmay g",
+  "pmay gramin",
+  "pmay-g",
+  "pmayg",
+  "pradhan mantri awaas yojana – gramin",
+  "pradhan mantri awas",
+  "rural housing scheme"
+ ],
+ "relationships": [
+  {
+   "id": 4,
+   "source_scheme_id": "SCH_PMAYG",
+   "target_scheme_id": "SCH_MGNREGA",
+   "relationship_type": "SUBSIDIARY_CONVERGENCE",
+   "description": "Beneficiaries constructing houses under PMAY-G are entitled to up to 90/95 person-days of unskilled labor wages under MGNREGA."
+  }
+ ],
+ "catalog_names": {
+  "en": "Pradhan Mantri Awaas Yojana – Gramin",
+  "hi": "प्रधानमंत्री आवास योजना-ग्रामीण",
+  "ta": "பிரதான் மந்திரி ஆவாஸ் யோஜனா-கிராமின்"
+ },
+ "catalog_descriptions": {
+  "en": "PM Awaas Yojana Gramin helps houseless and poor rural families build a pucca house, with 1.2 lakh rupees in plain areas and 1.3 lakh in hilly areas.",
+  "hi": "पीएम आवास योजना ग्रामीण बेघर और गरीब ग्रामीण परिवारों को एक पक्का घर बनाने में मदद करती है, जिसमें मैदानी क्षेत्रों में 1.2 लाख रुपये और पहाड़ी क्षेत्रों में 1.3 लाख रुपये शामिल हैं।",
+  "ta": "கிராமப்புறங்களில் உள்ள வீடற்ற மற்றும் ஏழை கிராமப்புற குடும்பங்களுக்கு ஒரு பக்கா வீட்டைக் கட்டுவதற்கு பி. எம். ஆவாஸ் யோஜனா கிராமின் உதவுகிறது, இதில் சமவெளிப் பகுதிகளில் ரூ. 1.20 லட்சம் மற்றும் மலைப்பகுதிகளில் ரூ. 1.30 லட்சம் ஆகும்."
+ },
+ "in_screen_catalog": true,
+ "native_spoken_hints": {
+  "hi": [
+   "आवास"
+  ],
+  "ta": [
+   "ஆவாஸ்"
+  ]
+ },
+ "forms_supported_on_device": []
+}
